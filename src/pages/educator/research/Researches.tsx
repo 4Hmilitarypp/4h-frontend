@@ -14,7 +14,14 @@ const Researches: React.FC<RouteComponentProps> = () => {
   React.useEffect(() => {
     api.research
       .get()
-      .then(r => setResearches(r))
+      .then(r => {
+        console.log('process', process.env)
+        if (r! instanceof Array) {
+          console.error(r)
+          return
+        }
+        setResearches(r)
+      })
       .catch(err => console.error(err))
   }, [])
 

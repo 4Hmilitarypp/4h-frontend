@@ -1,5 +1,5 @@
 import * as axios from 'axios'
-import { IResource, ILiaison, IPartnerSection, IResearch } from '../sharedTypes'
+import { ILiaison, IPartnerSection, IResearch, IResource } from '../sharedTypes'
 import { IApiError, IContactUsEmail, IUser } from '../types'
 
 let api: axios.AxiosInstance
@@ -83,9 +83,10 @@ function login({ token }: { token: string }) {
 
 function init({
   token = window.localStorage.getItem('token'),
-  baseURL = (api && api.defaults.baseURL) || envBaseURL,
+  baseURL = envBaseURL || '/api',
   axiosOptions = { headers: {} },
 } = {}) {
+  console.log(process.env)
   isLoggedIn = Boolean(token)
   api = (axios as any).create({
     baseURL,
@@ -99,12 +100,12 @@ function init({
 
 const restApi = {
   auth,
-  resources,
   emails,
   init,
   liaisons,
   partners,
   research,
+  resources,
   users,
 }
 

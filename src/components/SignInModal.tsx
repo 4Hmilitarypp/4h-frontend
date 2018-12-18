@@ -1,10 +1,10 @@
 import { navigate } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { Button, InputGroup, SecondaryButton } from '../components/Elements'
-import Modal from '../components/Modal'
 import { FormInputEvent, IApiError, IForm } from '../types'
 import api from '../utils/api'
+import { InputGroup, SecondaryButton } from './Elements'
+import Modal from './Modal'
 
 interface IProps {
   initialOpen?: boolean
@@ -59,7 +59,7 @@ const SignInModal: React.FC<IProps> = ({ children, initialOpen = false }) => {
 
   return (
     <>
-      <Button onClick={() => setOn(true)}>{children}</Button>
+      <div onClick={() => setOn(true)}>{children}</div>
       <Modal on={on} setOn={setOn}>
         <Header>
           <Heading>Enter your email and password</Heading>
@@ -111,7 +111,6 @@ const Error = styled.h4`
 `
 const MyButton = styled(SecondaryButton)`
   padding: 1rem 2.5rem;
-  font-size: 1.8rem;
   margin-top: 1rem;
   align-self: center;
 `

@@ -64,7 +64,7 @@ const WebinarWrapper = styled.div`
   padding: 2rem 3rem;
   ${elevation(3)};
   &:not(:last-child) {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
 `
 const WebinarTitle = styled.div`
@@ -109,7 +109,7 @@ const Expand: any = styled.button`
   border: none;
   display: block;
   color: ${props => props.theme.secondary};
-  font-weight: bold;
+  font-weight: 500;
   margin: 1.5rem auto 0;
   &:hover {
     cursor: pointer;

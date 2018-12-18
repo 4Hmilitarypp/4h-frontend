@@ -1,6 +1,6 @@
 import { Router } from '@reach/router'
 import * as React from 'react'
-import { ThemeProvider } from 'styled-components/macro'
+import { createGlobalStyle, ThemeProvider } from 'styled-components/macro'
 import Footer from './Footer'
 import Header from './header/Header'
 import About from './pages/About'
@@ -20,18 +20,19 @@ import NotFound from './pages/NotFound'
 import Partner from './pages/Partner'
 import Partners from './pages/partners/Partners'
 import Photos from './pages/Photos'
+
 export const theme = {
-  black: '#222222',
+  black: 'hsl(150, 20%, 20%)',
   buttonBackground: '#278657',
-  gray: '#3d4340',
+  gray: 'hsl(150, 10%, 29%)',
   green: '#0ac775',
-  grey: '#3d4340',
-  inputGray: '#f3f6f5',
-  inputGrey: '#f3f6f5',
-  lightGray: '#828c87',
-  lightGrey: '#828c87',
-  offWhite: '#f7f8f7',
-  primary: '#339966',
+  grey: 'hsl(150, 10%, 29%);',
+  inputGray: 'hsl(150,39%,96%)',
+  inputGrey: 'hsl(150,39%,96%)',
+  lightGray: 'hsl(150, 20%, 40%)',
+  lightGrey: 'hsl(150, 20%, 40%',
+  offWhite: 'hsl(150, 40%, 96%)',
+  primary: 'hsl(150, 50%, 40%)',
   primaryText: '#0e8147',
   secondary: '#5a2a82',
   warning: '#bb0000',
@@ -43,6 +44,7 @@ class App extends React.Component<{}, {}> {
     return (
       <ThemeProvider theme={theme}>
         <div data-testid="app">
+          <GlobalStyle />
           <Router>
             <Header path="/*" />
           </Router>
@@ -76,3 +78,14 @@ class App extends React.Component<{}, {}> {
 }
 
 export default App
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: ${theme.white};
+    font-family: Rubik, Arial, Helvetica, Verdana, sans-serif;
+  }
+  input,
+  textarea, button {
+    font-family: Rubik, Arial, Helvetica, Verdana, sans-serif;
+  }
+`

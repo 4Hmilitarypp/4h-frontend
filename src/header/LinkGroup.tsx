@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const UnstyledLinkGroup: React.FC<IProps> = ({ children, manageBackground, title, to, ...rest }) => {
-  const liRef = React.useRef<HTMLLIElement>(null)
+  const divRef = React.useRef<HTMLDivElement>(null)
   const dropdownRef = React.useRef<HTMLDivElement>(null)
 
   const handleClick = () => {
@@ -41,12 +41,15 @@ const UnstyledLinkGroup: React.FC<IProps> = ({ children, manageBackground, title
     }
   }
 
-  const showDropDownAndBackground = (e: React.MouseEvent<HTMLLIElement> | React.FocusEvent<HTMLLIElement>) => {
-    const liNode = liRef.current
+  const showDropDownAndBackground = (e: React.MouseEvent<HTMLDivElement> | React.FocusEvent<HTMLDivElement>) => {
+    const divNode = divRef.current
     const dropdownNode = dropdownRef.current
-    if (liNode) {
-      liNode.classList.add('trigger-enter')
-      setTimeout(() => liNode.classList.contains('trigger-enter') && liNode.classList.add('trigger-enter-active'), 150)
+    if (divNode) {
+      divNode.classList.add('trigger-enter')
+      setTimeout(
+        () => divNode.classList.contains('trigger-enter') && divNode.classList.add('trigger-enter-active'),
+        150
+      )
       manageBackground.setOpen(true)
     }
     if (dropdownNode && manageBackground.navRef.current) {
@@ -63,15 +66,15 @@ const UnstyledLinkGroup: React.FC<IProps> = ({ children, manageBackground, title
     }
   }
   const hideDropdownAndBackground = () => {
-    if (liRef.current) {
-      liRef.current.classList.remove('trigger-enter', 'trigger-enter-active')
+    if (divRef.current) {
+      divRef.current.classList.remove('trigger-enter', 'trigger-enter-active')
     }
     manageBackground.setOpen(false)
   }
   return (
-    <li
+    <div
       {...rest}
-      ref={liRef}
+      ref={divRef}
       onFocus={showDropDownAndBackground}
       onBlur={handleBlur}
       onClick={handleClick}
@@ -82,15 +85,16 @@ const UnstyledLinkGroup: React.FC<IProps> = ({ children, manageBackground, title
         {title}
       </DropdownTitle>
       <Dropdown ref={dropdownRef as any}>{children}</Dropdown>
-    </li>
+    </div>
   )
 }
 
 const DropdownTitle = styled(Link)`
   color: ${(props: any) => props.theme.secondary};
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   margin: 2rem 0.5rem;
   padding: 0 0.5rem;
+  font-weight: 500;
   &:hover {
     cursor: default;
   }

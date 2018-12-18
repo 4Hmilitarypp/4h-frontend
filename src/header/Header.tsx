@@ -1,12 +1,12 @@
-import { Link } from '@reach/router'
+import { Link as UnstyledLink } from '@reach/router'
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
+import { transition } from '../utils/mixins'
 import DropdownBackground from './DropdownBackground'
 import LinkGroup from './LinkGroup'
-import SignInModal from './SignInModal'
 
-const DropdownLink: React.FC = props => <Link tabIndex={0} {...props} />
+const DropdownLink: React.FC = props => <UnstyledLink tabIndex={0} {...props} />
 
 const Header: React.FC<RouteComponentProps> = () => {
   const [backgroundCoords, setBackgroundCoords] = React.useState({
@@ -31,6 +31,7 @@ const Header: React.FC<RouteComponentProps> = () => {
           <Logo src="https://res.cloudinary.com/four-hmpp/image/upload/v1542786198/logos/4h-logo.png" alt="4-H Logo" />
         </Heading>
         <Links ref={navRef as any}>
+          <HomeLink to="/">Home</HomeLink>
           <LinkGroup title="About Us" to="/about" manageBackground={backgroundManagement}>
             <StyledDropdownLink to="/about">
               <LinkTitle>About Us</LinkTitle>
@@ -108,28 +109,29 @@ const Header: React.FC<RouteComponentProps> = () => {
             </StyledDropdownLink>
           </LinkGroup>
         </Links>
-        <SignInModal>Sign In</SignInModal>
+        <Spacer />
       </HeaderContainer>
     </>
   )
 }
 export default Header
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 120rem;
+  max-width: 122rem;
+  padding: 0 2rem;
   margin: 0 auto;
 `
-const Heading = styled(Link)`
+const Heading = styled(UnstyledLink)`
   color: ${props => props.theme.primary};
   display: flex;
   justify-content: center;
   padding: 0.5rem;
 `
 const Title = styled.div`
-  font-weight: bold;
+  font-weight: 700;
 `
 const TitleWords = styled.span`
   line-height: 1.4;
@@ -139,15 +141,24 @@ const Logo = styled.img`
   height: 4.2rem;
   padding-left: 2rem;
 `
-const Links = styled.ul`
+const Links = styled.nav`
   display: inline-flex;
-  padding: 0 2rem;
-  font-size: 2rem;
-  font-weight: 600;
-  color: ${props => props.theme.white};
+  align-items: center;
+`
+const HomeLink = styled(UnstyledLink)`
+  color: ${props => props.theme.secondary};
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+  &:hover {
+    opacity: 0.8;
+  }
 `
 const LinkTitle = styled.p`
+  font-weight: 700;
   color: ${props => props.theme.primary};
+  ${transition({ name: 'easeOutCubic', prop: 'all', time: 0.2 })};
 `
 const StyledDropdownLink: any = styled(DropdownLink)`
   display: block;
@@ -158,6 +169,9 @@ const StyledDropdownLink: any = styled(DropdownLink)`
   &:hover {
     opacity: 0.8;
     cursor: pointer;
+    ${LinkTitle} {
+      color: ${props => props.theme.gray} !important;
+    }
   }
   &:nth-child(2n + 1) {
     ${LinkTitle} {
@@ -166,8 +180,13 @@ const StyledDropdownLink: any = styled(DropdownLink)`
   }
 `
 const LinkDescription = styled.p`
-  color: ${props => props.theme.lightGray};
+  /* color: ${props => props.theme.gray}; */
+  color: hsl(150, 4%, 53%);
   font-weight: 400;
   padding-left: 1.5rem;
   padding-top: 0;
+  ${transition({ name: 'easeOutCubic', prop: 'all', time: 0.2 })};
+`
+const Spacer = styled.div`
+  width: 10rem;
 `

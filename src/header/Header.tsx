@@ -180,7 +180,6 @@ const StyledDropdownLink: any = styled(DropdownLink)`
   }
 `
 const LinkDescription = styled.p`
-  /* color: ${props => props.theme.gray}; */
   color: hsl(150, 4%, 53%);
   font-weight: 400;
   padding-left: 1.5rem;

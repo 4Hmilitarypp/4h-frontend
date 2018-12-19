@@ -9,6 +9,8 @@ interface IProps {
   children: (nodes: any) => React.ReactNode
 }
 
+const formatError = (err: IApiError) => err.response.data.message
+
 interface IState {
   user?: IUser
   error?: string
@@ -22,42 +24,34 @@ export default class User extends React.Component<IProps, IState> {
 
   componentDidMount() {
     this.reset({ pending: true })
-    return api.auth.me().then(
-      ({ user }: { user?: IUser }) => this.reset({ user }),
-      ({ response }: IApiError) => {
-        return this.reset({ error: response.data.message || response.statusText })
-      }
-    )
+    return api.auth
+      .me()
+      .then(({ user }: { user?: IUser }) => this.reset({ user }))
+      .catch((err: IApiError) => this.reset({ error: formatError(err) }))
   }
 
   login = ({ username, password }: { username: string; password: string }) => {
     this.reset({ pending: true })
     return api.auth
       .login({ username, password })
-      .then(
-        ({ user }: { user: IUser }) => this.reset({ user }),
-        ({ response }: IApiError) => this.reset({ error: response.data.message || response.statusText })
-      )
+      .then(({ user }: { user: IUser }) => this.reset({ user }))
+      .catch((err: IApiError) => this.reset({ error: formatError(err) }))
   }
 
   logout = () => {
     this.reset({ pending: true })
     return api.auth
       .logout()
-      .then(
-        () => this.reset(),
-        ({ response }: IApiError) => this.reset({ error: response.data.message || response.statusText })
-      )
+      .then(() => this.reset())
+      .catch((err: IApiError) => this.reset({ error: formatError(err) }))
   }
 
   register = ({ username, password }: { username: string; password: string }) => {
     this.reset({ pending: true })
     return api.auth
       .register({ username, password })
-      .then(
-        ({ user }: { user: IUser }) => this.reset({ user }),
-        ({ response }: IApiError) => this.reset({ error: response.data.message || response.statusText })
-      )
+      .then(({ user }: { user: IUser }) => this.reset({ user }))
+      .catch((err: IApiError) => this.reset({ error: formatError(err) }))
   }
 
   reset(overrides?: { user?: IUser; error?: string; pending?: boolean }) {

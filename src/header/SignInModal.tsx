@@ -10,6 +10,8 @@ interface IProps {
   initialOpen?: boolean
 }
 
+const formatError = (err: IApiError) => err.response.data.message
+
 const SignInModal: React.FC<IProps> = ({ children, initialOpen = false }) => {
   const [on, setOn] = React.useState<boolean>(initialOpen)
   const [error, setError] = React.useState<string | undefined>(undefined)
@@ -41,9 +43,9 @@ const SignInModal: React.FC<IProps> = ({ children, initialOpen = false }) => {
           setOn(false)
           navigate('/liaisons')
         })
-        .catch(({ response }: IApiError) => {
+        .catch((err: IApiError) => {
           setPassword('')
-          setError(response.data.message || response.statusText)
+          setError(formatError(err))
         })
     } else {
       setError('All required fields not met.')

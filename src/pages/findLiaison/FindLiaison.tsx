@@ -35,6 +35,9 @@ const FindLiaison: React.FC<RouteComponentProps> = ({ location }) => {
     if (liaisons) {
       const liaison = find(liaisons, l => l.abbreviation === stateAbbr)
       setSelectedLiaison(liaison)
+      if (findRef && findRef.current) {
+        window.scrollTo({ top: findRef.current.offsetTop, behavior: 'smooth' })
+      }
     }
   }
 
@@ -52,7 +55,7 @@ const FindLiaison: React.FC<RouteComponentProps> = ({ location }) => {
       <SubHeading ref={findRef as any}>Find A Liaison</SubHeading>
       {liaisons && (
         <Downshift
-          itemToString={item => (item ? item.region : '')}
+          itemToString={(item: ILiaison) => item.region}
           onChange={(selection: ILiaison) => setSelectedLiaison(selection)}
         >
           {({

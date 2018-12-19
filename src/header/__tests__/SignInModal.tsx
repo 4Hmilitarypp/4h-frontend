@@ -135,7 +135,7 @@ it('should show an error that all required fields are not met and then close it 
 
 it('should open the modal with the children button is clicked', () => {
   const buttonText = 'Sign In Now'
-  const { queryByLabelText, getByText } = setup({ initialOpen: false, children: buttonText })
+  const { queryByLabelText, getByText } = setup({ initialOpen: undefined, children: buttonText })
   expect(queryByLabelText(/Email/)).toBeNull()
   const openButton = getByText(buttonText)
   fireEvent.click(openButton)

@@ -5,7 +5,6 @@ import { Heading, PageWrapper, SubHeading } from '../components/Elements'
 import UnstyledIcon from '../components/Icon'
 
 const Icons: React.FC<RouteComponentProps> = () => {
-  console.log(Icon)
   return (
     <PageWrapper>
       <Heading>Icons List</Heading>

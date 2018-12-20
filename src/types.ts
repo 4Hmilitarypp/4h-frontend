@@ -4,10 +4,8 @@ import { ThemedStyledProps } from 'styled-components/macro'
 /**
  * Api
  */
-export interface IApiError extends Error {
-  status: number
-  type?: string
-  response: { data: { message: string } }
+export interface IApiError {
+  response: { data: { message: string }; status: number; statusText: string }
 }
 
 export interface IHashProps {

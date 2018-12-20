@@ -106,7 +106,7 @@ describe('interaction', () => {
     const { controller, children } = await setup()
 
     const fakeError: IApiError = {
-      response: { data: {}, status: 500, statusText: 'Internal Server Error.' },
+      response: { data: { message: 'Internal Server Error.' }, status: 500, statusText: 'Internal Server Error.' },
     }
     const logoutMock = api.auth.logout as any
     logoutMock.mockImplementationOnce(() => Promise.reject(fakeError))

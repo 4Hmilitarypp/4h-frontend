@@ -32,7 +32,7 @@ const auth = {
       .get('/auth/me')
       .then((data: { user: IUser }) => Promise.resolve(data))
       .catch((err: IApiError) => {
-        if (err.status === 401) {
+        if (err.response.status === 401) {
           logout()
         }
         return Promise.reject(err)

@@ -107,7 +107,7 @@ const Dropdown = styled.div`
   transform: translateY(6rem);
   border-radius: 2px;
   transition: all 0.5s;
-  color: ${props => props.theme.gray};
+  color: ${props => props.theme.primaryGrey};
   will-change: opacity;
   display: none;
   p {

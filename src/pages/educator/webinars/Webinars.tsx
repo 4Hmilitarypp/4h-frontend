@@ -30,7 +30,7 @@ const Webinars: React.FC<RouteComponentProps> = () => {
 
   return webinars && categories ? (
     <PageWrapper>
-      <Heading center={true}>Webinars</Heading>
+      <Heading>Webinars</Heading>
       <FilterCategoriesDisplay categories={categories} categorySelected={handleCategorySelected} />
       {filteredCategories.map(category => (
         <DynamicSection key={category}>
@@ -49,6 +49,6 @@ const Webinars: React.FC<RouteComponentProps> = () => {
 }
 export default Webinars
 const CategoryHeading = styled(SubHeading)`
-  color: ${props => props.theme.gray};
+  color: ${props => props.theme.primaryGrey};
   padding-bottom: 2rem;
 `

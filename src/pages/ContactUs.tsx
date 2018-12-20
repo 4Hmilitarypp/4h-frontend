@@ -1,7 +1,7 @@
 import { Link, RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { Heading, InputGroup, SecondaryButton } from '../components/Elements'
+import { Heading, InputGroup, PageWrapper, SecondaryButton, SubHeading } from '../components/Elements'
 import Flash from '../components/Flash'
 import { useFlash } from '../hooks/hooks'
 import { IApiError, IForm } from '../types'
@@ -34,14 +34,14 @@ const ContactUs: React.FC<RouteComponentProps> = () => {
   const flashClosedClicked = () => setError(undefined)
 
   return (
-    <MyPageWrapper>
+    <CustomPageWrapper>
       <Flash
         successMessage={submitted && !error ? 'Email sent successfully' : undefined}
         submitted={submitted}
         error={error}
         closeClicked={flashClosedClicked}
       />
-      <MyHeading>Contact Us</MyHeading>
+      <CustomHeading>Contact Us</CustomHeading>
       <Content>
         <ContactInfo>
           <p>
@@ -64,14 +64,12 @@ const ContactUs: React.FC<RouteComponentProps> = () => {
           alt="American Flag"
         />
       </Content>
-      <Heading as="h2" center={true} color="secondary">
-        Send A Message
-      </Heading>
+      <SubHeading>Send A Message</SubHeading>
       <ContactUsForm onSubmit={handleSubmit}>
-        <P>
+        <CustomP>
           Feel free to contact us about any questions you have. You may also want to contact{' '}
           <StyledLink to="/find-a-liaison">your region's liaison</StyledLink>
-        </P>
+        </CustomP>
         <LeftAndRight>
           <InputGroup>
             <label htmlFor="name">Your Name</label>
@@ -90,18 +88,17 @@ const ContactUs: React.FC<RouteComponentProps> = () => {
           Send Message
         </SecondaryButton>
       </ContactUsForm>
-    </MyPageWrapper>
+    </CustomPageWrapper>
   )
 }
 export default ContactUs
 
-const MyPageWrapper = styled.div`
+const CustomPageWrapper = styled(PageWrapper)`
   padding: 0 2rem;
 `
-const MyHeading = styled.h1`
+const CustomHeading = styled(Heading)`
   color: ${props => props.theme.secondary};
   text-align: center;
-  padding-bottom: 4rem;
 `
 const Textarea = styled.textarea`
   ${elevation(3)};
@@ -130,10 +127,9 @@ const Flag = styled.img`
   height: 20rem;
   padding-left: 10rem;
 `
-const P = styled.p`
+const CustomP = styled.p`
   font-size: 1.8rem;
-  text-align: center;
-  padding: 0 2rem 3rem;
+  padding-bottom: 3rem;
 `
 const LeftAndRight = styled.div`
   display: flex;

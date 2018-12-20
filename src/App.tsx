@@ -1,7 +1,6 @@
 import { Router } from '@reach/router'
 import * as React from 'react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components/macro'
-import Footer from './Footer'
 import Header from './header/Header'
 import About from './pages/About'
 import About4HClub from './pages/About4HClub'
@@ -22,21 +21,24 @@ import Partners from './pages/partners/Partners'
 import Photos from './pages/Photos'
 
 export const theme = {
-  black: 'hsl(150, 20%, 20%)',
-  buttonBackground: '#278657',
-  gray: 'hsl(150, 10%, 29%)',
-  green: '#0ac775',
-  grey: 'hsl(150, 10%, 29%);',
-  inputGray: 'hsl(150,39%,96%)',
   inputGrey: 'hsl(150,39%,96%)',
-  lightGray: 'hsl(150, 20%, 40%)',
-  lightGrey: 'hsl(150, 20%, 40%',
+  lightGrey: 'hsl(150, 20%, 40%)',
   offWhite: 'hsl(150, 40%, 96%)',
   primary: 'hsl(150, 50%, 40%)',
-  primaryText: '#0e8147',
-  secondary: '#5a2a82',
-  warning: '#bb0000',
-  white: '#fff',
+  primaryBlack: 'hsl(150, 20%, 20%)',
+  primaryDark: 'hsl(150, 39%, 27%)',
+  primaryGrey: 'hsl(150, 6%, 31%)',
+  primaryLight: 'hsl(149, 32%, 85%)',
+  primaryLink: 'hsl(150, 80%, 28%)',
+  secondary: 'hsl(266, 55%, 35%)',
+  secondaryBackground: 'hsl(268, 48%, 95%)',
+  secondaryBlack: 'hsl(266, 20%, 20%)',
+  secondaryGrey: 'hsl(266, 6%, 31%)',
+  secondaryLight: 'hsl(266, 32%, 85%)',
+  secondaryMiddle: 'hsl(266, 33%, 55%)',
+  success: 'hsl(154, 90%, 41%)',
+  warning: 'hsl(0, 100%, 37%)',
+  white: 'hsl(0, 0%, 100%)',
 }
 
 class App extends React.Component<{}, {}> {
@@ -68,9 +70,6 @@ class App extends React.Component<{}, {}> {
             <Icons path="/icons" />
             <NotFound default={true} />
           </Router>
-          <Router primary={false}>
-            <Footer path="/*" />
-          </Router>
         </div>
       </ThemeProvider>
     )
@@ -80,12 +79,15 @@ class App extends React.Component<{}, {}> {
 export default App
 
 const GlobalStyle = createGlobalStyle`
-  body {
+  body,
+  input,
+  textarea,
+  button {
     background: ${theme.white};
     font-family: Rubik, Arial, Helvetica, Verdana, sans-serif;
+    color: ${theme.primaryGrey};
   }
-  input,
-  textarea, button {
-    font-family: Rubik, Arial, Helvetica, Verdana, sans-serif;
+  b {
+    font-weight: 500;
   }
 `

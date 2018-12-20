@@ -4,8 +4,8 @@ import styled from 'styled-components/macro'
 import { A, Heading, P, PageWrapper, SubHeading } from '../components/Elements'
 
 const About4HClub: React.FC<RouteComponentProps> = () => (
-  <MyPageWrapper>
-    <MyHeading center={true}>Getting Involved with 4-H Club</MyHeading>
+  <CustomPageWrapper>
+    <CustomHeading>Getting Involved with 4-H Club</CustomHeading>
     <ImageSection>
       <Text>
         <SubHeading>Join 4-H</SubHeading>
@@ -55,15 +55,15 @@ const About4HClub: React.FC<RouteComponentProps> = () => (
         </P>
       </Text>
     </ImageSection>
-  </MyPageWrapper>
+  </CustomPageWrapper>
 )
 export default About4HClub
 
-const MyPageWrapper = styled(PageWrapper)`
-  padding: 2rem 4rem;
+const CustomPageWrapper = styled(PageWrapper)`
+  padding: 0 4rem 2rem;
 `
-const MyHeading = styled(Heading)`
-  padding-bottom: 4rem;
+const CustomHeading = styled(Heading)`
+  color: ${props => props.theme.primary};
 `
 const ImageSection = styled.section`
   display: flex;

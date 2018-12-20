@@ -139,7 +139,7 @@ const Menu = styled.ul`
   padding: 1.5rem 0;
   max-width: 50rem;
   margin: 0 auto;
-  background: ${props => props.theme.gray};
+  background: ${props => props.theme.primaryGrey};
 `
 const FindInputGroup = styled(InputGroup)`
   max-width: 50rem;
@@ -147,7 +147,7 @@ const FindInputGroup = styled(InputGroup)`
 `
 const FindInput = styled.input`
   &.input {
-    background: ${props => props.theme.inputGray};
+    background: ${props => props.theme.inputGrey};
   }
 `
 const ControllerButton = styled.button`
@@ -188,11 +188,11 @@ const Text = styled.div`
 `
 const Name = styled.h4`
   font-size: 2.4rem;
-  color: ${props => props.theme.gray};
+  color: ${props => props.theme.primaryGrey};
 `
 const StyledLink = styled.a`
   display: block;
-  color: ${props => props.theme.black};
+  color: ${props => props.theme.primaryBlack};
   text-decoration: underline;
 `
 const SchoolLogo = styled.img`

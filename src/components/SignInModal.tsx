@@ -3,7 +3,7 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 import { FormInputEvent, IApiError, IForm } from '../types'
 import api from '../utils/api'
-import { InputGroup, SecondaryButton } from './Elements'
+import { Button, InputGroup } from './Elements'
 import Modal from './Modal'
 
 interface IProps {
@@ -91,7 +91,7 @@ const SignInModal: React.FC<IProps> = ({ children, initialOpen = false }) => {
 export default SignInModal
 
 const Header = styled.div`
-  background: ${props => props.theme.gray};
+  background: ${props => props.theme.primaryGrey};
   padding: 0.7rem 2rem;
 `
 const Heading = styled.h2`
@@ -109,7 +109,7 @@ const Error = styled.h4`
   text-align: center;
   margin: -1rem;
 `
-const MyButton = styled(SecondaryButton)`
+const MyButton = styled(Button)`
   padding: 1rem 2.5rem;
   margin-top: 1rem;
   align-self: center;

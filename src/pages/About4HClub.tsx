@@ -5,8 +5,8 @@ import { A, Heading, P, PageWrapper, Section, SubHeading } from '../components/E
 
 const About4HClub: React.FC<RouteComponentProps> = () => (
   <OverflowHidden>
-    <MyPageWrapper>
-      <Heading center={true}>About 4-H Clubs</Heading>
+    <CustomPageWrapper>
+      <CustomHeading>About 4-H Clubs</CustomHeading>
       <TitleSection>
         <div>
           <P>
@@ -163,7 +163,7 @@ const About4HClub: React.FC<RouteComponentProps> = () => (
         </div>
         <GeoSectionImage src="https://res.cloudinary.com/four-hmpp/image/upload/q_auto,f_auto/v1542909338/adult-book-business-297755.jpg" />
       </GeoSection>
-    </MyPageWrapper>
+    </CustomPageWrapper>
   </OverflowHidden>
 )
 export default About4HClub
@@ -171,8 +171,11 @@ export default About4HClub
 const OverflowHidden = styled.div`
   overflow-x: hidden;
 `
-const MyPageWrapper = styled(PageWrapper)`
-  padding: 2rem 4rem;
+const CustomPageWrapper = styled(PageWrapper)`
+  padding: 0 4rem 2rem;
+`
+const CustomHeading = styled(Heading)`
+  color: ${props => props.theme.primary};
 `
 const TitleSection = styled.section`
   display: flex;
@@ -195,7 +198,7 @@ const LinkSource = styled.span`
 `
 const Li = styled.li``
 const PreviewBackground = styled.div`
-  background: ${props => props.theme.inputGray};
+  background: ${props => props.theme.inputGrey};
   margin: 4rem 0 2rem;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw + 9px);

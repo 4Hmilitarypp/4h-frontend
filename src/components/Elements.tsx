@@ -1,7 +1,6 @@
 import { Link as UnstyledLink } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { IHeadingProps } from '../types'
 import { elevation, transition } from '../utils/mixins'
 
 // TODO Refactor this to use an Input and a label and return actual components.
@@ -11,7 +10,7 @@ export const InputGroup = styled.div`
   flex-grow: 1;
   label,
   legend {
-    color: ${props => props.theme.grey};
+    color: ${props => props.theme.primaryGrey};
     padding-bottom: 0.5rem;
   }
   label,
@@ -25,24 +24,24 @@ export const InputGroup = styled.div`
     border-radius: 5px;
     padding: 0.9rem 1.5rem;
     border: none;
-    background: ${props => props.theme.inputGray};
+    background: ${props => props.theme.inputGrey};
   }
 `
 export const PageWrapper = styled.div`
-  padding: 2rem;
+  padding: 0 2rem 2rem;
   max-width: 140rem;
   margin: 0 auto;
 `
-export const Heading: any = styled.h1`
-  color: ${(props: IHeadingProps) => (props.color ? props.theme[props.color] : props.theme.gray)};
-  padding-top: 2rem;
+export const Heading = styled.h1`
+  color: ${props => props.theme.primaryBlack};
+  padding-top: 3.2rem;
   padding-bottom: 0.5rem;
-  text-align: ${(props: IHeadingProps) => (props.center ? 'center' : '')};
+  text-align: center;
 `
 export const Button: any = styled.button`
   border-radius: 5px;
   color: ${props => props.theme.white};
-  background: ${props => props.theme.buttonBackground};
+  background: ${props => props.theme.primaryLink};
   border: none;
   padding: 1rem 1.5rem;
   font-weight: 500;
@@ -59,11 +58,11 @@ export const Button: any = styled.button`
 export const SecondaryButton = styled(Button)`
   background: ${props => props.theme.secondary};
 `
-export const SubHeading: any = styled.h2`
-  color: ${(props: IHeadingProps) => (props.color ? props.theme[props.color] : props.theme.secondary)};
-  padding-top: 3rem;
-  padding-bottom: 1rem;
-  text-align: ${(props: any) => (props.center === false ? 'left' : 'center')};
+export const SubHeading = styled.h2`
+  color: ${props => props.theme.primaryBlack};
+  padding-top: 3.2rem;
+  padding-bottom: 1.6rem;
+  text-align: center;
 `
 export const Section = styled.section`
   max-width: 85rem;
@@ -71,7 +70,7 @@ export const Section = styled.section`
 `
 export const A = styled.a`
   font-weight: 500;
-  color: ${props => props.theme.primaryText};
+  color: ${props => props.theme.primaryLink};
   &:hover {
     opacity: 0.8;
   }
@@ -79,13 +78,14 @@ export const A = styled.a`
 // Have to do the props thing because of a jest error
 export const Link = styled(props => <UnstyledLink {...props} />)`
   font-weight: 500;
-  color: ${props => props.theme.primaryText};
+  color: ${props => props.theme.primaryLink};
   &:hover {
     opacity: 0.8;
   }
 `
 export const P = styled.p`
-  padding-bottom: 1.5rem;
+  padding-bottom: 1.6rem;
+  color: ${props => props.theme.primaryGrey};
   &:last-child {
     padding-bottom: 0;
   }
@@ -93,7 +93,7 @@ export const P = styled.p`
 export const DynamicSection = styled(Section)`
   a {
     font-weight: 500;
-    color: ${props => props.theme.primaryText};
+    color: ${props => props.theme.primaryLink};
     &:hover {
       opacity: 0.8;
     }

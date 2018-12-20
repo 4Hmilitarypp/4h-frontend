@@ -38,7 +38,7 @@ const Partner: React.FC<IProps> = ({ slug, navigate }) => {
               <BackIcon name="back" circleColor="#339966" arrowColor="#fff" />
               <BackText>Back To Partners</BackText>
             </BackButton>
-            <Heading center={true}>{partner.title}</Heading>
+            <Heading>{partner.title}</Heading>
             <div style={{ width: 209 }} />
           </HeaderWrapper>
           <Hero>
@@ -106,7 +106,7 @@ const PartnerWrapper = styled.div`
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 0 3rem;
+  padding: 0 3.2rem;
 `
 const Hero = styled.section`
   display: flex;
@@ -122,11 +122,11 @@ const HeroImages = styled.div`
 const FeaturedImage = styled.img`
   height: 20rem;
   display: block;
-  margin: 1rem;
+  margin: 1.2rem;
   object-fit: contain;
 `
 const Description = styled(DynamicSection)`
-  padding-right: 3rem;
+  padding-right: 3.2rem;
   padding-top: 2rem;
 `
 const ListWrapper = styled.section`
@@ -138,17 +138,17 @@ const Reports = styled.ul`
   justify-content: center;
 `
 const ReportItem = styled.li`
-  margin: 3rem 2rem;
+  margin: 3.2rem 2rem;
 `
 const ReportCard = styled.a`
   ${elevation(4)};
-  padding: 3.5rem 2rem 2rem;
+  padding: 3.2rem 2rem 2rem;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border-radius: 5px;
-  width: 32.5rem;
+  width: 32rem;
   text-align: center;
   backface-visibility: hidden;
   ${transition({ name: 'easeOutCubic', time: 0.3 })};
@@ -166,7 +166,7 @@ const ReportCover: any = styled.div`
 `
 
 const VideoReportCard = styled(ReportCard)`
-  width: 39rem;
+  width: 38.4rem;
   padding: 3rem 2rem 2rem;
 `
 const VideoReportCover = styled(ReportCover)`
@@ -175,7 +175,7 @@ const VideoReportCover = styled(ReportCover)`
 `
 
 const ReportTitle = styled.span`
-  color: ${props => props.theme.primaryText};
+  color: ${props => props.theme.primaryLink};
   font-weight: 500;
   font-size: 1.8rem;
   padding-top: 2rem;

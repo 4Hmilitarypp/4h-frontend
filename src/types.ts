@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { ThemedStyledProps } from 'styled-components/macro'
 
 /**
  * Api
@@ -42,19 +41,6 @@ export interface ILiaison {
   name?: string | null
   phoneNumber?: string | null
   region: string
-}
-
-/**
- * Styles
- */
-
-export interface IHeadingProps
-  extends ThemedStyledProps<
-      React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>,
-      any
-    > {
-  center?: boolean
-  color?: string
 }
 
 export interface IForm {

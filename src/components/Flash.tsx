@@ -75,7 +75,7 @@ const Response = styled.div`
 const Close = styled.button`
   background: none;
   border: none;
-  color: ${props => props.theme.black};
+  color: ${props => props.theme.primaryBlack};
   font-size: 1.6rem;
   font-weight: 900;
   position: absolute;
@@ -100,7 +100,7 @@ const ResponseError = styled(Response)`
   border-radius: 5px;
   border: 5px solid ${props => props.theme.warning};
   .message {
-    color: ${props => props.theme.black};
+    color: ${props => props.theme.primaryBlack};
     padding-right: 2rem;
   }
 `

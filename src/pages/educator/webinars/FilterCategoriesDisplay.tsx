@@ -48,7 +48,7 @@ const FilterWrapper = styled.div`
   justify-content: center;
 `
 const ButtonsHeading = styled.h3`
-  color: ${props => props.theme.buttonBackground};
+  color: ${props => props.theme.primaryLink};
 `
 const CategoryButton = styled(Button)`
   padding: 1rem;

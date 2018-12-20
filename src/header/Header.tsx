@@ -170,7 +170,7 @@ const StyledDropdownLink: any = styled(DropdownLink)`
     opacity: 0.8;
     cursor: pointer;
     ${LinkTitle} {
-      color: ${props => props.theme.gray} !important;
+      color: ${props => props.theme.primaryGrey} !important;
     }
   }
   &:nth-child(2n + 1) {

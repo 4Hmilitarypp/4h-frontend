@@ -36,9 +36,7 @@ const Webinar: React.FC<IProps> = ({ webinar }) => {
   return (
     <WebinarWrapper>
       <WebinarTitle>
-        <MySubHeading center={false} as="h3">
-          {title}
-        </MySubHeading>
+        <MySubHeading as="h3">{title}</MySubHeading>
         <ViewButton as="a" className="override" href={url}>
           View the Webinar
         </ViewButton>
@@ -60,7 +58,7 @@ const Webinar: React.FC<IProps> = ({ webinar }) => {
 export default Webinar
 
 const WebinarWrapper = styled.div`
-  background: ${props => props.theme.inputGray};
+  background: ${props => props.theme.inputGrey};
   padding: 2rem 3rem;
   ${elevation(3)};
   &:not(:last-child) {
@@ -75,6 +73,8 @@ const WebinarTitle = styled.div`
 `
 const MySubHeading = styled(SubHeading)`
   padding: 0;
+  /* I added this see if it worked */
+  text-align: left;
 `
 const ViewButton = styled(Button)`
   white-space: nowrap;
@@ -98,7 +98,7 @@ const Description: any = styled.div`
 `
 const Ellipses = styled.span`
   display: block;
-  color: ${props => props.theme.gray};
+  color: ${props => props.theme.primaryGrey};
   text-align: center;
   font-size: 3rem;
   line-height: 0.5;

@@ -4,8 +4,9 @@ import { find, map, sortBy } from 'lodash'
 import matchSorter from 'match-sorter'
 import * as React from 'react'
 import styled from 'styled-components/macro'
+import { theme } from '../../App'
 import staticLiaisons from '../../assets/data/staticLiaisons.json'
-import { InputGroup, P, PageWrapper, SubHeading } from '../../components/Elements'
+import { InputGroup, P, PageWrapper, Section, SubHeading } from '../../components/Elements'
 import Icon from '../../components/Icon'
 import { useHash } from '../../hooks/hooks'
 import { ILiaison } from '../../types'
@@ -43,19 +44,21 @@ const FindLiaison: React.FC<RouteComponentProps> = ({ location }) => {
 
   return (
     <PageWrapper>
-      <SubHeading>What Is A Liaison?</SubHeading>
-      <P>
-        4-H military liaisons are the official point of contact for all 4-H military programs. A liaison serves as a
-        professional connection between various military branches and the 4-H organization.
-      </P>
-      <P>
-        Liaisons coordinate support to 4-H clubs on and off military installations that serve military youth. They also
-        educate university staff and citizens about the unique challenges faced by military children.
-      </P>
+      <ConstrainedSection>
+        <SubHeading>What Is A Liaison?</SubHeading>
+        <P>
+          4-H military liaisons are the official point of contact for all 4-H military programs. A liaison serves as a
+          professional connection between various military branches and the 4-H organization.
+        </P>
+        <P>
+          Liaisons coordinate support to 4-H clubs on and off military installations that serve military youth. They
+          also educate university staff and citizens about the unique challenges faced by military children.
+        </P>
+      </ConstrainedSection>
       <SubHeading ref={findRef as any}>Find A Liaison</SubHeading>
       {liaisons && (
         <Downshift
-          itemToString={(item: ILiaison) => item.region}
+          itemToString={(item: ILiaison) => (item ? item.region : '')}
           onChange={(selection: ILiaison) => setSelectedLiaison(selection)}
         >
           {({
@@ -103,7 +106,7 @@ const FindLiaison: React.FC<RouteComponentProps> = ({ location }) => {
                         {...getItemProps({
                           index,
                           item: liaison,
-                          style: { background: index === highlightedIndex ? '#5a2a82' : '' },
+                          style: { background: index === highlightedIndex ? theme.primary : '' },
                         })}
                       >
                         {liaison.region}
@@ -134,20 +137,23 @@ const FindLiaison: React.FC<RouteComponentProps> = ({ location }) => {
 }
 export default FindLiaison
 
+const ConstrainedSection = styled(Section)`
+  max-width: 64rem;
+`
 const Menu = styled.ul`
   ${elevation(3)};
   padding: 1.5rem 0;
-  max-width: 50rem;
+  max-width: 64rem;
   margin: 0 auto;
   background: ${props => props.theme.primaryGrey};
 `
 const FindInputGroup = styled(InputGroup)`
-  max-width: 50rem;
+  max-width: 64rem;
   margin: 0 auto;
 `
 const FindInput = styled.input`
   &.input {
-    background: ${props => props.theme.inputGrey};
+    background: ${props => props.theme.primaryBackground};
   }
 `
 const ControllerButton = styled.button`
@@ -165,7 +171,7 @@ const ControllerButton = styled.button`
   align-items: center;
 `
 const Item = styled.li`
-  padding: 0.3rem 1.5rem;
+  padding: 0.4rem 1.5rem;
   border-radius: 5px;
   color: ${props => props.theme.white};
   &:hover {
@@ -173,7 +179,7 @@ const Item = styled.li`
   }
 `
 const Liaison = styled.div`
-  max-width: 50rem;
+  max-width: 64rem;
   margin: 0 auto;
 `
 const ResultContent = styled.div`

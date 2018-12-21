@@ -6,12 +6,12 @@ import { elevation, transition } from '../utils/mixins'
 // TODO Refactor this to use an Input and a label and return actual components.
 
 export const InputGroup = styled.div`
-  margin: 0 0.5rem 1rem;
+  margin: 0 0.4rem 1.2rem;
   flex-grow: 1;
   label,
   legend {
     color: ${props => props.theme.primaryGrey};
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
   }
   label,
   input {
@@ -24,7 +24,7 @@ export const InputGroup = styled.div`
     border-radius: 5px;
     padding: 0.9rem 1.5rem;
     border: none;
-    background: ${props => props.theme.inputGrey};
+    background: ${props => props.theme.primaryBackground};
   }
 `
 export const PageWrapper = styled.div`
@@ -34,16 +34,22 @@ export const PageWrapper = styled.div`
 `
 export const Heading = styled.h1`
   color: ${props => props.theme.primaryBlack};
-  padding-top: 3.2rem;
-  padding-bottom: 0.5rem;
+  padding: 3.2rem 0 3.2rem;
   text-align: center;
+  line-height: 1.2;
+`
+export const SubHeading = styled.h2`
+  color: ${props => props.theme.primaryBlack};
+  padding: 3.2rem 0 3.2rem;
+  text-align: center;
+  line-height: 1.2;
 `
 export const Button: any = styled.button`
   border-radius: 5px;
   color: ${props => props.theme.white};
   background: ${props => props.theme.primaryLink};
   border: none;
-  padding: 1rem 1.5rem;
+  padding: 1.2rem 1.5rem;
   font-weight: 500;
   ${elevation(3)};
   ${transition({ prop: 'all', time: 0.15, name: 'easeOutQuart' })};
@@ -57,12 +63,6 @@ export const Button: any = styled.button`
 `
 export const SecondaryButton = styled(Button)`
   background: ${props => props.theme.secondary};
-`
-export const SubHeading = styled.h2`
-  color: ${props => props.theme.primaryBlack};
-  padding-top: 3.2rem;
-  padding-bottom: 1.6rem;
-  text-align: center;
 `
 export const Section = styled.section`
   max-width: 85rem;

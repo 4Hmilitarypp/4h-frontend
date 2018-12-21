@@ -114,10 +114,10 @@ const Content = styled.div`
 `
 const ContactInfo = styled.div``
 const Location = styled.div`
-  padding: 1rem 0;
+  padding: 1.2rem 0;
 `
 const ContactUsForm = styled.form`
-  max-width: 65rem;
+  max-width: 64rem;
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
@@ -129,7 +129,7 @@ const Flag = styled.img`
 `
 const CustomP = styled.p`
   font-size: 1.8rem;
-  padding-bottom: 3rem;
+  padding-bottom: 3.2rem;
 `
 const LeftAndRight = styled.div`
   display: flex;

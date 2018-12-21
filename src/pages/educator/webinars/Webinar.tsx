@@ -58,28 +58,27 @@ const Webinar: React.FC<IProps> = ({ webinar }) => {
 export default Webinar
 
 const WebinarWrapper = styled.div`
-  background: ${props => props.theme.inputGrey};
-  padding: 2rem 3rem;
+  background: ${props => props.theme.primaryBackground};
+  padding: 2rem 3.2rem;
   ${elevation(3)};
   &:not(:last-child) {
-    margin-bottom: 3rem;
+    margin-bottom: 3.2rem;
   }
 `
 const WebinarTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding-bottom: 2.5rem;
+  padding-bottom: 2.4rem;
 `
 const MySubHeading = styled(SubHeading)`
   padding: 0;
-  /* I added this see if it worked */
   text-align: left;
 `
 const ViewButton = styled(Button)`
   white-space: nowrap;
-  margin: 0 -1rem 0 2rem;
-  padding: 0.5rem 1.5rem;
+  margin: 0 -1.2rem 0 2rem;
+  padding: 0.4rem 1.6rem;
   &.override {
     color: ${props => props.theme.white};
   }
@@ -100,17 +99,17 @@ const Ellipses = styled.span`
   display: block;
   color: ${props => props.theme.primaryGrey};
   text-align: center;
-  font-size: 3rem;
-  line-height: 0.5;
-  padding-top: 0.5rem;
+  font-size: 3.2rem;
+  line-height: 0.4;
+  padding-top: 0.4rem;
 `
 const Expand: any = styled.button`
   background: none;
   border: none;
   display: block;
-  color: ${props => props.theme.secondary};
+  color: ${props => props.theme.primaryLink};
   font-weight: 500;
-  margin: 1.5rem auto 0;
+  margin: 1.6rem auto 0;
   &:hover {
     cursor: pointer;
     opacity: 0.8;

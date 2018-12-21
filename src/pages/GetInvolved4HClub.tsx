@@ -68,7 +68,7 @@ const CustomHeading = styled(Heading)`
 const ImageSection = styled.section`
   display: flex;
   justify-content: center;
-  padding: 3rem 0;
+  padding: 3.2rem 0;
 `
 const SectionImage = styled.img`
   height: 60rem;

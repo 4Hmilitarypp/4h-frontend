@@ -32,16 +32,18 @@ const Webinars: React.FC<RouteComponentProps> = () => {
     <PageWrapper>
       <Heading>Webinars</Heading>
       <FilterCategoriesDisplay categories={categories} categorySelected={handleCategorySelected} />
-      {filteredCategories.map(category => (
-        <DynamicSection key={category}>
-          <CategoryHeading>{category}</CategoryHeading>
-          {webinars
-            .filter(webinar => webinar.category === category)
-            .map(webinar => (
-              <Webinar key={webinar.title} webinar={webinar} />
-            ))}
-        </DynamicSection>
-      ))}
+      <WebinarList>
+        {filteredCategories.map(category => (
+          <Constrained key={category}>
+            <CategoryHeading>{category}</CategoryHeading>
+            {webinars
+              .filter(webinar => webinar.category === category)
+              .map(webinar => (
+                <Webinar key={webinar.title} webinar={webinar} />
+              ))}
+          </Constrained>
+        ))}
+      </WebinarList>
     </PageWrapper>
   ) : (
     <h1>Loading...</h1>
@@ -51,4 +53,10 @@ export default Webinars
 const CategoryHeading = styled(SubHeading)`
   color: ${props => props.theme.primaryGrey};
   padding-bottom: 2rem;
+`
+const WebinarList = styled.div`
+  padding-top: 3.2rem;
+`
+const Constrained = styled(DynamicSection)`
+  max-width: 64rem;
 `

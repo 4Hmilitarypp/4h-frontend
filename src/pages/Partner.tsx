@@ -158,7 +158,7 @@ const ReportCard = styled.a`
   }
 `
 const ReportCover: any = styled.div`
-  height: 33rem;
+  height: 33.2rem;
   width: 25rem;
   background-image: url(${(props: any) => props.src.replace("'", '')});
   background-size: cover;
@@ -167,11 +167,11 @@ const ReportCover: any = styled.div`
 
 const VideoReportCard = styled(ReportCard)`
   width: 38.4rem;
-  padding: 3rem 2rem 2rem;
+  padding: 3.2rem 2rem 2rem;
 `
 const VideoReportCover = styled(ReportCover)`
   height: 25rem;
-  width: 33rem;
+  width: 33.2rem;
 `
 
 const ReportTitle = styled.span`
@@ -187,7 +187,7 @@ const ImageGallery = styled.div`
 `
 const Img = styled.img`
   height: 30rem;
-  margin: 1rem;
+  margin: 1.2rem;
 `
 const BackButton = styled.button`
   align-items: center;
@@ -196,8 +196,8 @@ const BackButton = styled.button`
   border-radius: 5px;
   display: flex;
   transition: transform 0.2s ease-in;
-  padding: 0 1rem;
-  margin: 1rem 0;
+  padding: 0 1.2rem;
+  margin: 1.2rem 0;
   &:hover {
     cursor: pointer;
     transform: translateY(-2px);
@@ -211,5 +211,5 @@ const BackText = styled.span`
   color: ${props => props.theme.primary};
   font-size: 1.8rem;
   font-weight: 600;
-  margin-left: 1rem;
+  margin-left: 1.2rem;
 `

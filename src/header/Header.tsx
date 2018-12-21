@@ -128,7 +128,7 @@ const Heading = styled(UnstyledLink)`
   color: ${props => props.theme.primary};
   display: flex;
   justify-content: center;
-  padding: 0.5rem;
+  padding: 0.4rem;
 `
 const Title = styled.div`
   font-weight: 700;
@@ -149,8 +149,8 @@ const HomeLink = styled(UnstyledLink)`
   color: ${props => props.theme.secondary};
   font-size: 1.8rem;
   font-weight: 500;
-  padding: 0.5rem;
-  margin: 0 0.5rem;
+  padding: 0.4rem;
+  margin: 0 0.4rem;
   &:hover {
     opacity: 0.8;
   }
@@ -162,9 +162,9 @@ const LinkTitle = styled.p`
 `
 const StyledDropdownLink: any = styled(DropdownLink)`
   display: block;
-  padding: 0.5rem;
+  padding: 0.4rem;
   &:not(:first-child) {
-    padding-top: 1rem;
+    padding-top: 1.2rem;
   }
   &:hover {
     opacity: 0.8;

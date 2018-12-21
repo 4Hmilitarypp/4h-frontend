@@ -66,7 +66,7 @@ const Text = styled.p`
   padding: 2rem;
   border-radius: 5px;
   position: relative;
-  bottom: 3rem;
+  bottom: 3.2rem;
 `
 const HeroImage = styled.img`
   width: 100%;

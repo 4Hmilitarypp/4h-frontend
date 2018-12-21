@@ -92,8 +92,8 @@ const UnstyledLinkGroup: React.FC<IProps> = ({ children, manageBackground, title
 const DropdownTitle = styled(Link)`
   color: ${(props: any) => props.theme.secondary};
   font-size: 1.8rem;
-  margin: 2rem 0.5rem;
-  padding: 0 0.5rem;
+  margin: 2rem 0.4rem;
+  padding: 0 0.4rem;
   font-weight: 500;
   &:hover {
     cursor: default;
@@ -103,7 +103,7 @@ const Dropdown = styled.div`
   opacity: 0;
   position: absolute;
   overflow: hidden;
-  padding: 1rem 1.5rem;
+  padding: 1.2rem 1.5rem;
   transform: translateY(6rem);
   border-radius: 2px;
   transition: all 0.5s;

@@ -110,7 +110,7 @@ const Error = styled.h4`
   margin: -1rem;
 `
 const MyButton = styled(Button)`
-  padding: 1rem 2.5rem;
-  margin-top: 1rem;
+  padding: 1.2rem 2.5rem;
+  margin-top: 1.2rem;
   align-self: center;
 `

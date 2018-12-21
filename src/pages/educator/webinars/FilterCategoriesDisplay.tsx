@@ -43,7 +43,6 @@ const FilterCategoriesDisplay: React.FC<IProps> = ({ categories, categorySelecte
 export default FilterCategoriesDisplay
 
 const FilterWrapper = styled.div`
-  padding: 3rem 0;
   display: flex;
   justify-content: center;
 `
@@ -51,7 +50,7 @@ const ButtonsHeading = styled.h3`
   color: ${props => props.theme.primaryLink};
 `
 const CategoryButton = styled(Button)`
-  padding: 1rem;
+  padding: 0.4rem 1.2rem;
   &:not(.active) {
     color: hsla(150, 40%, 20%, 1);
     background: hsla(150, 35%, 75%, 1);

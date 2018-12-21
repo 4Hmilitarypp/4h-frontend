@@ -198,7 +198,7 @@ const LinkSource = styled.span`
 `
 const Li = styled.li``
 const PreviewBackground = styled.div`
-  background: ${props => props.theme.inputGrey};
+  background: ${props => props.theme.primaryBackground};
   margin: 4rem 0 2rem;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw + 9px);

@@ -21,10 +21,10 @@ import Partners from './pages/partners/Partners'
 import Photos from './pages/Photos'
 
 export const theme = {
-  inputGrey: 'hsl(150,39%,96%)',
   lightGrey: 'hsl(150, 20%, 40%)',
   offWhite: 'hsl(150, 40%, 96%)',
   primary: 'hsl(150, 50%, 40%)',
+  primaryBackground: 'hsl(150,39%,96%)',
   primaryBlack: 'hsl(150, 20%, 20%)',
   primaryDark: 'hsl(150, 39%, 27%)',
   primaryGrey: 'hsl(150, 6%, 31%)',

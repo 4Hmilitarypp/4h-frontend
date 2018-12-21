@@ -29,18 +29,18 @@ const PartnerSection: React.FC<IProps> = ({ partner, index }) => {
 export default PartnerSection
 
 const PartnerWrapper: any = styled.section`
-  padding: 3rem;
-  background: ${(props: any) => (props.index % 2 === 1 ? props.theme.white : '#e6ddee')};
+  padding: 3.2rem;
+  background: ${(props: any) => (props.index % 2 === 1 ? props.theme.white : props.theme.secondaryBackground)};
 `
 const Title = styled.h2`
   color: ${props => props.theme.secondary};
-  padding-bottom: 1rem;
+  padding-bottom: 1.2rem;
 `
 const FeaturedImage = styled.img`
   height: 20rem;
   display: block;
-  margin: 1rem;
-  padding: 1rem;
+  margin: 1.2rem;
+  padding: 1.2rem;
   object-fit: contain;
   background: ${props => props.theme.white};
   border-radius: 5px;
@@ -48,9 +48,10 @@ const FeaturedImage = styled.img`
 const Description = styled.p`
   max-width: 70rem;
   padding-bottom: 2rem;
+  color: ${props => props.theme.secondaryGrey};
 `
 const LearnMore = styled(Link)`
-  padding: 0.5rem 1.5rem;
+  padding: 0.4rem 1.5rem;
   border: 3px solid ${props => props.theme.secondary};
   font-size: 1.8rem;
   border-radius: 5px;

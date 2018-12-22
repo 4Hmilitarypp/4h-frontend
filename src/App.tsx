@@ -16,7 +16,7 @@ import GetInvolved4HClub from './pages/GetInvolved4HClub'
 import Home from './pages/Home'
 import Icons from './pages/Icons'
 import NotFound from './pages/NotFound'
-import Partner from './pages/Partner'
+import Partner from './pages/partner/Partner'
 import Partners from './pages/partners/Partners'
 import Photos from './pages/Photos'
 

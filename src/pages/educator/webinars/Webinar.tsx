@@ -37,7 +37,7 @@ const Webinar: React.FC<IProps> = ({ webinar }) => {
     <WebinarWrapper>
       <WebinarTitle>
         <MySubHeading as="h3">{title}</MySubHeading>
-        <ViewButton as="a" className="override" href={url}>
+        <ViewButton as="a" className="override" href={url} target="_blank">
           View the Webinar
         </ViewButton>
       </WebinarTitle>

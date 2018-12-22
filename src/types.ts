@@ -75,7 +75,7 @@ export interface IPartnerSection {
   title: string
 }
 
-interface IReport {
+export interface IReport {
   image: string
   title: string
   url: string

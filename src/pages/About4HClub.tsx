@@ -180,7 +180,7 @@ const CustomHeading = styled(Heading)`
 const TitleSection = styled.section`
   display: flex;
   justify-content: center;
-  padding: 2rem 0;
+  padding-bottom: 2rem;
   align-items: center;
 `
 const TitleImage = styled.img`

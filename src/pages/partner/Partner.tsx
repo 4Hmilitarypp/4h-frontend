@@ -4,11 +4,12 @@ import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 // import api from '../../utils/api'
-import staticPartners from '../assets/data/staticPartners.json'
-import { DynamicSection, Heading, PageWrapper, SubHeading } from '../components/Elements'
-import Icon from '../components/Icon'
-import { IPartner } from '../types'
-import { elevation, transition } from '../utils/mixins'
+import staticPartners from '../../assets/data/staticPartners.json'
+import { DynamicSection, Heading, PageWrapper, SubHeading } from '../../components/Elements'
+import Icon from '../../components/Icon'
+import { IPartner } from '../../types'
+import { elevation, transition } from '../../utils/mixins'
+import Report from './Report'
 
 interface IProps extends RouteComponentProps {
   slug?: string
@@ -64,12 +65,7 @@ const Partner: React.FC<IProps> = ({ slug, navigate }) => {
               <SubHeading>Annual Reports</SubHeading>
               <Reports>
                 {partner.annualReports.map(report => (
-                  <ReportItem key={report.url}>
-                    <ReportCard href={report.url} target="_blank">
-                      <ReportCover src={report.image} alt={`${report.title} cover`} />
-                      <ReportTitle>{report.title}</ReportTitle>
-                    </ReportCard>
-                  </ReportItem>
+                  <Report report={report} />
                 ))}
               </Reports>
             </ListWrapper>

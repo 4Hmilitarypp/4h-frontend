@@ -42,12 +42,6 @@ const Header: React.FC<RouteComponentProps> = () => {
               <LinkDescription>Learn about our history</LinkDescription>
             </StyledDropdownLink>
           </LinkGroup>
-          <LinkGroup title="Partners" to="/partners" manageBackground={backgroundManagement}>
-            <StyledDropdownLink to="/partners">
-              <LinkTitle>Partners List</LinkTitle>
-              <LinkDescription>View all of the partners affiliated with 4-H</LinkDescription>
-            </StyledDropdownLink>
-          </LinkGroup>
           <LinkGroup title="Events" to="/events/" manageBackground={backgroundManagement}>
             <StyledDropdownLink to="/events/#past-events">
               <LinkTitle>Past Events</LinkTitle>
@@ -102,6 +96,10 @@ const Header: React.FC<RouteComponentProps> = () => {
             <StyledDropdownLink to="/find-a-liaison/#search">
               <LinkTitle>Find A Liaison</LinkTitle>
               <LinkDescription>Get connected with the liaison closest to you</LinkDescription>
+            </StyledDropdownLink>
+            <StyledDropdownLink to="/partners">
+              <LinkTitle>Partners List</LinkTitle>
+              <LinkDescription>View all of the partners affiliated with 4-H</LinkDescription>
             </StyledDropdownLink>
             <StyledDropdownLink to="/contact-us">
               <LinkTitle>Contact Us</LinkTitle>

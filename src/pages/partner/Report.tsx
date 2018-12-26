@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components/macro'
+import { EmbedWrapper, Pdf } from '../../components/Elements'
 import { IReport } from '../../types'
 import { elevation, transition } from '../../utils/mixins'
 
@@ -26,12 +27,12 @@ const Report: React.FC<IProps> = ({ report }) => {
   return (
     <ReportItem key={report.url}>
       {pdfOpen && (
-        <PdfWrapper>
+        <EmbedWrapper>
           <CloseButton onClick={() => setPdfOpenHelper(false)}>Close</CloseButton>
-          <Pdf data={report.url} type="application/pdf" className="pdf">
-            alt : <a href={report.url}>test.pdf</a>
+          <Pdf data={report.url} type="application/pdf">
+            alt : <a href={report.url}>{report.url}</a>
           </Pdf>
-        </PdfWrapper>
+        </EmbedWrapper>
       )}
       <ReportCard onClick={() => setPdfOpenHelper(true)}>
         <ReportCover src={report.image} alt={`${report.title} cover`} />
@@ -41,20 +42,7 @@ const Report: React.FC<IProps> = ({ report }) => {
   )
 }
 export default Report
-const Pdf = styled.object`
-  height: 100%;
-  width: 100%;
-`
-const PdfWrapper = styled.div`
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  padding-bottom: 2rem;
-  background: hsl(206, 7%, 21%);
-`
+
 const CloseButton = styled.button`
   float: right;
   background: none;

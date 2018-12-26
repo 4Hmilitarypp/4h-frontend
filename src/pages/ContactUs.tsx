@@ -51,8 +51,8 @@ const ContactUs: React.FC<RouteComponentProps> = () => {
             <strong>Fax:</strong> 785-532-5505
           </p>
           <Location>
-            <p>1324 Lovers Lane</p>
-            <p>343 Justin Hall</p>
+            <p>1810 Kerr Dr</p>
+            <p>A203 Edwards Hall</p>
             <p>Manhattan, KS 66506</p>
           </Location>
           <p>

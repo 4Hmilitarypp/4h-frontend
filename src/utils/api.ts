@@ -1,5 +1,6 @@
 import * as axios from 'axios'
-import { IApiError, IContactUsEmail, ILiaison, IPartnerSection, IUser } from '../types'
+import { ILiaison, IResearch } from '../sharedTypes'
+import { IApiError, IContactUsEmail, IPartnerSection, IUser } from '../types'
 
 let api: axios.AxiosInstance
 let isLoggedIn: boolean
@@ -62,6 +63,13 @@ const partners = {
   getSections: (): Promise<{ partnerSections: IPartnerSection[] }> => requests.get('/partnerSections'),
 }
 
+const research = {
+  create: (data: IResearch): Promise<IResearch> => requests.post('/research', data),
+  delete: (id: string): Promise<string> => requests.delete(`/research/${id}`),
+  get: (): Promise<IResearch[]> => requests.get('/research'),
+  update: (updates: IResearch): Promise<IResearch> => requests.put('/research', updates),
+}
+
 function logout() {
   window.localStorage.removeItem('token')
   init({ token: undefined })
@@ -93,6 +101,7 @@ const restApi = {
   init,
   liaisons,
   partners,
+  research,
   users,
 }
 

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { render } from 'react-testing-library'
-import Resources from '../Resources'
+import Resources from '../resources/Resources'
 
 interface IProps {
   value: string

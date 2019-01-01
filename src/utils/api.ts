@@ -1,6 +1,5 @@
 import * as axios from 'axios'
-import { ILiaison, IResearch } from '../sharedTypes'
-import { IPartnerSection } from '../sharedTypes'
+import { ICurriculumResource, ILiaison, IPartnerSection, IResearch } from '../sharedTypes'
 import { IApiError, IContactUsEmail, IUser } from '../types'
 
 let api: axios.AxiosInstance
@@ -65,10 +64,12 @@ const partners = {
 }
 
 const research = {
-  create: (data: IResearch): Promise<IResearch> => requests.post('/research', data),
-  delete: (id: string): Promise<string> => requests.delete(`/research/${id}`),
   get: (): Promise<IResearch[]> => requests.get('/research'),
-  update: (updates: IResearch): Promise<IResearch> => requests.put('/research', updates),
+}
+const curriculumResources = {
+  get: (): Promise<ICurriculumResource[]> => requests.get('/curriculumResources'),
+  getById: (id: string): Promise<ICurriculumResource> => requests.get(`/curriculumResources/${id}`),
+  getBySlug: (slug: string): Promise<ICurriculumResource> => requests.get(`/curriculumResources/slug/${slug}`),
 }
 
 function logout() {
@@ -98,6 +99,7 @@ function init({
 
 const restApi = {
   auth,
+  curriculumResources,
   emails,
   init,
   liaisons,

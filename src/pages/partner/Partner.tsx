@@ -33,7 +33,7 @@ const Partner: React.FC<IProps> = ({ slug, navigate }) => {
       {partner ? (
         <PartnerWrapper>
           <HeaderWrapper>
-            <BackButton onClick={() => navigate('/partners')}>
+            <BackButton onClick={() => navigate('../')}>
               <BackIcon name="back" circleColor="#339966" arrowColor="#fff" />
               <BackText>Back To Partners</BackText>
             </BackButton>

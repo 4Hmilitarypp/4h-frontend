@@ -5,7 +5,7 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 import staticWebinars from '../../../assets/data/staticWebinars.json'
 import { DynamicSection, Heading, PageWrapper, SubHeading } from '../../../components/Elements'
-import { IWebinar } from '../../../types'
+import { IWebinar } from '../../../sharedTypes'
 import FilterCategoriesDisplay from './FilterCategoriesDisplay'
 import Webinar from './Webinar'
 

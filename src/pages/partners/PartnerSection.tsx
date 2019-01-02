@@ -1,7 +1,7 @@
 import { Link, RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { IPartnerSection } from '../../types'
+import { IPartnerSection } from '../../sharedTypes'
 import { trimToLength } from '../../utils/string'
 
 interface IProps extends RouteComponentProps {

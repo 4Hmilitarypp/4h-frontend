@@ -3,7 +3,8 @@ import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { Button, SubHeading } from '../../../components/Elements'
-import { IWebinar } from '../../../types'
+import useTrimDescription from '../../../hooks/useTrimDescription'
+import { IWebinar } from '../../../sharedTypes'
 import { elevation } from '../../../utils/mixins'
 
 interface IProps {
@@ -13,21 +14,7 @@ interface IProps {
 const Webinar: React.FC<IProps> = ({ webinar }) => {
   const { title, url, description } = webinar
   const descriptionRef = React.useRef<HTMLDivElement>(null)
-  const [trimDescription, setTrimDescription] = React.useState(false)
-  const [showExpand, setShowExpand] = React.useState(false)
-
-  React.useEffect(() => {
-    const descNode = descriptionRef.current
-    if (descNode) {
-      // des.length > 2000 is for jest to be able to test
-      if (descNode.clientHeight > 160 || description.length > 2000) {
-        setTrimDescription(true)
-        setShowExpand(true)
-      } else {
-        setTrimDescription(false)
-      }
-    }
-  }, [])
+  const { trimDescription, showExpand, setTrimDescription } = useTrimDescription(descriptionRef, webinar.description)
 
   const handleExpandClicked = () => {
     setTrimDescription(!trimDescription)
@@ -38,18 +25,16 @@ const Webinar: React.FC<IProps> = ({ webinar }) => {
       <WebinarTitle>
         <MySubHeading as="h3">{title}</MySubHeading>
         <ViewButton as="a" className="override" href={url} target="_blank">
-          View the Webinar
+          View
         </ViewButton>
       </WebinarTitle>
-      <Description ref={descriptionRef} trim={trimDescription}>
+      <Description ref={descriptionRef} className={trimDescription ? 'trim' : ''}>
         {Parser(description)}
       </Description>
       {showExpand && (
         <>
           <Ellipses>{trimDescription ? '. . .' : ''}</Ellipses>
-          <Expand onClick={handleExpandClicked} show={showExpand} trim={trimDescription}>
-            {trimDescription ? 'expand' : 'collapse'}
-          </Expand>
+          <Expand onClick={handleExpandClicked}>{trimDescription ? 'expand' : 'collapse'}</Expand>
         </>
       )}
     </WebinarWrapper>
@@ -78,7 +63,7 @@ const MySubHeading = styled(SubHeading)`
 const ViewButton = styled(Button)`
   white-space: nowrap;
   margin: 0 -1.2rem 0 2rem;
-  padding: 0.4rem 1.6rem;
+  padding: 0.4rem 1.2rem;
   &.override {
     color: ${props => props.theme.white};
   }
@@ -90,10 +75,12 @@ const ViewButton = styled(Button)`
     background: #327654;
   }
 `
-const Description: any = styled.div`
-  max-height: ${(props: any) => (props.trim ? '17rem' : 'unset')};
+const Description = styled.div`
   overflow: hidden;
   position: relative;
+  &.trim {
+    max-height: 17rem;
+  }
 `
 const Ellipses = styled.span`
   display: block;
@@ -103,7 +90,7 @@ const Ellipses = styled.span`
   line-height: 0.4;
   padding-top: 0.4rem;
 `
-const Expand: any = styled.button`
+const Expand = styled.button`
   background: none;
   border: none;
   display: block;

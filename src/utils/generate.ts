@@ -1,5 +1,6 @@
 import faker from 'faker'
-import { IContactUsEmail, ILiaison, ISignInForm, IWebinar } from '../types'
+import { ILiaison, IResearch, IWebinar } from '../sharedTypes'
+import { IContactUsEmail, ISignInForm } from '../types'
 
 const generate = {
   contactUsEmail: (overrides?: Partial<IContactUsEmail>): IContactUsEmail => ({
@@ -16,6 +17,16 @@ const generate = {
     ...overrides,
   }),
   liaisons: (length: number): ILiaison[] => Array.from({ length }, () => generate.liaison()),
+  objectId: () => faker.random.alphaNumeric(24),
+  research: (descriptionLength: number = 100, overrides: {} = {}): IResearch => ({
+    _id: generate.objectId(),
+    description: faker.lorem.words(descriptionLength),
+    title: faker.company.catchPhrase(),
+    type: new Array('doc', 'pdf', 'link')[faker.random.number({ min: 0, max: 2 })] as 'doc' | 'pdf' | 'link',
+    url: faker.internet.domainName(),
+    ...overrides,
+  }),
+  researches: (length: number): IResearch[] => Array.from({ length }, () => generate.research(100)),
   signInForm: (): ISignInForm => ({ email: faker.internet.email(), password: faker.internet.password() }),
   webinar: (descriptionLength: number): IWebinar => ({
     category: faker.commerce.productAdjective(),

@@ -3,6 +3,8 @@ import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { Button, Doc, EmbedWrapper, Pdf, SubHeading } from '../../../components/Elements'
+import useDocument from '../../../hooks/useDocument'
+import useTrimDescription from '../../../hooks/useTrimDescription'
 import { IResearch } from '../../../sharedTypes'
 import { elevation } from '../../../utils/mixins'
 
@@ -12,36 +14,8 @@ interface IProps {
 
 const Research: React.FC<IProps> = ({ research }) => {
   const descriptionRef = React.useRef<HTMLDivElement>(null)
-  const [trimDescription, setTrimDescription] = React.useState(false)
-  const [showExpand, setShowExpand] = React.useState(false)
-  const [pdfOpen, setPdfOpen] = React.useState(false)
-  const setPdfOpenHelper = (state: boolean) => {
-    if (state) {
-      setPdfOpen(true)
-      document.addEventListener('keydown', handleKeydown)
-    } else {
-      setPdfOpen(false)
-      document.removeEventListener('keydown', handleKeydown)
-    }
-  }
-  const handleKeydown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      setPdfOpenHelper(false)
-    }
-  }
-
-  React.useEffect(() => {
-    const descNode = descriptionRef.current
-    if (descNode) {
-      // des.length > 2000 is for jest to be able to test
-      if (descNode.clientHeight > 160 || (research.description && research.description.length > 2000)) {
-        setTrimDescription(true)
-        setShowExpand(true)
-      } else {
-        setTrimDescription(false)
-      }
-    }
-  }, [])
+  const { trimDescription, showExpand, setTrimDescription } = useTrimDescription(descriptionRef, research.description)
+  const { documentOpen, setDocumentOpen } = useDocument()
 
   const handleExpandClicked = () => {
     setTrimDescription(!trimDescription)
@@ -49,41 +23,38 @@ const Research: React.FC<IProps> = ({ research }) => {
 
   return (
     <ResearchWrapper>
-      {research.type === 'pdf' && pdfOpen && (
+      {documentOpen && (
         <EmbedWrapper>
-          <CloseButton onClick={() => setPdfOpenHelper(false)}>Close</CloseButton>
-          <Pdf data={research.url} type="application/pdf">
-            alt : <a href={research.url}>{research.url}</a>
-          </Pdf>
+          <CloseButton onClick={() => setDocumentOpen(false)}>Close</CloseButton>
+          {research.type === 'pdf' && (
+            <Pdf data={research.url} type="application/pdf">
+              alt : <a href={research.url}>{research.url}</a>
+            </Pdf>
+          )}
+          {research.type === 'doc' && (
+            <Doc src={`https://docs.google.com/gview?url=${research.url}&embedded=true`}>
+              alt : <a href={research.url}>{research.url}</a>
+            </Doc>
+          )}
         </EmbedWrapper>
       )}
-      {research.type === 'doc' && pdfOpen && (
-        <EmbedWrapper>
-          <CloseButton onClick={() => setPdfOpenHelper(false)}>Close</CloseButton>
-          <Doc src={`https://docs.google.com/gview?url=${research.url}&embedded=true`} />
-        </EmbedWrapper>
-      )}
-
       <ResearchTitle>
         <MySubHeading as="h3">{research.title}</MySubHeading>
-        {/* Set a pdf type */}
         {research.type === 'link' ? (
           <ViewButton as="a" href={research.url}>
-            View the Research
+            View
           </ViewButton>
         ) : (
-          <ViewButton onClick={() => setPdfOpenHelper(true)}>View the Research</ViewButton>
+          <ViewButton onClick={() => setDocumentOpen(true)}>View</ViewButton>
         )}
       </ResearchTitle>
-      <Description ref={descriptionRef} trim={trimDescription}>
+      <Description ref={descriptionRef} className={trimDescription ? 'trim' : ''}>
         {Parser(research.description)}
       </Description>
       {showExpand && (
         <>
           <Ellipses>{trimDescription ? '. . .' : ''}</Ellipses>
-          <Expand onClick={handleExpandClicked} show={showExpand} trim={trimDescription}>
-            {trimDescription ? 'expand' : 'collapse'}
-          </Expand>
+          <Expand onClick={handleExpandClicked}>{trimDescription ? 'expand' : 'collapse'}</Expand>
         </>
       )}
     </ResearchWrapper>
@@ -112,7 +83,7 @@ const MySubHeading = styled(SubHeading)`
 const ViewButton = styled(Button)`
   white-space: nowrap;
   margin: 0 -1.2rem 0 2rem;
-  padding: 0.4rem 1.6rem;
+  padding: 0.4rem 1.2rem;
   color: ${props => props.theme.white} !important;
   line-height: normal;
   &:hover {
@@ -121,10 +92,12 @@ const ViewButton = styled(Button)`
     background: #327654;
   }
 `
-const Description: any = styled.div`
-  max-height: ${(props: any) => (props.trim ? '17rem' : 'unset')};
+const Description = styled.div`
   overflow: hidden;
   position: relative;
+  &.trim {
+    max-height: 17rem;
+  }
 `
 const Ellipses = styled.span`
   display: block;
@@ -134,7 +107,7 @@ const Ellipses = styled.span`
   line-height: 0.4;
   padding-top: 0.4rem;
 `
-const Expand: any = styled.button`
+const Expand = styled.button`
   background: none;
   border: none;
   display: block;

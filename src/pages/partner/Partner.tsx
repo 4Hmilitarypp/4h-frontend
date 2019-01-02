@@ -3,13 +3,12 @@ import { navigate as reachNavigate, RouteComponentProps } from '@reach/router'
 import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-// import api from '../../utils/api'
 import staticPartners from '../../assets/data/staticPartners.json'
 import { DynamicSection, Heading, PageWrapper, SubHeading } from '../../components/Elements'
 import Icon from '../../components/Icon'
-import { IPartner } from '../../types'
+import { IPartner } from '../../sharedTypes'
 import { elevation, transition } from '../../utils/mixins'
-import Report from './Report'
+import Reports from './Reports'
 
 interface IProps extends RouteComponentProps {
   slug?: string
@@ -24,7 +23,6 @@ const Partner: React.FC<IProps> = ({ slug, navigate }) => {
   const [partner, setPartner] = React.useState<IPartner | undefined>(undefined)
 
   React.useEffect(() => {
-    // api.partners.get(partner.slug).then(({ partner: partnerResult }) => setPartner(partnerResult))
     const partnerResult = staticPartners.filter((p: IPartner) => p.slug === slug)[0]
     window.scrollTo(0, 0)
     setPartner(partnerResult)
@@ -63,17 +61,13 @@ const Partner: React.FC<IProps> = ({ slug, navigate }) => {
           {partner.annualReports && (
             <ListWrapper>
               <SubHeading>Annual Reports</SubHeading>
-              <Reports>
-                {partner.annualReports.map(report => (
-                  <Report report={report} />
-                ))}
-              </Reports>
+              <Reports reports={partner.annualReports} />
             </ListWrapper>
           )}
           {partner.videoReports && (
             <ListWrapper>
               <SubHeading>Video Reports</SubHeading>
-              <Reports>
+              <VideoReports>
                 {partner.videoReports.map(report => (
                   <ReportItem key={report.url}>
                     <VideoReportCard href={report.url} target="_blank">
@@ -82,7 +76,7 @@ const Partner: React.FC<IProps> = ({ slug, navigate }) => {
                     </VideoReportCard>
                   </ReportItem>
                 ))}
-              </Reports>
+              </VideoReports>
             </ListWrapper>
           )}
         </PartnerWrapper>
@@ -128,7 +122,7 @@ const Description = styled(DynamicSection)`
 const ListWrapper = styled.section`
   padding: 2rem 0;
 `
-const Reports = styled.ul`
+const VideoReports = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

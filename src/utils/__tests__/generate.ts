@@ -49,6 +49,44 @@ describe('generate.liaisons', () => {
   })
 })
 
+describe('generate.research', () => {
+  it('should return a correct research', () => {
+    const res = generate.research(100)
+    expect(res).toEqual({
+      _id: expect.any(String),
+      description: expect.any(String),
+      title: expect.any(String),
+      type: expect.stringMatching(/doc|pdf|link/),
+      url: expect.any(String),
+    })
+  })
+})
+
+describe('generate.researches', () => {
+  it('should return multiple researches', () => {
+    const res = generate.researches(2)
+    expect(res.length).toBe(2)
+    expect(res).toEqual(
+      expect.arrayContaining([
+        {
+          _id: expect.any(String),
+          description: expect.any(String),
+          title: expect.any(String),
+          type: expect.stringMatching(/doc|pdf|link/),
+          url: expect.any(String),
+        },
+        {
+          _id: expect.any(String),
+          description: expect.any(String),
+          title: expect.any(String),
+          type: expect.stringMatching(/doc|pdf|link/),
+          url: expect.any(String),
+        },
+      ])
+    )
+  })
+})
+
 describe('generate.SignInForm', () => {
   it('should return the correct sign in form', () => {
     const res = generate.signInForm()

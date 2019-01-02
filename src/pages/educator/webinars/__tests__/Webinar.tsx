@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { fireEvent, flushEffects, render } from 'react-testing-library'
-import { IWebinar } from '../../../../types'
+import { IWebinar } from '../../../../sharedTypes'
 import generate from '../../../../utils/generate'
 import Webinar from '../Webinar'
 
@@ -22,18 +22,6 @@ const setup = (propOverrides?: IProps) => {
     ...utils,
   }
 }
-
-it('should not have an expand button if there are not very much text', () => {
-  const { queryByText } = setup()
-  flushEffects() // flush effects to allow the heigh comparison to be done
-  expect(queryByText(/expand/i)).toBeNull()
-})
-it('should not have an expand button if there is a lot of text.', () => {
-  const webinar = generate.webinar(1500)
-  const { getByText } = setup({ webinar })
-  flushEffects() // flush effects to allow the heigh comparison to be done
-  expect(getByText(/expand/i)).toBeDefined()
-})
 it('should change expand to collapse when expand is clicked and then change back.', () => {
   const webinar = generate.webinar(1500)
   const { getByText, queryByText } = setup({ webinar })

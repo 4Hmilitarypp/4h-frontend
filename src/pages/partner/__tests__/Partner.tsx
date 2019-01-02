@@ -45,6 +45,10 @@ it('should show partner not found if the slug does not exist', () => {
   const { getByText } = setup({ slug: 'non-existing-partner' })
   expect(getByText(/Partner Not Found/i)).toBeDefined()
 })
+it('should render when there are videos with a partner', async () => {
+  const { queryByText } = setup({ slug: 'dod-usda' })
+  expect(queryByText(/Partner Not Found/i)).toBeNull()
+})
 
 it('should navigate to /partners if the back button is pressed', () => {
   const mockNavigate = jest.fn()

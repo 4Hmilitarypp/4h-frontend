@@ -9,7 +9,7 @@ import staticLiaisons from '../../assets/data/staticLiaisons.json'
 import { InputGroup, P, PageWrapper, Section, SubHeading } from '../../components/Elements'
 import Icon from '../../components/Icon'
 import { useHash } from '../../hooks/hooks'
-import { ILiaison } from '../../types'
+import { ILiaison } from '../../sharedTypes'
 import { elevation } from '../../utils/mixins'
 import LiaisonMap from './LiaisonMap'
 

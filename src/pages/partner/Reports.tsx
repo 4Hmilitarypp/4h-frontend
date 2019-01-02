@@ -1,48 +1,44 @@
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { EmbedWrapper, Pdf } from '../../components/Elements'
-import { IReport } from '../../types'
+import useDocument from '../../hooks/useDocument'
+import { IReport } from '../../sharedTypes'
 import { elevation, transition } from '../../utils/mixins'
 
 interface IProps {
-  report: IReport
+  reports: IReport[]
 }
 
-const Report: React.FC<IProps> = ({ report }) => {
-  const [pdfOpen, setPdfOpen] = React.useState(false)
-  const setPdfOpenHelper = (state: boolean) => {
-    if (state) {
-      setPdfOpen(true)
-      document.addEventListener('keydown', handleKeydown)
-    } else {
-      setPdfOpen(false)
-      document.removeEventListener('keydown', handleKeydown)
-    }
-  }
-  const handleKeydown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      setPdfOpenHelper(false)
-    }
-  }
+const Reports: React.FC<IProps> = ({ reports }) => {
+  const { documentOpen, setDocumentOpen } = useDocument()
   return (
-    <ReportItem key={report.url}>
-      {pdfOpen && (
-        <EmbedWrapper>
-          <CloseButton onClick={() => setPdfOpenHelper(false)}>Close</CloseButton>
-          <Pdf data={report.url} type="application/pdf">
-            alt : <a href={report.url}>{report.url}</a>
-          </Pdf>
-        </EmbedWrapper>
-      )}
-      <ReportCard onClick={() => setPdfOpenHelper(true)}>
-        <ReportCover src={report.image} alt={`${report.title} cover`} />
-        <ReportTitle>{report.title}</ReportTitle>
-      </ReportCard>
-    </ReportItem>
+    <Wrapper>
+      {reports.map(report => (
+        <ReportItem key={report.url}>
+          {documentOpen && (
+            <EmbedWrapper>
+              <CloseButton onClick={() => setDocumentOpen(false)}>Close</CloseButton>
+              <Pdf data={report.url} type="application/pdf">
+                alt : <a href={report.url}>{report.url}</a>
+              </Pdf>
+            </EmbedWrapper>
+          )}
+          <ReportCard onClick={() => setDocumentOpen(true)} data-testid="reportCard">
+            <ReportCover src={report.image} alt={`${report.title} cover`} />
+            <ReportTitle>{report.title}</ReportTitle>
+          </ReportCard>
+        </ReportItem>
+      ))}
+    </Wrapper>
   )
 }
-export default Report
+export default Reports
 
+const Wrapper = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`
 const CloseButton = styled.button`
   float: right;
   background: none;

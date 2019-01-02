@@ -3,7 +3,7 @@ import { fireEvent, flushEffects, render } from 'react-testing-library'
 jest.mock('../../../utils/api')
 // import api from '../../utils/api'
 import staticLiaisons from '../../../assets/data/staticLiaisons.json'
-import { ILiaison } from '../../../types'
+import { ILiaison } from '../../../sharedTypes'
 import generate from '../../../utils/generate'
 import FindLiaison, { filterLiaisons } from '../FindLiaison'
 

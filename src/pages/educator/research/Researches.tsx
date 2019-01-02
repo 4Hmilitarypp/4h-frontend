@@ -19,7 +19,7 @@ const Researches: React.FC<RouteComponentProps> = () => {
   }, [])
 
   return researches ? (
-    <PageWrapper>
+    <PageWrapper data-testid="research">
       <Heading>Research</Heading>
       <ResearchList>
         <DynamicSection>

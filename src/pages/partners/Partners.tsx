@@ -3,7 +3,7 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 // import api from '../../utils/api'
 import staticPartnerSections from '../../assets/data/staticPartnerSections.json'
-import { IPartnerSection } from '../../types'
+import { IPartnerSection } from '../../sharedTypes'
 import PartnerSection from './PartnerSection'
 
 const Partners: React.FC<RouteComponentProps> = () => {

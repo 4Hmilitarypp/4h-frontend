@@ -1,6 +1,7 @@
 import * as axios from 'axios'
 import { ILiaison, IResearch } from '../sharedTypes'
-import { IApiError, IContactUsEmail, IPartnerSection, IUser } from '../types'
+import { IPartnerSection } from '../sharedTypes'
+import { IApiError, IContactUsEmail, IUser } from '../types'
 
 let api: axios.AxiosInstance
 let isLoggedIn: boolean

@@ -7,7 +7,7 @@ const useDocument = () => {
       if (documentOpen) {
         window.addEventListener('keydown', handleKeydown)
       } else {
-        document.removeEventListener('keydown', handleKeydown)
+        window.removeEventListener('keydown', handleKeydown)
       }
     },
     [documentOpen]

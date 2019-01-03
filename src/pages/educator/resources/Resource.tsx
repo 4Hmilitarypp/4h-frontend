@@ -1,10 +1,12 @@
 import { navigate as reachNavigate, RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { Heading, P, PageWrapper } from '../../../components/Elements'
+import { DynamicSection, Heading, P, PageWrapper, SubHeading } from '../../../components/Elements'
 import Icon from '../../../components/Icon'
 import { ICurriculumResourceWithLessons } from '../../../sharedTypes'
 import api from '../../../utils/api'
+import { elevation } from '../../../utils/mixins'
+import Lesson from './Lesson'
 
 interface IProps extends RouteComponentProps {
   slug?: string
@@ -26,7 +28,7 @@ const Resource: React.FC<IProps> = ({ slug, navigate }) => {
       .catch(err => console.error(err))
   }, [])
 
-  const { title, description, featuredImage } = curriculumResource
+  const { title, description, featuredImage, lessons } = curriculumResource
     ? curriculumResource
     : ({} as ICurriculumResourceWithLessons)
 
@@ -40,8 +42,18 @@ const Resource: React.FC<IProps> = ({ slug, navigate }) => {
         <Heading>{title}</Heading>
         <div style={{ width: 209 }} />
       </HeaderWrapper>
-      <P>{description}</P>
-      {featuredImage && <FeaturedImage src={featuredImage.url} alt={featuredImage.alt} />}
+      <TitleSection>
+        <P>{description}</P>
+        {featuredImage && <FeaturedImage src={featuredImage.url} alt={featuredImage.alt} />}
+      </TitleSection>
+      {lessons && (
+        <Lessons>
+          <CustomSubHeading>Lessons</CustomSubHeading>
+          {lessons.map(l => (
+            <Lesson key={l.title} lesson={l} />
+          ))}
+        </Lessons>
+      )}
     </PageWrapper>
   ) : (
     <Heading>Not Found</Heading>
@@ -77,7 +89,23 @@ const BackText = styled.span`
   font-weight: 600;
   margin-left: 1.2rem;
 `
+const TitleSection = styled(DynamicSection)`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+  align-items: center;
+`
 const FeaturedImage = styled.img`
-  height: 60rem;
+  margin-left: 4rem;
+  height: 30rem;
   object-fit: cover;
+`
+const Lessons = styled.div`
+  max-width: 90rem;
+  margin: 4.8rem auto 0;
+  ${elevation(3)};
+  padding: 0 3.2rem 3.2rem;
+`
+const CustomSubHeading = styled(SubHeading)`
+  color: ${props => props.theme.primary};
 `

@@ -20,7 +20,7 @@ const Resources: React.FC<RouteComponentProps> = () => {
           <Heading>Curriculum Resources</Heading>
           <DynamicSection>
             {curriculumResources.map(cr => (
-              <DisplayResource curriculumResource={cr} />
+              <DisplayResource curriculumResource={cr} key={cr.slug} />
             ))}
           </DynamicSection>
         </>

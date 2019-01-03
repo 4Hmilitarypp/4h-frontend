@@ -71,8 +71,12 @@ export const Section = styled.section`
 export const A = styled.a`
   font-weight: 500;
   color: ${props => props.theme.primaryLink};
+  background: none;
+  padding: 0;
+  border: 0;
   &:hover {
     opacity: 0.8;
+    cursor: pointer;
   }
 `
 // Have to do the props thing because of a jest error

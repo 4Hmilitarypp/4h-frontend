@@ -1,26 +1,26 @@
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import { DynamicSection, Heading, PageWrapper } from '../../../components/Elements'
-import { ICurriculumResource } from '../../../sharedTypes'
+import { IResource } from '../../../sharedTypes'
 import api from '../../../utils/api'
 import DisplayResource from './DisplayResource'
 
 const Resources: React.FC<RouteComponentProps> = () => {
-  const [curriculumResources, setCurriculumResources] = React.useState<ICurriculumResource[] | undefined>(undefined)
+  const [resources, setResources] = React.useState<IResource[] | undefined>(undefined)
   React.useEffect(() => {
-    api.curriculumResources
+    api.resources
       .get()
-      .then(r => setCurriculumResources(r))
+      .then(r => setResources(r))
       .catch(err => console.error(err))
   }, [])
   return (
     <PageWrapper>
-      {curriculumResources ? (
+      {resources ? (
         <>
-          <Heading>Curriculum Resources</Heading>
+          <Heading>Resources</Heading>
           <DynamicSection>
-            {curriculumResources.map(cr => (
-              <DisplayResource curriculumResource={cr} key={cr.slug} />
+            {resources.map(cr => (
+              <DisplayResource resource={cr} key={cr.slug} />
             ))}
           </DynamicSection>
         </>

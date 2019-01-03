@@ -87,8 +87,8 @@ const About4HClub: React.FC<RouteComponentProps> = () => (
         <P>
           If there is a project area youth are interested in knowing more about, 4-H has a curriculum that can support
           the learning initiative and guide activities. View the
-          <A href="http://www.4-h.org/resource-library/curriculum/"> National 4-H Curriculum Resource Library</A> for
-          additional information.
+          <A href="http://www.4-h.org/resource-library/curriculum/"> National 4-H Resource Library</A> for additional
+          information.
         </P>
       </Section>
       <PreviewBackground>

@@ -1,25 +1,20 @@
-import { navigate as reachNavigate, RouteComponentProps } from '@reach/router'
+import { RouteComponentProps } from '@reach/router'
 // @ts-ignore
 import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import staticPartners from '../../assets/data/staticPartners.json'
+import BackButton from '../../components/BackButton'
 import { DynamicSection, Heading, PageWrapper, SubHeading } from '../../components/Elements'
-import Icon from '../../components/Icon'
 import { IPartner } from '../../sharedTypes'
 import { elevation, transition } from '../../utils/mixins'
 import Reports from './Reports'
 
 interface IProps extends RouteComponentProps {
   slug?: string
-  navigate?: any
 }
 
-const Partner: React.FC<IProps> = ({ slug, navigate }) => {
-  Partner.defaultProps = {
-    navigate: navigate || reachNavigate,
-  }
-
+const Partner: React.FC<IProps> = ({ slug }) => {
   const [partner, setPartner] = React.useState<IPartner | undefined>(undefined)
 
   React.useEffect(() => {
@@ -33,10 +28,7 @@ const Partner: React.FC<IProps> = ({ slug, navigate }) => {
       {partner ? (
         <PartnerWrapper>
           <HeaderWrapper>
-            <BackButton onClick={() => navigate('../')}>
-              <BackIcon name="back" circleColor="#339966" arrowColor="#fff" />
-              <BackText>Back To Partners</BackText>
-            </BackButton>
+            <BackButton route={'/partners'} />
             <Heading>{partner.title}</Heading>
             <div style={{ width: 209 }} />
           </HeaderWrapper>
@@ -178,28 +170,4 @@ const ImageGallery = styled.div`
 const Img = styled.img`
   height: 30rem;
   margin: 1.2rem;
-`
-const BackButton = styled.button`
-  align-items: center;
-  background: none;
-  border: none;
-  border-radius: 5px;
-  display: flex;
-  transition: transform 0.2s ease-in;
-  padding: 0 1.2rem;
-  margin: 1.2rem 0;
-  &:hover {
-    cursor: pointer;
-    transform: translateY(-2px);
-  }
-`
-const BackIcon = styled(Icon)`
-  height: 3.2rem;
-  width: 3.2rem;
-`
-const BackText = styled.span`
-  color: ${props => props.theme.primary};
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-left: 1.2rem;
 `

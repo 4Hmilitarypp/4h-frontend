@@ -5,18 +5,15 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 import { Button, SubHeading } from '../../../components/Elements'
 import useTrimDescription from '../../../hooks/useTrimDescription'
-import { ICurriculumResource } from '../../../sharedTypes'
+import { IResource } from '../../../sharedTypes'
 import { elevation } from '../../../utils/mixins'
-const DisplayResource = ({ curriculumResource }: { curriculumResource: ICurriculumResource }) => {
+const DisplayResource = ({ resource }: { resource: IResource }) => {
   const descriptionRef = React.useRef<HTMLDivElement>(null)
-  const { trimDescription, showExpand, setTrimDescription } = useTrimDescription(
-    descriptionRef,
-    curriculumResource.description
-  )
+  const { trimDescription, showExpand, setTrimDescription } = useTrimDescription(descriptionRef, resource.description)
   const handleExpandClicked = () => {
     setTrimDescription(!trimDescription)
   }
-  const { title, slug, description } = curriculumResource
+  const { title, slug, description } = resource
   return (
     <Wrapper key={title}>
       <Title>

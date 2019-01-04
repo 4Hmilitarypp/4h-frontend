@@ -113,23 +113,3 @@ export const DynamicSection = styled(Section)`
     padding-left: 4rem;
   }
 `
-
-export const Pdf: any = styled.object`
-  height: 100%;
-  width: 100%;
-  padding-bottom: 2rem;
-`
-export const Doc: any = styled.iframe`
-  height: 100%;
-  width: 100%;
-  padding-bottom: 5rem;
-`
-export const EmbedWrapper = styled.div`
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  background: hsl(206, 7%, 21%);
-`

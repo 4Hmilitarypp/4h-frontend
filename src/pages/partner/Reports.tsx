@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { EmbedWrapper, Pdf } from '../../components/Elements'
-import useDocument from '../../hooks/useDocument'
+import EmbedDocument from '../../components/EmbedDocument'
 import { IReport } from '../../sharedTypes'
 import { elevation, transition } from '../../utils/mixins'
 
@@ -10,19 +9,18 @@ interface IProps {
 }
 
 const Reports: React.FC<IProps> = ({ reports }) => {
-  const { documentOpen, setDocumentOpen } = useDocument()
+  const [documentOpen, setDocumentOpen] = React.useState(false)
   return (
     <Wrapper>
       {reports.map(report => (
         <ReportItem key={report.url}>
-          {documentOpen && (
-            <EmbedWrapper>
-              <CloseButton onClick={() => setDocumentOpen(false)}>Close</CloseButton>
-              <Pdf data={report.url} type="application/pdf">
-                alt : <a href={report.url}>{report.url}</a>
-              </Pdf>
-            </EmbedWrapper>
-          )}
+          <EmbedDocument
+            url={report.url}
+            type={'pdf'}
+            title={report.title}
+            open={documentOpen}
+            setOpen={setDocumentOpen}
+          />
           <ReportCard onClick={() => setDocumentOpen(true)} data-testid="reportCard">
             <ReportCover src={report.image} alt={`${report.title} cover`} />
             <ReportTitle>{report.title}</ReportTitle>
@@ -38,18 +36,6 @@ const Wrapper = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-`
-const CloseButton = styled.button`
-  float: right;
-  background: none;
-  border: none;
-  padding: 0.4rem;
-  margin: 1.2rem 2.8rem;
-  color: ${props => props.theme.white};
-  &:hover {
-    opacity: 0.8;
-    cursor: pointer;
-  }
 `
 const ReportTitle = styled.span`
   color: ${props => props.theme.primaryLink};

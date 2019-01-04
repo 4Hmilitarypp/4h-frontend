@@ -2,8 +2,8 @@
 import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { Button, Doc, EmbedWrapper, Pdf, SubHeading } from '../../../components/Elements'
-import useDocument from '../../../hooks/useDocument'
+import { Button, SubHeading } from '../../../components/Elements'
+import EmbedDocument from '../../../components/EmbedDocument'
 import useTrimDescription from '../../../hooks/useTrimDescription'
 import { IResearch } from '../../../sharedTypes'
 import { elevation } from '../../../utils/mixins'
@@ -13,34 +13,26 @@ interface IProps {
 }
 
 const Research: React.FC<IProps> = ({ research }) => {
+  const [documentOpen, setDocumentOpen] = React.useState(false)
+
   const descriptionRef = React.useRef<HTMLDivElement>(null)
   const { trimDescription, showExpand, setTrimDescription } = useTrimDescription(descriptionRef, research.description)
-  const { documentOpen, setDocumentOpen } = useDocument()
-
   const handleExpandClicked = () => {
     setTrimDescription(!trimDescription)
   }
 
   return (
     <ResearchWrapper>
-      {documentOpen && (
-        <EmbedWrapper>
-          <CloseButton onClick={() => setDocumentOpen(false)}>Close</CloseButton>
-          {research.type === 'pdf' && (
-            <Pdf data={research.url} type="application/pdf">
-              alt : <a href={research.url}>{research.url}</a>
-            </Pdf>
-          )}
-          {research.type === 'doc' && (
-            <Doc src={`https://docs.google.com/gview?url=${research.url}&embedded=true`}>
-              alt : <a href={research.url}>{research.url}</a>
-            </Doc>
-          )}
-        </EmbedWrapper>
-      )}
+      <EmbedDocument
+        url={research.url}
+        type={research.type}
+        title={research.title}
+        open={documentOpen}
+        setOpen={setDocumentOpen}
+      />
       <ResearchTitle>
         <MySubHeading as="h3">{research.title}</MySubHeading>
-        {research.type === 'link' ? (
+        {research.type === 'external' ? (
           <ViewButton as="a" href={research.url}>
             View
           </ViewButton>
@@ -117,17 +109,5 @@ const Expand = styled.button`
   &:hover {
     cursor: pointer;
     opacity: 0.8;
-  }
-`
-const CloseButton = styled.button`
-  float: right;
-  background: none;
-  border: none;
-  padding: 0.4rem;
-  margin: 1.2rem 2.8rem;
-  color: ${props => props.theme.white};
-  &:hover {
-    opacity: 0.8;
-    cursor: pointer;
   }
 `

@@ -4,22 +4,22 @@ import Icon from '../components/Icon'
 import Portal from './Portal'
 
 interface IProps {
-  on: boolean
-  setOn: (on: boolean) => void
+  open: boolean
+  setOpen: (open: boolean) => void
 }
 
-const Modal: React.FC<IProps> = ({ children, on, setOn }) => {
+const Modal: React.FC<IProps> = ({ children, open, setOpen }) => {
   return (
     <Portal>
-      {on && (
+      {open && (
         <ModalWrapper>
           <ModalCard>
-            <CloseButton onClick={() => setOn(false)} data-testid="close-button">
+            <CloseButton onClick={() => setOpen(false)} data-testid="close-button">
               <Icon name="close" color="#ffffff" />
             </CloseButton>
             <div>{children}</div>
           </ModalCard>
-          <Background onClick={() => setOn(false)} data-testid="background" />
+          <Background onClick={() => setOpen(false)} data-testid="background" />
         </ModalWrapper>
       )}
     </Portal>

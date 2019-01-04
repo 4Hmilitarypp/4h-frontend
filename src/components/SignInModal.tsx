@@ -13,7 +13,7 @@ interface IProps {
 const formatError = (err: IApiError) => err.response.data.message
 
 const SignInModal: React.FC<IProps> = ({ children, initialOpen = false }) => {
-  const [on, setOn] = React.useState<boolean>(initialOpen)
+  const [open, setOpen] = React.useState<boolean>(initialOpen)
   const [error, setError] = React.useState<string | undefined>(undefined)
   const [password, setPassword] = React.useState<string>('')
 
@@ -40,7 +40,7 @@ const SignInModal: React.FC<IProps> = ({ children, initialOpen = false }) => {
         })
         .then(() => {
           setPassword('')
-          setOn(false)
+          setOpen(false)
           navigate('/liaisons')
         })
         .catch((err: IApiError) => {
@@ -59,8 +59,8 @@ const SignInModal: React.FC<IProps> = ({ children, initialOpen = false }) => {
 
   return (
     <>
-      <div onClick={() => setOn(true)}>{children}</div>
-      <Modal on={on} setOn={setOn}>
+      <div onClick={() => setOpen(true)}>{children}</div>
+      <Modal open={open} setOpen={setOpen}>
         <Header>
           <Heading>Enter your email and password</Heading>
         </Header>

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { flushEffects, render, waitForElement } from 'react-testing-library'
-import Researches from '../Researches'
+import Resources from '../Resources'
 jest.mock('../../../../utils/api')
 import fakeApi from '../../../../utils/api'
 import generate from '../../../../utils/generate'
@@ -14,14 +14,14 @@ interface IProps {
 const setup = async (propOverrides?: IProps) => {
   const props = Object.assign({}, propOverrides)
 
-  const researches = generate.researches(5)
-  const researchMock = fakeApi.research.get as any
-  researchMock.mockImplementationOnce(() => Promise.resolve(researches))
+  const resources = generate.resources(5)
+  const resourcesMock = fakeApi.resources.get as any
+  resourcesMock.mockImplementationOnce(() => Promise.resolve(resources))
 
-  const utils = render(<Researches {...props} />)
+  const utils = render(<Resources {...props} />)
   flushEffects()
 
-  await waitForElement(() => utils.getByTestId('research'))
+  await waitForElement(() => utils.getByTestId('resources'))
 
   return {
     ...utils,

@@ -94,11 +94,10 @@ const ContactUs: React.FC<RouteComponentProps> = () => {
 export default ContactUs
 
 const CustomPageWrapper = styled(PageWrapper)`
-  padding: 0 2rem;
+  padding: 0 2rem 3.2rem;
 `
 const CustomHeading = styled(Heading)`
   color: ${props => props.theme.secondary};
-  text-align: center;
 `
 const Textarea = styled.textarea`
   ${elevation(3)};

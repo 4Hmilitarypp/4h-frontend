@@ -16,11 +16,13 @@ const Resources: React.FC<RouteComponentProps> = () => {
   return (
     <PageWrapper>
       <Heading>Resources</Heading>
-      <DynamicSection>
-        {resources.map(cr => (
-          <DisplayResource resource={cr} key={cr.slug} />
-        ))}
-      </DynamicSection>
+      {resources.length > 0 && (
+        <DynamicSection data-testid="resources">
+          {resources.map(cr => (
+            <DisplayResource resource={cr} key={cr.slug} />
+          ))}
+        </DynamicSection>
+      )}
     </PageWrapper>
   )
 }

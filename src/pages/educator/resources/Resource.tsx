@@ -21,10 +21,12 @@ const Resource: React.FC<IProps> = ({ slug }) => {
       .catch(err => console.error(err))
   }, [])
 
-  const { title, longDescription, featuredImage, lessons } = resource ? resource : ({} as IResourceWithLessons)
-
-  return resource ? (
-    <PageWrapper>
+  if (!resource) {
+    return null
+  }
+  const { title, longDescription, featuredImage, lessons } = resource
+  return (
+    <PageWrapper data-testid="resource">
       <HeaderWrapper>
         <BackButton route={'/educators/resources'} />
         <Heading>{title}</Heading>
@@ -43,7 +45,7 @@ const Resource: React.FC<IProps> = ({ slug }) => {
         </Lessons>
       )}
     </PageWrapper>
-  ) : null
+  )
 }
 export default Resource
 const HeaderWrapper = styled.div`

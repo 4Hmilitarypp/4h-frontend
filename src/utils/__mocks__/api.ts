@@ -1,4 +1,11 @@
-const mock = { reset: undefined, auth: undefined, liaisons: undefined, emails: undefined, research: undefined }
+const mock = {
+  auth: undefined,
+  emails: undefined,
+  liaisons: undefined,
+  research: undefined,
+  reset: undefined,
+  resources: undefined,
+}
 const authResponse = { user: { _id: 1 } }
 function reset() {
   Object.assign(mock, {
@@ -18,12 +25,12 @@ function reset() {
       get: jest.fn(() => Promise.resolve([])),
     }),
     reset,
+    resources: Object.assign(mock.resources || {}, {
+      get: jest.fn(() => Promise.resolve([])),
+      getBySlug: jest.fn((slug: string) => Promise.resolve({})),
+    }),
   })
 }
 reset()
 
 export default mock
-
-// module.exports = {
-//   default: mock,
-// }

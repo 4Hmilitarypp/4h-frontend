@@ -9,7 +9,7 @@ import api from '../../../utils/api'
 import Research from './Research'
 
 const Researches: React.FC<RouteComponentProps> = () => {
-  const [researches, setResearches] = React.useState<IResearch[] | undefined>(undefined)
+  const [researches, setResearches] = React.useState<IResearch[]>([])
 
   React.useEffect(() => {
     api.research
@@ -18,19 +18,19 @@ const Researches: React.FC<RouteComponentProps> = () => {
       .catch(err => console.error(err))
   }, [])
 
-  return researches ? (
-    <PageWrapper data-testid="research">
+  return (
+    <PageWrapper>
       <Heading>Research</Heading>
-      <ResearchList>
-        <DynamicSection>
-          {researches.map(research => (
-            <Research key={research.title} research={research} />
-          ))}
-        </DynamicSection>
-      </ResearchList>
+      {researches.length > 0 && (
+        <ResearchList data-testid="research">
+          <DynamicSection>
+            {researches.map(research => (
+              <Research key={research.title} research={research} />
+            ))}
+          </DynamicSection>
+        </ResearchList>
+      )}
     </PageWrapper>
-  ) : (
-    <h1>Loading...</h1>
   )
 }
 export default Researches

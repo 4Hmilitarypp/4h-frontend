@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { fireEvent, flushEffects, render } from 'react-testing-library'
+import { flushEffects, render } from 'react-testing-library'
 import Partner from '../Partner'
 
 let nativeScrollTo: any
@@ -7,7 +7,6 @@ let nativeScrollTo: any
 afterAll(() => (window.scrollTo = nativeScrollTo))
 
 interface IProps {
-  navigate?: (path: string) => null
   slug?: string
 }
 
@@ -48,12 +47,4 @@ it('should show partner not found if the slug does not exist', () => {
 it('should render when there are videos with a partner', async () => {
   const { queryByText } = setup({ slug: 'dod-usda' })
   expect(queryByText(/Partner Not Found/i)).toBeNull()
-})
-
-it('should navigate to /partners if the back button is pressed', () => {
-  const mockNavigate = jest.fn()
-  const { getByText } = setup({ navigate: mockNavigate })
-  fireEvent.click(getByText(/Back To Partners/i))
-  expect(mockNavigate).toHaveBeenCalledTimes(1)
-  expect(mockNavigate).toHaveBeenCalledWith('/partners')
 })

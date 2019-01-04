@@ -3,12 +3,15 @@ import { fireEvent, flushEffects, render } from 'react-testing-library'
 import EmbedDocument from '../EmbedDocument'
 
 const Comp: React.FC<{}> = () => {
+  const [documentOpen, setDocumentOpen] = React.useState(false)
   return (
     <div>
       <EmbedDocument
         type="pdf"
         url="https://res.cloudinary.com/four-hmpp/image/upload/v1542944356/reports/army/army-reintegration-report10-13.pdf"
         title="fake title"
+        open={documentOpen}
+        setOpen={setDocumentOpen}
       />
       <button onClick={() => setDocumentOpen(true)}>Open</button>
     </div>

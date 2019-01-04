@@ -1,3 +1,9 @@
 {
-	"eslint.enable": false
+  "eslint.enable": false,
+  "workbench.colorCustomizations": {
+    "[Night Owl]": {
+      "titleBar.inactiveBackground": "#00FFFFB0",
+      "titleBar.activeBackground": "#00FFFFB0"
+    }
+  }
 }

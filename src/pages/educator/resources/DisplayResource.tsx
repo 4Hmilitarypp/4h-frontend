@@ -4,33 +4,19 @@ import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { Button, SubHeading } from '../../../components/Elements'
-import useTrimDescription from '../../../hooks/useTrimDescription'
 import { IResource } from '../../../sharedTypes'
 import { elevation } from '../../../utils/mixins'
 const DisplayResource = ({ resource }: { resource: IResource }) => {
-  const descriptionRef = React.useRef<HTMLDivElement>(null)
-  const { trimDescription, showExpand, setTrimDescription } = useTrimDescription(descriptionRef, resource.description)
-  const handleExpandClicked = () => {
-    setTrimDescription(!trimDescription)
-  }
-  const { title, slug, description } = resource
+  const { title, slug, shortDescription } = resource
   return (
     <Wrapper key={title}>
       <Title>
-        <MySubHeading as="h3">{title}</MySubHeading>
-        <ViewButton as={Link} className="override" to={slug}>
+        <CustomSubHeading as="h3">{title}</CustomSubHeading>
+        <ViewButton as={Link} to={slug}>
           View
         </ViewButton>
       </Title>
-      <Description ref={descriptionRef} className={trimDescription ? 'trim' : ''}>
-        {Parser(description)}
-      </Description>
-      {showExpand && (
-        <>
-          <Ellipses>{trimDescription ? '. . .' : ''}</Ellipses>
-          <Expand onClick={handleExpandClicked}>{trimDescription ? 'expand' : 'collapse'}</Expand>
-        </>
-      )}
+      <Description>{shortDescription}</Description>
     </Wrapper>
   )
 }
@@ -51,7 +37,7 @@ const Title = styled.div`
   align-items: flex-start;
   padding-bottom: 2.4rem;
 `
-const MySubHeading = styled(SubHeading)`
+const CustomSubHeading = styled(SubHeading)`
   padding: 0;
   text-align: left;
 `
@@ -59,41 +45,11 @@ const ViewButton = styled(Button)`
   white-space: nowrap;
   margin: 0 -1.2rem 0 2rem;
   padding: 0.4rem 1.2rem;
-  &.override {
-    color: ${props => props.theme.white};
-  }
-  &.override:hover {
-    opacity: 1;
-  }
+  color: ${props => props.theme.white} !important;
   &:hover {
-    transform: none;
-    background: #327654;
+    opacity: 1 !important;
+    transform: none !important;
+    background: #327654 !important;
   }
 `
-const Description = styled.div`
-  overflow: hidden;
-  position: relative;
-  &.trim {
-    max-height: 17rem;
-  }
-`
-const Ellipses = styled.span`
-  display: block;
-  color: ${props => props.theme.primaryGrey};
-  text-align: center;
-  font-size: 3.2rem;
-  line-height: 0.4;
-  padding-top: 0.4rem;
-`
-const Expand = styled.button`
-  background: none;
-  border: none;
-  display: block;
-  color: ${props => props.theme.primaryLink};
-  font-weight: 500;
-  margin: 1.6rem auto 0;
-  &:hover {
-    cursor: pointer;
-    opacity: 0.8;
-  }
-`
+const Description = styled.div``

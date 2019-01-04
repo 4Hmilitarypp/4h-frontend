@@ -57,8 +57,9 @@ export interface IResearch {
 
 export interface IResource {
   _id?: string
-  description: string
   featuredImage?: IImage
+  longDescription: string
+  shortDescription: string
   slug: string
   title: string
 }
@@ -67,14 +68,17 @@ export interface IResourceWithLessons extends IResource {
   lessons?: ILesson[]
 }
 
+export type ILessonType = 'ppt' | 'pdf' | 'doc' | 'external'
+
+export interface ILessonLink {
+  url: string
+  type: ILessonType
+}
+
 export interface ILesson {
   _id?: string
   category?: string
-  docUrl?: string
-  externalUrl?: string
-  pdfUrl?: string
-  pptUrl?: string
+  links: ILessonLink[]
   title: string
 }
-
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>

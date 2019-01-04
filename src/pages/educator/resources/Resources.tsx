@@ -6,7 +6,7 @@ import api from '../../../utils/api'
 import DisplayResource from './DisplayResource'
 
 const Resources: React.FC<RouteComponentProps> = () => {
-  const [resources, setResources] = React.useState<IResource[] | undefined>(undefined)
+  const [resources, setResources] = React.useState<IResource[]>([])
   React.useEffect(() => {
     api.resources
       .get()
@@ -15,18 +15,12 @@ const Resources: React.FC<RouteComponentProps> = () => {
   }, [])
   return (
     <PageWrapper>
-      {resources ? (
-        <>
-          <Heading>Resources</Heading>
-          <DynamicSection>
-            {resources.map(cr => (
-              <DisplayResource resource={cr} key={cr.slug} />
-            ))}
-          </DynamicSection>
-        </>
-      ) : (
-        <Heading>Loading</Heading>
-      )}
+      <Heading>Resources</Heading>
+      <DynamicSection>
+        {resources.map(cr => (
+          <DisplayResource resource={cr} key={cr.slug} />
+        ))}
+      </DynamicSection>
     </PageWrapper>
   )
 }

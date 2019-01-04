@@ -21,7 +21,7 @@ const Resource: React.FC<IProps> = ({ slug }) => {
       .catch(err => console.error(err))
   }, [])
 
-  const { title, description, featuredImage, lessons } = resource ? resource : ({} as IResourceWithLessons)
+  const { title, longDescription, featuredImage, lessons } = resource ? resource : ({} as IResourceWithLessons)
 
   return resource ? (
     <PageWrapper>
@@ -31,7 +31,7 @@ const Resource: React.FC<IProps> = ({ slug }) => {
         <div style={{ width: 209 }} />
       </HeaderWrapper>
       <TitleSection>
-        <P>{description}</P>
+        <P>{longDescription}</P>
         {featuredImage && <FeaturedImage src={featuredImage.url} alt={featuredImage.alt} />}
       </TitleSection>
       {lessons && (
@@ -43,9 +43,7 @@ const Resource: React.FC<IProps> = ({ slug }) => {
         </Lessons>
       )}
     </PageWrapper>
-  ) : (
-    <Heading>Not Found</Heading>
-  )
+  ) : null
 }
 export default Resource
 const HeaderWrapper = styled.div`

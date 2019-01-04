@@ -64,15 +64,11 @@ const ViewButton = styled(Button)`
   white-space: nowrap;
   margin: 0 -1.2rem 0 2rem;
   padding: 0.4rem 1.2rem;
-  &.override {
-    color: ${props => props.theme.white};
-  }
-  &.override:hover {
-    opacity: 1;
-  }
+  color: ${props => props.theme.white} !important;
   &:hover {
-    transform: none;
-    background: #327654;
+    opacity: 1 !important;
+    transform: none !important;
+    background: #327654 !important;
   }
 `
 const Description = styled.div`

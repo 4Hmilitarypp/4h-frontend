@@ -8,10 +8,12 @@ RUN npm install
 
 COPY . .
 
-ENV myName John Doe
+ARG REACT_APP_GOOGLE_KEY
+ARG REACT_APP_API_URL
 
-ENV myNameEr John Doe
+ENV REACT_APP_GOOGLE_KEY=$REACT_APP_GOOGLE_KEY
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
-RUN REACT_APP_GOOGLE_KEY=${myNameEr} npm run build
+RUN npm run build
 
 CMD ["npm", "run", "production"]

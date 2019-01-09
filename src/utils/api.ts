@@ -86,7 +86,6 @@ function init({
   baseURL = envBaseURL || '/api',
   axiosOptions = { headers: {} },
 } = {}) {
-  console.log(process.env)
   isLoggedIn = Boolean(token)
   api = (axios as any).create({
     baseURL,

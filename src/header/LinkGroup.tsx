@@ -114,6 +114,10 @@ const Dropdown = styled.div`
   p {
     white-space: nowrap;
   }
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    left: 0;
+  }
 `
 const LinkGroup = styled(UnstyledLinkGroup)`
   position: relative;

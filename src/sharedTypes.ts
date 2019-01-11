@@ -70,11 +70,11 @@ export interface IResourceWithLessons extends IResource {
   lessons?: ILesson[]
 }
 
-export type ILessonType = 'ppt' | 'pdf' | 'doc' | 'external'
+export type LessonLinkType = 'ppt' | 'pdf' | 'doc' | 'external'
 
 export interface ILessonLink {
   url: string
-  type: ILessonType
+  type: LessonLinkType
 }
 
 export interface ILesson {

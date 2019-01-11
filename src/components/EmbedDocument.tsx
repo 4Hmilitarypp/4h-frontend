@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { ILessonType } from '../sharedTypes'
+import { LessonLinkType } from '../sharedTypes'
 
 interface IProps {
-  type: ILessonType
+  type: LessonLinkType
   title: string
   url: string
   open: boolean

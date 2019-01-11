@@ -9,8 +9,6 @@ app.use(helmet())
 
 app.get('/docker/docker-check', (_, res) => res.send('app is ready'))
 
-app.get('/robots.txt', (_, res) => res.sendFile('./build/robots.txt'))
-
 app.use(express.static(path.resolve(__dirname, './build'), { maxAge: '30d' }))
 app.get('/*', (_, res) => {
   res.sendFile(path.join(__dirname, './build/index.html'), err => {

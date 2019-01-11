@@ -1,5 +1,5 @@
 import faker from 'faker'
-import { ILesson, ILessonType, ILiaison, IResearch, IResource, IResourceWithLessons, IWebinar } from '../sharedTypes'
+import { ILesson, ILiaison, IResearch, IResource, IResourceWithLessons, IWebinar, LessonLinkType } from '../sharedTypes'
 import { IContactUsEmail, ISignInForm } from '../types'
 
 const generate = {
@@ -11,7 +11,7 @@ const generate = {
   lesson: (overrides?: Partial<ILesson>): ILesson => ({
     _id: generate.objectId(),
     links: Array.from({ length: faker.random.number({ min: 1, max: 4 }) }, () => ({
-      type: new Array('doc', 'pdf', 'external', 'ppt')[faker.random.number({ min: 0, max: 3 })] as ILessonType,
+      type: new Array('doc', 'pdf', 'external', 'ppt')[faker.random.number({ min: 0, max: 3 })] as LessonLinkType,
       url: faker.internet.url(),
     })),
     title: faker.company.catchPhrase(),

@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 import { A } from '../../../components/Elements'
 import EmbedDocument from '../../../components/EmbedDocument'
-import { ILesson, ILessonType } from '../../../sharedTypes'
+import { ILesson, LessonLinkType } from '../../../sharedTypes'
 
 interface IProps {
   lesson: ILesson
@@ -13,7 +13,7 @@ const Lesson: React.FC<IProps> = ({ lesson }) => {
   const [documentOpen, setDocumentOpen] = React.useState(false)
   const [openUrl, setOpenUrl] = React.useState<string | undefined>(undefined)
 
-  const handleOpenChange = (type?: ILessonType, url?: string) => {
+  const handleOpenChange = (type?: LessonLinkType, url?: string) => {
     setDocumentOpen(type ? true : false)
     setDocumentType(type)
     if (type !== undefined) {

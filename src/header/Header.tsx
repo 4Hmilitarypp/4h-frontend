@@ -36,10 +36,6 @@ const Header: React.FC<RouteComponentProps> = () => {
               <LinkTitle>About Us</LinkTitle>
               <LinkDescription>Learn about the 4-H Military Partnership</LinkDescription>
             </StyledDropdownLink>
-            <StyledDropdownLink to="/about/#history">
-              <LinkTitle>History</LinkTitle>
-              <LinkDescription>Learn about our history</LinkDescription>
-            </StyledDropdownLink>
           </LinkGroup>
           <LinkGroup title="Events" to="/events/" manageBackground={backgroundManagement}>
             <StyledDropdownLink to="/events/#past-events">

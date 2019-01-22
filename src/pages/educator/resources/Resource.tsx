@@ -3,6 +3,7 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 import BackButton from '../../../components/BackButton'
 import { DynamicSection, Heading, P, PageWrapper, SubHeading } from '../../../components/Elements'
+import useErrorHandler from '../../../hooks/useErrorHandler'
 import { IResourceWithLessons } from '../../../sharedTypes'
 import api from '../../../utils/api'
 import { elevation } from '../../../utils/mixins'
@@ -14,11 +15,13 @@ interface IProps extends RouteComponentProps {
 
 const Resource: React.FC<IProps> = ({ slug }) => {
   const [resource, setResource] = React.useState<IResourceWithLessons | undefined>(undefined)
+  const handleError = useErrorHandler()
+
   React.useEffect(() => {
     api.resources
       .getBySlug(slug || '')
       .then(r => setResource(r))
-      .catch(err => console.error(err))
+      .catch(handleError)
   }, [])
 
   if (!resource) {
@@ -28,7 +31,7 @@ const Resource: React.FC<IProps> = ({ slug }) => {
   return (
     <PageWrapper data-testid="resource">
       <HeaderWrapper>
-        <BackButton route={'/educators/resources'} />
+        <BackButton route={'/educators/resources'} title="Resources" />
         <Heading>{title}</Heading>
         <div style={{ width: 209 }} />
       </HeaderWrapper>

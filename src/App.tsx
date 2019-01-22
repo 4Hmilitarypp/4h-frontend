@@ -1,6 +1,8 @@
 import { Router } from '@reach/router'
 import * as React from 'react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components/macro'
+import FlashContext, { useFlash } from './contexts/FlashContext'
+import Flash from './Flash'
 import Header from './header/Header'
 import About from './pages/About'
 import About4HClub from './pages/About4HClub'
@@ -37,12 +39,14 @@ export const theme = {
   white: 'hsl(0, 0%, 100%)',
 }
 
-class App extends React.Component<{}, {}> {
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <div data-testid="app">
-          <GlobalStyle />
+const App: React.FC = () => {
+  const { flashState, resetFlashState, setFlashState } = useFlash()
+  return (
+    <ThemeProvider theme={theme}>
+      <div data-testid="app">
+        <GlobalStyle />
+        <FlashContext.Provider value={{ ...flashState, reset: resetFlashState, set: setFlashState }}>
+          <Flash />
           <Router>
             <Header path="/*" />
           </Router>
@@ -61,10 +65,10 @@ class App extends React.Component<{}, {}> {
             <Icons path="/icons" />
             <NotFound default={true} />
           </Router>
-        </div>
-      </ThemeProvider>
-    )
-  }
+        </FlashContext.Provider>
+      </div>
+    </ThemeProvider>
+  )
 }
 
 export default App
@@ -80,5 +84,9 @@ const GlobalStyle = createGlobalStyle`
   }
   b {
     font-weight: 500;
+  }
+  .grecaptcha-badge {
+    visibility: hidden !important;
+    opacity: 0 !important;
   }
 `

@@ -1,3 +1,7 @@
+export interface IApiError {
+  response: { data: { message: string }; status: number; statusText: string }
+}
+
 export interface ILiaison {
   _id?: string
   abbreviation?: string | null

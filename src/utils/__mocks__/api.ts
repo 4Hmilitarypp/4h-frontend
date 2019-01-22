@@ -1,25 +1,18 @@
 const mock = {
-  auth: undefined,
   emails: undefined,
   liaisons: undefined,
   research: undefined,
   reset: undefined,
   resources: undefined,
 }
-const authResponse = { user: { _id: 1 } }
 function reset() {
   Object.assign(mock, {
-    auth: Object.assign(mock.auth || {}, {
-      login: jest.fn(() => Promise.resolve(authResponse)),
-      logout: jest.fn(() => Promise.resolve(authResponse)),
-      me: jest.fn(() => Promise.resolve(authResponse)),
-      register: jest.fn(() => Promise.resolve(authResponse)),
-    }),
     emails: Object.assign(mock.emails || {}, {
-      create: jest.fn(() => Promise.resolve({ email: {} })),
+      checkIfSpam: jest.fn(() => Promise.resolve(false)),
+      contactUs: jest.fn(() => Promise.resolve({})),
     }),
     liaisons: Object.assign(mock.liaisons || {}, {
-      get: jest.fn(() => Promise.resolve({ liaisons: {} })),
+      get: jest.fn(() => Promise.resolve([])),
     }),
     research: Object.assign(mock.research || {}, {
       get: jest.fn(() => Promise.resolve([])),
@@ -27,7 +20,7 @@ function reset() {
     reset,
     resources: Object.assign(mock.resources || {}, {
       get: jest.fn(() => Promise.resolve([])),
-      getBySlug: jest.fn((slug: string) => Promise.resolve({})),
+      getBySlug: jest.fn(() => Promise.resolve({})),
     }),
   })
 }

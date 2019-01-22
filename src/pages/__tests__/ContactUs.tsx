@@ -1,20 +1,45 @@
 import * as React from 'react'
-import { fireEvent, render, waitForElement } from 'react-testing-library'
+import { fireEvent, flushEffects, render, wait } from 'react-testing-library'
 jest.mock('../../utils/api')
+import FlashContext, { useFlash } from '../../contexts/FlashContext'
 import api from '../../utils/api'
 import generate from '../../utils/generate'
 import ContactUs from '../ContactUs'
 
 beforeEach(() => (api as any).reset())
 
+const Component: React.FC<{ setFlash: any }> = ({ children, setFlash }) => {
+  const { flashState, resetFlashState, setFlashState } = useFlash()
+
+  const combinedSetFlash = (args: any) => {
+    setFlash(args)
+    setFlashState(args)
+  }
+
+  return (
+    <FlashContext.Provider value={{ ...flashState, reset: resetFlashState, set: combinedSetFlash }}>
+      {children}
+    </FlashContext.Provider>
+  )
+}
+
 interface IProps {
-  value: string
+  setFlash: (args: any) => void
 }
 
 const setup = (propOverrides?: IProps) => {
-  const props = Object.assign({}, propOverrides)
+  const props = Object.assign({ setFlash: () => null }, propOverrides)
 
-  const utils = render(<ContactUs {...props} />)
+  const fakeCaptcha = jest.fn(() => 'token')
+  ;(window as any).grecaptcha = {}
+  ;(window as any).grecaptcha.execute = fakeCaptcha
+
+  const utils = render(
+    <Component setFlash={props.setFlash}>
+      <ContactUs {...props} />
+    </Component>
+  )
+  flushEffects()
   const nameInput = utils.getByLabelText(/Your Name/i) as HTMLInputElement
   const emailInput = utils.getByLabelText(/Your Email/i) as HTMLInputElement
   const messageTextArea = utils.getByLabelText(/Your Message/i) as HTMLInputElement
@@ -30,8 +55,9 @@ const setup = (propOverrides?: IProps) => {
 }
 
 describe('interaction', () => {
-  it('should submit the form with the correct values', () => {
-    const { getByText, emailInput, messageTextArea, nameInput, submitButton } = setup()
+  it('should submit the form with the correct values', async () => {
+    const setFlash = jest.fn((args: any) => null)
+    const { emailInput, messageTextArea, nameInput, submitButton } = setup({ setFlash })
 
     const fakeEmail = generate.contactUsEmail()
 
@@ -40,50 +66,38 @@ describe('interaction', () => {
     fireEvent.change(messageTextArea, { target: { value: fakeEmail.message } })
 
     fireEvent.submit(submitButton)
-    expect(api.emails.create).toHaveBeenCalledTimes(1)
-    expect(api.emails.create).toHaveBeenCalledWith({
+
+    await wait(() => expect(api.emails.contactUs).toHaveBeenCalledTimes(1))
+    expect(api.emails.contactUs).toHaveBeenCalledWith({
       email: fakeEmail.email,
       message: fakeEmail.message,
       name: fakeEmail.name,
     })
-    expect(getByText(/Email sent successfully/i)).toBeDefined()
+
+    expect(setFlash).toHaveBeenCalledTimes(1)
+    expect(setFlash).toHaveBeenCalledWith({
+      message: 'Your message was sent successfully, and you should hear back soon!',
+    })
   })
-  it('should show an error if the api call was unsuccessful', async () => {
-    const { getByText, queryByText, submitButton, emailInput, messageTextArea, nameInput } = setup()
-    const createMock = api.emails.create as any
+
+  it('should display a captcha error if the backend says the user is a robot', async () => {
+    const setFlash = jest.fn(() => null)
+    ;(api.emails.checkIfSpam as any).mockImplementationOnce(() => Promise.resolve(true))
+    const { emailInput, messageTextArea, nameInput, submitButton } = setup({ setFlash })
+
     const fakeEmail = generate.contactUsEmail()
-    emailInput.value = fakeEmail.name
-    messageTextArea.value = fakeEmail.email
-    nameInput.value = fakeEmail.message
-    const fakeErrorMessage = 'Error!'
-    createMock.mockImplementationOnce(() => Promise.reject({ response: { data: { message: fakeErrorMessage } } }))
 
-    expect(queryByText(fakeErrorMessage)).toBeNull()
-    fireEvent.submit(submitButton)
-    expect(api.emails.create).toHaveBeenCalledTimes(1)
-    await waitForElement(() => getByText(fakeErrorMessage))
-  })
-
-  it('should show an error if the required fields were not entered', async () => {
-    const { getByText, submitButton, emailInput, nameInput, messageTextArea } = setup()
-    emailInput.value = ''
-    nameInput.value = ''
-    messageTextArea.value = ''
+    fireEvent.change(nameInput, { target: { value: fakeEmail.name } })
+    fireEvent.change(emailInput, { target: { value: fakeEmail.email } })
+    fireEvent.change(messageTextArea, { target: { value: fakeEmail.message } })
 
     fireEvent.submit(submitButton)
-    expect(api.emails.create).toHaveBeenCalledTimes(0)
-    await waitForElement(() => getByText('All required fields not met.'))
-  })
 
-  it('should close the flash when the close button is clicked', async () => {
-    const { getByText, queryByText, submitButton, emailInput, nameInput, messageTextArea } = setup()
-    emailInput.value = ''
-    nameInput.value = ''
-    messageTextArea.value = ''
+    await wait(() => expect(setFlash).toHaveBeenCalledTimes(1))
 
-    fireEvent.submit(submitButton)
-    await waitForElement(() => getByText('All required fields not met.'))
-    fireEvent.click(getByText('X'))
-    await waitForElement(() => !queryByText('All required fields not met.'))
+    expect(setFlash).toHaveBeenCalledWith({
+      isError: true,
+      message: 'you failed to pass the captcha test, please try again',
+    })
   })
 })

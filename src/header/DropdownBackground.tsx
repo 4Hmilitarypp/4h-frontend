@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { IBackgroundCoords } from '../types'
+import { IBackgroundCoords } from '../clientTypes'
 
 const UnstyledDropdownBackground: React.FC<IBackgroundCoords> = props => (
   <div {...props}>

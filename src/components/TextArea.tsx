@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useFormInput } from '../hooks/hooks'
+import useFormInput from '../hooks/useFormInput'
 
 interface IProps {
   id?: string

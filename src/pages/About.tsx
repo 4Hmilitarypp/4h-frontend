@@ -3,8 +3,7 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 import { A, P, Section, SubHeading } from '../components/Elements'
 import UnstyledIcon from '../components/Icon'
-import SignInModal from '../components/SignInModal'
-import { useHash } from '../hooks/hooks'
+import useHash from '../hooks/useHash'
 
 const About: React.FC<RouteComponentProps> = () => {
   const historyRef = React.useRef<HTMLHeadingElement>(null)
@@ -122,11 +121,9 @@ const About: React.FC<RouteComponentProps> = () => {
         <LinkSection>
           <LinksHeading>Extension 4-H military liaisons</LinksHeading>
           <Links>
-            <SignInModal>
-              <SignInItem as="span">
-                Sign in as a Liaison <Chevron name="chevron-right-circle" width={20} height={20} />
-              </SignInItem>
-            </SignInModal>
+            <LinkItem as="a" href="https://cms.4h.wendte.tech">
+              Sign into the liaison section <Chevron name="chevron-right-circle" width={20} height={20} />
+            </LinkItem>
             <LinkItem to="/educators/resources">
               View curriculum resources <Chevron name="chevron-right-circle" width={20} height={20} />
             </LinkItem>
@@ -218,7 +215,7 @@ const LinksHeading = styled.h4`
   line-height: normal;
 `
 const Links = styled.div``
-const LinkItem = styled(UnstyledLink)`
+const LinkItem: any = styled(UnstyledLink)`
   font-size: 1.8rem;
   display: block;
   color: ${props => props.theme.white};
@@ -230,9 +227,6 @@ const LinkItem = styled(UnstyledLink)`
     opacity: 0.8;
     cursor: pointer;
   }
-`
-const SignInItem = styled(LinkItem)`
-  padding-bottom: 0.8rem;
 `
 const Chevron = styled(UnstyledIcon)`
   position: relative;

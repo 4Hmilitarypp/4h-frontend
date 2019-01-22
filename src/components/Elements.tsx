@@ -6,7 +6,7 @@ import { elevation, transition } from '../utils/mixins'
 // TODO Refactor this to use an Input and a label and return actual components.
 
 export const InputGroup = styled.div`
-  margin: 0 0.4rem 1.2rem;
+  margin-bottom: 1.2rem;
   flex-grow: 1;
   label,
   legend {

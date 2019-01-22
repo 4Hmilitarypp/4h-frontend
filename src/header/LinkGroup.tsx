@@ -1,8 +1,8 @@
 import { Link } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
+import { IBackgroundCoords } from '../clientTypes'
 import { Omit } from '../sharedTypes'
-import { IBackgroundCoords } from '../types'
 
 interface IProps {
   manageBackground: {

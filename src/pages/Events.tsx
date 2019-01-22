@@ -2,7 +2,7 @@ import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { Heading, PageWrapper } from '../components/Elements'
-import { useHash } from '../hooks/hooks'
+import useHash from '../hooks/useHash'
 
 const Events: React.FC<RouteComponentProps> = ({ location }) => {
   const pastEventRef = React.useRef<HTMLHeadingElement>(null)

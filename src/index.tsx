@@ -10,7 +10,6 @@ import api from './utils/api'
 
 api.init()
 ReactDOM.render(<App />, document.getElementById('root'))
-console.log(process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'production') {
   serviceWorker.register()
 } else {

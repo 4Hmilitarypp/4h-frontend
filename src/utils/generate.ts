@@ -1,6 +1,6 @@
 import faker from 'faker'
+import { IContactUsEmail, ISignInForm } from '../clientTypes'
 import { ILesson, ILiaison, IResearch, IResource, IResourceWithLessons, IWebinar, LessonLinkType } from '../sharedTypes'
-import { IContactUsEmail, ISignInForm } from '../types'
 
 const generate = {
   contactUsEmail: (overrides?: Partial<IContactUsEmail>): IContactUsEmail => ({

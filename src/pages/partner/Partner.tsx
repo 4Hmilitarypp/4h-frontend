@@ -28,7 +28,7 @@ const Partner: React.FC<IProps> = ({ slug }) => {
       {partner ? (
         <PartnerWrapper>
           <HeaderWrapper>
-            <BackButton route={'/partners'} />
+            <BackButton route={'/partners'} title="partners" />
             <Heading>{partner.title}</Heading>
             <div style={{ width: 209 }} />
           </HeaderWrapper>
@@ -133,7 +133,7 @@ const ReportCard = styled.a`
   width: 32rem;
   text-align: center;
   backface-visibility: hidden;
-  ${transition({ name: 'easeOutCubic', time: 0.3 })};
+  ${transition({ name: 'easeOutCubic={true}', time: 0.3 })};
   &:hover {
     transform: rotate(1deg) translateX(-10px) translateY(-10px);
     ${transition({ name: 'easeInCubic' })};

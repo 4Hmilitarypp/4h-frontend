@@ -1,9 +1,8 @@
 import * as axios from 'axios'
+import { IContactUsEmail } from '../clientTypes'
 import { ILiaison, IPartnerSection, IResearch, IResource } from '../sharedTypes'
-import { IApiError, IContactUsEmail, IUser } from '../types'
 
 let api: axios.AxiosInstance
-let isLoggedIn: boolean
 const envBaseURL = process.env.REACT_APP_API_URL
 
 const getData = (res: { data: object }) => res.data
@@ -15,49 +14,13 @@ const requests = {
   put: (url: string, body: object): Promise<any> => api.put(url, body).then(getData),
 }
 
-const auth = {
-  login: (form: { email?: string; username?: string; password: string }) =>
-    requests.post('/auth/login', form).then((data: { user: IUser }) => {
-      login({ token: data.user.token })
-      return data
-    }),
-  logout: () => {
-    logout()
-    return Promise.resolve({})
-  },
-  me() {
-    if (!isLoggedIn) {
-      return Promise.resolve({})
-    }
-    return requests
-      .get('/auth/me')
-      .then((data: { user: IUser }) => Promise.resolve(data))
-      .catch((err: IApiError) => {
-        if (err.response.status === 401) {
-          logout()
-        }
-        return Promise.reject(err)
-      })
-  },
-  register: (form: Partial<IUser>) =>
-    requests.post('/auth/register', form).then((data: any) => {
-      login({ token: data.user.token })
-      return data
-    }),
-}
-
-const users = {
-  create: (user: IUser) => requests.post('/users', user),
-  delete: (id: string) => requests.delete(`/users/${id}`),
-  get: (id?: string) => requests.get(id ? `/users/${id}` : '/users'),
-  update: (id: string, updates: Partial<IUser>) => requests.put(`/users/${id}`, updates),
-}
-
 const liaisons = {
   get: (): Promise<{ liaisons: ILiaison[] }> => requests.get('/liaisons'),
 }
 const emails = {
-  create: (email: IContactUsEmail): Promise<{ email: IContactUsEmail }> => requests.post('/email', email),
+  checkIfSpam: (token: string): Promise<boolean> => requests.post('/users/checkIfSpam', { token }),
+  contactUs: (email: IContactUsEmail): Promise<{ email: IContactUsEmail }> =>
+    requests.post('/emails/contact-us', email),
 }
 const partners = {
   getSections: (): Promise<{ partnerSections: IPartnerSection[] }> => requests.get('/partnerSections'),
@@ -72,40 +35,23 @@ const resources = {
   getBySlug: (slug: string): Promise<IResource> => requests.get(`/resources/slug/${slug}`),
 }
 
-function logout() {
-  window.localStorage.removeItem('token')
-  init({ token: undefined })
-}
-function login({ token }: { token: string }) {
-  window.localStorage.setItem('token', token)
-  init({ token })
-}
-
-function init({
-  token = window.localStorage.getItem('token'),
-  baseURL = envBaseURL || '/api',
-  axiosOptions = { headers: {} },
-} = {}) {
-  isLoggedIn = Boolean(token)
+function init({ baseURL = envBaseURL || '/api', axiosOptions = { headers: {} } } = {}) {
   api = (axios as any).create({
     baseURL,
     ...axiosOptions,
     headers: {
-      authorization: token ? `Bearer ${token}` : undefined,
       ...axiosOptions.headers,
     },
   })
 }
 
 const restApi = {
-  auth,
   emails,
   init,
   liaisons,
   partners,
   research,
   resources,
-  users,
 }
 
 export default restApi

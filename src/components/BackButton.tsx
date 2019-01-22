@@ -3,11 +3,17 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 import Icon from './Icon'
 
-const UnstyledBackButton: React.FC<{ navigate?: any; route: string }> = ({ navigate = reachNavigate, route }) => {
+interface IProps {
+  navigate?: any
+  route: string
+  title: string
+}
+
+const UnstyledBackButton: React.FC<IProps> = ({ navigate = reachNavigate, route, title }) => {
   return (
     <BackButton onClick={() => navigate(route)}>
       <BackIcon name="back" circleColor="#339966" arrowColor="#fff" />
-      <BackText>Back To Partners</BackText>
+      <BackText>Back To {title}</BackText>
     </BackButton>
   )
 }

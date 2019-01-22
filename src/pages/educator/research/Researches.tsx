@@ -4,18 +4,20 @@ import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { DynamicSection, Heading, PageWrapper } from '../../../components/Elements'
+import useErrorHandler from '../../../hooks/useErrorHandler'
 import { IResearch } from '../../../sharedTypes'
 import api from '../../../utils/api'
 import Research from './Research'
 
 const Researches: React.FC<RouteComponentProps> = () => {
   const [researches, setResearches] = React.useState<IResearch[]>([])
+  const handleError = useErrorHandler()
 
   React.useEffect(() => {
     api.research
       .get()
       .then(r => setResearches(r))
-      .catch(err => console.error(err))
+      .catch(handleError)
   }, [])
 
   return (

@@ -1,24 +1,9 @@
 import * as React from 'react'
 
-/**
- * Api
- */
-export interface IApiError {
-  response: { data: { message: string }; status: number; statusText: string }
-}
-
 export interface IHashProps {
   refToFocus: React.RefObject<HTMLElement>
   hash: string
   location: any
-}
-
-export interface IUser {
-  email?: string
-  name: string
-  password: string
-  token: string
-  username: string
 }
 
 export interface ISignInForm {

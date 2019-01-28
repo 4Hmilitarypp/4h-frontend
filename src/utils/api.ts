@@ -1,17 +1,17 @@
 import * as axios from 'axios'
 import { IContactUsEmail } from '../clientTypes'
-import { ILiaison, IPartnerSection, IResearch, IResource } from '../sharedTypes'
+import { ILiaison, IPartner, IPartnerSection, IResearch, IResource } from '../sharedTypes'
 
-let api: axios.AxiosInstance
+let restApi: axios.AxiosInstance
 const envBaseURL = process.env.REACT_APP_API_URL
 
 const getData = (res: { data: object }) => res.data
 
 const requests = {
-  delete: (url: string): Promise<any> => api.delete(url).then(getData),
-  get: (url: string): Promise<any> => api.get(url).then(getData),
-  post: (url: string, body: object): Promise<any> => api.post(url, body).then(getData),
-  put: (url: string, body: object): Promise<any> => api.put(url, body).then(getData),
+  delete: (url: string): Promise<any> => restApi.delete(url).then(getData),
+  get: (url: string): Promise<any> => restApi.get(url).then(getData),
+  post: (url: string, body: object): Promise<any> => restApi.post(url, body).then(getData),
+  put: (url: string, body: object): Promise<any> => restApi.put(url, body).then(getData),
 }
 
 const liaisons = {
@@ -23,7 +23,8 @@ const emails = {
     requests.post('/emails/contact-us', email),
 }
 const partners = {
-  getSections: (): Promise<{ partnerSections: IPartnerSection[] }> => requests.get('/partnerSections'),
+  get: (): Promise<IPartnerSection[]> => requests.get('/partners'),
+  getBySlug: (slug: string): Promise<IPartner> => requests.get(`/partners/slug/${slug}`),
 }
 
 const research = {
@@ -36,7 +37,7 @@ const resources = {
 }
 
 function init({ baseURL = envBaseURL || '/api', axiosOptions = { headers: {} } } = {}) {
-  api = (axios as any).create({
+  restApi = (axios as any).create({
     baseURL,
     ...axiosOptions,
     headers: {
@@ -45,7 +46,7 @@ function init({ baseURL = envBaseURL || '/api', axiosOptions = { headers: {} } }
   })
 }
 
-const restApi = {
+const api = {
   emails,
   init,
   liaisons,
@@ -54,4 +55,4 @@ const restApi = {
   resources,
 }
 
-export default restApi
+export default api

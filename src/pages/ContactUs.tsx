@@ -17,7 +17,7 @@ const loadCaptcha = () => {
 
 const checkIfSpam = async () => {
   const token = await (window as any).grecaptcha.execute('6LczLYsUAAAAAJ7UgMGSvCG-fCe9Q6seQrVIvLl9', {
-    action: 'contact-us',
+    action: 'contactUs',
   })
   return api.emails.checkIfSpam(token)
 }

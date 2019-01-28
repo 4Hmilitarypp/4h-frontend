@@ -1,12 +1,27 @@
 import faker from 'faker'
 import { IContactUsEmail, ISignInForm } from '../clientTypes'
-import { ILesson, ILiaison, IResearch, IResource, IResourceWithLessons, IWebinar, LessonLinkType } from '../sharedTypes'
+import {
+  IImage,
+  ILesson,
+  ILiaison,
+  IPartner,
+  IResearch,
+  IResource,
+  IResourceWithLessons,
+  IWebinar,
+  LessonLinkType,
+} from '../sharedTypes'
 
 const generate = {
   contactUsEmail: (overrides?: Partial<IContactUsEmail>): IContactUsEmail => ({
     email: faker.internet.email(),
     message: faker.lorem.paragraph(),
     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+  }),
+  image: (overrides?: Partial<IImage>): IImage => ({
+    alt: faker.company.catchPhrase(),
+    url: faker.internet.url(),
+    ...overrides,
   }),
   lesson: (overrides?: Partial<ILesson>): ILesson => ({
     _id: generate.objectId(),
@@ -28,6 +43,19 @@ const generate = {
   }),
   liaisons: (length: number): ILiaison[] => Array.from({ length }, () => generate.liaison()),
   objectId: () => faker.random.alphaNumeric(24),
+  partner: (overrides?: Partial<IPartner>): IPartner => ({
+    _id: generate.objectId(),
+    annualReports: [{ image: generate.image(), title: faker.lorem.words(), url: faker.internet.url() }],
+    featuredImages: [generate.image()],
+    images: [generate.image()],
+    longDescription: faker.lorem.paragraph(),
+    shortDescription: faker.lorem.word(),
+    slug: faker.lorem.word(),
+    title: faker.lorem.word(),
+    videoReports: [{ image: generate.image(), title: faker.lorem.words(), url: faker.internet.url() }],
+    ...overrides,
+  }),
+  partners: (length: number): IPartner[] => Array.from({ length }, () => generate.partner()),
   research: (descriptionLength: number = 100, overrides: {} = {}): IResearch => ({
     _id: generate.objectId(),
     description: faker.lorem.words(descriptionLength),

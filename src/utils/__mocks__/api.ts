@@ -14,6 +14,10 @@ function reset() {
     liaisons: Object.assign(mock.liaisons || {}, {
       get: jest.fn(() => Promise.resolve([])),
     }),
+    partners: Object.assign(mock.liaisons || {}, {
+      get: jest.fn(() => Promise.resolve([])),
+      getBySlug: jest.fn(() => Promise.resolve([])),
+    }),
     research: Object.assign(mock.research || {}, {
       get: jest.fn(() => Promise.resolve([])),
     }),

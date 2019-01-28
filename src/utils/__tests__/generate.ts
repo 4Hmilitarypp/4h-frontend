@@ -1,5 +1,15 @@
 import generate from '../generate'
 
+describe('generate.image', () => {
+  it('should return a correct image', async () => {
+    const res = generate.image()
+    expect(res).toEqual({
+      alt: expect.any(String),
+      url: expect.any(String),
+    })
+  })
+})
+
 describe('generate.lesson', () => {
   it('should return a correct lesson', () => {
     const res = generate.lesson()
@@ -79,6 +89,56 @@ describe('generate.liaisons', () => {
           name: expect.any(String),
           phoneNumber: expect.any(String),
           region: expect.any(String),
+        },
+      ])
+    )
+  })
+})
+
+describe('generate.partner', () => {
+  it('should return a full partner', () => {
+    const res = generate.partner()
+    expect(res).toEqual({
+      _id: expect.any(String),
+      annualReports: expect.any(Array),
+      featuredImages: expect.any(Array),
+      images: expect.any(Array),
+      longDescription: expect.any(String),
+      shortDescription: expect.any(String),
+      slug: expect.any(String),
+      title: expect.any(String),
+      videoReports: expect.any(Array),
+    })
+  })
+})
+
+describe('generate.partners', () => {
+  it('should return multiple partners', () => {
+    const res = generate.partners(2)
+    expect(res.length).toBe(2)
+    expect(res).toEqual(
+      expect.arrayContaining([
+        {
+          _id: expect.any(String),
+          annualReports: expect.any(Array),
+          featuredImages: expect.any(Array),
+          images: expect.any(Array),
+          longDescription: expect.any(String),
+          shortDescription: expect.any(String),
+          slug: expect.any(String),
+          title: expect.any(String),
+          videoReports: expect.any(Array),
+        },
+        {
+          _id: expect.any(String),
+          annualReports: expect.any(Array),
+          featuredImages: expect.any(Array),
+          images: expect.any(Array),
+          longDescription: expect.any(String),
+          shortDescription: expect.any(String),
+          slug: expect.any(String),
+          title: expect.any(String),
+          videoReports: expect.any(Array),
         },
       ])
     )

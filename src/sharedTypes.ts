@@ -13,6 +13,7 @@ export interface ILiaison {
 }
 
 export interface IPartnerSection {
+  _id?: string
   featuredImages: IImage[]
   shortDescription: string
   slug: string
@@ -31,16 +32,16 @@ export interface ILink {
 }
 
 export interface IReport {
-  image: string
+  image: IImage
   title: string
   url: string
 }
 
 export interface IPartner extends IPartnerSection {
-  annualReports?: IReport[]
-  images?: IImage[]
+  annualReports: IReport[]
+  images: IImage[]
   longDescription: string
-  videoReports?: IReport[]
+  videoReports: IReport[]
 }
 
 export interface IWebinar {

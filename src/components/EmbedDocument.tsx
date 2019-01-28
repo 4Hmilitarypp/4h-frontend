@@ -31,31 +31,18 @@ const EmbedDocument: React.FC<IProps> = ({ type, title, url, open, setOpen }) =>
   return open ? (
     <EmbedWrapper>
       <DocumentCommands>
-        {type !== 'pdf' && (
-          <DocumentCloseButton as="a" href={url} download={title}>
-            Download
-          </DocumentCloseButton>
-        )}
+        <DocumentCloseButton as="a" href={url} download={title}>
+          Download
+        </DocumentCloseButton>
         <DocumentCloseButton onClick={() => setOpen(false)}>Close</DocumentCloseButton>
       </DocumentCommands>
-      {type === 'pdf' ? (
-        <Pdf data={url} type="application/pdf">
-          - alt : <a href={url}>{url}</a>
-        </Pdf>
-      ) : (
-        <Doc src={`https://docs.google.com/gview?url=${url}&embedded=true`} />
-      )}
+      <Doc src={`https://docs.google.com/gview?url=${url}&embedded=true`} />
     </EmbedWrapper>
   ) : null
 }
 
 export default EmbedDocument
 
-const Pdf: any = styled.object`
-  height: 100%;
-  width: 100%;
-  padding-bottom: 2rem;
-`
 const Doc: any = styled.iframe`
   height: 100%;
   width: 100%;
@@ -75,7 +62,8 @@ const DocumentCloseButton: any = styled.button`
   border: none;
   padding: 0.4rem;
   margin: 0 1.6rem;
-  color: ${props => props.theme.white};
+  color: ${props => props.theme.white} !important;
+  font-weight: 400 !important;
   &:hover {
     opacity: 0.8;
     cursor: pointer;

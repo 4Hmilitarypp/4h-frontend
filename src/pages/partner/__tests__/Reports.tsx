@@ -13,8 +13,10 @@ interface IProps {
 
 const fakeReports = [
   {
-    image:
-      'https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,h_660/v1542943962/report-covers/army/2010_Army_Report_cover.jpg',
+    image: {
+      url:
+        'https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,h_660/v1542943962/report-covers/army/2010_Army_Report_cover.jpg',
+    },
     title: 'Army Annual Report 2010',
     url: 'https://res.cloudinary.com/four-hmpp/image/upload/v1542944083/reports/army/2010_Army_annual_report.pdf',
   },

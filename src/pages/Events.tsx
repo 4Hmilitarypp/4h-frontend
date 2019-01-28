@@ -1,7 +1,7 @@
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
-import styled from 'styled-components/macro'
-import { Heading, PageWrapper } from '../components/Elements'
+import styled from 'styled-components'
+import { Heading, P, PageWrapper } from '../components/Elements'
 import useHash from '../hooks/useHash'
 
 const Events: React.FC<RouteComponentProps> = ({ location }) => {
@@ -9,14 +9,13 @@ const Events: React.FC<RouteComponentProps> = ({ location }) => {
   useHash({ refToFocus: pastEventRef, hash: '#past-events', location })
   return (
     <PageWrapper>
-      <Heading>Upcoming Events</Heading>
-      <P>There are some amazing events coming up</P>
-      <Heading id="past-events" ref={pastEventRef as any}>
-        Past Events
-      </Heading>
+      <Heading>Events</Heading>
+      <CustomP>We don't quite have this page finished yet, but it will be up soon!</CustomP>
     </PageWrapper>
   )
 }
 export default Events
 
-const P = styled.p``
+const CustomP = styled(P)`
+  font-weight: 600;
+`

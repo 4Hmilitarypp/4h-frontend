@@ -40,30 +40,20 @@ const Partner: React.FC<IProps> = ({ slug }) => {
               ))}
             </HeroImages>
           </Hero>
-          {partner.images && (
-            <ListWrapper>
-              <SubHeading>Image Gallery</SubHeading>
-              <ImageGallery>
-                {partner.images.map(image => (
-                  <Img key={image.url} src={image.url} alt={image.alt} />
-                ))}
-              </ImageGallery>
-            </ListWrapper>
-          )}
-          {partner.annualReports && (
+          {partner.annualReports.length > 0 && (
             <ListWrapper>
               <SubHeading>Annual Reports</SubHeading>
               <Reports reports={partner.annualReports} />
             </ListWrapper>
           )}
-          {partner.videoReports && (
+          {partner.videoReports.length > 0 && (
             <ListWrapper>
               <SubHeading>Video Reports</SubHeading>
               <VideoReports>
                 {partner.videoReports.map(report => (
                   <ReportItem key={report.url}>
                     <VideoReportCard href={report.url} target="_blank">
-                      <VideoReportCover src={report.image} alt={`${report.title} cover`} />
+                      <VideoReportCover src={report.image.url} alt={`${report.title} cover`} />
                       <ReportTitle>{report.title}</ReportTitle>
                     </VideoReportCard>
                   </ReportItem>
@@ -161,13 +151,4 @@ const ReportTitle = styled.span`
   font-weight: 500;
   font-size: 1.8rem;
   padding-top: 2rem;
-`
-const ImageGallery = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-const Img = styled.img`
-  height: 30rem;
-  margin: 1.2rem;
 `

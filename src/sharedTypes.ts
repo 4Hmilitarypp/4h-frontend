@@ -39,7 +39,6 @@ export interface IReport {
 
 export interface IPartner extends IPartnerSection {
   annualReports: IReport[]
-  images: IImage[]
   longDescription: string
   videoReports: IReport[]
 }

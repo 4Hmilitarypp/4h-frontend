@@ -22,7 +22,7 @@ const Reports: React.FC<IProps> = ({ reports }) => {
             setOpen={setDocumentOpen}
           />
           <ReportCard onClick={() => setDocumentOpen(true)} data-testid="reportCard">
-            <ReportCover src={report.image} alt={`${report.title} cover`} />
+            <ReportCover src={report.image.url} alt={`${report.title} cover`} />
             <ReportTitle>{report.title}</ReportTitle>
           </ReportCard>
         </ReportItem>

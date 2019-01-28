@@ -47,7 +47,6 @@ const generate = {
     _id: generate.objectId(),
     annualReports: [{ image: generate.image(), title: faker.lorem.words(), url: faker.internet.url() }],
     featuredImages: [generate.image()],
-    images: [generate.image()],
     longDescription: faker.lorem.paragraph(),
     shortDescription: faker.lorem.word(),
     slug: faker.lorem.word(),

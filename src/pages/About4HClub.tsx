@@ -2,6 +2,7 @@ import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { A, Heading, P, PageWrapper, Section, SubHeading } from '../components/Elements'
+import { elevation } from '../utils/mixins'
 
 const About4HClub: React.FC<RouteComponentProps> = () => (
   <OverflowHidden>
@@ -187,6 +188,8 @@ const TitleImage = styled.img`
   margin-left: 4rem;
   height: 60rem;
   object-fit: cover;
+  border-radius: 5px;
+  ${elevation(4)};
 `
 const Links = styled.ul`
   padding: 2rem 0 0;
@@ -221,6 +224,7 @@ const PreviewImage = styled.img`
   margin-left: 4rem;
   height: 40rem;
   object-fit: cover;
+  border-radius: 5px;
 `
 const GeoSection = styled.section`
   display: flex;
@@ -230,5 +234,7 @@ const GeoSection = styled.section`
 const GeoSectionImage = styled.img`
   width: 50%;
   object-fit: cover;
-  padding-left: 2rem;
+  margin-left: 2rem;
+  border-radius: 5px;
+  ${elevation(4)};
 `

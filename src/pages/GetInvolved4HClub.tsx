@@ -2,6 +2,7 @@ import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { A, Heading, P, PageWrapper, SubHeading } from '../components/Elements'
+import { elevation } from '../utils/mixins'
 
 const About4HClub: React.FC<RouteComponentProps> = () => (
   <CustomPageWrapper>
@@ -74,6 +75,8 @@ const SectionImage = styled.img`
   height: 60rem;
   object-fit: cover;
   margin: 0 2rem;
+  border-radius: 5px;
+  ${elevation(4)};
 `
 const Text = styled.div`
   margin: 0 2rem;

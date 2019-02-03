@@ -17,7 +17,7 @@ const DropdownBackground = styled(UnstyledDropdownBackground)`
   display: flex;
   transform-origin: 50% 0;
   justify-content: center;
-  z-index: ${coords => (coords.open ? 10 : -1)};
+  z-index: ${coords => (coords.open ? 11 : -1)};
   opacity: ${coords => (coords.open ? 1 : 0)};
   width: ${coords => coords.width + 'px'};
   height: ${coords => coords.height + 'px'};

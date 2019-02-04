@@ -110,7 +110,7 @@ const HeroOverlay = styled.div`
     display: block;
     position: relative;
     background-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 100%);
-    margin-top: calc(-80vh + 6rem);
+    margin-top: calc(-80vh + 6.8rem);
     height: calc(80vh - 6.8rem);
     width: 100%;
     content: '';
@@ -121,6 +121,7 @@ const HeroImg = styled.img`
   height: calc(80vh - 6.8rem);
   object-fit: cover;
   object-position: center;
+  display: block;
 `
 const Vision = styled.div``
 const VisionHeading = styled(SubHeading)`
@@ -161,7 +162,7 @@ const CardImageOverlay = styled.div`
     display: block;
     position: relative;
     background: linear-gradient(180deg, #0000 50%, rgba(0, 0, 0, 0.4) 100%);
-    margin-top: -232px;
+    margin-top: -225px;
     height: 225px;
     content: '';
     border-radius: 5px 0 0 5px;
@@ -187,6 +188,7 @@ const CardImage = styled.img`
   object-fit: cover;
   object-position: center;
   border-radius: 5px 0 0 5px;
+  display: block;
 `
 const CardText = styled.span`
   position: absolute;

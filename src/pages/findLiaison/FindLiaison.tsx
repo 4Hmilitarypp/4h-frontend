@@ -8,7 +8,7 @@ import { theme } from '../../App'
 import staticLiaisons from '../../assets/data/staticLiaisons.json'
 import { InputGroup, P, PageWrapper, Section, SubHeading } from '../../components/Elements'
 import Icon from '../../components/Icon'
-import useHash from '../../hooks/useHash'
+// import useHash from '../../hooks/useHash'
 import { ILiaison } from '../../sharedTypes'
 import { elevation } from '../../utils/mixins'
 import LiaisonMap from './LiaisonMap'
@@ -25,11 +25,14 @@ const FindLiaison: React.FC<RouteComponentProps> = ({ location }) => {
   const [liaisons, setLiaisons] = React.useState<ILiaison[] | undefined>(undefined)
   const [selectedLiaison, setSelectedLiaison] = React.useState<ILiaison | undefined>(undefined)
   const findRef = React.useRef<HTMLHeadingElement>(null)
-  useHash({ refToFocus: findRef, hash: '#search', location })
+  // useHash({ refToFocus: findRef, hash: '#search', location })
 
   React.useEffect(() => {
     const sortedLiaisons = sortBy(staticLiaisons, ['region'])
     setLiaisons(sortedLiaisons)
+  }, [])
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
   }, [])
 
   const setSelectedState = (stateAbbr: string) => {

@@ -27,6 +27,7 @@ const ContactUs: React.FC<RouteComponentProps> = () => {
   const handleError = useErrorHandler()
 
   React.useEffect(() => loadCaptcha(), [])
+  React.useEffect(() => window.scrollTo(0, 0), [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement> & IForm) => {
     e.preventDefault()

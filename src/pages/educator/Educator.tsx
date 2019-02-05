@@ -6,13 +6,16 @@ import Resource from './resources/Resource'
 import Resources from './resources/Resources'
 import Webinars from './webinars/Webinars'
 
-const Educator: React.FC<RouteComponentProps> = () => (
-  <Router>
-    <EducatorHome path="/" />
-    <Webinars path="webinars/*" />
-    <Researches path="research/*" />
-    <Resources path="resources/*" />
-    <Resource path="resources/:slug" />
-  </Router>
-)
+const Educator: React.FC<RouteComponentProps> = () => {
+  React.useEffect(() => window.scrollTo(0, 0), [])
+  return (
+    <Router>
+      <EducatorHome path="/" />
+      <Webinars path="webinars/*" />
+      <Researches path="research/*" />
+      <Resources path="resources/*" />
+      <Resource path="resources/:slug" />
+    </Router>
+  )
+}
 export default Educator

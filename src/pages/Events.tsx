@@ -8,6 +8,7 @@ import { elevation } from '../utils/mixins'
 const Events: React.FC<RouteComponentProps> = ({ location }) => {
   const pastEventRef = React.useRef<HTMLHeadingElement>(null)
   useHash({ refToFocus: pastEventRef, hash: '#past-events', location })
+  React.useEffect(() => window.scrollTo(0, 0), [])
   return (
     <div>
       <CampImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1549323203/IMG_0511.jpg" />

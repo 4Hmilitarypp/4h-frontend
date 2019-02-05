@@ -8,21 +8,19 @@ import PartnerSection from './PartnerSection'
 
 const Partners: React.FC<RouteComponentProps> = () => {
   const [partners, setPartners] = React.useState<IPartnerSection[] | undefined>(undefined)
-  /* const heroImage =
-    'https://res.cloudinary.com/four-hmpp/image/upload/v1542863574/pictures-from-states/93aa0186-8b7b-5a2c-8c57-1823ef99173a.jpg' */
   const heroImage =
     'https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1542863592/pictures-from-states/a0c173db-74ca-4c72-b316-7f2916c1bebe.jpg'
   React.useEffect(() => {
-    // api.partners.getSections().then(({ partnerSections }) => setPartners(partnerSections))
     setPartners(staticPartnerSections)
   }, [])
+  React.useEffect(() => window.scrollTo(0, 0), [])
   return (
     <Wrapper>
       <Hero>
         <Heading>Military Partners</Heading>
         <Text>
-          4-H Military Partnerships create opportunities and provide support to military connected youth whether they
-          live on or near an installation, in our communities, or on overseas installations.
+          4-H Military Partners create opportunities and provide support to military connected youth whether they live
+          on or near an installation, in our communities, or on overseas installations.
         </Text>
         <HeroImage src={heroImage} />
       </Hero>

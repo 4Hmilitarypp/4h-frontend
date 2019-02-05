@@ -5,95 +5,98 @@ import { Button, SubHeading } from '../components/Elements'
 import Icon from '../components/Icon'
 import { elevation, transition } from '../utils/mixins'
 
-const Home: React.FC<RouteComponentProps> = () => (
-  <div>
-    <HeroOverlay>
-      <HeroImg src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1549142846/team-huddle-edit.jpg" />
-    </HeroOverlay>
-    <HeroText name="4-hMilitaryPartnerships" />
-    <Vision>
-      <VisionHeading>
-        Military readiness through 4-H positive youth development for youth, families, and communities
-      </VisionHeading>
-    </Vision>
-    <Mission>
-      <MissionImg src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1549244332/Baggott-Avery-20180629_140829.jpg" />
-      <MissionText>
-        <SubHeading>Who We Are</SubHeading>
-        <MissionP>
-          A collaboration of military and Land Grant University partners who intentionally integrate research-based
-          programs and resources for military-connected youth, families, and communities to thrive.
-        </MissionP>
-        <SubHeading>What We Do</SubHeading>
-        <MissionP>
-          4-H Military Partnerships focuses on positive youth development through providing opportunities for youth to
-          engage in intentional learning experiences. We partner with 4-H educators to provide them the training and
-          resources they need to succeed in equipping the next generation of leaders
-        </MissionP>
-        <SubHeading>Why We Do It</SubHeading>
-        <MissionP>
-          As military families move frequently and experience the difficulties surrounding deployment and reintegration,
-          4-H provides predictable programming and a safe and nurturing environment for military connected children and
-          youth to excel.
-        </MissionP>
-      </MissionText>
-    </Mission>
-    <CardLinksHeading>Take a Look Around!</CardLinksHeading>
-    <CardLinks>
-      <CardLink to="about">
-        <Card>
-          <CardImageOverlay>
-            <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549242318/CT_Subase_Youth_Center_in_the_Big_E_parade.jpg" />
-          </CardImageOverlay>
-          <CardText>What is 4-H Military Partnerships?</CardText>
-        </Card>
-        <CardArrow>></CardArrow>
-      </CardLink>
-      <CardLink to="events">
-        <Card>
-          <CardImageOverlay>
-            <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549142849/rock-climbing.jpg" />
-          </CardImageOverlay>
-          <CardText>View Our Upcoming Events</CardText>
-        </Card>
-        <CardArrow>></CardArrow>
-      </CardLink>
-      <CardLink to="4-h-club">
-        <Card>
-          <CardImageOverlay>
-            <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549242318/HI_catlin.jpg" />
-          </CardImageOverlay>
-          <CardText>Learn About 4-H Club</CardText>
-        </Card>
-        <CardArrow>></CardArrow>
-      </CardLink>
-      <CardLink to="find-a-liaison">
-        <Card>
-          <CardImageOverlay>
-            <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549242703/DSC_0017.jpg" />
-          </CardImageOverlay>
-          <CardText>Contact Your State's Liaison</CardText>
-        </Card>
-        <CardArrow>></CardArrow>
-      </CardLink>
-      <CardLink to="educators">
-        <Card>
-          <CardImageOverlay>
-            <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549241806/DSC_0009.jpg" />
-          </CardImageOverlay>
-          <CardText>View our Resources for Educators</CardText>
-        </Card>
-        <CardArrow>></CardArrow>
-      </CardLink>
-    </CardLinks>
-    <Footer>
-      <FooterSubHeading>Have any Questions? Please feel free to contact us!</FooterSubHeading>
-      <ContactButton as={Link} to="contact-us">
-        Contact Us
-      </ContactButton>
-    </Footer>
-  </div>
-)
+const Home: React.FC<RouteComponentProps> = () => {
+  React.useEffect(() => window.scrollTo(0, 0), [])
+  return (
+    <div>
+      <HeroOverlay>
+        <HeroImg src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1549142846/team-huddle-edit.jpg" />
+      </HeroOverlay>
+      <HeroText name="4-hMilitaryPartnerships" />
+      <Vision>
+        <VisionHeading>
+          Military readiness through 4-H positive youth development for youth, families, and communities
+        </VisionHeading>
+      </Vision>
+      <Mission>
+        <MissionImg src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1549244332/Baggott-Avery-20180629_140829.jpg" />
+        <MissionText>
+          <SubHeading>Who We Are</SubHeading>
+          <MissionP>
+            A collaboration of military and Land Grant University partners who intentionally integrate research-based
+            programs and resources for military-connected youth, families, and communities to thrive.
+          </MissionP>
+          <SubHeading>What We Do</SubHeading>
+          <MissionP>
+            4-H Military Partnerships focuses on positive youth development through providing opportunities for youth to
+            engage in intentional learning experiences. We partner with 4-H educators to provide them the training and
+            resources they need to succeed in equipping the next generation of leaders
+          </MissionP>
+          <SubHeading>Why We Do It</SubHeading>
+          <MissionP>
+            As military families move frequently and experience the difficulties surrounding deployment and
+            reintegration, 4-H provides predictable programming and a safe and nurturing environment for military
+            connected children and youth to excel.
+          </MissionP>
+        </MissionText>
+      </Mission>
+      <CardLinksHeading>Take a Look Around!</CardLinksHeading>
+      <CardLinks>
+        <CardLink to="about">
+          <Card>
+            <CardImageOverlay>
+              <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549242318/CT_Subase_Youth_Center_in_the_Big_E_parade.jpg" />
+            </CardImageOverlay>
+            <CardText>What is 4-H Military Partnerships?</CardText>
+          </Card>
+          <CardArrow>></CardArrow>
+        </CardLink>
+        <CardLink to="events">
+          <Card>
+            <CardImageOverlay>
+              <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549142849/rock-climbing.jpg" />
+            </CardImageOverlay>
+            <CardText>View Our Upcoming Events</CardText>
+          </Card>
+          <CardArrow>></CardArrow>
+        </CardLink>
+        <CardLink to="4-h-club">
+          <Card>
+            <CardImageOverlay>
+              <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549242318/HI_catlin.jpg" />
+            </CardImageOverlay>
+            <CardText>Learn About 4-H Club</CardText>
+          </Card>
+          <CardArrow>></CardArrow>
+        </CardLink>
+        <CardLink to="find-a-liaison">
+          <Card>
+            <CardImageOverlay>
+              <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549242703/DSC_0017.jpg" />
+            </CardImageOverlay>
+            <CardText>Contact Your State's Liaison</CardText>
+          </Card>
+          <CardArrow>></CardArrow>
+        </CardLink>
+        <CardLink to="educators">
+          <Card>
+            <CardImageOverlay>
+              <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549241806/DSC_0009.jpg" />
+            </CardImageOverlay>
+            <CardText>View our Resources for Educators</CardText>
+          </Card>
+          <CardArrow>></CardArrow>
+        </CardLink>
+      </CardLinks>
+      <Footer>
+        <FooterSubHeading>Have any Questions? Please feel free to contact us!</FooterSubHeading>
+        <ContactButton as={Link} to="contact-us">
+          Contact Us
+        </ContactButton>
+      </Footer>
+    </div>
+  )
+}
 export default Home
 
 const HeroText = styled(Icon)`

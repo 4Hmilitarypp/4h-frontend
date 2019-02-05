@@ -88,7 +88,7 @@ const Header: React.FC<RouteComponentProps> = () => {
               <LinkTitle>What is a Liaison?</LinkTitle>
               <LinkDescription>Learn about how our liaisons can assist you</LinkDescription>
             </StyledDropdownLink>
-            <StyledDropdownLink to="/find-a-liaison/#search">
+            <StyledDropdownLink to="/find-a-liaison">
               <LinkTitle>Find A Liaison</LinkTitle>
               <LinkDescription>Get connected with the liaison closest to you</LinkDescription>
             </StyledDropdownLink>

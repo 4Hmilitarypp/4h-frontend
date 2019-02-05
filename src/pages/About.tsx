@@ -6,6 +6,7 @@ import UnstyledIcon from '../components/Icon'
 import useHash from '../hooks/useHash'
 
 const About: React.FC<RouteComponentProps> = () => {
+  React.useEffect(() => window.scrollTo(0, 0), [])
   const historyRef = React.useRef<HTMLHeadingElement>(null)
   useHash({ refToFocus: historyRef, hash: '#history', location })
   return (

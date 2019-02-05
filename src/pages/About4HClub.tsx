@@ -11,7 +11,7 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
       <CustomPageWrapper>
         <CustomHeading>About 4-H Clubs</CustomHeading>
         <TitleSection>
-          <div>
+          <TitleSectionText>
             <P>
               The National Institute for Food and Agriculture (NIFA), United States Department of Agriculture (USDA)
               developed partnerships with the U.S. Army, U.S. Air Force, U.S. Navy, National Guard and Reserves, to
@@ -40,10 +40,10 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
               In 2015, more than<b> 45,616 </b>Army, Navy, Air Force, Marines, Coast Guard, National Guard, and Reserves
               children and youth participated in 4-H military clubs on and off installations.
             </P>
-          </div>
+          </TitleSectionText>
           <TitleImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1542863595/pictures-from-states/f0b9a0f4-2b75-5066-870a-89bf12afb5f2.jpg" />
         </TitleSection>
-        <Section>
+        <CustomSection>
           <SubHeading>Resources</SubHeading>
           <P>
             Further information about club opportunities in your state can be found
@@ -79,8 +79,8 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
               <LinkSource>From the 4-H official website</LinkSource>
             </Li>
           </Links>
-        </Section>
-        <Section>
+        </CustomSection>
+        <CustomSection>
           <SubHeading>4-H Curriculum</SubHeading>
           <P>
             National 4-H Curriculum focuses on 4-H’s three primary mission mandates: science, healthy living, and
@@ -93,14 +93,14 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
             <A href="http://www.4-h.org/resource-library/curriculum/"> National 4-H Resource Library</A> for additional
             information.
           </P>
-        </Section>
+        </CustomSection>
         <PreviewBackground>
           <SectionPreview>
             <PreviewHeading>Specific Club Information</PreviewHeading>
             <PreviewImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1542863572/pictures-from-states/2d779b92-71d1-524d-8f76-e506841eb776.jpg" />
           </SectionPreview>
         </PreviewBackground>
-        <Section>
+        <CustomSection>
           <SubHeading>4-H Clubs for Army Youth</SubHeading>
           <P>
             As a result of the<A href="/partners/army"> Army 4-H Military Partnership</A>, over<b> 23,000 </b>Army
@@ -114,8 +114,8 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
             county, state and national programs. No matter where a family moves, the youth can find 4-H Clubs in any
             county in the U.S. and on overseas installations.
           </P>
-        </Section>
-        <Section>
+        </CustomSection>
+        <CustomSection>
           <SubHeading>4-H Clubs for Air Force Youth</SubHeading>
           <P>
             As a result of the<A href="/partners/air-force"> Air Force 4-H Military Partnership</A>, more than
@@ -130,8 +130,8 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
             the varied interests of the youth. The Air Force 4-H Club can be a community club with three (or more)
             project groups offered throughout the year under the community club.
           </P>
-        </Section>
-        <Section>
+        </CustomSection>
+        <CustomSection>
           <SubHeading>4-H Clubs for Navy Youth</SubHeading>
           <P>
             The<A href="/partners/navy"> Navy 4-H Military Partnership </A> links resources of the Land Grant University
@@ -141,7 +141,7 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
             <b> 6,400 </b>
             Navy children and youth participated in approximately<b> 110 </b>4-H Clubs on Naval bases worldwide.
           </P>
-        </Section>
+        </CustomSection>
         <SubHeading>Geographically Dispersed</SubHeading>
         <GeoSection>
           <div>
@@ -187,6 +187,10 @@ const TitleSection = styled.section`
   justify-content: center;
   padding-bottom: 2rem;
   align-items: center;
+`
+const TitleSectionText = styled.div`
+  max-width: 65rem;
+  margin: 0 auto;
 `
 const TitleImage = styled.img`
   margin-left: 4rem;
@@ -234,6 +238,9 @@ const GeoSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+`
+const CustomSection = styled(Section)`
+  max-width: 70rem;
 `
 const GeoSectionImage = styled.img`
   width: 50%;

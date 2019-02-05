@@ -19,10 +19,10 @@ const About: React.FC<RouteComponentProps> = () => {
             <Icon name="link" height={32} width={32} />
           </Icons>
           <InlineP>
-            4-H Military Partnerships create opportunities and provide support to military connected youth whether they
-            live on or near an installation, in our communities, or on overseas installations. 4-H clubs and
-            opportunities provide consistency in belonging and an opportunity to develop life skills through a positive
-            youth development framework.
+            4-H Military Partnerships creates opportunities and provides support to military connected youth whether
+            they live on or near an installation, in our communities, or on overseas installations. 4-H clubs provide
+            consistency in belonging and an opportunity to develop life skills through a positive youth development
+            framework.
           </InlineP>
         </SubSection>
         <SubSection>

@@ -82,5 +82,6 @@ const SectionImage = styled.img`
   ${elevation(4)};
 `
 const Text = styled.div`
-  margin: 0 2rem;
+  max-width: 65rem;
+  margin: 0 auto;
 `

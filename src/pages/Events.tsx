@@ -1,6 +1,6 @@
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { P, SubHeading } from '../components/Elements'
 import useHash from '../hooks/useHash'
 import { elevation } from '../utils/mixins'
@@ -101,6 +101,7 @@ const CampImage = styled.img`
 `
 const CampInfo = styled.div`
   background: ${props => props.theme.primaryLight};
+  display: flex;
 `
 const CampTitleSection = styled.div`
   width: 50%;
@@ -115,7 +116,7 @@ const TitleCard = styled.div`
   border-radius: 5px;
   align-items: center;
   position: relative;
-  padding: 2.4rem 0;
+  padding: 2.4rem;
 `
 const CampHeading = styled(SubHeading)`
   padding: 0;
@@ -132,6 +133,8 @@ const CampLocation = styled.span`
 `
 const CampDescriptionSection = styled.section`
   padding: 4.8rem 0 9.6rem;
+  max-width: 65rem;
+  margin: 0 auto;
 `
 const CampDescriptionTitle = styled.h3`
   font-size: 2.5rem;

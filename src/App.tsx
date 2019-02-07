@@ -13,6 +13,7 @@ import FindLiaison from './pages/findLiaison/FindLiaison'
 import GetInvolved4HClub from './pages/GetInvolved4HClub'
 import Home from './pages/Home'
 import Icons from './pages/Icons'
+import JobApplication from './pages/JobApplication'
 import NotFound from './pages/NotFound'
 import Partner from './pages/partner/Partner'
 import Partners from './pages/partners/Partners'
@@ -63,6 +64,7 @@ const App: React.FC = () => {
             <FindLiaison path="/find-a-liaison" />
             <ContactUs path="contact-us" />
             <Icons path="/icons" />
+            <JobApplication path="/job-application" />
             <NotFound default={true} />
           </Router>
         </FlashContext.Provider>

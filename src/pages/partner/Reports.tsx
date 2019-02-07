@@ -14,13 +14,7 @@ const Reports: React.FC<IProps> = ({ reports }) => {
     <Wrapper>
       {reports.map(report => (
         <ReportItem key={report.url}>
-          <EmbedDocument
-            url={report.url}
-            type={'pdf'}
-            title={report.title}
-            open={documentOpen}
-            setOpen={setDocumentOpen}
-          />
+          <EmbedDocument url={report.url} title={report.title} open={documentOpen} setOpen={setDocumentOpen} />
           <ReportCard onClick={() => setDocumentOpen(true)} data-testid="reportCard">
             <ReportCover src={report.image.url} alt={`${report.title} cover`} />
             <ReportTitle>{report.title}</ReportTitle>

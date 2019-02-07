@@ -23,13 +23,7 @@ const Research: React.FC<IProps> = ({ research }) => {
 
   return (
     <ResearchWrapper>
-      <EmbedDocument
-        url={research.url}
-        type={research.type}
-        title={research.title}
-        open={documentOpen}
-        setOpen={setDocumentOpen}
-      />
+      <EmbedDocument url={research.url} title={research.title} open={documentOpen} setOpen={setDocumentOpen} />
       <ResearchTitle>
         <MySubHeading as="h3">{research.title}</MySubHeading>
         {research.type === 'external' ? (

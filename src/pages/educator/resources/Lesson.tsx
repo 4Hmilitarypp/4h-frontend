@@ -9,26 +9,18 @@ interface IProps {
 }
 
 const Lesson: React.FC<IProps> = ({ lesson }) => {
-  const [documentType, setDocumentType] = React.useState<'pdf' | 'doc' | 'external' | 'ppt' | undefined>(undefined)
   const [documentOpen, setDocumentOpen] = React.useState(false)
   const [openUrl, setOpenUrl] = React.useState<string | undefined>(undefined)
 
   const handleOpenChange = (type?: LessonLinkType, url?: string) => {
     setDocumentOpen(type ? true : false)
-    setDocumentType(type)
     if (type !== undefined) {
       setOpenUrl(url)
     }
   }
   return (
     <>
-      <EmbedDocument
-        url={openUrl || ''}
-        type={documentType || 'pdf'}
-        title={lesson.title}
-        open={documentOpen}
-        setOpen={setDocumentOpen}
-      />
+      <EmbedDocument url={openUrl || ''} title={lesson.title} open={documentOpen} setOpen={setDocumentOpen} />
       <Wrapper>
         <LessonTitle>{lesson.title}</LessonTitle>
         {lesson.links

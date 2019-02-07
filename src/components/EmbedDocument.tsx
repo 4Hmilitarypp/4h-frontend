@@ -1,16 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { LessonLinkType } from '../sharedTypes'
 
 interface IProps {
-  type: LessonLinkType
   title: string
   url: string
   open: boolean
   setOpen: any
 }
 
-const EmbedDocument: React.FC<IProps> = ({ type, title, url, open, setOpen }) => {
+const EmbedDocument: React.FC<IProps> = ({ title, url, open, setOpen }) => {
   React.useEffect(
     () => {
       if (open) {

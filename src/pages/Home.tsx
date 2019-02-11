@@ -10,7 +10,10 @@ const Home: React.FC<RouteComponentProps> = () => {
   return (
     <div>
       <HeroOverlay>
-        <HeroImg src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1549142846/team-huddle-edit.jpg" />
+        <HeroImg
+          src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1549142846/team-huddle-edit.jpg"
+          alt="a team in a huddle"
+        />
       </HeroOverlay>
       <HeroText name="4-hMilitaryPartnerships" />
       <Vision>
@@ -54,7 +57,10 @@ const Home: React.FC<RouteComponentProps> = () => {
         <CardLink to="events">
           <Card>
             <CardImageOverlay>
-              <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549142849/rock-climbing.jpg" />
+              <CardImage
+                src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549142849/rock-climbing.jpg"
+                alt="a teen rock climbing"
+              />
             </CardImageOverlay>
             <CardText>View Our Upcoming Events</CardText>
           </Card>
@@ -63,7 +69,10 @@ const Home: React.FC<RouteComponentProps> = () => {
         <CardLink to="4-h-club">
           <Card>
             <CardImageOverlay>
-              <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549242318/HI_catlin.jpg" />
+              <CardImage
+                src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549242318/HI_catlin.jpg"
+                alt="3 kids holding paper that reads 'I (heart) (4-h logo)'"
+              />
             </CardImageOverlay>
             <CardText>Learn About 4-H Club</CardText>
           </Card>
@@ -72,7 +81,10 @@ const Home: React.FC<RouteComponentProps> = () => {
         <CardLink to="find-a-liaison">
           <Card>
             <CardImageOverlay>
-              <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549242703/DSC_0017.jpg" />
+              <CardImage
+                src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549242703/DSC_0017.jpg"
+                alt="several adults helping a student color"
+              />
             </CardImageOverlay>
             <CardText>Contact Your State's Liaison</CardText>
           </Card>
@@ -81,7 +93,10 @@ const Home: React.FC<RouteComponentProps> = () => {
         <CardLink to="educators">
           <Card>
             <CardImageOverlay>
-              <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549241806/DSC_0009.jpg" />
+              <CardImage
+                src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549241806/DSC_0009.jpg"
+                alt="a man in an air-force uniform teaching some kids"
+              />
             </CardImageOverlay>
             <CardText>View our Resources for Educators</CardText>
           </Card>

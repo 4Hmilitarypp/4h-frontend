@@ -8,7 +8,6 @@ import { theme } from '../../App'
 import staticLiaisons from '../../assets/data/staticLiaisons.json'
 import { InputGroup, P, PageWrapper, Section, SubHeading } from '../../components/Elements'
 import Icon from '../../components/Icon'
-// import useHash from '../../hooks/useHash'
 import { ILiaison } from '../../sharedTypes'
 import { elevation } from '../../utils/mixins'
 import LiaisonMap from './LiaisonMap'
@@ -21,11 +20,10 @@ export const filterLiaisons = (liaisons: ILiaison[], query: string | null): ILia
   return result
 }
 
-const FindLiaison: React.FC<RouteComponentProps> = ({ location }) => {
+const FindLiaison: React.FC<RouteComponentProps> = () => {
   const [liaisons, setLiaisons] = React.useState<ILiaison[] | undefined>(undefined)
   const [selectedLiaison, setSelectedLiaison] = React.useState<ILiaison | undefined>(undefined)
   const findRef = React.useRef<HTMLHeadingElement>(null)
-  // useHash({ refToFocus: findRef, hash: '#search', location })
 
   React.useEffect(() => {
     const sortedLiaisons = sortBy(staticLiaisons, ['region'])
@@ -63,6 +61,8 @@ const FindLiaison: React.FC<RouteComponentProps> = ({ location }) => {
         <Downshift
           itemToString={(item: ILiaison) => (item ? item.region : '')}
           onChange={(selection: ILiaison) => setSelectedLiaison(selection)}
+          // Have to do this because downshift was complaining about not controlling the state the whole time
+          selectedItem={selectedLiaison || { region: '' }}
         >
           {({
             getLabelProps,
@@ -72,7 +72,6 @@ const FindLiaison: React.FC<RouteComponentProps> = ({ location }) => {
             inputValue,
             highlightedIndex,
             getMenuProps,
-            selectedItem,
             clearSelection,
             openMenu,
             closeMenu,
@@ -89,7 +88,7 @@ const FindLiaison: React.FC<RouteComponentProps> = ({ location }) => {
                       } else {
                         closeMenu()
                       }
-                      if (selectedItem) {
+                      if (selectedLiaison) {
                         clearSelection()
                         openMenu()
                       }

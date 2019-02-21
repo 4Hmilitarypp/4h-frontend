@@ -6,7 +6,7 @@ import { IApiError } from '../../sharedTypes'
 import useErrorHandler from '../useErrorHandler'
 
 interface IProps {
-  err: IApiError
+  err: IApiError | any
   fakeHandleError: (err: IApiError) => void
 }
 
@@ -50,10 +50,26 @@ const setup = (propOverrides?: IProps) => {
   }
 }
 
-it('should display an error on screen if there is one', () => {
+it('should display an error on screen if the message is formatted correctly', () => {
   const fakeMessage = 'fake message'
   const fakeHandleError = jest.fn()
   const err = { response: { data: { message: fakeMessage }, status: 500, statusText: 'fake status' } }
+
+  const { getByText, queryByText } = setup({ fakeHandleError, err })
+
+  fireEvent.click(getByText(/Handle Error/i))
+
+  expect(getByText(fakeMessage)).toBeDefined()
+
+  fireEvent.click(getByText(/Reset Flash/i))
+
+  expect(queryByText(fakeMessage)).toBeNull()
+})
+
+it('should display a default error on screen if the error is not formatted correctly', async () => {
+  const fakeMessage = 'fake message'
+  const fakeHandleError = jest.fn()
+  const err = fakeMessage
 
   const { getByText, queryByText } = setup({ fakeHandleError, err })
 

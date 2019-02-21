@@ -27,6 +27,7 @@ const EmbedDocument: React.FC<IProps> = ({ title, url, open, setOpen }) => {
       }
       return () => {
         clearInterval(iframeInterval)
+        window.removeEventListener('keydown', handleKeydown)
       }
     },
     [open]

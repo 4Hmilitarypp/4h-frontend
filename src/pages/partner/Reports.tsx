@@ -9,18 +9,27 @@ interface IProps {
 }
 
 const Reports: React.FC<IProps> = ({ reports }) => {
-  const [documentOpen, setDocumentOpen] = React.useState(false)
+  const [openDocument, setOpenDocument] = React.useState<IReport | undefined>(undefined)
   return (
     <Wrapper>
-      {reports.map(report => (
-        <ReportItem key={report.url}>
-          <EmbedDocument url={report.url} title={report.title} open={documentOpen} setOpen={setDocumentOpen} />
-          <ReportCard onClick={() => setDocumentOpen(true)} data-testid="reportCard">
-            <ReportCover src={report.image.url} alt={`${report.title} cover`} />
-            <ReportTitle>{report.title}</ReportTitle>
-          </ReportCard>
-        </ReportItem>
-      ))}
+      {openDocument && (
+        <EmbedDocument
+          url={openDocument.url}
+          title={openDocument.title}
+          open={!!openDocument}
+          setOpen={setOpenDocument}
+        />
+      )}
+      {reports.map(report => {
+        return (
+          <ReportItem key={report.url}>
+            <ReportCard onClick={() => setOpenDocument(report)} data-testid="reportCard">
+              <ReportCover src={report.image.url} alt={`${report.title} cover`} />
+              <ReportTitle>{report.title}</ReportTitle>
+            </ReportCard>
+          </ReportItem>
+        )
+      })}
     </Wrapper>
   )
 }

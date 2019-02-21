@@ -13,9 +13,11 @@ const Lesson: React.FC<IProps> = ({ lesson }) => {
   const [openUrl, setOpenUrl] = React.useState<string | undefined>(undefined)
 
   const handleOpenChange = (type?: LessonLinkType, url?: string) => {
-    setDocumentOpen(type ? true : false)
-    if (type !== undefined) {
+    if (type) {
+      setDocumentOpen(true)
       setOpenUrl(url)
+    } else {
+      setDocumentOpen(false)
     }
   }
   return (

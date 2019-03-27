@@ -118,7 +118,7 @@ const Icon = ({ name, color, circleColor, arrowColor, height, isOpen, className,
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           height={height}
-          width={width || 'auto'}
+          width={width || height}
           className={`icon-link ${className}`}
         >
           <path
@@ -137,7 +137,7 @@ const Icon = ({ name, color, circleColor, arrowColor, height, isOpen, className,
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           height={height}
-          width={width || 'auto'}
+          width={width || height}
           className={`icon-heart ${className}`}
         >
           <circle cx="12" cy="12" r="10" className="primary" />
@@ -153,7 +153,7 @@ const Icon = ({ name, color, circleColor, arrowColor, height, isOpen, className,
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           height={height}
-          width={width || 'auto'}
+          width={width || height}
           className={`icon-airplane ${className}`}
         >
           <path
@@ -171,7 +171,7 @@ const Icon = ({ name, color, circleColor, arrowColor, height, isOpen, className,
       return (
         <svg
           height={height}
-          width={width || 'auto'}
+          width={width || height}
           viewBox="0 0 15 30"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -191,7 +191,7 @@ const Icon = ({ name, color, circleColor, arrowColor, height, isOpen, className,
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           height={height}
-          width={width || 'auto'}
+          width={width || height}
           className={`icon-user-couple ${className}`}
         >
           <path
@@ -210,7 +210,7 @@ const Icon = ({ name, color, circleColor, arrowColor, height, isOpen, className,
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           height={height}
-          width={width || 'auto'}
+          width={width || height}
           className={`icon-chat-group-alt ${className}`}
         >
           <rect width="16" height="13" x="2" y="2" className="secondary" rx="2" />
@@ -226,13 +226,43 @@ const Icon = ({ name, color, circleColor, arrowColor, height, isOpen, className,
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           height={height}
-          width={width || 'auto'}
-          className={`icon-cheveron-right-circle ${className}`}
+          width={width || height}
+          className={`icon-chevron-right-circle ${className}`}
         >
           <circle cx="12" cy="12" r="10" className="primary" />
           <path
             className="secondary"
             d="M10.3 8.7a1 1 0 0 1 1.4-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-1.4-1.4l3.29-3.3-3.3-3.3z"
+          />
+        </svg>
+      )
+    case 'chevron-right':
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          height={height}
+          width={width || height}
+          className={`icon-chevron-right ${className}`}
+        >
+          <path
+            className="secondary"
+            d="M10.3 8.7a1 1 0 0 1 1.4-1.4l4 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-1.4-1.4l3.29-3.3-3.3-3.3z"
+          />
+        </svg>
+      )
+    case 'chevron-down':
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          height={height}
+          width={width || height}
+          className={`icon-chevron-down ${className}`}
+        >
+          <path
+            className="secondary"
+            d="M15.3 10.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"
           />
         </svg>
       )
@@ -242,10 +272,28 @@ const Icon = ({ name, color, circleColor, arrowColor, height, isOpen, className,
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           height={height}
-          width={width || 'auto'}
+          width={width || height}
           className={`icon-circle ${className}`}
         >
           <circle cx="12" cy="12" r="10" className="circle" />
+        </svg>
+      )
+
+    case 'menu':
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          className={`icon-menu ${className}`}
+          height={height}
+          width={width || height}
+          {...rest}
+        >
+          <path
+            className="secondary"
+            fillRule="evenodd"
+            d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+          />
         </svg>
       )
 

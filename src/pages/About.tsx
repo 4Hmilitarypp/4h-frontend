@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 import { A, P, Section, SubHeading } from '../components/Elements'
 import UnstyledIcon from '../components/Icon'
 import useHash from '../hooks/useHash'
+import { media } from '../utils/mixins'
 
 const About: React.FC<RouteComponentProps> = () => {
   React.useEffect(() => window.scrollTo(0, 0), [])
@@ -176,6 +177,10 @@ const SubSection = styled.div`
   padding-bottom: 1.6rem;
   display: flex;
   align-items: center;
+  ${media.tabletPort`
+    flex-direction: column;
+    padding: 0 1.6rem 1.6rem;
+  `}
 `
 const SectionLight = styled.div`
   margin-top: 1.6rem;
@@ -186,6 +191,10 @@ const Icons = styled.div`
   display: inline-block;
   position: relative;
   margin-right: 4rem;
+  ${media.tabletPort`
+    margin: 0 0 .8rem;
+
+  `}
 `
 const InlineP = styled(P)`
   display: inline-block;
@@ -195,6 +204,9 @@ const InlineP = styled(P)`
 const SectionDark = styled.div`
   background: ${props => props.theme.secondary};
   padding-bottom: 0.8rem;
+  ${media.tabletPort`
+    padding: 0 1.6rem;
+  `}
 `
 const HelpfulHeading = styled(SubHeading)`
   color: ${props => props.theme.white};
@@ -207,6 +219,9 @@ const LinkSection = styled.div`
   margin: 0 auto;
   border-top: 2px solid #7a5ba2;
   padding: 1.6rem 0 2.4rem;
+  ${media.tabletPort`
+    grid-template-columns: 1fr;
+  `}
 `
 const LinksHeading = styled.h4`
   color: ${props => props.theme.white};
@@ -214,6 +229,9 @@ const LinksHeading = styled.h4`
   max-width: 32rem;
   font-size: 2rem;
   line-height: normal;
+  ${media.tabletPort`
+    padding: .8rem 0;
+  `}
 `
 const Links = styled.div``
 const LinkItem: any = styled(UnstyledLink)`
@@ -228,6 +246,9 @@ const LinkItem: any = styled(UnstyledLink)`
     opacity: 0.8;
     cursor: pointer;
   }
+  ${media.tabletPort`
+    font-size: 1.4rem;
+  `}
 `
 const Chevron = styled(UnstyledIcon)`
   position: relative;

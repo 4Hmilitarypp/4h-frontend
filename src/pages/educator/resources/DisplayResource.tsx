@@ -5,7 +5,7 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 import { Button, SubHeading } from '../../../components/Elements'
 import { IResource } from '../../../sharedTypes'
-import { elevation } from '../../../utils/mixins'
+import { elevation, media } from '../../../utils/mixins'
 const DisplayResource = ({ resource }: { resource: IResource }) => {
   const { title, slug, shortDescription } = resource
   return (
@@ -30,6 +30,12 @@ const Wrapper = styled.div`
   &:not(:last-child) {
     margin-bottom: 3.2rem;
   }
+  ${media.phone`
+    margin: 0 -2.4rem 3.2rem;
+  `}
+  ${media.tabletPort`
+    padding: 2rem 2.4rem;
+  `}
 `
 const Title = styled.div`
   display: flex;
@@ -40,6 +46,10 @@ const Title = styled.div`
 const CustomSubHeading = styled(SubHeading)`
   padding: 0;
   text-align: left;
+  ${media.tabletLand`
+    font-size: 2rem;
+    padding: 0;
+  `}
 `
 const ViewButton = styled(Button)`
   white-space: nowrap;

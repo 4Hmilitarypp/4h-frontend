@@ -6,7 +6,7 @@ import { Button, SubHeading } from '../../../components/Elements'
 import EmbedDocument from '../../../components/EmbedDocument'
 import useTrimDescription from '../../../hooks/useTrimDescription'
 import { IResearch } from '../../../sharedTypes'
-import { elevation } from '../../../utils/mixins'
+import { elevation, media } from '../../../utils/mixins'
 
 interface IProps {
   research: IResearch
@@ -55,6 +55,12 @@ const ResearchWrapper = styled.div`
   &:not(:last-child) {
     margin-bottom: 3.2rem;
   }
+  ${media.phone`
+    margin: 0 -2.4rem 3.2rem;
+  `}
+  ${media.tabletPort`
+    padding: 2rem 2.4rem;
+  `}
 `
 const ResearchTitle = styled.div`
   display: flex;
@@ -65,6 +71,10 @@ const ResearchTitle = styled.div`
 const MySubHeading = styled(SubHeading)`
   padding: 0;
   text-align: left;
+  ${media.tabletLand`
+    font-size: 2rem;
+    padding: 0;
+  `}
 `
 const ViewButton = styled(Button)`
   white-space: nowrap;

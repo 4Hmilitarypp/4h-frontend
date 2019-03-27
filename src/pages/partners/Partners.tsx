@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 // import api from '../../utils/api'
 import staticPartnerSections from '../../assets/data/staticPartnerSections.json'
 import { IPartnerSection } from '../../sharedTypes'
+import { media } from '../../utils/mixins'
 import PartnerSection from './PartnerSection'
 
 const Partners: React.FC<RouteComponentProps> = () => {
@@ -65,6 +66,10 @@ const Text = styled.p`
   border-radius: 5px;
   position: relative;
   bottom: 3.2rem;
+  ${media.tabletLand`
+    margin: 2rem 1.6rem 0;
+    grid-column: 1 / -1;
+  `}
 `
 const HeroImage = styled.img`
   width: 100%;

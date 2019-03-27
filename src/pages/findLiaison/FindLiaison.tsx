@@ -9,7 +9,7 @@ import staticLiaisons from '../../assets/data/staticLiaisons.json'
 import { InputGroup, P, PageWrapper, Section, SubHeading } from '../../components/Elements'
 import Icon from '../../components/Icon'
 import { ILiaison } from '../../sharedTypes'
-import { elevation } from '../../utils/mixins'
+import { elevation, media } from '../../utils/mixins'
 import LiaisonMap from './LiaisonMap'
 
 export const filterLiaisons = (liaisons: ILiaison[], query: string | null): ILiaison[] => {
@@ -189,6 +189,9 @@ const ResultContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${media.phone`
+     flex-direction: column;
+  `}
 `
 const Text = styled.div`
   display: inline-block;
@@ -208,4 +211,11 @@ const SchoolLogo = styled.img`
   max-width: 40rem;
   padding-left: 6rem;
   object-fit: contain;
+  ${media.tabletPort`
+    max-width: 50%;
+  `}
+  ${media.phone`
+     padding-left: 0rem;
+     max-width: 85%;
+  `}
 `

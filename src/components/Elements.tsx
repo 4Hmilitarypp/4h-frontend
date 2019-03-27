@@ -1,7 +1,7 @@
 import { Link as UnstyledLink } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { elevation, transition } from '../utils/mixins'
+import { elevation, media, transition } from '../utils/mixins'
 
 // TODO Refactor this to use an Input and a label and return actual components.
 
@@ -37,12 +37,20 @@ export const Heading = styled.h1`
   padding: 3.2rem 0 3.2rem;
   text-align: center;
   line-height: 1.2;
+  ${media.tabletLand`
+   padding: 2.4rem 0 2.4rem;
+   font-size: 2.6rem;
+`}
 `
 export const SubHeading = styled.h2`
   color: ${props => props.theme.primaryBlack};
   padding: 3.2rem 0 3.2rem;
   text-align: center;
   line-height: 1.2;
+  ${media.tabletLand`
+     padding: 2.4rem 0 2.4rem;
+     font-size: 2.4rem;
+  `}
 `
 export const Button: any = styled.button`
   border-radius: 5px;

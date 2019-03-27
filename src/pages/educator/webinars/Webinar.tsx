@@ -5,7 +5,7 @@ import styled from 'styled-components/macro'
 import { Button, SubHeading } from '../../../components/Elements'
 import useTrimDescription from '../../../hooks/useTrimDescription'
 import { IWebinar } from '../../../sharedTypes'
-import { elevation } from '../../../utils/mixins'
+import { elevation, media } from '../../../utils/mixins'
 
 interface IProps {
   webinar: IWebinar
@@ -49,6 +49,12 @@ const WebinarWrapper = styled.div`
   &:not(:last-child) {
     margin-bottom: 3.2rem;
   }
+  ${media.phone`
+    margin: 0 -2.4rem 3.2rem;
+  `}
+  ${media.tabletPort`
+    padding: 2rem 2.4rem;
+  `}
 `
 const WebinarTitle = styled.div`
   display: flex;
@@ -59,6 +65,10 @@ const WebinarTitle = styled.div`
 const MySubHeading = styled(SubHeading)`
   padding: 0;
   text-align: left;
+  ${media.tabletLand`
+    font-size: 2rem;
+    padding: 0;
+  `}
 `
 const ViewButton = styled(Button)`
   white-space: nowrap;

@@ -3,9 +3,12 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 import { IBackgroundCoords } from '../clientTypes'
 import { Omit } from '../sharedTypes'
+import { media } from '../utils/mixins'
+import MobileDropdown from './MobileDropdown'
 
 interface IProps {
   manageBackground: {
+    hamburgerActive: boolean
     setCoords: (coords: Omit<IBackgroundCoords, 'open'>) => void
     setOpen: (open: boolean) => void
     navRef: React.RefObject<HTMLDivElement>
@@ -72,7 +75,9 @@ const UnstyledLinkGroup: React.FC<IProps> = ({ children, manageBackground, title
     }
     manageBackground.setOpen(false)
   }
-  return (
+  return manageBackground.hamburgerActive ? (
+    <MobileDropdown title={title}>{children}</MobileDropdown>
+  ) : (
     <div
       {...rest}
       ref={divRef}
@@ -99,6 +104,12 @@ const DropdownTitle = styled(Link)`
   &:hover {
     cursor: default;
   }
+  ${media.tabletLand`
+    font-size: 1.6rem;
+  `}
+  ${media.tabletPort`
+    margin: 1.2rem 0.4rem;
+  `}
 `
 const Dropdown = styled.div`
   opacity: 0;

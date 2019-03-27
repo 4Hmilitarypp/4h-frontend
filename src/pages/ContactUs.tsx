@@ -6,7 +6,7 @@ import { Heading, InputGroup, Link, PageWrapper, SecondaryButton, SubHeading } f
 import FlashContext from '../contexts/FlashContext'
 import useErrorHandler from '../hooks/useErrorHandler'
 import api from '../utils/api'
-import { elevation } from '../utils/mixins'
+import { elevation, media } from '../utils/mixins'
 
 const loadCaptcha = () => {
   const captchaScript = document.createElement('script')
@@ -119,7 +119,10 @@ const Content = styled.div`
   justify-content: center;
   padding: 2rem 0 4rem;
   align-items: center;
-  flex-wrap: wrap;
+  ${media.tabletPort`
+    flex-direction: column;
+    padding-top: 0rem;
+  `}
 `
 const ContactInfo = styled.div``
 const Location = styled.div`
@@ -139,6 +142,9 @@ const ContactUsForm = styled.form`
 const Flag = styled.img`
   height: 20rem;
   padding-left: 10rem;
+  ${media.tabletPort`
+    padding: 2.4rem 0 0;
+  `}
 `
 const CustomP = styled.p`
   font-size: 1.8rem;

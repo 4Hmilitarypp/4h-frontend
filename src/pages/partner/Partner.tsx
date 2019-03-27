@@ -7,7 +7,7 @@ import staticPartners from '../../assets/data/staticPartners.json'
 import BackButton from '../../components/BackButton'
 import { DynamicSection, Heading, PageWrapper, SubHeading } from '../../components/Elements'
 import { IPartner } from '../../sharedTypes'
-import { elevation, transition } from '../../utils/mixins'
+import { elevation, media, transition } from '../../utils/mixins'
 import Reports from './Reports'
 
 interface IProps extends RouteComponentProps {
@@ -24,12 +24,12 @@ const Partner: React.FC<IProps> = ({ slug }) => {
   }, [])
 
   return (
-    <PageWrapper>
+    <CustomPageWrapper>
       {partner ? (
         <PartnerWrapper>
           <HeaderWrapper>
             <BackButton route={'/partners'} title="partners" />
-            <Heading>{partner.title}</Heading>
+            <CustomHeading>{partner.title}</CustomHeading>
             <div style={{ width: 209 }} />
           </HeaderWrapper>
           <Hero>
@@ -65,26 +65,47 @@ const Partner: React.FC<IProps> = ({ slug }) => {
       ) : (
         <h1>Partner Not Found</h1>
       )}
-    </PageWrapper>
+    </CustomPageWrapper>
   )
 }
 export default Partner
 
+const CustomPageWrapper = styled(PageWrapper)`
+  ${media.tabletLand`
+    padding: 0;
+  `}
+`
 const PartnerWrapper = styled.div`
   ${elevation(4)};
   margin: 2rem;
   padding-bottom: 2rem;
+  ${media.tabletLand`
+    margin: 2rem 0;
+  `}
 `
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 3.2rem;
+  ${media.tabletLand`
+    flex-direction: column;
+    padding: 2rem 0 0;
+  `}
+`
+const CustomHeading = styled(Heading)`
+  ${media.tabletLand`
+    padding: 1.2rem 0;
+  `}
 `
 const Hero = styled.section`
   display: flex;
   justify-content: center;
   padding: 0 4rem;
   align-items: center;
+  ${media.tabletLand`
+    flex-direction: column;
+    padding: 0;
+  `}
 `
 const HeroImages = styled.div`
   display: flex;
@@ -100,6 +121,12 @@ const FeaturedImage = styled.img`
 const Description = styled(DynamicSection)`
   padding-right: 3.2rem;
   padding-top: 2rem;
+  ${media.tabletLand`
+    padding: 2rem 2.4rem 0;
+    margin: 0;
+    max-width: 100%;
+    word-wrap: break-word;
+  `}
 `
 const ListWrapper = styled.section`
   padding: 2rem 0;

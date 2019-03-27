@@ -2,6 +2,7 @@ import { Link, RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { IPartnerSection } from '../../sharedTypes'
+import { media } from '../../utils/mixins'
 import { trimToLength } from '../../utils/string'
 
 interface IProps extends RouteComponentProps {
@@ -31,6 +32,9 @@ export default PartnerSection
 const PartnerWrapper: any = styled.section`
   padding: 3.2rem;
   background: ${(props: any) => (props.index % 2 === 1 ? props.theme.white : props.theme.secondaryBackground)};
+  ${media.tabletLand`
+    padding: 3.2rem 0;
+  `}
 `
 const Title = styled.h2`
   color: ${props => props.theme.secondary};
@@ -44,6 +48,9 @@ const FeaturedImage = styled.img`
   object-fit: contain;
   background: ${props => props.theme.white};
   border-radius: 5px;
+  ${media.tabletLand`
+    margin-top: 2.4rem;
+  `}
 `
 const Description = styled.p`
   max-width: 70rem;
@@ -61,7 +68,7 @@ const LearnMore = styled(Link)`
     color: ${props => props.theme.white};
     border: none;
     background: ${props => props.theme.secondary};
-    padding: 0.8rem 1.8rem;
+    padding: 0.7rem 1.8rem;
   }
 `
 const Content: any = styled.div`
@@ -71,6 +78,11 @@ const Content: any = styled.div`
   flex-direction: ${(props: any) => (props.index % 2 === 1 ? 'row-reverse' : 'row')};
   max-width: 140rem;
   margin: 0 auto;
+  ${media.tabletLand`
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  `}
 `
 const Text = styled.div`
   padding: 0 2rem;

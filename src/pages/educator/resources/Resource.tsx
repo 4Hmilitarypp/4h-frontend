@@ -6,7 +6,7 @@ import { DynamicSection, Heading, P, PageWrapper, SubHeading } from '../../../co
 import useErrorHandler from '../../../hooks/useErrorHandler'
 import { IResourceWithLessons } from '../../../sharedTypes'
 import api from '../../../utils/api'
-import { elevation } from '../../../utils/mixins'
+import { elevation, media } from '../../../utils/mixins'
 import Lesson from './Lesson'
 
 interface IProps extends RouteComponentProps {
@@ -55,12 +55,19 @@ const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 3.2rem;
+  ${media.tabletLand`
+    flex-direction: column;
+    padding: 0;
+  `}
 `
 const TitleSection = styled(DynamicSection)`
   display: flex;
   justify-content: center;
   padding-bottom: 2rem;
   align-items: center;
+  ${media.tabletLand`
+    flex-direction: column;
+  `}
 `
 const FeaturedImage = styled.img`
   margin-left: 4rem;
@@ -72,7 +79,14 @@ const Lessons = styled.div`
   margin: 4.8rem auto 0;
   ${elevation(3)};
   padding: 0 3.2rem 3.2rem;
+  ${media.tabletLand`
+    padding: 0 0 3.2rem;
+    margin: 4.8rem -2rem 0;
+  `}
 `
 const CustomSubHeading = styled(SubHeading)`
   color: ${props => props.theme.primary};
+  ${media.tabletLand`
+    font-size: 2rem;
+  `}
 `

@@ -6,6 +6,7 @@ import styled from 'styled-components/macro'
 import staticWebinars from '../../../assets/data/staticWebinars.json'
 import { DynamicSection, Heading, PageWrapper, SubHeading } from '../../../components/Elements'
 import { IWebinar } from '../../../sharedTypes'
+import { media } from '../../../utils/mixins'
 import FilterCategoriesDisplay from './FilterCategoriesDisplay'
 import Webinar from './Webinar'
 
@@ -56,4 +57,7 @@ const CategoryHeading = styled(SubHeading)`
 `
 const WebinarList = styled.div`
   padding-top: 3.2rem;
+  ${media.tabletLand`
+    padding-top: 1.6rem;
+  `}
 `

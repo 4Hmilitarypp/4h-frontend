@@ -2,7 +2,7 @@ import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { A, Heading, P, PageWrapper, Section, SubHeading } from '../components/Elements'
-import { elevation } from '../utils/mixins'
+import { elevation, media } from '../utils/mixins'
 
 const About4HClub: React.FC<RouteComponentProps> = () => {
   React.useEffect(() => window.scrollTo(0, 0), [])
@@ -44,7 +44,7 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
           <TitleImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1542863595/pictures-from-states/f0b9a0f4-2b75-5066-870a-89bf12afb5f2.jpg" />
         </TitleSection>
         <CustomSection>
-          <SubHeading>Resources</SubHeading>
+          <CustomSubHeading>Resources</CustomSubHeading>
           <P>
             Further information about club opportunities in your state can be found
             <A href="http://www.4-h.org/get-involved/find-4-h-clubs-camps-programs/"> here.</A>
@@ -58,30 +58,30 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
             </A>
           </P>
           <Links>
-            <Li>
+            <li>
               <A href="http://nifa.usda.gov/sites/default/files/resource/What%20is%20a%20Club%20v.7-11.pdf">
                 What is a 4-H Club?
               </A>
               <LinkSource>From the National Institute for Food and Agriculture website</LinkSource>
-            </Li>
-            <Li>
+            </li>
+            <li>
               <A href="http://nifa.usda.gov/resource/4-h-program-development-factsheets">
                 4-H Program Development Factsheets
               </A>
               <LinkSource>From the National Institute for Food and Agriculture website</LinkSource>
-            </Li>
-            <Li>
+            </li>
+            <li>
               <A href="http://www.4-h.org/about/">About 4-H</A>
               <LinkSource>From the 4-H official website</LinkSource>
-            </Li>
-            <Li>
+            </li>
+            <li>
               <A href="http://4-h.org/about/what-is-4-h/">What is 4-H?</A>
               <LinkSource>From the 4-H official website</LinkSource>
-            </Li>
+            </li>
           </Links>
         </CustomSection>
         <CustomSection>
-          <SubHeading>4-H Curriculum</SubHeading>
+          <CustomSubHeading>4-H Curriculum</CustomSubHeading>
           <P>
             National 4-H Curriculum focuses on 4-H’s three primary mission mandates: science, healthy living, and
             citizenship. In addition, there is a wide variety of curriculum and project topic areas offered through the
@@ -101,7 +101,7 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
           </SectionPreview>
         </PreviewBackground>
         <CustomSection>
-          <SubHeading>4-H Clubs for Army Youth</SubHeading>
+          <CustomSubHeading>4-H Clubs for Army Youth</CustomSubHeading>
           <P>
             As a result of the<A href="/partners/army"> Army 4-H Military Partnership</A>, over<b> 23,000 </b>Army
             children and youth participate in approximately<b> 332 </b>4-H Clubs on Army installations worldwide. These
@@ -116,7 +116,7 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
           </P>
         </CustomSection>
         <CustomSection>
-          <SubHeading>4-H Clubs for Air Force Youth</SubHeading>
+          <CustomSubHeading>4-H Clubs for Air Force Youth</CustomSubHeading>
           <P>
             As a result of the<A href="/partners/air-force"> Air Force 4-H Military Partnership</A>, more than
             <b> 17,500 </b>Air Force children and youth participated in approximately<b> 234 </b>4-H Clubs as of 2013.
@@ -132,7 +132,7 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
           </P>
         </CustomSection>
         <CustomSection>
-          <SubHeading>4-H Clubs for Navy Youth</SubHeading>
+          <CustomSubHeading>4-H Clubs for Navy Youth</CustomSubHeading>
           <P>
             The<A href="/partners/navy"> Navy 4-H Military Partnership </A> links resources of the Land Grant University
             System in the development of a common mission of positive youth development experiences to assist Child and
@@ -142,7 +142,7 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
             Navy children and youth participated in approximately<b> 110 </b>4-H Clubs on Naval bases worldwide.
           </P>
         </CustomSection>
-        <SubHeading>Geographically Dispersed</SubHeading>
+        <CustomSubHeading>Geographically Dispersed</CustomSubHeading>
         <GeoSection>
           <div>
             <P>
@@ -178,8 +178,17 @@ const OverflowHidden = styled.div`
 `
 const CustomPageWrapper = styled(PageWrapper)`
   padding: 0 4rem 2rem;
+  ${media.tabletLand`
+    padding: 0 1.6rem 2rem;
+  `}
 `
 const CustomHeading = styled(Heading)`
+  color: ${props => props.theme.primary};
+  ${media.tabletLand`
+    font-size: 2.4rem;
+  `}
+`
+const CustomSubHeading = styled(SubHeading)`
   color: ${props => props.theme.primary};
 `
 const TitleSection = styled.section`
@@ -187,10 +196,16 @@ const TitleSection = styled.section`
   justify-content: center;
   padding-bottom: 2rem;
   align-items: center;
+  ${media.tabletLand`
+    flex-direction: column;
+  `}
 `
 const TitleSectionText = styled.div`
   max-width: 65rem;
   margin: 0 auto;
+  ${media.tabletLand`
+    padding-bottom: 2.4rem;
+  `}
 `
 const TitleImage = styled.img`
   margin-left: 4rem;
@@ -198,21 +213,34 @@ const TitleImage = styled.img`
   object-fit: cover;
   border-radius: 5px;
   ${elevation(4)};
+  ${media.tabletLand`
+    height: 40rem;
+    margin: 0;
+    border-radius: 0;
+  `}
 `
 const Links = styled.ul`
   padding: 2rem 0 0;
   list-style: unset;
+  ${media.tabletLand`
+    padding-left: 2.4rem;
+  `}
 `
 const LinkSource = styled.span`
   padding-left: 1.5rem;
   font-size: 1.8rem;
+  ${media.tabletLand`
+  font-size: 1.6rem;
+  `}
 `
-const Li = styled.li``
 const PreviewBackground = styled.div`
   background: ${props => props.theme.primaryBackground};
   margin: 4rem 0 2rem;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw + 9px);
+  ${media.tabletLand`
+    margin: 4rem -2.4rem 2rem;
+  `}
 `
 const SectionPreview = styled.div`
   display: flex;
@@ -221,23 +249,39 @@ const SectionPreview = styled.div`
   align-items: center;
   max-width: 100rem;
   margin: 0 auto;
+  ${media.tabletLand`
+    flex-direction: column;
+    padding: 3.2rem 0;
+  `}
 `
 const PreviewHeading = styled.h2`
   font-size: 3.6rem;
   color: ${props => props.theme.primary};
   text-align: center;
   margin: 0 4rem;
+  ${media.tabletLand`
+    font-size: 2.4rem;
+    margin: 0 2.4rem;
+  `}
 `
 const PreviewImage = styled.img`
   margin-left: 4rem;
   height: 40rem;
   object-fit: cover;
   border-radius: 5px;
+  ${media.tabletLand`
+    margin: 2rem 2.4rem 0;
+    max-width: 90%;
+    border-radius: 0;
+  `}
 `
 const GeoSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  ${media.tabletLand`
+    flex-direction: column;
+  `}
 `
 const CustomSection = styled(Section)`
   max-width: 70rem;
@@ -248,4 +292,9 @@ const GeoSectionImage = styled.img`
   margin-left: 2rem;
   border-radius: 5px;
   ${elevation(4)};
+  ${media.tabletLand`
+    width: 100%;
+    margin: 2rem 0 0;
+    border-radius: 0;
+  `}
 `

@@ -2,7 +2,7 @@ import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { A, Heading, P, PageWrapper, SubHeading } from '../components/Elements'
-import { elevation } from '../utils/mixins'
+import { elevation, media } from '../utils/mixins'
 
 const About4HClub: React.FC<RouteComponentProps> = () => {
   React.useEffect(() => window.scrollTo(0, 0), [])
@@ -11,7 +11,7 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
       <CustomHeading>Getting Involved with 4-H Club</CustomHeading>
       <ImageSection>
         <Text>
-          <SubHeading>Join 4-H</SubHeading>
+          <CustomSubHeading1>Join 4-H</CustomSubHeading1>
           <P>
             4-H is the largest out of school youth organization in the United States with over<b> 7 million </b>youth
             members.
@@ -43,9 +43,9 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
         <SectionImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1542863544/pictures-from-states/NSA_Annapolis.jpg" />
       </ImageSection>
       <ImageSection>
-        <SectionImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1542863550/pictures-from-states/NSA_Annapolis1.jpg" />
+        <SectionImage2 src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1542863550/pictures-from-states/NSA_Annapolis1.jpg" />
         <Text>
-          <SubHeading>Become a 4-H Volunteer</SubHeading>
+          <CustomSubHeading>Become a 4-H Volunteer</CustomSubHeading>
           <P>Adult volunteers play an important role in the 4-H program.</P>
           <P>
             Volunteers coordinate local community clubs and help to plan and conduct local, regional, state, and
@@ -65,14 +65,32 @@ export default About4HClub
 
 const CustomPageWrapper = styled(PageWrapper)`
   padding: 0 4rem 2rem;
+  ${media.tabletLand`
+    padding: 0 1.6rem 2rem;
+  `}
 `
 const CustomHeading = styled(Heading)`
   color: ${props => props.theme.primary};
+  ${media.tabletLand`
+    font-size: 2.4rem;
+  `}
+`
+const CustomSubHeading = styled(SubHeading)`
+  color: ${props => props.theme.primary};
+`
+const CustomSubHeading1 = styled(CustomSubHeading)`
+  ${media.tabletLand`
+    display: none;
+  `}
 `
 const ImageSection = styled.section`
   display: flex;
   justify-content: center;
   padding: 3.2rem 0;
+  ${media.tabletLand`
+    flex-direction: column;
+    padding: 0;
+  `}
 `
 const SectionImage = styled.img`
   height: 60rem;
@@ -80,8 +98,18 @@ const SectionImage = styled.img`
   margin: 0 2rem;
   border-radius: 5px;
   ${elevation(4)};
+  ${media.tabletLand`
+    margin: 2.4rem 0 0;
+    border-radius: 0;
+    height: 40rem;
+  `}
 `
 const Text = styled.div`
   max-width: 65rem;
   margin: 0 auto;
+`
+const SectionImage2 = styled(SectionImage)`
+  ${media.tabletLand`
+    order: 1;
+  `}
 `

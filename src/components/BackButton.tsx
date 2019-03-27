@@ -1,6 +1,7 @@
 import { navigate as reachNavigate } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
+import { media } from '../utils/mixins'
 import Icon from './Icon'
 
 interface IProps {
@@ -37,6 +38,10 @@ const BackButton = styled.button`
 const BackIcon = styled(Icon)`
   height: 3.2rem;
   width: 3.2rem;
+  ${media.tabletLand`
+    height: 2.8rem;
+    width: 2.8rem;
+  `}
 `
 const BackText = styled.span`
   color: ${props => props.theme.primary};
@@ -44,4 +49,7 @@ const BackText = styled.span`
   font-weight: 600;
   margin-left: 1.2rem;
   white-space: nowrap;
+  ${media.tabletLand`
+    font-size: 1.6rem;
+  `}
 `

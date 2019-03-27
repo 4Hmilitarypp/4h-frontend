@@ -3,7 +3,7 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 import { Button, SubHeading } from '../components/Elements'
 import Icon from '../components/Icon'
-import { elevation, transition } from '../utils/mixins'
+import { elevation, media, transition } from '../utils/mixins'
 
 const Home: React.FC<RouteComponentProps> = () => {
   React.useEffect(() => window.scrollTo(0, 0), [])
@@ -24,18 +24,18 @@ const Home: React.FC<RouteComponentProps> = () => {
       <Mission>
         <MissionImg src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1549244332/Baggott-Avery-20180629_140829.jpg" />
         <MissionText>
-          <SubHeading>Who We Are</SubHeading>
+          <MissionSubHeading>Who We Are</MissionSubHeading>
           <MissionP>
             A collaboration of military and Land Grant University partners who intentionally integrate research-based
             programs and resources for military-connected youth, families, and communities to thrive.
           </MissionP>
-          <SubHeading>What We Do</SubHeading>
+          <MissionSubHeading>What We Do</MissionSubHeading>
           <MissionP>
             4-H Military Partnerships focuses on positive youth development through providing opportunities for youth to
             engage in intentional learning experiences. We partner with 4-H educators to provide them the training and
             resources they need to succeed in equipping the next generation of leaders
           </MissionP>
-          <SubHeading>Why We Do It</SubHeading>
+          <MissionSubHeading>Why We Do It</MissionSubHeading>
           <MissionP>
             As military families move frequently and experience the difficulties surrounding deployment and
             reintegration, 4-H provides predictable programming and a safe and nurturing environment for military
@@ -104,7 +104,8 @@ const Home: React.FC<RouteComponentProps> = () => {
         </CardLink>
       </CardLinks>
       <Footer>
-        <FooterSubHeading>Have any Questions? Please feel free to contact us!</FooterSubHeading>
+        <FooterSubHeading1>Have any Questions?</FooterSubHeading1>
+        <FooterSubHeading2>Please feel free to contact us!</FooterSubHeading2>
         <ContactButton as={Link} to="contact-us">
           Contact Us
         </ContactButton>
@@ -122,6 +123,13 @@ const HeroText = styled(Icon)`
   right: 0;
   z-index: 3;
   margin: 0 auto;
+  ${media.tabletLand`
+    height: 5.5rem;
+    top: 8rem;
+  `}
+  ${media.tabletPort`
+    width: 90%;
+  `}
 `
 const HeroOverlay = styled.div`
   &::after {
@@ -146,25 +154,49 @@ const VisionHeading = styled(SubHeading)`
   max-width: 75rem;
   line-height: 1.5;
   margin: 2.4rem auto;
+  ${media.tabletLand`
+    margin: 2rem 1.2rem;
+    font-size: 2rem;
+  `}
 `
 const Mission = styled.div`
   display: flex;
   padding: 4.8rem 2.4rem;
   justify-content: center;
+  ${media.tabletLand`
+    padding: 0;
+  `}
 `
 const MissionImg = styled.img`
   max-width: 40%;
   align-self: center;
   ${elevation(4)};
   border-radius: 5px;
+  ${media.tabletLand`
+    display: none;
+  `}
+`
+const MissionSubHeading = styled(SubHeading)`
+  ${media.tabletLand`
+padding: 2rem 0 2rem;
+
+`}
 `
 const MissionText = styled.div`
   padding-left: 3.6rem;
   max-width: 70rem;
+  ${media.tabletLand`
+    padding: 0 1.6rem;
+    text-align: center;
+  `}
 `
 const MissionP = styled.p`
   font-size: 2rem;
   padding-bottom: 2.4rem;
+  ${media.tabletLand`
+  font-size: 1.6rem;
+  padding-bottom: 1.8rem;
+  `}
 `
 const CardLinksHeading = styled(SubHeading)`
   font-size: 3.6rem;
@@ -199,6 +231,9 @@ const Card = styled.div`
   width: 350px;
   position: relative;
   display: inline-block;
+  ${media.phone`
+    width: 300px;
+  `}
 `
 const CardImage = styled.img`
   width: 350px;
@@ -207,6 +242,9 @@ const CardImage = styled.img`
   object-position: center;
   border-radius: 5px 0 0 5px;
   display: block;
+  ${media.phone`
+    width: 300px;
+  `}
 `
 const CardText = styled.span`
   position: absolute;
@@ -234,10 +272,25 @@ const Footer = styled.div`
   align-items: baseline;
   justify-content: center;
   margin-top: 3.6rem;
+  ${media.tabletLand`
+    flex-direction: column;
+    align-items: center;
+  `}
 `
-const FooterSubHeading = styled(SubHeading)`
-  text-align: left;
+const FooterSubHeading1 = styled(SubHeading)`
+  ${media.tabletLand`
+    font-size: 2rem;
+    padding: 0rem;
+  `}
+`
+const FooterSubHeading2 = styled(SubHeading)`
+  padding-left: 0.8rem;
+  ${media.tabletLand`
+  padding-top: 1.2rem;
+    font-size: 2rem;
+  `}
 `
 const ContactButton: any = styled(Button)`
   margin: 0 3.6rem;
+  white-space: nowrap;
 `

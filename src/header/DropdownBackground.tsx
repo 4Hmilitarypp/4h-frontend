@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { IBackgroundCoords } from '../clientTypes'
+import { media } from '../utils/mixins'
 
 const UnstyledDropdownBackground: React.FC<IBackgroundCoords> = props => (
   <div {...props}>
@@ -22,6 +23,9 @@ const DropdownBackground = styled(UnstyledDropdownBackground)`
   width: ${coords => coords.width + 'px'};
   height: ${coords => coords.height + 'px'};
   transform: ${coords => `translate(${coords.left}px, ${coords.top}px)`};
+  ${media.tabletPort`
+    display: none;
+  `}
 `
 const BackgroundArrow = styled.span`
   position: absolute;
@@ -31,6 +35,9 @@ const BackgroundArrow = styled.span`
   background: ${props => props.theme.white};
   box-shadow: -3px -3px 5px rgba(82, 95, 127, 0.04);
   transform: translateY(-50%) rotate(45deg);
+  ${media.tabletPort`
+    display: none;
+  `}
 `
 
 export default DropdownBackground

@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import { A } from '../../../components/Elements'
 import EmbedDocument from '../../../components/EmbedDocument'
 import { ILesson, LessonLinkType } from '../../../sharedTypes'
+import { media } from '../../../utils/mixins'
 
 interface IProps {
   lesson: ILesson
@@ -54,6 +55,10 @@ const Wrapper = styled.div`
   &:nth-child(2n-1) {
     background: ${props => props.theme.primaryBackground};
   }
+  ${media.tabletLand`
+    padding: 1.2rem 2.4rem;
+    grid-template-columns: 60% minmax(10.2rem, 1fr)
+  `}
 `
 const LessonTitle = styled.span`
   font-size: 1.8rem;

@@ -7,6 +7,7 @@ import { DynamicSection, Heading, PageWrapper } from '../../../components/Elemen
 import useErrorHandler from '../../../hooks/useErrorHandler'
 import { IResearch } from '../../../sharedTypes'
 import api from '../../../utils/api'
+import { media } from '../../../utils/mixins'
 import Research from './Research'
 
 const Researches: React.FC<RouteComponentProps> = () => {
@@ -38,4 +39,7 @@ const Researches: React.FC<RouteComponentProps> = () => {
 export default Researches
 const ResearchList = styled.div`
   padding-top: 3.2rem;
+  ${media.tabletLand`
+    padding-top: 1.6rem;
+  `}
 `

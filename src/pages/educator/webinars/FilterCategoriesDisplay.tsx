@@ -23,7 +23,6 @@ const FilterCategoriesDisplay: React.FC<IProps> = ({ categories, categorySelecte
   }
   return (
     <FilterWrapper>
-      <ButtonsHeading>Categories:</ButtonsHeading>
       <CategoryButton onClick={handleCategoryClicked} className={selectedCategory === allCategoriesText && 'active'}>
         {allCategoriesText}
       </CategoryButton>
@@ -45,17 +44,14 @@ export default FilterCategoriesDisplay
 const FilterWrapper = styled.div`
   display: flex;
   justify-content: center;
-`
-const ButtonsHeading = styled.h3`
-  color: ${props => props.theme.primaryLink};
+  flex-wrap: wrap;
 `
 const CategoryButton = styled(Button)`
   padding: 0.4rem 1.2rem;
+  white-space: nowrap;
   &:not(.active) {
     color: hsla(150, 40%, 20%, 1);
     background: hsla(150, 35%, 75%, 1);
   }
-  &:not(:first-child) {
-    margin-left: 2rem;
-  }
+  margin: 0 0.8rem 1.6rem;
 `

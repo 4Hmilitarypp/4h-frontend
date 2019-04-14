@@ -1,7 +1,7 @@
 import { Link, RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { Button, SubHeading } from '../components/Elements'
+import { Button, P, SubHeading } from '../components/Elements'
 import Icon from '../components/Icon'
 import { elevation, media, transition } from '../utils/mixins'
 
@@ -22,7 +22,10 @@ const Home: React.FC<RouteComponentProps> = () => {
         </VisionHeading>
       </Vision>
       <Mission>
-        <MissionImg src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1549244332/Baggott-Avery-20180629_140829.jpg" />
+        <MissionImg
+          src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1549244332/Baggott-Avery-20180629_140829.jpg"
+          alt="3 kids picking peaches"
+        />
         <MissionText>
           <MissionSubHeading>Who We Are</MissionSubHeading>
           <MissionP>
@@ -43,12 +46,28 @@ const Home: React.FC<RouteComponentProps> = () => {
           </MissionP>
         </MissionText>
       </Mission>
+      <FeaturedSection>
+        <FeaturedTitle>It's Purple Up Month!</FeaturedTitle>
+        <FeaturedText>
+          The month of April provides an opportunity to recognize and honor the service of our youngest heroes, military
+          children. Established by former Secretary of Defense Caspar Weinberger in 1986, the designation of April as
+          the Month of the Military Child acknowledges the significant role military youth play in our communities. They
+          are resilient and take pride in their service to our Country. They deserve our appreciation and support.
+        </FeaturedText>
+        <FeaturedImage
+          src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1555224324/purple-up-poster.jpg"
+          alt="a purple up poster"
+        />
+      </FeaturedSection>
       <CardLinksHeading>Take a Look Around!</CardLinksHeading>
       <CardLinks>
         <CardLink to="about">
           <Card>
             <CardImageOverlay>
-              <CardImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549242318/CT_Subase_Youth_Center_in_the_Big_E_parade.jpg" />
+              <CardImage
+                src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_350,h_225,c_fill/v1549242318/CT_Subase_Youth_Center_in_the_Big_E_parade.jpg"
+                alt="a few kids holding a 4-H club sign"
+              />
             </CardImageOverlay>
             <CardText>What is 4-H Military Partnerships?</CardText>
           </Card>
@@ -194,8 +213,37 @@ const MissionP = styled.p`
   font-size: 2rem;
   padding-bottom: 2.4rem;
   ${media.tabletLand`
-  font-size: 1.6rem;
-  padding-bottom: 1.8rem;
+    font-size: 1.6rem;
+    padding-bottom: 1.8rem;
+  `}
+`
+const FeaturedSection = styled.div`
+  padding-bottom: 3.6rem;
+  ${media.tabletPort`
+    padding-bottom: 0rem;
+  `}
+`
+const FeaturedText = styled(P)`
+  max-width: 60rem;
+  font-size: 1.8rem;
+  margin: 0 auto;
+  padding: 0 2.4rem 3.6rem;
+  ${media.tabletLand`
+    font-size: 1.6rem;
+    padding-bottom: 2.4rem;
+    text-align: center;
+  `}
+`
+const FeaturedTitle = styled(SubHeading)``
+const FeaturedImage = styled.img`
+  max-width: 80%;
+  margin: 0 auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 5px;
+  ${media.tabletPort`
+    border-radius: 0px;
+    width: 100%;
   `}
 `
 const CardLinksHeading = styled(SubHeading)`

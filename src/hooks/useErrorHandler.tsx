@@ -15,6 +15,7 @@ const useErrorHandler = () => {
   const flashContext = React.useContext(FlashContext)
 
   const handleError = (dirtyError: IApiError) => {
+    console.error(dirtyError)
     const error = formatError(dirtyError)
 
     flashContext.set({ message: error.message, isError: true })

@@ -1,6 +1,6 @@
 import * as axios from 'axios'
 import { IContactUsEmail } from '../clientTypes'
-import { ILiaison, IPartner, IPartnerSection, IResearch, IResource } from '../sharedTypes'
+import { ICamp, ILiaison, IPartner, IPartnerSection, IResearch, IResource } from '../sharedTypes'
 
 let restApi: axios.AxiosInstance
 const envBaseURL = process.env.REACT_APP_API_URL
@@ -14,13 +14,18 @@ const requests = {
   put: (url: string, body: object): Promise<any> => restApi.put(url, body).then(getData),
 }
 
-const liaisons = {
-  get: (): Promise<{ liaisons: ILiaison[] }> => requests.get('/liaisons'),
+const camps = {
+  get: (): Promise<ICamp[]> => requests.get('/camps'),
 }
+
 const emails = {
   checkIfSpam: (token: string): Promise<boolean> => requests.post('/users/checkIfSpam', { token }),
   contactUs: (email: IContactUsEmail): Promise<{ email: IContactUsEmail }> =>
     requests.post('/emails/contact-us', email),
+}
+
+const liaisons = {
+  get: (): Promise<{ liaisons: ILiaison[] }> => requests.get('/liaisons'),
 }
 const partners = {
   get: (): Promise<IPartnerSection[]> => requests.get('/partners'),
@@ -47,6 +52,7 @@ function init({ baseURL = envBaseURL || '/api', axiosOptions = { headers: {} } }
 }
 
 const api = {
+  camps,
   emails,
   init,
   liaisons,

@@ -61,7 +61,7 @@ const ContactUs: React.FC<RouteComponentProps> = () => {
             <strong>Phone Number:</strong> 785-532-1484
           </p>
           <p>
-            <strong>Fax:</strong> 785-532-5505
+            <strong>Fax:</strong> 785-532-2036
           </p>
           <Location>
             <p>1810 Kerr Dr</p>

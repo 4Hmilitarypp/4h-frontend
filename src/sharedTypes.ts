@@ -87,4 +87,33 @@ export interface ILesson {
   links: ILessonLink[]
   title: string
 }
+
+export interface ICampDate {
+  _id?: string
+  beginDate: Date
+  endDate: Date
+}
+
+export interface ICampContact {
+  email?: string
+  name: string
+  phoneNumber?: string
+  url?: string
+  urlText?: string
+}
+
+export interface ICamp {
+  _id?: string
+  ageRange: string
+  campDates: ICampDate[]
+  city: string
+  contact: ICampContact
+  dates: ICampDate[]
+  description: string
+  descriptionTitle: string
+  featuredImage?: IImage
+  state: string
+  title: string
+}
+
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>

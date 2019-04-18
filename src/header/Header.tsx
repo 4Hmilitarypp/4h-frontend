@@ -43,18 +43,18 @@ const Header: React.FC<RouteComponentProps> = () => {
             </StyledDropdownLink>
           </LinkGroup>
           <LinkGroup title="Events" to="/events/" manageBackground={backgroundManagement}>
-            <StyledDropdownLink to="/events/#past-events" onClick={() => setHamburgerActive(false)}>
+            {/* <StyledDropdownLink to="/events/#past-events" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Past Events</LinkTitle>
               <LinkDescription>Check out some of the past events we have sponsored</LinkDescription>
-            </StyledDropdownLink>
+            </StyledDropdownLink> */}
             <StyledDropdownLink to="/events" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Upcoming Events</LinkTitle>
               <LinkDescription>Get involved with one of our upcoming events</LinkDescription>
             </StyledDropdownLink>
-            <StyledDropdownLink to="/photos" onClick={() => setHamburgerActive(false)}>
+            {/* <StyledDropdownLink to="/photos" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Photos</LinkTitle>
               <LinkDescription>View some of the photos taken at our fun events</LinkDescription>
-            </StyledDropdownLink>
+            </StyledDropdownLink> */}
           </LinkGroup>
           <LinkGroup title="4-H Club" to="/4-h-club" manageBackground={backgroundManagement}>
             <StyledDropdownLink to="/4-h-club" onClick={() => setHamburgerActive(false)}>

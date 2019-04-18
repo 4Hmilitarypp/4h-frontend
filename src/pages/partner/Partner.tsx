@@ -28,7 +28,7 @@ const Partner: React.FC<IProps> = ({ slug }) => {
       {partner ? (
         <PartnerWrapper>
           <HeaderWrapper>
-            <BackButton route={'/partners'} title="partners" />
+            <BackButton route={'/partners'} title="Partners" />
             <CustomHeading>{partner.title}</CustomHeading>
             <div style={{ width: 209 }} />
           </HeaderWrapper>

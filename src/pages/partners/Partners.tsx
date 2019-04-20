@@ -17,7 +17,6 @@ const Partners: React.FC<RouteComponentProps> = () => {
     api.partners
       .get()
       .then(p => {
-        console.log(p)
         setPartners(p)
       })
       .catch(handleError)

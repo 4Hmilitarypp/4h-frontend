@@ -39,9 +39,8 @@ export interface IReport {
 }
 
 export interface IPartner extends IPartnerSection {
-  annualReports: IReport[]
+  reports: IReport[]
   longDescription: string
-  videoReports: IReport[]
 }
 
 export interface IWebinar {

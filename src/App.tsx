@@ -40,6 +40,24 @@ export const theme = {
   white: 'hsl(0, 0%, 100%)',
 }
 
+const GlobalStyle = createGlobalStyle`
+  body,
+  input,
+  textarea,
+  button {
+    background: ${theme.white};
+    font-family: Rubik, Arial, Helvetica, Verdana, sans-serif;
+    color: ${theme.primaryGrey};
+  }
+  b {
+    font-weight: 500;
+  }
+  .grecaptcha-badge {
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+`
+
 const App: React.FC = () => {
   const { flashState, resetFlashState, setFlashState } = useFlash()
   return (
@@ -52,6 +70,20 @@ const App: React.FC = () => {
             <Header path="/*" />
           </Router>
           <Router primary={false}>
+            <Home path="/" />
+            <About path="/about" />
+            <Partners path="/partners" />
+            <Partner path="/partners/:slug" />
+            <Events path="/events" />
+            <Photos path="/photos" />
+            <About4HClub path="/4-h-club" />
+            <GetInvolved4HClub path="/4-h-club/get-involved" />
+            <Educator path="/educators/*" />
+            <FindLiaison path="/find-a-liaison" />
+            <ContactUs path="contact-us" />
+            <Icons path="/icons" />
+            <JobApplication path="/job-application" />
+
             <Redirect
               from="/educator-staff/resources/curriculum/adult_babysitting/CYSitter%20facilitator%20guide%2008%20complete%20CYSitter%20164%20pg.pdf"
               to="/educators/resources/Adult-Babysitting"
@@ -82,21 +114,14 @@ const App: React.FC = () => {
               to="/educators/webinars/mancini-resources"
               noThrow={true}
             />
+            <Redirect from="/military-family/af-cyp/index.html" to="/partners/air-force" noThrow={true} />
             <Redirect from="/educator-staff/navy-cyp/index.html" to="/partners/navy" noThrow={true} />
             <Redirect from="/4h_military_partnerships/index.html" to="/" noThrow={true} />
-            <Home path="/" />
-            <About path="/about" />
-            <Partners path="/partners" />
-            <Partner path="/partners/:slug" />
-            <Events path="/events" />
-            <Photos path="/photos" />
-            <About4HClub path="/4-h-club" />
-            <GetInvolved4HClub path="/4-h-club/get-involved" />
-            <Educator path="/educators/*" />
-            <FindLiaison path="/find-a-liaison" />
-            <ContactUs path="contact-us" />
-            <Icons path="/icons" />
-            <JobApplication path="/job-application" />
+            <Redirect from="/military-liaisons/cyf-camps/ang4hcamps.html" to="/events" noThrow={true} />
+            <Redirect from="/military-family/reserves/reserves.html" to="/partners/air-force-reserves" noThrow={true} />
+            <Redirect from="/military-family/4h-clubs/index.html" to="/4-h-club" noThrow={true} />
+            <Redirect from="/educator-staff/dod_usda/index.html" to="/partners/dod-usda" noThrow={true} />
+
             <NotFound default={true} />
           </Router>
         </FlashContext.Provider>
@@ -106,21 +131,3 @@ const App: React.FC = () => {
 }
 
 export default App
-
-const GlobalStyle = createGlobalStyle`
-  body,
-  input,
-  textarea,
-  button {
-    background: ${theme.white};
-    font-family: Rubik, Arial, Helvetica, Verdana, sans-serif;
-    color: ${theme.primaryGrey};
-  }
-  b {
-    font-weight: 500;
-  }
-  .grecaptcha-badge {
-    visibility: hidden !important;
-    opacity: 0 !important;
-  }
-`

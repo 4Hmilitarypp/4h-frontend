@@ -6,7 +6,7 @@ import styled from 'styled-components/macro'
 import BackButton from '../../components/BackButton'
 import { DynamicSection, Heading, PageWrapper, SubHeading } from '../../components/Elements'
 import useErrorHandler from '../../hooks/useErrorHandler'
-import { IPartner } from '../../sharedTypes'
+import { IPartner, IReport } from '../../sharedTypes'
 import api from '../../utils/api'
 import { elevation, media, transition } from '../../utils/mixins'
 import Reports from './Reports'
@@ -17,16 +17,21 @@ interface IProps extends RouteComponentProps {
 
 const Partner: React.FC<IProps> = ({ slug }) => {
   const [partner, setPartner] = React.useState<IPartner | undefined>(undefined)
+  const [annualReports, setAnnualReports] = React.useState<IReport[]>([])
+  const [videoReports, setVideoReports] = React.useState<IReport[]>([])
   const handleError = useErrorHandler()
 
   React.useEffect(() => {
     api.partners
       .getBySlug(slug || '')
-      .then(p => setPartner(p))
+      .then(p => {
+        setPartner(p)
+        setVideoReports(p.reports.filter(r => r.url.includes('youtu')))
+        setAnnualReports(p.reports.filter(r => !r.url.includes('youtu')))
+      })
       .catch(handleError)
     window.scrollTo(0, 0)
   }, [])
-
   return (
     <CustomPageWrapper>
       {partner ? (
@@ -51,17 +56,17 @@ const Partner: React.FC<IProps> = ({ slug }) => {
               )}
             </HeroImages>
           </Hero>
-          {partner.annualReports.length > 0 && (
+          {annualReports.length > 0 && (
             <ListWrapper>
               <SubHeading>Annual Reports</SubHeading>
-              <Reports reports={partner.annualReports} />
+              <Reports reports={annualReports} />
             </ListWrapper>
           )}
-          {partner.videoReports.length > 0 && (
+          {videoReports.length > 0 && (
             <ListWrapper>
               <SubHeading>Video Reports</SubHeading>
               <VideoReports>
-                {partner.videoReports.map(report => (
+                {videoReports.map(report => (
                   <ReportItem key={report.url}>
                     <VideoReportCard href={report.url} target="_blank">
                       <VideoReportCover src={report.image.url} alt={`${report.title} cover`} />

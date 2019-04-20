@@ -12,26 +12,23 @@ const EmbedDocument: React.FC<IProps> = ({ title, url, open, setOpen }) => {
   const [iframeInterval, setIframeInterval] = React.useState<number | undefined>(undefined)
   const iframeRef = React.useRef<HTMLIFrameElement | undefined>(undefined)
 
-  React.useEffect(
-    () => {
-      if (open) {
-        window.addEventListener('keydown', handleKeydown)
-        const reloadInterval = window.setInterval(() => {
-          if (iframeRef.current) {
-            iframeRef.current.src += ''
-          }
-        }, 2000)
-        setIframeInterval(reloadInterval)
-      } else {
-        window.removeEventListener('keydown', handleKeydown)
-      }
-      return () => {
-        clearInterval(iframeInterval)
-        window.removeEventListener('keydown', handleKeydown)
-      }
-    },
-    [open]
-  )
+  React.useEffect(() => {
+    if (open) {
+      window.addEventListener('keydown', handleKeydown)
+      const reloadInterval = window.setInterval(() => {
+        if (iframeRef.current) {
+          iframeRef.current.src += ''
+        }
+      }, 2000)
+      setIframeInterval(reloadInterval)
+    } else {
+      window.removeEventListener('keydown', handleKeydown)
+    }
+    return () => {
+      clearInterval(iframeInterval)
+      window.removeEventListener('keydown', handleKeydown)
+    }
+  }, [open])
 
   const handleKeydown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {

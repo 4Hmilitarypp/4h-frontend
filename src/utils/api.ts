@@ -1,6 +1,6 @@
 import * as axios from 'axios'
 import { IContactUsEmail } from '../clientTypes'
-import { ICamp, ILiaison, IPartner, IPartnerSection, IResearch, IResource } from '../sharedTypes'
+import { ICamp, ILiaison, IPartner, IPartnerSection, IResearch, IResource, IWebinar } from '../sharedTypes'
 
 let restApi: axios.AxiosInstance
 const envBaseURL = process.env.REACT_APP_API_URL
@@ -40,6 +40,9 @@ const resources = {
   getById: (id: string): Promise<IResource> => requests.get(`/resources/${id}`),
   getBySlug: (slug: string): Promise<IResource> => requests.get(`/resources/slug/${slug}`),
 }
+const webinars = {
+  get: (): Promise<IWebinar[]> => requests.get('/webinars'),
+}
 
 function init({ baseURL = envBaseURL || '/api', axiosOptions = { headers: {} } } = {}) {
   restApi = (axios as any).create({
@@ -59,6 +62,7 @@ const api = {
   partners,
   research,
   resources,
+  webinars,
 }
 
 export default api

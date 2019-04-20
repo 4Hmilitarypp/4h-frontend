@@ -3,9 +3,10 @@ import { RouteComponentProps } from '@reach/router'
 import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import staticWebinars from '../../../assets/data/staticWebinars.json'
 import { DynamicSection, Heading, PageWrapper, SubHeading } from '../../../components/Elements'
+import useErrorHandler from '../../../hooks/useErrorHandler'
 import { IWebinar } from '../../../sharedTypes'
+import api from '../../../utils/api'
 import { media } from '../../../utils/mixins'
 import FilterCategoriesDisplay from './FilterCategoriesDisplay'
 import Webinar from './Webinar'
@@ -14,17 +15,23 @@ const Webinars: React.FC<RouteComponentProps> = () => {
   const [webinars, setWebinars] = React.useState<IWebinar[] | undefined>(undefined)
   const [categories, setCategories] = React.useState<string[] | undefined>(undefined)
   const [filteredCategories, setFilteredCategories] = React.useState<string[]>([])
+  const handleError = useErrorHandler()
 
   React.useEffect(() => {
-    setWebinars(staticWebinars)
-    const cats = staticWebinars.reduce((arr: string[], webinar) => {
-      if (!arr.includes(webinar.category)) {
-        arr.push(webinar.category)
-      }
-      return arr
-    }, [])
-    setCategories(cats)
-    setFilteredCategories(cats)
+    api.webinars
+      .get()
+      .then(w => {
+        setWebinars(w)
+        const cats = w.reduce((arr: string[], webinar) => {
+          if (!arr.includes(webinar.category)) {
+            arr.push(webinar.category)
+          }
+          return arr
+        }, [])
+        setCategories(cats)
+        setFilteredCategories(cats)
+      })
+      .catch(handleError)
   }, [])
 
   const handleCategorySelected = (cats: string[]) => setFilteredCategories(cats)

@@ -5,10 +5,11 @@ import matchSorter from 'match-sorter'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { theme } from '../../App'
-import staticLiaisons from '../../assets/data/staticLiaisons.json'
 import { InputGroup, P, PageWrapper, Section, SubHeading } from '../../components/Elements'
 import Icon from '../../components/Icon'
+import useErrorHandler from '../../hooks/useErrorHandler'
 import { ILiaison } from '../../sharedTypes'
+import api from '../../utils/api'
 import { elevation, media } from '../../utils/mixins'
 import LiaisonMap from './LiaisonMap'
 
@@ -21,13 +22,19 @@ export const filterLiaisons = (liaisons: ILiaison[], query: string | null): ILia
 }
 
 const FindLiaison: React.FC<RouteComponentProps> = () => {
+  const handleError = useErrorHandler()
   const [liaisons, setLiaisons] = React.useState<ILiaison[] | undefined>(undefined)
   const [selectedLiaison, setSelectedLiaison] = React.useState<ILiaison | undefined>(undefined)
   const findRef = React.useRef<HTMLHeadingElement>(null)
 
   React.useEffect(() => {
-    const sortedLiaisons = sortBy(staticLiaisons, ['region'])
-    setLiaisons(sortedLiaisons)
+    api.liaisons
+      .get()
+      .then(l => {
+        const sorted = sortBy(l, ['region'])
+        setLiaisons(sorted as any)
+      })
+      .catch(handleError)
   }, [])
   React.useEffect(() => {
     window.scrollTo(0, 0)

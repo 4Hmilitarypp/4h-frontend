@@ -8,8 +8,7 @@ import About from './pages/About'
 import About4HClub from './pages/About4HClub'
 import ContactUs from './pages/ContactUs'
 import Educator from './pages/educator/Educator'
-// import Events from './pages/Events'
-import Events from './pages/events/Events'
+import Events from './pages/Events'
 import FindLiaison from './pages/findLiaison/FindLiaison'
 import GetInvolved4HClub from './pages/GetInvolved4HClub'
 import Home from './pages/Home'
@@ -66,6 +65,21 @@ const App: React.FC = () => {
             <Redirect
               from="/educator-staff/resources/curriculum/youth_babysitter.html"
               to="/educators/resources/Youth-Babysitting"
+              noThrow={true}
+            />
+            <Redirect
+              from="/educator-staff/resources/curriculum/character_ed.html"
+              to="/educators/resources/Character-Education"
+              noThrow={true}
+            />
+            <Redirect
+              from="/educator-staff/resources/curriculum/4h_101.html"
+              to="/educators/resources/4-H-101:-The-Basics-of-Starting-a-4-H-Club"
+              noThrow={true}
+            />
+            <Redirect
+              from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Bowen%20Martin%20Mancini%202013%20resilience%20of%20military%20families%20theoreical%20perspectives.pdf"
+              to="/educators/webinars/mancini-resources"
               noThrow={true}
             />
             <Redirect from="/educator-staff/navy-cyp/index.html" to="/partners/navy" noThrow={true} />

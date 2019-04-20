@@ -3,10 +3,11 @@ import { RouteComponentProps } from '@reach/router'
 import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import staticPartners from '../../assets/data/staticPartners.json'
 import BackButton from '../../components/BackButton'
 import { DynamicSection, Heading, PageWrapper, SubHeading } from '../../components/Elements'
+import useErrorHandler from '../../hooks/useErrorHandler'
 import { IPartner } from '../../sharedTypes'
+import api from '../../utils/api'
 import { elevation, media, transition } from '../../utils/mixins'
 import Reports from './Reports'
 
@@ -16,11 +17,14 @@ interface IProps extends RouteComponentProps {
 
 const Partner: React.FC<IProps> = ({ slug }) => {
   const [partner, setPartner] = React.useState<IPartner | undefined>(undefined)
+  const handleError = useErrorHandler()
 
   React.useEffect(() => {
-    const partnerResult = staticPartners.filter((p: IPartner) => p.slug === slug)[0]
+    api.partners
+      .getBySlug(slug || '')
+      .then(p => setPartner(p))
+      .catch(handleError)
     window.scrollTo(0, 0)
-    setPartner(partnerResult)
   }, [])
 
   return (
@@ -35,9 +39,16 @@ const Partner: React.FC<IProps> = ({ slug }) => {
           <Hero>
             <Description>{Parser(partner.longDescription)}</Description>
             <HeroImages>
-              {partner.featuredImages.map(image => (
-                <FeaturedImage key={image.url} src={image.url} alt={image.alt || `${partner.title} Logo`} />
-              ))}
+              <FeaturedImage
+                src={partner.featuredImage1.url}
+                alt={partner.featuredImage1.alt || `${partner.title} Logo`}
+              />
+              {partner.featuredImage2 && (
+                <FeaturedImage
+                  src={partner.featuredImage2.url}
+                  alt={partner.featuredImage2.alt || `${partner.title} Logo`}
+                />
+              )}
             </HeroImages>
           </Hero>
           {partner.annualReports.length > 0 && (

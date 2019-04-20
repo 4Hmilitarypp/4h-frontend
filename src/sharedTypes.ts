@@ -14,7 +14,8 @@ export interface ILiaison {
 
 export interface IPartnerSection {
   _id?: string
-  featuredImages: IImage[]
+  featuredImage1: IImage
+  featuredImage2?: IImage
   shortDescription: string
   slug: string
   title: string

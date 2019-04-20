@@ -1,18 +1,26 @@
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-// import api from '../../utils/api'
-import staticPartnerSections from '../../assets/data/staticPartnerSections.json'
+import useErrorHandler from '../../hooks/useErrorHandler'
 import { IPartnerSection } from '../../sharedTypes'
+import api from '../../utils/api'
 import { media } from '../../utils/mixins'
 import PartnerSection from './PartnerSection'
 
+const heroImage =
+  'https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1542863592/pictures-from-states/a0c173db-74ca-4c72-b316-7f2916c1bebe.jpg'
+
 const Partners: React.FC<RouteComponentProps> = () => {
   const [partners, setPartners] = React.useState<IPartnerSection[] | undefined>(undefined)
-  const heroImage =
-    'https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1542863592/pictures-from-states/a0c173db-74ca-4c72-b316-7f2916c1bebe.jpg'
+  const handleError = useErrorHandler()
   React.useEffect(() => {
-    setPartners(staticPartnerSections)
+    api.partners
+      .get()
+      .then(p => {
+        console.log(p)
+        setPartners(p)
+      })
+      .catch(handleError)
   }, [])
   React.useEffect(() => window.scrollTo(0, 0), [])
   return (

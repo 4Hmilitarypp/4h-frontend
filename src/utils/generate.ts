@@ -46,7 +46,7 @@ const generate = {
   partner: (overrides?: Partial<IPartner>): IPartner => ({
     _id: generate.objectId(),
     annualReports: [{ image: generate.image(), title: faker.lorem.words(), url: faker.internet.url() }],
-    featuredImages: [generate.image()],
+    featuredImage1: generate.image(),
     longDescription: faker.lorem.paragraph(),
     shortDescription: faker.lorem.word(),
     slug: faker.lorem.word(),

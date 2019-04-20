@@ -20,9 +20,10 @@ const PartnerSection: React.FC<IProps> = ({ partner, index }) => {
           <Description>{trimToLength(300, partner.shortDescription)}</Description>
           <LearnMore to={partner.slug}>Learn More</LearnMore>
         </Text>
-        {partner.featuredImages.map(image => (
-          <FeaturedImage key={image.url} src={image.url} alt={image.alt || `${partner.title} Logo`} />
-        ))}
+        <FeaturedImage src={partner.featuredImage1.url} alt={partner.featuredImage1.alt || `${partner.title} Logo`} />
+        {partner.featuredImage2 && (
+          <FeaturedImage src={partner.featuredImage2.url} alt={partner.featuredImage2.alt || `${partner.title} Logo`} />
+        )}
       </Content>
     </PartnerWrapper>
   )

@@ -1,4 +1,4 @@
-import { Router } from '@reach/router'
+import { Redirect, Router } from '@reach/router'
 import * as React from 'react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components/macro'
 import FlashContext, { useFlash } from './contexts/FlashContext'
@@ -53,6 +53,23 @@ const App: React.FC = () => {
             <Header path="/*" />
           </Router>
           <Router primary={false}>
+            <Redirect
+              from="/educator-staff/resources/curriculum/adult_babysitting/CYSitter%20facilitator%20guide%2008%20complete%20CYSitter%20164%20pg.pdf"
+              to="/educators/resources/Adult-Babysitting"
+              noThrow={true}
+            />
+            <Redirect
+              from="/educator-staff/resources/curriculum/youth_babysitting/BabysittingStudentGuide.pdf"
+              to="/educators/resources/Youth-Babysitting"
+              noThrow={true}
+            />
+            <Redirect
+              from="/educator-staff/resources/curriculum/youth_babysitter.html"
+              to="/educators/resources/Youth-Babysitting"
+              noThrow={true}
+            />
+            <Redirect from="/educator-staff/navy-cyp/index.html" to="/partners/navy" noThrow={true} />
+            <Redirect from="/4h_military_partnerships/index.html" to="/" noThrow={true} />
             <Home path="/" />
             <About path="/about" />
             <Partners path="/partners" />

@@ -1,8 +1,11 @@
 import { RouteComponentProps } from '@reach/router'
+import Downshift from 'downshift'
 import * as React from 'react'
 import styled from 'styled-components/macro'
+import { theme } from '../App'
 import { IForm } from '../clientTypes'
 import { Heading, InputGroup, Link, PageWrapper, SecondaryButton, SubHeading } from '../components/Elements'
+import Icon from '../components/Icon'
 import FlashContext from '../contexts/FlashContext'
 import useErrorHandler from '../hooks/useErrorHandler'
 import api from '../utils/api'
@@ -23,6 +26,7 @@ const checkIfSpam = async () => {
 }
 
 const ContactUs: React.FC<RouteComponentProps> = () => {
+  const [selectedRequest, setSelectedRequest] = React.useState(undefined)
   const flashContext = React.useContext(FlashContext)
   const handleError = useErrorHandler()
 
@@ -33,17 +37,20 @@ const ContactUs: React.FC<RouteComponentProps> = () => {
     e.preventDefault()
     const { name, email, message } = e.currentTarget.elements
 
-    try {
-      const isSpam = await checkIfSpam()
-      if (isSpam) {
-        return flashContext.set({ message: 'you failed to pass the captcha test, please try again', isError: true })
+    if (process.env.NODE_ENV !== 'development') {
+      try {
+        const isSpam = await checkIfSpam()
+        if (isSpam) {
+          return flashContext.set({ message: 'you failed to pass the captcha test, please try again', isError: true })
+        }
+      } catch (err) {
+        return handleError(err)
       }
-    } catch (err) {
-      return handleError(err)
     }
 
     api.emails
       .contactUs({
+        category: selectedRequest,
         email: email.value,
         message: message.value,
         name: name.value,
@@ -51,6 +58,14 @@ const ContactUs: React.FC<RouteComponentProps> = () => {
       .then(() => flashContext.set({ message: 'Your message was sent successfully, and you should hear back soon!' }))
       .catch(handleError)
   }
+
+  const requestReasons = [
+    { value: 'Request for Training' },
+    { value: 'Request for Curriculum' },
+    { value: 'Request for Presentation' },
+    { value: 'Request for Connection with State Personnel' },
+    { value: 'Request for other: describe' },
+  ]
 
   return (
     <CustomPageWrapper>
@@ -93,10 +108,70 @@ const ContactUs: React.FC<RouteComponentProps> = () => {
             <input type="email" id="email" placeholder="janesmith123@example.com" required={true} />
           </InputGroup>
         </NameAndEmail>
-        <InputGroup>
+        <Downshift
+          onChange={selection => setSelectedRequest(selection ? selection.value : '')}
+          itemToString={item => (item ? item.value : '')}
+        >
+          {({
+            clearSelection,
+            closeMenu,
+            getInputProps,
+            getItemProps,
+            getLabelProps,
+            getMenuProps,
+            highlightedIndex,
+            isOpen,
+            openMenu,
+          }) => (
+            <div>
+              <FindInputGroup>
+                <label {...getLabelProps()}>Select A Request Category</label>
+                <div style={{ position: 'relative' }}>
+                  <RequestInput {...getInputProps()} readOnly={true} />
+                  <ControllerButton
+                    onClick={() => {
+                      if (!isOpen) {
+                        openMenu()
+                      } else {
+                        closeMenu()
+                      }
+                      if (selectedRequest) {
+                        clearSelection()
+                        openMenu()
+                      }
+                    }}
+                    data-testid="controller-button"
+                    type="button"
+                  >
+                    <Icon name="arrow" isOpen={isOpen} />
+                  </ControllerButton>
+                </div>
+              </FindInputGroup>
+              {isOpen ? (
+                <Menu {...getMenuProps()}>
+                  {requestReasons.map((item, index) => (
+                    <Item
+                      {...getItemProps({
+                        item,
+                        key: item.value,
+                        style: {
+                          background: index === highlightedIndex ? theme.secondary : '',
+                          color: index === highlightedIndex ? theme.white : theme.secondaryGrey,
+                        },
+                      })}
+                    >
+                      {item && item.value}
+                    </Item>
+                  ))}
+                </Menu>
+              ) : null}
+            </div>
+          )}
+        </Downshift>
+        <MessageGroup>
           <label htmlFor="message">Your Message</label>
-          <Textarea id="message" cols={30} rows={10} placeholder="I just had a question about..." required={true} />
-        </InputGroup>
+          <Textarea id="message" cols={30} rows={10} required={true} />
+        </MessageGroup>
         <SecondaryButton type="submit" style={{ alignSelf: 'center' }}>
           Send Message
         </SecondaryButton>
@@ -127,6 +202,39 @@ const Content = styled.div`
 const ContactInfo = styled.div``
 const Location = styled.div`
   padding: 1.2rem 0;
+`
+const FindInputGroup = styled(InputGroup)`
+  margin: 0 auto;
+`
+const RequestInput = styled.input`
+  background: ${props => props.theme.secondaryBackground};
+  height: 3.7rem;
+  border-radius: 5px;
+`
+const ControllerButton = styled.button`
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  width: 4rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`
+const Menu = styled.ul`
+  ${elevation(3)};
+  background: ${props => props.theme.secondaryBackground};
+`
+const Item = styled.li`
+  padding: 0.4rem 1.5rem;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+  }
 `
 const ContactUsForm = styled.form`
   max-width: 70.7rem;
@@ -161,4 +269,7 @@ const NameAndEmail = styled.div`
 `
 const NameInputGroup = styled(InputGroup)`
   margin-right: 3.2rem;
+`
+const MessageGroup = styled(InputGroup)`
+  margin-top: 1.6rem;
 `

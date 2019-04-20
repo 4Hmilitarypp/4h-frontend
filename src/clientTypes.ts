@@ -28,6 +28,7 @@ export interface IForm {
 }
 
 export interface IContactUsEmail {
+  category?: string
   email: string
   message: string
   name: string

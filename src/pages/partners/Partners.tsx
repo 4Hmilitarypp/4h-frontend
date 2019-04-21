@@ -7,9 +7,6 @@ import api from '../../utils/api'
 import { media } from '../../utils/mixins'
 import PartnerSection from './PartnerSection'
 
-const heroImage =
-  'https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1542863592/pictures-from-states/a0c173db-74ca-4c72-b316-7f2916c1bebe.jpg'
-
 const Partners: React.FC<RouteComponentProps> = () => {
   const [partners, setPartners] = React.useState<IPartnerSection[] | undefined>(undefined)
   const handleError = useErrorHandler()
@@ -30,7 +27,7 @@ const Partners: React.FC<RouteComponentProps> = () => {
           4-H Military Partners create opportunities and provide support to military connected youth whether they live
           on or near an installation, in our communities, or on overseas installations.
         </Text>
-        <HeroImage src={heroImage} />
+        <HeroImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_1500,h_1000,c_fill/v1542863592/pictures-from-states/a0c173db-74ca-4c72-b316-7f2916c1bebe.jpg" />
       </Hero>
       <PartnerList>
         <SubHeading>List of Military Partners</SubHeading>

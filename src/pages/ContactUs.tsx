@@ -150,6 +150,7 @@ const ContactUs: React.FC<RouteComponentProps> = () => {
               {isOpen ? (
                 <Menu {...getMenuProps()}>
                   {requestReasons.map((item, index) => (
+                    // tslint:disable-next-line
                     <Item
                       {...getItemProps({
                         item,
@@ -170,7 +171,7 @@ const ContactUs: React.FC<RouteComponentProps> = () => {
         </Downshift>
         <MessageGroup>
           <label htmlFor="message">Your Message</label>
-          <Textarea id="message" cols={30} rows={10} required={true} />
+          <Textarea id="message" cols={30} rows={10} required={true} placeholder="Have a question? Ask Us Here!" />
         </MessageGroup>
         <SecondaryButton type="submit" style={{ alignSelf: 'center' }}>
           Send Message

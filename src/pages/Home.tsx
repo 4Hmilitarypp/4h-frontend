@@ -11,7 +11,7 @@ const Home: React.FC<RouteComponentProps> = () => {
     <div>
       <HeroOverlay>
         <HeroImg
-          src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1549142846/team-huddle-edit.jpg"
+          src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_2080,h_1560,c_fill/v1549142846/team-huddle-edit.jpg"
           alt="a team in a huddle"
         />
       </HeroOverlay>
@@ -23,7 +23,7 @@ const Home: React.FC<RouteComponentProps> = () => {
       </Vision>
       <Mission>
         <MissionImg
-          src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1549244332/Baggott-Avery-20180629_140829.jpg"
+          src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,h_800,w_600/v1549244332/Baggott-Avery-20180629_140829.jpg"
           alt="3 kids picking peaches"
         />
         <MissionText>
@@ -55,7 +55,7 @@ const Home: React.FC<RouteComponentProps> = () => {
           are resilient and take pride in their service to our Country. They deserve our appreciation and support.
         </FeaturedText>
         <FeaturedImage
-          src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1555224324/purple-up-poster.jpg"
+          src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_1200,h_800/v1555224324/purple-up-poster.jpg"
           alt="a purple up poster"
         />
       </FeaturedSection>

@@ -122,6 +122,9 @@ const App: React.FC = () => {
             <Redirect from="/military-family/4h-clubs/index.html" to="/4-h-club" noThrow={true} />
             <Redirect from="/educator-staff/dod_usda/index.html" to="/partners/dod-usda" noThrow={true} />
 
+            <Redirect from="/educator-staff/resources/curriculum/*" to="/educators/resources" noThrow={true} />
+            <Redirect from="/educator-staff/recorded_webinars/*" to="/educators/webinars" noThrow={true} />
+
             <NotFound default={true} />
           </Router>
         </FlashContext.Provider>

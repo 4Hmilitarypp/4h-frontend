@@ -165,7 +165,7 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
               service members engaged in 4-H related activities in 2013.
             </P>
           </div>
-          <GeoSectionImage src="https://res.cloudinary.com/four-hmpp/image/upload/q_auto,f_auto/v1542909338/adult-book-business-297755.jpg" />
+          <GeoSectionImage src="https://res.cloudinary.com/four-hmpp/image/upload/q_auto,f_auto,w_660,h_431,c_fill/v1542909338/adult-book-business-297755.jpg" />
         </GeoSection>
       </CustomPageWrapper>
     </OverflowHidden>

@@ -40,10 +40,10 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
             adults willing to help.
           </P>
         </Text>
-        <SectionImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1542863544/pictures-from-states/NSA_Annapolis.jpg" />
+        <SectionImage src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_340,h_600,c_fill/v1542863544/pictures-from-states/NSA_Annapolis.jpg" />
       </ImageSection>
       <ImageSection>
-        <SectionImage2 src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1542863550/pictures-from-states/NSA_Annapolis1.jpg" />
+        <SectionImage2 src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_340,h_600,c_fill/v1542863550/pictures-from-states/NSA_Annapolis1.jpg" />
         <Text>
           <CustomSubHeading>Become a 4-H Volunteer</CustomSubHeading>
           <P>Adult volunteers play an important role in the 4-H program.</P>

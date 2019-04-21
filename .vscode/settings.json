@@ -6,6 +6,5 @@
       "titleBar.activeBackground": "#00FFFFB0"
     }
   },
-  "typescript.tsdk": "node_modules\\typescript\\lib",
   "prettier.tslintIntegration": true
 }

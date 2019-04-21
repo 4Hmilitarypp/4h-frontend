@@ -47,6 +47,7 @@ const ModalCard = styled.div`
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   z-index: 2;
   min-width: 50rem;
+  max-width: 90%;
   margin-bottom: 10rem;
 `
 const Background = styled.div`

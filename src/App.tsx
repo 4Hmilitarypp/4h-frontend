@@ -124,6 +124,7 @@ const App: React.FC = () => {
 
             <Redirect from="/educator-staff/resources/curriculum/*" to="/educators/resources" noThrow={true} />
             <Redirect from="/educator-staff/recorded_webinars/*" to="/educators/webinars" noThrow={true} />
+            <Redirect from="/military-liaisons/recorded_webinars/*" to="/educators/webinars" noThrow={true} />
 
             <NotFound default={true} />
           </Router>

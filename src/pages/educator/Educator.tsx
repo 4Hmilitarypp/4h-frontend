@@ -1,5 +1,6 @@
 import { RouteComponentProps, Router } from '@reach/router'
 import * as React from 'react'
+import NotFound from '../NotFound'
 import EducatorHome from './EducatorHome'
 import Researches from './research/Researches'
 import Resource from './resources/Resource'
@@ -21,6 +22,7 @@ const Educator: React.FC<RouteComponentProps> = () => {
       <Researches path="research/*" />
       <Resources path="resources/*" />
       <Resource path="resources/:slug" />
+      <NotFound default={true} />
     </Router>
   )
 }

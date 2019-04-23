@@ -121,6 +121,16 @@ const App: React.FC = () => {
             <Redirect from="/military-family/reserves/reserves.html" to="/partners/air-force-reserves" noThrow={true} />
             <Redirect from="/military-family/4h-clubs/index.html" to="/4-h-club" noThrow={true} />
             <Redirect from="/educator-staff/dod_usda/index.html" to="/partners/dod-usda" noThrow={true} />
+            <Redirect
+              from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Bowen%20Martin%20Mancini%202013%20resilience%20of%20military%20families%20theoreical%20perspectives.pdf"
+              to="/educators/webinars/mancini-resources"
+              noThrow={true}
+            />
+            <Redirect
+              from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Mancini%20Bowen%202013%20Families%20and%20Communities.pdf"
+              to="/educators/webinars/mancini-resources"
+              noThrow={true}
+            />
 
             <Redirect from="/educator-staff/resources/curriculum/*" to="/educators/resources" noThrow={true} />
             <Redirect from="/educator-staff/recorded_webinars/*" to="/educators/webinars" noThrow={true} />

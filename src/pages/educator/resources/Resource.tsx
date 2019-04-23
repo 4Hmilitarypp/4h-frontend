@@ -31,7 +31,7 @@ const Resource: React.FC<IProps> = ({ slug }) => {
   return (
     <PageWrapper data-testid="resource">
       <HeaderWrapper>
-        <BackButton route={'/educators/resources'} title="Resources" />
+        <BackButton route={'/resources/educator-resources'} title="Resources" />
         <Heading>{title}</Heading>
         <div style={{ width: 209 }} />
       </HeaderWrapper>

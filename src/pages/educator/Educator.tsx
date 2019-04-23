@@ -20,8 +20,8 @@ const Educator: React.FC<RouteComponentProps> = () => {
       <ManciniResources path="webinars/mancini-resources" />
       <Webinars path="webinars/*" />
       <Researches path="research/*" />
-      <Resources path="resources/*" />
-      <Resource path="resources/:slug" />
+      <Resources path="educator-resources/*" />
+      <Resource path="educator-resources/:slug" />
       <NotFound default={true} />
     </Router>
   )

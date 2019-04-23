@@ -109,7 +109,7 @@ const Home: React.FC<RouteComponentProps> = () => {
           </Card>
           <CardArrow>></CardArrow>
         </CardLink>
-        <CardLink to="educators">
+        <CardLink to="resources">
           <Card>
             <CardImageOverlay>
               <CardImage
@@ -117,7 +117,7 @@ const Home: React.FC<RouteComponentProps> = () => {
                 alt="a man in an air-force uniform teaching some kids"
               />
             </CardImageOverlay>
-            <CardText>View our Resources for Educators</CardText>
+            <CardText>View 4-H Military Partnerships Resources</CardText>
           </Card>
           <CardArrow>></CardArrow>
         </CardLink>

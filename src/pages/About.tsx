@@ -109,7 +109,7 @@ const About: React.FC<RouteComponentProps> = () => {
         <LinkSection>
           <LinksHeading>Educators or working with military families</LinksHeading>
           <Links>
-            <LinkItem to="/educators/resources">
+            <LinkItem to="/resources/educator-resources">
               View curriculum resources <Chevron name="chevron-right-circle" width={20} height={20} />
             </LinkItem>
             <LinkItem to="/find-a-liaison/">
@@ -126,7 +126,7 @@ const About: React.FC<RouteComponentProps> = () => {
             <LinkItem as="a" href="https://cms.4h.wendte.tech">
               Sign into the liaison section <Chevron name="chevron-right-circle" width={20} height={20} />
             </LinkItem>
-            <LinkItem to="/educators/resources">
+            <LinkItem to="/resources/educator-resources">
               View curriculum resources <Chevron name="chevron-right-circle" width={20} height={20} />
             </LinkItem>
           </Links>

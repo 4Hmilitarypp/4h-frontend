@@ -70,21 +70,21 @@ const Header: React.FC<RouteComponentProps> = () => {
               <LinkDescription>Check out the 4-H official website</LinkDescription>
             </StyledDropdownLink>
           </LinkGroup>
-          <LinkGroup title="Educators" to="/educators" manageBackground={backgroundManagement}>
-            <StyledDropdownLink to="/educators" onClick={() => setHamburgerActive(false)}>
+          <LinkGroup title="Resources" to="/resources" manageBackground={backgroundManagement}>
+            <StyledDropdownLink to="/resources" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>General Info</LinkTitle>
               <LinkDescription>Learn about your role as an educator</LinkDescription>
             </StyledDropdownLink>
-            <StyledDropdownLink to="/educators/webinars" onClick={() => setHamburgerActive(false)}>
+            <StyledDropdownLink to="/resources/webinars" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Webinars</LinkTitle>
               <LinkDescription>Watch recorded webinars</LinkDescription>
             </StyledDropdownLink>
-            <StyledDropdownLink to="/educators/research" onClick={() => setHamburgerActive(false)}>
+            <StyledDropdownLink to="/resources/research" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Research</LinkTitle>
               <LinkDescription>Read up on some relevant research articles</LinkDescription>
             </StyledDropdownLink>
-            <StyledDropdownLink to="/educators/resources" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>Resources</LinkTitle>
+            <StyledDropdownLink to="/resources/educator-resources" onClick={() => setHamburgerActive(false)}>
+              <LinkTitle>Educator Resources</LinkTitle>
               <LinkDescription>Find the educating resources you need</LinkDescription>
             </StyledDropdownLink>
           </LinkGroup>

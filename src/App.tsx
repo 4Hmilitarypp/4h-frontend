@@ -78,7 +78,7 @@ const App: React.FC = () => {
             <Photos path="/photos" />
             <About4HClub path="/4-h-club" />
             <GetInvolved4HClub path="/4-h-club/get-involved" />
-            <Educator path="/educators/*" />
+            <Educator path="/resources/*" />
             <FindLiaison path="/find-a-liaison" />
             <ContactUs path="contact-us" />
             <Icons path="/icons" />
@@ -86,32 +86,32 @@ const App: React.FC = () => {
 
             <Redirect
               from="/educator-staff/resources/curriculum/adult_babysitting/CYSitter%20facilitator%20guide%2008%20complete%20CYSitter%20164%20pg.pdf"
-              to="/educators/resources/Adult-Babysitting"
+              to="/resources/educator-resources/Adult-Babysitting"
               noThrow={true}
             />
             <Redirect
               from="/educator-staff/resources/curriculum/youth_babysitting/BabysittingStudentGuide.pdf"
-              to="/educators/resources/Youth-Babysitting"
+              to="/resources/educator-resources/Youth-Babysitting"
               noThrow={true}
             />
             <Redirect
               from="/educator-staff/resources/curriculum/youth_babysitter.html"
-              to="/educators/resources/Youth-Babysitting"
+              to="/resources/educator-resources/Youth-Babysitting"
               noThrow={true}
             />
             <Redirect
               from="/educator-staff/resources/curriculum/character_ed.html"
-              to="/educators/resources/Character-Education"
+              to="/resources/educator-resources/Character-Education"
               noThrow={true}
             />
             <Redirect
               from="/educator-staff/resources/curriculum/4h_101.html"
-              to="/educators/resources/4-H-101:-The-Basics-of-Starting-a-4-H-Club"
+              to="/resources/educator-resources/4-H-101:-The-Basics-of-Starting-a-4-H-Club"
               noThrow={true}
             />
             <Redirect
               from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Bowen%20Martin%20Mancini%202013%20resilience%20of%20military%20families%20theoreical%20perspectives.pdf"
-              to="/educators/webinars/mancini-resources"
+              to="/resources/webinars/mancini-resources"
               noThrow={true}
             />
             <Redirect from="/military-family/af-cyp/index.html" to="/partners/air-force" noThrow={true} />
@@ -123,18 +123,18 @@ const App: React.FC = () => {
             <Redirect from="/educator-staff/dod_usda/index.html" to="/partners/dod-usda" noThrow={true} />
             <Redirect
               from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Bowen%20Martin%20Mancini%202013%20resilience%20of%20military%20families%20theoreical%20perspectives.pdf"
-              to="/educators/webinars/mancini-resources"
+              to="/resources/webinars/mancini-resources"
               noThrow={true}
             />
             <Redirect
               from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Mancini%20Bowen%202013%20Families%20and%20Communities.pdf"
-              to="/educators/webinars/mancini-resources"
+              to="/resources/webinars/mancini-resources"
               noThrow={true}
             />
 
-            <Redirect from="/educator-staff/resources/curriculum/*" to="/educators/resources" noThrow={true} />
-            <Redirect from="/educator-staff/recorded_webinars/*" to="/educators/webinars" noThrow={true} />
-            <Redirect from="/military-liaisons/recorded_webinars/*" to="/educators/webinars" noThrow={true} />
+            <Redirect from="/educator-staff/resources/curriculum/*" to="/resources/resources" noThrow={true} />
+            <Redirect from="/educator-staff/recorded_webinars/*" to="/resources/webinars" noThrow={true} />
+            <Redirect from="/military-liaisons/recorded_webinars/*" to="/resources/webinars" noThrow={true} />
 
             <NotFound default={true} />
           </Router>

@@ -105,13 +105,13 @@ export interface ICampContact {
 export interface ICamp {
   _id?: string
   ageRange: string
-  campDates: ICampDate[]
   city: string
   contact: ICampContact
   dates: ICampDate[]
   description: string
   descriptionTitle: string
   featuredImage?: IImage
+  flyerUrl: string
   state: string
   title: string
 }

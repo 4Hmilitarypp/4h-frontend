@@ -3,7 +3,7 @@ import { RouteComponentProps } from '@reach/router'
 import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { DynamicSection, Heading, PageWrapper } from '../../../components/Elements'
+import { DynamicSection, Heading, InputGroup, PageWrapper } from '../../../components/Elements'
 import useErrorHandler from '../../../hooks/useErrorHandler'
 import { IResearch } from '../../../sharedTypes'
 import api from '../../../utils/api'
@@ -12,7 +12,17 @@ import Research from './Research'
 
 const Researches: React.FC<RouteComponentProps> = () => {
   const [researches, setResearches] = React.useState<IResearch[]>([])
+  const [filterText, setFilterText] = React.useState<string>('')
+
   const handleError = useErrorHandler()
+
+  const filterResearches = () =>
+    researches.filter(
+      research =>
+        !filterText ||
+        research.title.toLowerCase().includes(filterText) ||
+        research.description.toLowerCase().includes(filterText)
+    )
 
   React.useEffect(() => {
     api.research
@@ -24,10 +34,14 @@ const Researches: React.FC<RouteComponentProps> = () => {
   return (
     <PageWrapper>
       <Heading>Research</Heading>
+      <CustomInputGroup>
+        <label>Search for a resource</label>
+        <input value={filterText} onChange={e => setFilterText(e.currentTarget.value.toLowerCase())} />
+      </CustomInputGroup>
       {researches.length > 0 && (
         <ResearchList data-testid="research">
           <DynamicSection>
-            {researches.map(research => (
+            {filterResearches().map(research => (
               <Research key={research.title} research={research} />
             ))}
           </DynamicSection>
@@ -42,4 +56,10 @@ const ResearchList = styled.div`
   ${media.tabletLand`
     padding-top: 1.6rem;
   `}
+`
+
+const CustomInputGroup = styled(InputGroup)`
+  max-width: 60rem;
+  margin: 0 auto;
+  padding-bottom: 4.8rem;
 `

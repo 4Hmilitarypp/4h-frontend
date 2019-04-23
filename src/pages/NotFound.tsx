@@ -2,6 +2,7 @@ import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { Heading, Link, PageWrapper, Section } from '../components/Elements'
+import { media } from '../utils/mixins'
 
 const NotFound: React.FC<RouteComponentProps> = () => (
   <PageWrapper>
@@ -26,7 +27,13 @@ const NotFoundHeading = styled(Heading)`
 const CustomP = styled.p`
   font-size: 2rem;
   padding-bottom: 2rem;
+  ${media.tabletPort`
+    font-size: 1.8rem;
+  `}
 `
 const CustomLink = styled(Link)`
   font-size: 2rem;
+  ${media.tabletPort`
+    font-size: 1.8rem;
+  `}
 `

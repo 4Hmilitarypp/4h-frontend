@@ -1,8 +1,11 @@
 import { RouteComponentProps } from '@reach/router'
 import { format } from 'date-fns'
+import Downshift from 'downshift'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { P, SubHeading } from '../components/Elements'
+import { theme } from '../App'
+import { Heading, InputGroup, P, SubHeading } from '../components/Elements'
+import Icon from '../components/Icon'
 import useErrorHandler from '../hooks/useErrorHandler'
 import useHash from '../hooks/useHash'
 import { ICamp } from '../sharedTypes'
@@ -15,74 +18,196 @@ const Events: React.FC<RouteComponentProps> = ({ location }) => {
   React.useEffect(() => window.scrollTo(0, 0), [])
   const handleError = useErrorHandler()
 
+  const sortCampsByDate = (campA: ICamp, campB: ICamp) => {
+    if (!campA.dates.length) return 1
+    if (!campB.dates.length) return -1
+    return campA.dates[0].beginDate > campB.dates[0].beginDate ? 1 : -1
+  }
+
   const [camps, setCamps] = React.useState<ICamp[]>([])
   React.useEffect(() => {
     api.camps
       .get()
       .then(c => {
-        const sorted = c.sort((a, b) => {
-          if (!a.featuredImage && !b.featuredImage) {
-            if (a.dates[0]) return !b.dates[0] || a.dates[0].beginDate < b.dates[0].beginDate ? -1 : 1
-            return 1
-          }
-          if (!a.featuredImage || !a.dates[0]) return 1
-          if (!b.featuredImage || !b.dates[0]) return -1
-          return a.dates[0].beginDate < b.dates[0].beginDate ? -1 : 1
-        })
+        const sorted = c.sort(sortCampsByDate)
         setCamps(sorted)
       })
       .catch(handleError)
   }, [])
+
+  const [filterState, setFilterState] = React.useState<string>('All')
+
+  const getFilteredCamps = () => [
+    { state: 'All' },
+    ...camps
+      .sort((a, b) => (a.state > b.state ? 1 : -1))
+      .reduce<ICamp[]>((arr, item) => {
+        if (!arr.some(camp => camp.state === item.state)) arr.push(item)
+        return arr
+      }, []),
+  ]
+
   return (
-    <>
-      {camps.map(camp => (
-        <div key={camp._id}>
-          {camp.featuredImage ? (
-            <CampImage src={camp.featuredImage.url} alt={camp.featuredImage.alt} />
-          ) : (
-            <BlankImage />
-          )}
-          <CampInfo>
-            <CampTitleSection>
-              <TitleCard>
-                <CampHeading>{camp.title}</CampHeading>
-                <CampLocation>{`${camp.city}, ${camp.state}`}</CampLocation>
-              </TitleCard>
-              <CampDescriptionSection>
-                <CampDescriptionTitle>{camp.descriptionTitle}</CampDescriptionTitle>
-                <CampDescription>{camp.description}</CampDescription>
-              </CampDescriptionSection>
-            </CampTitleSection>
-            <CampDetailsSection>
-              <CampDetailsWrapper>
-                <CampDetailsHeading>Age Range</CampDetailsHeading>
-                <CustomP>{camp.ageRange}</CustomP>
-                <CampDetailsHeading>Camp dates for 2019</CampDetailsHeading>
-                {camp.dates.map(date => (
-                  <CustomP key={camp.title + date.beginDate}>{`${format(date.beginDate, 'ddd, MMM D')} - ${format(
-                    date.endDate,
-                    'ddd, MMM D'
-                  )}`}</CustomP>
+    <div>
+      <Heading>Upcoming Events</Heading>
+      <Downshift
+        onChange={selection => setFilterState(selection ? selection.state : '')}
+        itemToString={item => (item ? item.state : '')}
+        initialInputValue="All"
+      >
+        {({
+          closeMenu,
+          getRootProps,
+          getInputProps,
+          getItemProps,
+          getLabelProps,
+          getMenuProps,
+          highlightedIndex,
+          isOpen,
+          openMenu,
+        }) => (
+          <DownshiftContainer {...getRootProps()}>
+            <FindInputGroup>
+              <label {...getLabelProps()}>Filter Events By State</label>
+              <div style={{ position: 'relative' }}>
+                <RequestInput
+                  {...getInputProps()}
+                  readOnly={true}
+                  onClick={() => (isOpen ? closeMenu() : openMenu())}
+                />
+                <ControllerButton
+                  onClick={() => (isOpen ? closeMenu() : openMenu())}
+                  data-testid="controller-button"
+                  type="button"
+                >
+                  <Icon name="arrow" isOpen={isOpen} />
+                </ControllerButton>
+              </div>
+            </FindInputGroup>
+            {isOpen ? (
+              <Menu {...getMenuProps()}>
+                {getFilteredCamps().map((item, index) => (
+                  <Item
+                    key="filler"
+                    {...getItemProps({
+                      item,
+                      key: item.state,
+                      style: {
+                        background: index === highlightedIndex ? theme.primary : '',
+                        color: index === highlightedIndex ? theme.white : theme.primaryGrey,
+                      },
+                    })}
+                  >
+                    {item && item.state}
+                  </Item>
                 ))}
-                <CampDetailsHeading>Get More Information</CampDetailsHeading>
-                {camp.contact.name && <CustomP>{camp.contact.name}</CustomP>}
-                {camp.contact.email && <CustomA href={`mailto:${camp.contact.email}`}>{camp.contact.email}</CustomA>}
-                {camp.contact.phoneNumber && <CustomP>{camp.contact.phoneNumber}</CustomP>}
-                {camp.contact.url && (
-                  <CustomP>
-                    <CustomA href={camp.contact.url}>{camp.contact.urlText || camp.contact.url}</CustomA>
-                  </CustomP>
-                )}
-              </CampDetailsWrapper>
-            </CampDetailsSection>
-          </CampInfo>
-        </div>
-      ))}
-    </>
+              </Menu>
+            ) : null}
+          </DownshiftContainer>
+        )}
+      </Downshift>
+      <CampsWrapper>
+        {camps
+          .filter(camp => (filterState === 'All' ? true : camp.state === filterState))
+          .sort(sortCampsByDate)
+          .map(camp => (
+            <div key={camp._id}>
+              {camp.featuredImage ? (
+                <CampImage src={camp.featuredImage.url} alt={camp.featuredImage.alt} />
+              ) : (
+                <BlankImage />
+              )}
+              <CampInfo>
+                <CampTitleSection>
+                  <TitleCard>
+                    <CampHeading>{camp.title}</CampHeading>
+                    <CampLocation>{`${camp.city}, ${camp.state}`}</CampLocation>
+                  </TitleCard>
+                  <CampDescriptionSection>
+                    <CampDescriptionTitle>{camp.descriptionTitle}</CampDescriptionTitle>
+                    <CampDescription>{camp.description}</CampDescription>
+                  </CampDescriptionSection>
+                </CampTitleSection>
+                <CampDetailsSection>
+                  <CampDetailsWrapper>
+                    <CampDetailsHeading>Age Range</CampDetailsHeading>
+                    <CustomP>{camp.ageRange}</CustomP>
+                    <CampDetailsHeading>Camp dates for 2019</CampDetailsHeading>
+                    {camp.dates.map(date => (
+                      <CustomP key={camp.title + date.beginDate}>{`${format(date.beginDate, 'ddd, MMM D')} - ${format(
+                        date.endDate,
+                        'ddd, MMM D'
+                      )}`}</CustomP>
+                    ))}
+                    <CampDetailsHeading>Get More Information</CampDetailsHeading>
+                    {camp.contact.name && <CustomP>{camp.contact.name}</CustomP>}
+                    {camp.contact.email && (
+                      <CustomA href={`mailto:${camp.contact.email}`}>{camp.contact.email}</CustomA>
+                    )}
+                    {camp.contact.phoneNumber && <CustomP>{camp.contact.phoneNumber}</CustomP>}
+                    {camp.contact.url && (
+                      <CustomA href={camp.contact.url}>{camp.contact.urlText || camp.contact.url}</CustomA>
+                    )}
+                    {<CustomA href={camp.flyerUrl}>Camp Flyer</CustomA>}
+                  </CampDetailsWrapper>
+                </CampDetailsSection>
+              </CampInfo>
+            </div>
+          ))}
+      </CampsWrapper>
+    </div>
   )
 }
 export default Events
 
+const DownshiftContainer = styled.div`
+  position: relative;
+  max-width: 40rem;
+  margin: 0 auto;
+`
+const FindInputGroup = styled(InputGroup)`
+  margin-bottom: 0rem;
+`
+const RequestInput = styled.input`
+  background: ${props => props.theme.primaryBackground};
+  height: 3.7rem;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+  }
+`
+const ControllerButton = styled.button`
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  width: 4rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`
+const Menu = styled.ul`
+  ${elevation(3)};
+  background: ${props => props.theme.primaryBackground};
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+`
+const Item = styled.li`
+  padding: 0.4rem 1.5rem;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+  }
+`
+
+const CampsWrapper = styled.div`
+  padding-top: 3.2rem;
+`
 const CampImage = styled.img`
   width: 100%;
   height: 70vh;
@@ -91,7 +216,7 @@ const CampImage = styled.img`
 `
 const BlankImage = styled.div`
   width: 100%;
-  height: 70vh;
+  height: 20vh;
   display: block;
 `
 const CampInfo = styled.div`
@@ -196,5 +321,6 @@ const CustomA = styled.a`
   text-decoration: underline;
   &:hover {
     opacity: 0.8;
+    cursor: pointer;
   }
 `

@@ -90,11 +90,8 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
                   <FindInput className="input" {...getInputProps()} placeholder="Kansas" />
                   <ControllerButton
                     onClick={() => {
-                      if (!isOpen) {
-                        openMenu()
-                      } else {
-                        closeMenu()
-                      }
+                      if (!isOpen) openMenu()
+                      else closeMenu()
                       if (selectedLiaison) {
                         clearSelection()
                         openMenu()

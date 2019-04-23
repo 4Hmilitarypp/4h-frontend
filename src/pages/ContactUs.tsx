@@ -270,6 +270,9 @@ const NameAndEmail = styled.div`
 `
 const NameInputGroup = styled(InputGroup)`
   margin-right: 3.2rem;
+  ${media.tabletPort`
+    margin-right: 0;
+  `}
 `
 const MessageGroup = styled(InputGroup)`
   margin-top: 1.6rem;

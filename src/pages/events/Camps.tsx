@@ -3,16 +3,16 @@ import { format } from 'date-fns'
 import Downshift from 'downshift'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { theme } from '../App'
-import { Heading, InputGroup, P, SubHeading } from '../components/Elements'
-import Icon from '../components/Icon'
-import useErrorHandler from '../hooks/useErrorHandler'
-import useHash from '../hooks/useHash'
-import { ICamp } from '../sharedTypes'
-import api from '../utils/api'
-import { elevation, media } from '../utils/mixins'
+import { theme } from '../../App'
+import { Heading, InputGroup, P, SubHeading } from '../../components/Elements'
+import Icon from '../../components/Icon'
+import useErrorHandler from '../../hooks/useErrorHandler'
+import useHash from '../../hooks/useHash'
+import { ICamp } from '../../sharedTypes'
+import api from '../../utils/api'
+import { elevation, media } from '../../utils/mixins'
 
-const Events: React.FC<RouteComponentProps> = ({ location }) => {
+const Camps: React.FC<RouteComponentProps> = ({ location }) => {
   const pastEventRef = React.useRef<HTMLHeadingElement>(null)
   useHash({ refToFocus: pastEventRef, hash: '#past-events', location })
   React.useEffect(() => window.scrollTo(0, 0), [])
@@ -49,7 +49,7 @@ const Events: React.FC<RouteComponentProps> = ({ location }) => {
 
   return (
     <div>
-      <Heading>Upcoming Events</Heading>
+      <Heading>Upcoming Camps</Heading>
       <Downshift
         onChange={selection => setFilterState(selection ? selection.state : '')}
         itemToString={item => (item ? item.state : '')}
@@ -68,7 +68,7 @@ const Events: React.FC<RouteComponentProps> = ({ location }) => {
         }) => (
           <DownshiftContainer {...getRootProps()}>
             <FindInputGroup>
-              <label {...getLabelProps()}>Filter Events By State</label>
+              <label {...getLabelProps()}>Filter Camps By State</label>
               <div style={{ position: 'relative' }}>
                 <RequestInput
                   {...getInputProps()}
@@ -158,7 +158,7 @@ const Events: React.FC<RouteComponentProps> = ({ location }) => {
     </div>
   )
 }
-export default Events
+export default Camps
 
 const DownshiftContainer = styled.div`
   position: relative;

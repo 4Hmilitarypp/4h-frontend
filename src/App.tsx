@@ -8,7 +8,7 @@ import About from './pages/About'
 import About4HClub from './pages/About4HClub'
 import ContactUs from './pages/ContactUs'
 import Educator from './pages/educator/Educator'
-import Events from './pages/Events'
+import Events from './pages/events/Events'
 import FindLiaison from './pages/findLiaison/FindLiaison'
 import GetInvolved4HClub from './pages/GetInvolved4HClub'
 import Home from './pages/Home'
@@ -18,6 +18,7 @@ import NotFound from './pages/NotFound'
 import Partner from './pages/partner/Partner'
 import Partners from './pages/partners/Partners'
 import Photos from './pages/Photos'
+import PurpleUp from './pages/PurpleUp'
 
 export const theme = {
   lightGrey: 'hsl(150, 20%, 40%)',
@@ -74,7 +75,7 @@ const App: React.FC = () => {
             <About path="/about" />
             <Partners path="/partners" />
             <Partner path="/partners/:slug" />
-            <Events path="/events" />
+            <Events path="/events/*" />
             <Photos path="/photos" />
             <About4HClub path="/4-h-club" />
             <GetInvolved4HClub path="/4-h-club/get-involved" />
@@ -83,6 +84,7 @@ const App: React.FC = () => {
             <ContactUs path="contact-us" />
             <Icons path="/icons" />
             <JobApplication path="/job-application" />
+            <PurpleUp path="purple-up" />
 
             <Redirect
               from="/educator-staff/resources/curriculum/adult_babysitting/CYSitter%20facilitator%20guide%2008%20complete%20CYSitter%20164%20pg.pdf"
@@ -131,6 +133,7 @@ const App: React.FC = () => {
               to="/resources/webinars/mancini-resources"
               noThrow={true}
             />
+            <Redirect from="/military-liaisons/resources/purple_up.html" to="/purple-up" noThrow={true} />
 
             <Redirect from="/educator-staff/resources/curriculum/*" to="/resources/resources" noThrow={true} />
             <Redirect from="/educator-staff/recorded_webinars/*" to="/resources/webinars" noThrow={true} />

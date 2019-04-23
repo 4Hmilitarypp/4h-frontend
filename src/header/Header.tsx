@@ -42,14 +42,14 @@ const Header: React.FC<RouteComponentProps> = () => {
               <LinkDescription>Learn about the 4-H Military Partnership</LinkDescription>
             </StyledDropdownLink>
           </LinkGroup>
-          <LinkGroup title="Events" to="/events/" manageBackground={backgroundManagement}>
+          <LinkGroup title="Events" to="/events" manageBackground={backgroundManagement}>
             {/* <StyledDropdownLink to="/events/#past-events" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Past Events</LinkTitle>
               <LinkDescription>Check out some of the past events we have sponsored</LinkDescription>
             </StyledDropdownLink> */}
-            <StyledDropdownLink to="/events" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>Upcoming Events</LinkTitle>
-              <LinkDescription>Get involved with one of our upcoming events</LinkDescription>
+            <StyledDropdownLink to="/events/camps" onClick={() => setHamburgerActive(false)}>
+              <LinkTitle>Upcoming Camps</LinkTitle>
+              <LinkDescription>There are dozens of camps youth can attend</LinkDescription>
             </StyledDropdownLink>
             {/* <StyledDropdownLink to="/photos" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Photos</LinkTitle>

@@ -27,6 +27,9 @@ const emails = {
 const liaisons = {
   get: (): Promise<{ liaisons: ILiaison[] }> => requests.get('/liaisons'),
 }
+const pageInfo = {
+  get: (page: string): Promise<any> => requests.get(`/page-info/${page}`),
+}
 const partners = {
   get: (): Promise<IPartnerSection[]> => requests.get('/partners'),
   getBySlug: (slug: string): Promise<IPartner> => requests.get(`/partners/slug/${slug}`),
@@ -59,6 +62,7 @@ const api = {
   emails,
   init,
   liaisons,
+  pageInfo,
   partners,
   research,
   resources,

@@ -3,10 +3,20 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 import { Button, P, SubHeading } from '../components/Elements'
 import Icon from '../components/Icon'
+import useErrorHandler from '../hooks/useErrorHandler'
+import api from '../utils/api'
 import { elevation, media, transition } from '../utils/mixins'
 
 const Home: React.FC<RouteComponentProps> = () => {
-  React.useEffect(() => window.scrollTo(0, 0), [])
+  const handleError = useErrorHandler()
+  const [homeInfo, setHomeInfo] = React.useState<any>()
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
+    api.pageInfo
+      .get('home')
+      .then(setHomeInfo)
+      .catch(handleError)
+  }, [])
   return (
     <div>
       <HeroOverlay>
@@ -46,19 +56,13 @@ const Home: React.FC<RouteComponentProps> = () => {
           </MissionP>
         </MissionText>
       </Mission>
-      <FeaturedSection>
-        <FeaturedTitle>It's Purple Up Month!</FeaturedTitle>
-        <FeaturedText>
-          The month of April provides an opportunity to recognize and honor the service of our youngest heroes, military
-          children. Established by former Secretary of Defense Caspar Weinberger in 1986, the designation of April as
-          the Month of the Military Child acknowledges the significant role military youth play in our communities. They
-          are resilient and take pride in their service to our Country. They deserve our appreciation and support.
-        </FeaturedText>
-        <FeaturedImage
-          src="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto,w_1200,h_800/v1555224324/purple-up-poster.jpg"
-          alt="a purple up poster"
-        />
-      </FeaturedSection>
+      {homeInfo && (
+        <FeaturedSection>
+          <FeaturedTitle>{homeInfo.title}</FeaturedTitle>
+          <FeaturedText>{homeInfo.text}</FeaturedText>
+          <FeaturedImage src={homeInfo.featuredImage.url} alt={homeInfo.featuredImage.alt} />
+        </FeaturedSection>
+      )}
       <CardLinksHeading>Take a Look Around!</CardLinksHeading>
       <CardLinks>
         <CardLink to="about">
@@ -224,7 +228,7 @@ const FeaturedSection = styled.div`
   `}
 `
 const FeaturedText = styled(P)`
-  max-width: 60rem;
+  max-width: 80rem;
   font-size: 1.8rem;
   margin: 0 auto;
   padding: 0 2.4rem 3.6rem;

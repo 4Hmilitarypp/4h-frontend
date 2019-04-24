@@ -69,6 +69,12 @@ export const Button: any = styled.button`
     cursor: pointer;
   }
 `
+export const OutlineButton = styled(Button)`
+  border: 2px solid ${props => props.theme.primaryLink};
+  padding: 0.4rem 1.2rem;
+  background: none;
+  color: ${props => props.theme.primaryLink};
+`
 export const SecondaryButton = styled(Button)`
   background: ${props => props.theme.secondary};
 `

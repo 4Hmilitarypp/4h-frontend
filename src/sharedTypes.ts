@@ -111,9 +111,11 @@ export interface ICamp {
   description: string
   descriptionTitle: string
   featuredImage?: IImage
-  flyerUrl: string
+  flyerUrl?: string
+  serviceBranch: 'Air Force' | 'Navy' | 'Army'
   state: string
   title: string
+  type: 'Residential' | 'Day'
 }
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>

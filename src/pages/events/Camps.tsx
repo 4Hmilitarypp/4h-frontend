@@ -4,7 +4,8 @@ import Downshift from 'downshift'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { theme } from '../../App'
-import { Heading, InputGroup, P, SubHeading } from '../../components/Elements'
+import { Button, Heading, InputGroup, OutlineButton, P, SubHeading } from '../../components/Elements'
+import EmbedDocument from '../../components/EmbedDocument'
 import Icon from '../../components/Icon'
 import useErrorHandler from '../../hooks/useErrorHandler'
 import useHash from '../../hooks/useHash'
@@ -35,8 +36,9 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
       .catch(handleError)
   }, [])
 
-  const [filterState, setFilterState] = React.useState<string>('All')
+  const [clickedFlyer, setClickedFlyer] = React.useState<string | false | undefined>()
 
+  const [filterState, setFilterState] = React.useState<string>('All')
   const getFilteredCamps = () => [
     { state: 'All' },
     ...camps
@@ -50,6 +52,7 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
   return (
     <div>
       <Heading>Upcoming Camps</Heading>
+      <EmbedDocument url={clickedFlyer || ''} title="Camp Flyer" open={!!clickedFlyer} setOpen={setClickedFlyer} />
       <Downshift
         onChange={selection => setFilterState(selection ? selection.state : '')}
         itemToString={item => (item ? item.state : '')}
@@ -129,6 +132,11 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
                   </CampDescriptionSection>
                 </CampTitleSection>
                 <CampDetailsSection>
+                  {(camp.type || camp.serviceBranch) && (
+                    <CampType>
+                      {camp.serviceBranch} {camp.type} Camp
+                    </CampType>
+                  )}
                   <CampDetailsWrapper>
                     <CampDetailsHeading>Age Range</CampDetailsHeading>
                     <CustomP>{camp.ageRange}</CustomP>
@@ -145,10 +153,14 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
                       <CustomA href={`mailto:${camp.contact.email}`}>{camp.contact.email}</CustomA>
                     )}
                     {camp.contact.phoneNumber && <CustomP>{camp.contact.phoneNumber}</CustomP>}
-                    {camp.contact.url && (
-                      <CustomA href={camp.contact.url}>{camp.contact.urlText || camp.contact.url}</CustomA>
-                    )}
-                    {<CustomA href={camp.flyerUrl}>Camp Flyer</CustomA>}
+                    <Buttons>
+                      {camp.contact.url && (
+                        <CustomOutlineButton as="a" href={camp.contact.url}>
+                          {camp.contact.urlText || camp.contact.url}
+                        </CustomOutlineButton>
+                      )}
+                      {camp.flyerUrl && <Button onClick={() => setClickedFlyer(camp.flyerUrl)}>Camp Flyer</Button>}
+                    </Buttons>
                   </CampDetailsWrapper>
                 </CampDetailsSection>
               </CampInfo>
@@ -270,12 +282,24 @@ const CampLocation = styled.span`
   `}
 `
 const CampDescriptionSection = styled.section`
-  padding: 4.8rem 0 9.6rem;
+  padding: 5.2rem 0 9.6rem;
   max-width: 65rem;
   margin: 0 auto;
   ${media.tabletLand`
     padding: 3.6rem 0 3.2rem;
   `}
+`
+const CampType = styled.span`
+  background: ${props => props.theme.primary};
+  color: ${props => props.theme.white};
+  border-radius: 50px;
+  padding: 0.8rem 1.6rem;
+  font-size: 1.4rem;
+  position: absolute;
+  text-align: center;
+  line-height: 0.7;
+  left: 2rem;
+  top: 2rem;
 `
 const CampDescriptionTitle = styled.h3`
   font-size: 2.5rem;
@@ -292,9 +316,9 @@ const CampDetailsSection = styled.section`
   width: 50%;
   vertical-align: top;
   padding: 1.6rem 0 9.6rem;
-  padding-top: 1.6rem;
   display: inline-flex;
   justify-content: center;
+  position: relative;
   ${media.tabletLand`
     width: 100%;
     padding: .8rem 2rem 3.2rem;
@@ -323,4 +347,15 @@ const CustomA = styled.a`
     opacity: 0.8;
     cursor: pointer;
   }
+`
+const Buttons = styled.div`
+  padding: 2.4rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+`
+const CustomOutlineButton = styled(OutlineButton)`
+  background: ${props => props.theme.white};
+  margin-bottom: 1.6rem;
 `

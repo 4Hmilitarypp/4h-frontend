@@ -179,6 +179,7 @@ const DownshiftContainer = styled.div`
 `
 const FindInputGroup = styled(InputGroup)`
   margin-bottom: 0rem;
+  padding: 0 1.6rem;
 `
 const RequestInput = styled.input`
   background: ${props => props.theme.primaryBackground};
@@ -324,14 +325,15 @@ const CampDetailsSection = styled.section`
     padding: .8rem 2rem 3.2rem;
   `}
 `
-const CampDetailsWrapper = styled.div``
+const CampDetailsWrapper = styled.div`
+  word-break: break-all;
+`
 const CampDetailsHeading = styled.h3`
   font-size: 2.5rem;
   line-height: 1;
   padding: 4.8rem 0 1.2rem;
   ${media.tabletLand`
     font-size: 2rem;
-    padding: 2.4rem 0 1.2rem;
   `}
 `
 const CustomP = styled(P)`
@@ -354,8 +356,13 @@ const Buttons = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  ${media.tabletPort`
+    padding-bottom: .8rem;
+  `}
 `
 const CustomOutlineButton = styled(OutlineButton)`
   background: ${props => props.theme.white};
   margin-bottom: 1.6rem;
+  text-align: center;
+  word-break: normal;
 `

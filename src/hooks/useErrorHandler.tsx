@@ -1,9 +1,13 @@
+import * as Sentry from '@sentry/browser'
 import * as React from 'react'
 import FlashContext from '../contexts/FlashContext'
 import { IApiError } from '../sharedTypes'
 
 export const formatError = (err: IApiError) => {
   if (err.response) {
+    if (err.response.status === 404) {
+      Sentry.captureEvent({ message: `client-server-404:${(err as any).config.url}` })
+    }
     if (err.response.data) {
       return { message: err.response.data.message, status: err.response.status }
     }

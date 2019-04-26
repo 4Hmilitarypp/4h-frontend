@@ -1,6 +1,7 @@
 import { Redirect, Router } from '@reach/router'
 import * as React from 'react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components/macro'
+import ErrorBoundary from './components/ErrorBoundry'
 import FlashContext, { useFlash } from './contexts/FlashContext'
 import Flash from './Flash'
 import Header from './header/Header'
@@ -63,86 +64,92 @@ const App: React.FC = () => {
   const { flashState, resetFlashState, setFlashState } = useFlash()
   return (
     <ThemeProvider theme={theme}>
-      <div data-testid="app">
-        <GlobalStyle />
-        <FlashContext.Provider value={{ ...flashState, reset: resetFlashState, set: setFlashState }}>
-          <Flash />
-          <Router>
-            <Header path="/*" />
-          </Router>
-          <Router primary={false}>
-            <Home path="/" />
-            <About path="/about" />
-            <Partners path="/partners" />
-            <Partner path="/partners/:slug" />
-            <Events path="/events/*" />
-            <Photos path="/photos" />
-            <About4HClub path="/4-h-club" />
-            <GetInvolved4HClub path="/4-h-club/get-involved" />
-            <Educator path="/resources/*" />
-            <FindLiaison path="/find-a-liaison" />
-            <ContactUs path="contact-us" />
-            <Icons path="/icons" />
-            <JobApplication path="/job-application" />
-            <PurpleUp path="purple-up" />
+      <ErrorBoundary>
+        <div data-testid="app">
+          <GlobalStyle />
+          <FlashContext.Provider value={{ ...flashState, reset: resetFlashState, set: setFlashState }}>
+            <Flash />
+            <Router>
+              <Header path="/*" />
+            </Router>
+            <Router primary={false}>
+              <Home path="/" />
+              <About path="/about" />
+              <Partners path="/partners" />
+              <Partner path="/partners/:slug" />
+              <Events path="/events/*" />
+              <Photos path="/photos" />
+              <About4HClub path="/4-h-club" />
+              <GetInvolved4HClub path="/4-h-club/get-involved" />
+              <Educator path="/resources/*" />
+              <FindLiaison path="/find-a-liaison" />
+              <ContactUs path="contact-us" />
+              <Icons path="/icons" />
+              <JobApplication path="/job-application" />
+              <PurpleUp path="purple-up" />
 
-            <Redirect
-              from="/educator-staff/resources/curriculum/adult_babysitting/CYSitter%20facilitator%20guide%2008%20complete%20CYSitter%20164%20pg.pdf"
-              to="/resources/educator-resources/Adult-Babysitting"
-              noThrow={true}
-            />
-            <Redirect
-              from="/educator-staff/resources/curriculum/youth_babysitting/BabysittingStudentGuide.pdf"
-              to="/resources/educator-resources/Youth-Babysitting"
-              noThrow={true}
-            />
-            <Redirect
-              from="/educator-staff/resources/curriculum/youth_babysitter.html"
-              to="/resources/educator-resources/Youth-Babysitting"
-              noThrow={true}
-            />
-            <Redirect
-              from="/educator-staff/resources/curriculum/character_ed.html"
-              to="/resources/educator-resources/Character-Education"
-              noThrow={true}
-            />
-            <Redirect
-              from="/educator-staff/resources/curriculum/4h_101.html"
-              to="/resources/educator-resources/4-H-101:-The-Basics-of-Starting-a-4-H-Club"
-              noThrow={true}
-            />
-            <Redirect
-              from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Bowen%20Martin%20Mancini%202013%20resilience%20of%20military%20families%20theoreical%20perspectives.pdf"
-              to="/resources/webinars/mancini-resources"
-              noThrow={true}
-            />
-            <Redirect from="/military-family/af-cyp/index.html" to="/partners/air-force" noThrow={true} />
-            <Redirect from="/educator-staff/navy-cyp/index.html" to="/partners/navy" noThrow={true} />
-            <Redirect from="/4h_military_partnerships/index.html" to="/" noThrow={true} />
-            <Redirect from="/military-liaisons/cyf-camps/ang4hcamps.html" to="/events" noThrow={true} />
-            <Redirect from="/military-family/reserves/reserves.html" to="/partners/air-force-reserves" noThrow={true} />
-            <Redirect from="/military-family/4h-clubs/index.html" to="/4-h-club" noThrow={true} />
-            <Redirect from="/educator-staff/dod_usda/index.html" to="/partners/dod-usda" noThrow={true} />
-            <Redirect
-              from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Bowen%20Martin%20Mancini%202013%20resilience%20of%20military%20families%20theoreical%20perspectives.pdf"
-              to="/resources/webinars/mancini-resources"
-              noThrow={true}
-            />
-            <Redirect
-              from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Mancini%20Bowen%202013%20Families%20and%20Communities.pdf"
-              to="/resources/webinars/mancini-resources"
-              noThrow={true}
-            />
-            <Redirect from="/military-liaisons/resources/purple_up.html" to="/purple-up" noThrow={true} />
+              <Redirect
+                from="/educator-staff/resources/curriculum/adult_babysitting/CYSitter%20facilitator%20guide%2008%20complete%20CYSitter%20164%20pg.pdf"
+                to="/resources/educator-resources/Adult-Babysitting"
+                noThrow={true}
+              />
+              <Redirect
+                from="/educator-staff/resources/curriculum/youth_babysitting/BabysittingStudentGuide.pdf"
+                to="/resources/educator-resources/Youth-Babysitting"
+                noThrow={true}
+              />
+              <Redirect
+                from="/educator-staff/resources/curriculum/youth_babysitter.html"
+                to="/resources/educator-resources/Youth-Babysitting"
+                noThrow={true}
+              />
+              <Redirect
+                from="/educator-staff/resources/curriculum/character_ed.html"
+                to="/resources/educator-resources/Character-Education"
+                noThrow={true}
+              />
+              <Redirect
+                from="/educator-staff/resources/curriculum/4h_101.html"
+                to="/resources/educator-resources/4-H-101:-The-Basics-of-Starting-a-4-H-Club"
+                noThrow={true}
+              />
+              <Redirect
+                from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Bowen%20Martin%20Mancini%202013%20resilience%20of%20military%20families%20theoreical%20perspectives.pdf"
+                to="/resources/webinars/mancini-resources"
+                noThrow={true}
+              />
+              <Redirect from="/military-family/af-cyp/index.html" to="/partners/air-force" noThrow={true} />
+              <Redirect from="/educator-staff/navy-cyp/index.html" to="/partners/navy" noThrow={true} />
+              <Redirect from="/4h_military_partnerships/index.html" to="/" noThrow={true} />
+              <Redirect from="/military-liaisons/cyf-camps/ang4hcamps.html" to="/events" noThrow={true} />
+              <Redirect
+                from="/military-family/reserves/reserves.html"
+                to="/partners/air-force-reserves"
+                noThrow={true}
+              />
+              <Redirect from="/military-family/4h-clubs/index.html" to="/4-h-club" noThrow={true} />
+              <Redirect from="/educator-staff/dod_usda/index.html" to="/partners/dod-usda" noThrow={true} />
+              <Redirect
+                from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Bowen%20Martin%20Mancini%202013%20resilience%20of%20military%20families%20theoreical%20perspectives.pdf"
+                to="/resources/webinars/mancini-resources"
+                noThrow={true}
+              />
+              <Redirect
+                from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Mancini%20Bowen%202013%20Families%20and%20Communities.pdf"
+                to="/resources/webinars/mancini-resources"
+                noThrow={true}
+              />
+              <Redirect from="/military-liaisons/resources/purple_up.html" to="/purple-up" noThrow={true} />
 
-            <Redirect from="/educator-staff/resources/curriculum/*" to="/resources/resources" noThrow={true} />
-            <Redirect from="/educator-staff/recorded_webinars/*" to="/resources/webinars" noThrow={true} />
-            <Redirect from="/military-liaisons/recorded_webinars/*" to="/resources/webinars" noThrow={true} />
+              <Redirect from="/educator-staff/resources/curriculum/*" to="/resources/resources" noThrow={true} />
+              <Redirect from="/educator-staff/recorded_webinars/*" to="/resources/webinars" noThrow={true} />
+              <Redirect from="/military-liaisons/recorded_webinars/*" to="/resources/webinars" noThrow={true} />
 
-            <NotFound default={true} />
-          </Router>
-        </FlashContext.Provider>
-      </div>
+              <NotFound default={true} />
+            </Router>
+          </FlashContext.Provider>
+        </div>
+      </ErrorBoundary>
     </ThemeProvider>
   )
 }

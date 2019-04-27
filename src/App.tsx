@@ -104,6 +104,11 @@ const App: React.FC = () => {
                 noThrow={true}
               />
               <Redirect
+                from="/military-liaisons/resources/curriculum/youth_babysitter.html"
+                to="/resources/educator-resources/Youth-Babysitting"
+                noThrow={true}
+              />
+              <Redirect
                 from="/educator-staff/resources/curriculum/character_ed.html"
                 to="/resources/educator-resources/Character-Education"
                 noThrow={true}
@@ -119,6 +124,8 @@ const App: React.FC = () => {
                 noThrow={true}
               />
               <Redirect from="/military-family/af-cyp/index.html" to="/partners/air-force" noThrow={true} />
+              <Redirect from="/educator-staff/af-cyp/index.html" to="/partners/air-force" noThrow={true} />
+              <Redirect from="/military-family/navy-cyp/index.html" to="/partners/navy" noThrow={true} />
               <Redirect from="/educator-staff/navy-cyp/index.html" to="/partners/navy" noThrow={true} />
               <Redirect from="/4h_military_partnerships/index.html" to="/" noThrow={true} />
               <Redirect from="/military-liaisons/cyf-camps/ang4hcamps.html" to="/events" noThrow={true} />
@@ -140,8 +147,18 @@ const App: React.FC = () => {
                 noThrow={true}
               />
               <Redirect from="/military-liaisons/resources/purple_up.html" to="/purple-up" noThrow={true} />
+              <Redirect from="/military-liaisons/index.html" to="/find-a-liaison" noThrow={true} />
+              <Redirect
+                from="/military-family/dod_usda/2015-military-camps/2015-camps/index.html"
+                to="/events/camps"
+                noThrow={true}
+              />
 
-              <Redirect from="/educator-staff/resources/curriculum/*" to="/resources/resources" noThrow={true} />
+              <Redirect
+                from="/educator-staff/resources/curriculum/*"
+                to="/resources/educator-resources"
+                noThrow={true}
+              />
               <Redirect from="/educator-staff/recorded_webinars/*" to="/resources/webinars" noThrow={true} />
               <Redirect from="/military-liaisons/recorded_webinars/*" to="/resources/webinars" noThrow={true} />
 

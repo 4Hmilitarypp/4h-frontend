@@ -78,9 +78,7 @@ const Partner: React.FC<IProps> = ({ slug }) => {
             </ListWrapper>
           )}
         </PartnerWrapper>
-      ) : (
-        <h1>Partner Not Found</h1>
-      )}
+      ) : null}
     </CustomPageWrapper>
   )
 }

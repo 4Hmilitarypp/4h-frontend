@@ -93,7 +93,7 @@ const About: React.FC<RouteComponentProps> = () => {
       <SectionDark>
         <HelpfulHeading>Helpful Links</HelpfulHeading>
         <LinkSection>
-          <LinksHeading>Military family members</LinksHeading>
+          <LinksHeading>Military Family Members</LinksHeading>
           <Links>
             <LinkItem to="/find-a-liaison">
               Connect with your state 4-H office <Chevron name="chevron-right-circle" width={20} height={20} />
@@ -107,7 +107,7 @@ const About: React.FC<RouteComponentProps> = () => {
           </Links>
         </LinkSection>
         <LinkSection>
-          <LinksHeading>Educators or working with military families</LinksHeading>
+          <LinksHeading>Educators or Volunteers with Military Families</LinksHeading>
           <Links>
             <LinkItem to="/resources/educator-resources">
               View curriculum resources <Chevron name="chevron-right-circle" width={20} height={20} />
@@ -121,7 +121,7 @@ const About: React.FC<RouteComponentProps> = () => {
           </Links>
         </LinkSection>
         <LinkSection>
-          <LinksHeading>Extension 4-H military liaisons</LinksHeading>
+          <LinksHeading>Extension 4-H Military Liaisons</LinksHeading>
           <Links>
             <LinkItem as="a" href="https://cms.4h.wendte.tech">
               Sign into the liaison section <Chevron name="chevron-right-circle" width={20} height={20} />

@@ -28,7 +28,7 @@ const Home: React.FC<RouteComponentProps> = () => {
       <HeroText name="4-hMilitaryPartnerships" />
       <Vision>
         <VisionHeading>
-          Military readiness through 4-H positive youth development for youth, families, and communities
+          Military readiness through 4-H positive youth development for youth, families, and communities.
         </VisionHeading>
       </Vision>
       <Mission>
@@ -39,14 +39,14 @@ const Home: React.FC<RouteComponentProps> = () => {
         <MissionText>
           <MissionSubHeading>Who We Are</MissionSubHeading>
           <MissionP>
-            A collaboration of military and Land Grant University partners who intentionally integrate research-based
+            A collaboration of military and land grant university partners who intentionally integrate research-based
             programs and resources for military-connected youth, families, and communities to thrive.
           </MissionP>
           <MissionSubHeading>What We Do</MissionSubHeading>
           <MissionP>
             4-H Military Partnerships focuses on positive youth development through providing opportunities for youth to
             engage in intentional learning experiences. We partner with 4-H educators to provide them the training and
-            resources they need to succeed in equipping the next generation of leaders
+            resources they need to succeed in equipping the next generation of leaders.
           </MissionP>
           <MissionSubHeading>Why We Do It</MissionSubHeading>
           <MissionP>

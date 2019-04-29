@@ -95,17 +95,22 @@ const App: React.FC = () => {
               />
               <Redirect
                 from="/educator-staff/resources/curriculum/youth_babysitting/BabysittingStudentGuide.pdf"
-                to="/resources/educator-resources/Youth-Babysitting"
+                to="/resources/educator-resources/youth-babysitting"
                 noThrow={true}
               />
               <Redirect
                 from="/educator-staff/resources/curriculum/youth_babysitter.html"
-                to="/resources/educator-resources/Youth-Babysitting"
+                to="/resources/educator-resources/youth-babysitting"
                 noThrow={true}
               />
               <Redirect
                 from="/military-liaisons/resources/curriculum/youth_babysitter.html"
-                to="/resources/educator-resources/Youth-Babysitting"
+                to="/resources/educator-resources/youth-babysitting"
+                noThrow={true}
+              />
+              <Redirect
+                from="/educators/resources/Youth-Babysitting"
+                to="/resources/educator-resources/youth-babysitting"
                 noThrow={true}
               />
               <Redirect
@@ -135,6 +140,7 @@ const App: React.FC = () => {
                 noThrow={true}
               />
               <Redirect from="/military-family/4h-clubs/index.html" to="/4-h-club" noThrow={true} />
+              <Redirect from="/military-liaisons/4h-clubs/index.html" to="/4-h-club" noThrow={true} />
               <Redirect from="/educator-staff/dod_usda/index.html" to="/partners/dod-usda" noThrow={true} />
               <Redirect
                 from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Bowen%20Martin%20Mancini%202013%20resilience%20of%20military%20families%20theoreical%20perspectives.pdf"
@@ -153,7 +159,12 @@ const App: React.FC = () => {
                 to="/events/camps"
                 noThrow={true}
               />
-
+              <Redirect
+                from="/military-family/cyf-camps/2015-ang-afr-camps/ang-afr-camps.html"
+                to="/events/camps"
+                noThrow={true}
+              />
+              <Redirect from="/resources/resources" to="/resources/educator-resources" noThrow={true} />
               <Redirect
                 from="/educator-staff/resources/curriculum/*"
                 to="/resources/educator-resources"

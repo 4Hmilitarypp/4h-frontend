@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { render } from 'react-testing-library'
-import Events from '../Events'
+import Events from '../events/Events'
 
 interface IProps {
   value: string

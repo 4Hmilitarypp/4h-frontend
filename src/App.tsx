@@ -89,6 +89,16 @@ const App: React.FC = () => {
               <PurpleUp path="purple-up" />
 
               <Redirect
+                from="/images/navy%20cyp%20logo.jpg"
+                to="https://res.cloudinary.com/four-hmpp/image/upload/f_auto,q_auto/v1542786191/logos/partners/navy-cyp-logo-with-tagline.png"
+                noThrow={true}
+              />
+              <Redirect
+                from="/military-liaisons/resources/curriculum/training_topics/TT_Experientail_Learning.pdf"
+                to="/resources/educator-resources/4-h-training-topics"
+                noThrow={true}
+              />
+              <Redirect
                 from="/educator-staff/resources/curriculum/adult_babysitting/CYSitter%20facilitator%20guide%2008%20complete%20CYSitter%20164%20pg.pdf"
                 to="/resources/educator-resources/Adult-Babysitting"
                 noThrow={true}
@@ -101,6 +111,11 @@ const App: React.FC = () => {
               <Redirect
                 from="/educator-staff/resources/curriculum/youth_babysitter.html"
                 to="/resources/educator-resources/youth-babysitting"
+                noThrow={true}
+              />
+              <Redirect
+                from="/military-liaisons/resources/curriculum/Army_CYSS_Camping_Manual_Covers_CMYK_June_21_11.pdf"
+                to="/resources/educator-resources/4-hcyss-camp-planning-handbook"
                 noThrow={true}
               />
               <Redirect

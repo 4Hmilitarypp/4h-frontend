@@ -241,6 +241,7 @@ const FeaturedText = styled(P)`
 const FeaturedTitle = styled(SubHeading)``
 const FeaturedImage = styled.img`
   max-width: 80%;
+  max-height: 100vh;
   margin: 0 auto;
   display: block;
   object-fit: cover;

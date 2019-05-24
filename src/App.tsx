@@ -143,10 +143,12 @@ const App: React.FC = () => {
                 to="/resources/webinars/mancini-resources"
                 noThrow={true}
               />
+              <Redirect from="/military-family/" to="/" noThrow={true} />
               <Redirect from="/military-family/af-cyp/index.html" to="/partners/air-force" noThrow={true} />
               <Redirect from="/educator-staff/af-cyp/index.html" to="/partners/air-force" noThrow={true} />
               <Redirect from="/military-family/navy-cyp/index.html" to="/partners/navy" noThrow={true} />
               <Redirect from="/educator-staff/navy-cyp/index.html" to="/partners/navy" noThrow={true} />
+              <Redirect from="/educator-staff/army-cys-project/index.html" to="/partners/army" noThrow={true} />
               <Redirect from="/4h_military_partnerships/index.html" to="/" noThrow={true} />
               <Redirect from="/military-liaisons/cyf-camps/ang4hcamps.html" to="/events" noThrow={true} />
               <Redirect

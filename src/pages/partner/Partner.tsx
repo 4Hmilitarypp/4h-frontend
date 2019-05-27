@@ -131,6 +131,7 @@ const HeroImages = styled.div`
 `
 const FeaturedImage = styled.img`
   height: 20rem;
+  width: 100%;
   display: block;
   margin: 1.2rem;
   object-fit: contain;

@@ -125,6 +125,9 @@ const HeroImages = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  ${media.tabletLand` 
+    padding-top: 3.2rem;
+  `}
 `
 const FeaturedImage = styled.img`
   height: 20rem;

@@ -3,7 +3,6 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 import { IPartnerSection } from '../../sharedTypes'
 import { media } from '../../utils/mixins'
-import { trimToLength } from '../../utils/string'
 
 interface IProps extends RouteComponentProps {
   partner: IPartnerSection
@@ -16,8 +15,7 @@ const PartnerSection: React.FC<IProps> = ({ partner, index }) => {
       <Content index={index}>
         <Text>
           <Title>{partner.title}</Title>
-          {/* Also have a length limiter in the Backend */}
-          <Description>{trimToLength(300, partner.shortDescription)}</Description>
+          <Description>{partner.shortDescription}</Description>
           <LearnMore to={partner.slug}>Learn More</LearnMore>
         </Text>
         <FeaturedImage src={partner.featuredImage1.url} alt={partner.featuredImage1.alt || `${partner.title} Logo`} />

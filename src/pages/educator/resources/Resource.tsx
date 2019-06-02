@@ -11,9 +11,10 @@ import Lesson from './Lesson'
 
 interface IProps extends RouteComponentProps {
   slug?: string
+  backButtonRoute: string
 }
 
-const Resource: React.FC<IProps> = ({ slug }) => {
+const Resource: React.FC<IProps> = ({ slug, backButtonRoute }) => {
   const [resource, setResource] = React.useState<IResourceWithLessons | undefined>(undefined)
   const handleError = useErrorHandler()
 
@@ -31,7 +32,7 @@ const Resource: React.FC<IProps> = ({ slug }) => {
   return (
     <PageWrapper data-testid="resource">
       <HeaderWrapper>
-        <BackButton route={'/resources/educator-resources'} title="Resources" />
+        <BackButton route={backButtonRoute} title="Resources" />
         <Heading>{title}</Heading>
         <div style={{ width: 209 }} />
       </HeaderWrapper>

@@ -41,6 +41,7 @@ const research = {
 const resources = {
   get: (): Promise<IResource[]> => requests.get('/resources'),
   getById: (id: string): Promise<IResource> => requests.get(`/resources/${id}`),
+  getByParent: (parent: string): Promise<IResource[]> => requests.get(`/resources/nested/${parent}`),
   getBySlug: (slug: string): Promise<IResource> => requests.get(`/resources/slug/${slug}`),
 }
 const webinars = {

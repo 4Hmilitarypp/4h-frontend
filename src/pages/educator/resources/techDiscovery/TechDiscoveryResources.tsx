@@ -1,34 +1,26 @@
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { DynamicSection, Heading, InputGroup, PageWrapper } from '../../../components/Elements'
-import useErrorHandler from '../../../hooks/useErrorHandler'
-import { IResource } from '../../../sharedTypes'
-import api from '../../../utils/api'
-import DisplayResource from './DisplayResource'
+import { DynamicSection, Heading, InputGroup, PageWrapper } from '../../../../components/Elements'
+import useErrorHandler from '../../../../hooks/useErrorHandler'
+import { IResource } from '../../../../sharedTypes'
+import api from '../../../../utils/api'
+import DisplayResource from '../DisplayResource'
 
-const techDiscoveryResource = {
-  longDescription: '',
-  shortDescription:
-    'The Tech Discovery Curriculum is designed for 5th-12th grade military connected youth from all branches of service. It is focused on developing life skills and increased resiliency supporting military connected families during times of deployment and reintegration back into normal life.',
-  slug: 'tech-discovery',
-  title: 'Tech Discovery Curriculum',
-}
-
-const Resources: React.FC<RouteComponentProps> = () => {
+const TechDiscoveryResources: React.FC<RouteComponentProps> = () => {
   const [resources, setResources] = React.useState<IResource[]>([])
   const [filterText, setFilterText] = React.useState<string>('')
 
   const handleError = useErrorHandler()
   React.useEffect(() => {
     api.resources
-      .get()
+      .getByParent('tech-curriculum')
       .then(r => setResources(r))
       .catch(handleError)
   }, [])
 
   const filterResources = () =>
-    [...resources, techDiscoveryResource].filter(
+    resources.filter(
       resource =>
         !filterText ||
         resource.title.toLowerCase().includes(filterText) ||
@@ -53,7 +45,7 @@ const Resources: React.FC<RouteComponentProps> = () => {
     </PageWrapper>
   )
 }
-export default Resources
+export default TechDiscoveryResources
 
 const CustomInputGroup = styled(InputGroup)`
   max-width: 60rem;

@@ -5,6 +5,7 @@ import EducatorHome from './EducatorHome'
 import Researches from './research/Researches'
 import Resource from './resources/Resource'
 import Resources from './resources/Resources'
+import TechDiscovery from './resources/techDiscovery/TechDiscovery'
 import ManciniBio from './webinars/manciniWebinar/ManciniBio'
 import ManciniResources from './webinars/manciniWebinar/ManciniResources'
 import OnealBio from './webinars/manciniWebinar/OnealBio'
@@ -20,8 +21,9 @@ const Educator: React.FC<RouteComponentProps> = () => {
       <ManciniResources path="webinars/mancini-resources" />
       <Webinars path="webinars/*" />
       <Researches path="research/*" />
+      <TechDiscovery path="educator-resources/tech-discovery/*" />
       <Resources path="educator-resources/*" />
-      <Resource path="educator-resources/:slug" />
+      <Resource path="educator-resources/:slug" backButtonRoute="/resources/educator-resources" />
       <NotFound default={true} />
     </Router>
   )

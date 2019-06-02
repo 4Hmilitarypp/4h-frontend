@@ -223,6 +223,7 @@ const MissionP = styled.p`
 `
 const FeaturedSection = styled.div`
   padding-bottom: 3.6rem;
+  background: ${props => props.theme.primaryLight};
   ${media.tabletPort`
     padding-bottom: 0rem;
   `}

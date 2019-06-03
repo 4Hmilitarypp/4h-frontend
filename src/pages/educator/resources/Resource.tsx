@@ -1,4 +1,6 @@
 import { RouteComponentProps } from '@reach/router'
+// @ts-ignore
+import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import BackButton from '../../../components/BackButton'
@@ -37,7 +39,7 @@ const Resource: React.FC<IProps> = ({ slug, backButtonRoute }) => {
         <div style={{ width: 209 }} />
       </HeaderWrapper>
       <TitleSection>
-        <P>{longDescription}</P>
+        <P>{Parser(longDescription)}</P>
         {featuredImage && <FeaturedImage src={featuredImage.url} alt={featuredImage.alt} />}
       </TitleSection>
       {lessons && (

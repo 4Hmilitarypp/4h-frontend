@@ -1,10 +1,12 @@
 import { RouteComponentProps } from '@reach/router'
 import { format } from 'date-fns'
 import Downshift from 'downshift'
+// @ts-ignore
+import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { theme } from '../../App'
-import { Button, Heading, InputGroup, OutlineButton, P, SubHeading } from '../../components/Elements'
+import { Button, DynamicSection, Heading, InputGroup, OutlineButton, P, SubHeading } from '../../components/Elements'
 import EmbedDocument from '../../components/EmbedDocument'
 import Icon from '../../components/Icon'
 import useErrorHandler from '../../hooks/useErrorHandler'
@@ -128,7 +130,7 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
                   </TitleCard>
                   <CampDescriptionSection>
                     <CampDescriptionTitle>{camp.descriptionTitle}</CampDescriptionTitle>
-                    <CampDescription>{camp.description}</CampDescription>
+                    <CampDescription>{Parser(camp.description)}</CampDescription>
                   </CampDescriptionSection>
                 </CampTitleSection>
                 <CampDetailsSection>
@@ -282,7 +284,7 @@ const CampLocation = styled.span`
     padding-top: .4rem;
   `}
 `
-const CampDescriptionSection = styled.section`
+const CampDescriptionSection = styled(DynamicSection)`
   padding: 5.2rem 0 9.6rem;
   max-width: 65rem;
   margin: 0 auto;

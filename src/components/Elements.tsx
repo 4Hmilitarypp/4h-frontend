@@ -114,6 +114,7 @@ export const DynamicSection = styled(Section)`
     color: ${props => props.theme.primaryLink};
     &:hover {
       opacity: 0.8;
+      cursor: pointer;
     }
   }
   p {

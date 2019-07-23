@@ -15,7 +15,7 @@ const useTrimDescription = (descRef: React.RefObject<HTMLElement>, str: string) 
         setTrimDescription(false)
       }
     }
-  }, [])
+  }, [descRef, str.length])
 
   return { trimDescription, showExpand, setTrimDescription }
 }

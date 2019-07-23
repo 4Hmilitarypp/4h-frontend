@@ -31,7 +31,7 @@ const Partner: React.FC<IProps> = ({ slug }) => {
       })
       .catch(handleError)
     window.scrollTo(0, 0)
-  }, [])
+  }, [handleError, slug])
   return (
     <CustomPageWrapper>
       {partner ? (

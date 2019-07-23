@@ -17,7 +17,7 @@ const Partners: React.FC<RouteComponentProps> = () => {
         setPartners(p)
       })
       .catch(handleError)
-  }, [])
+  }, [handleError])
   React.useEffect(() => window.scrollTo(0, 0), [])
   return (
     <Wrapper>

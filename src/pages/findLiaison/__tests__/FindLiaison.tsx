@@ -1,43 +1,27 @@
+import { fireEvent, render, waitForDomChange } from '@testing-library/react'
 import * as React from 'react'
-import { fireEvent, flushEffects, render } from 'react-testing-library'
-jest.mock('../../../utils/api')
-// import api from '../../utils/api'
-import staticLiaisons from '../../../assets/data/staticLiaisons.json'
-import { ILiaison } from '../../../sharedTypes'
+import api from '../../../utils/api'
 import generate from '../../../utils/generate'
 import FindLiaison, { filterLiaisons } from '../FindLiaison'
+jest.mock('../../../utils/api')
 
-interface IProps {
-  value: string
-}
+jest.mock('../LiaisonMap')
 
-const setup = (propOverrides?: IProps) => {
-  const props = Object.assign({}, propOverrides)
+const setup = async () => {
+  ;(api.liaisons.get as any).mockImplementationOnce(async () => generate.liaisons(3))
 
-  const utils = render(<FindLiaison {...props} />)
-  flushEffects() // Flush Effect to run "didMount"
+  const utils = render(<FindLiaison />)
+  await waitForDomChange()
   const input = utils.getByLabelText(/Enter a state or US Province/i)
   return {
     input,
-    props,
     ...utils,
   }
 }
 
-describe('integration', () => {
-  it('happy path', () => {
-    const { input, getByText } = setup()
-    const kansasLiaison = staticLiaisons.find(l => l.region === 'Kansas') as ILiaison
-    fireEvent.change(input, { target: { value: 'ks' } })
-    const kansasItem = getByText(kansasLiaison.region)
-    fireEvent.click(kansasItem)
-    expect(getByText(kansasLiaison.name as string)).toBeDefined()
-  })
-})
-
 describe('controller button', () => {
-  it('should open menu if button is clicked and menu is closed and vice versa', () => {
-    const { getByTestId, queryByText } = setup()
+  it('should open menu if button is clicked and menu is closed and vice versa', async () => {
+    const { getByTestId, queryByText } = await setup()
     const controllerButton = getByTestId('controller-button')
     expect(queryByText(/colorado/i)).toBeNull()
 
@@ -46,8 +30,8 @@ describe('controller button', () => {
     fireEvent.click(controllerButton)
     expect(queryByText(/colorado/i)).toBeNull()
   })
-  it('should clear the selection and open the menu if the button is clicked and there is an item selected', () => {
-    const { getByTestId, getByText, getByLabelText, queryByText } = setup()
+  it('should clear the selection and open the menu if the button is clicked and there is an item selected', async () => {
+    const { getByTestId, getByText, getByLabelText, queryByText } = await setup()
     const controllerButton = getByTestId('controller-button')
     const input = getByLabelText(/Enter a state or US Province/i) as HTMLInputElement
 

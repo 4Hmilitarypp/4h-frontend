@@ -17,7 +17,7 @@ const TechDiscoveryResources: React.FC<RouteComponentProps> = () => {
       .getByParent('tech-curriculum')
       .then(r => setResources(r))
       .catch(handleError)
-  }, [])
+  }, [handleError])
 
   const filterResources = () =>
     resources.filter(

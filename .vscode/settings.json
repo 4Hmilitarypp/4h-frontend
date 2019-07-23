@@ -1,10 +1,15 @@
 {
-  "eslint.enable": false,
   "workbench.colorCustomizations": {
+    "activityBar.border": "#102a44",
+    "sideBar.background": "#001122",
+    "sideBar.border": "#102a44",
     "[Night Owl]": {
       "titleBar.inactiveBackground": "#00FFFFB0",
       "titleBar.activeBackground": "#00FFFFB0"
-    }
-  },
-  "prettier.tslintIntegration": true
+    },
+    "titleBar.activeBackground": "#000000",
+    "titleBar.inactiveBackground": "#00000099",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  }
 }

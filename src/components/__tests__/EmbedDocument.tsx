@@ -1,5 +1,5 @@
+import { fireEvent, render } from '@testing-library/react'
 import * as React from 'react'
-import { fireEvent, flushEffects, render } from 'react-testing-library'
 import EmbedDocument from '../EmbedDocument'
 
 const Comp: React.FC<{}> = () => {
@@ -45,7 +45,6 @@ it('should close when the escape key is pressed', async () => {
 
   const openButton = getByText(/open/i)
   fireEvent.click(openButton)
-  flushEffects()
 
   const closeButton = getByText(/close/i)
   expect(closeButton).toBeDefined()

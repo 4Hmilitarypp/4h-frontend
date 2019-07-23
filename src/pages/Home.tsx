@@ -16,7 +16,7 @@ const Home: React.FC<RouteComponentProps> = () => {
       .get('home')
       .then(setHomeInfo)
       .catch(handleError)
-  }, [])
+  }, [handleError])
   return (
     <div>
       <HeroOverlay>

@@ -1,5 +1,5 @@
+import { render } from '@testing-library/react'
 import * as React from 'react'
-import { flushEffects, render } from 'react-testing-library'
 import useHash from '../useHash'
 
 let nativeScrollIntoView: any
@@ -34,7 +34,6 @@ describe('useHash', () => {
     }
     render(<TestElement />)
     expect(mockScrollIntoView).toHaveBeenCalledTimes(0)
-    flushEffects() // Flush Effect to run "didMount"
     expect(mockScrollIntoView).toHaveBeenCalledTimes(1)
   })
 })

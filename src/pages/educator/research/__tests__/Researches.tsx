@@ -1,9 +1,9 @@
+import { render, waitForDomChange } from '@testing-library/react'
 import * as React from 'react'
-import { flushEffects, render, waitForElement } from 'react-testing-library'
 import Researches from '../Researches'
-jest.mock('../../../../utils/api')
 import fakeApi from '../../../../utils/api'
 import generate from '../../../../utils/generate'
+jest.mock('../../../../utils/api')
 
 beforeEach(() => (fakeApi as any).reset())
 
@@ -16,12 +16,11 @@ const setup = async (propOverrides?: IProps) => {
 
   const researches = generate.researches(5)
   const researchMock = fakeApi.research.get as any
-  researchMock.mockImplementationOnce(() => Promise.resolve(researches))
+  researchMock.mockImplementationOnce(async () => researches)
 
   const utils = render(<Researches {...props} />)
-  flushEffects()
 
-  await waitForElement(() => utils.getByTestId('research'))
+  await waitForDomChange()
 
   return {
     ...utils,

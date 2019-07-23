@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { fireEvent, render } from 'react-testing-library'
+import { fireEvent, render } from '@testing-library/react'
 import LinkGroup from '../LinkGroup'
 
 interface IManageBackgroundProps {
@@ -10,8 +10,6 @@ interface IManageBackgroundProps {
 }
 
 const setup = (propOverrides?: {}) => {
-  const props = Object.assign({}, propOverrides)
-
   const manageBackground: IManageBackgroundProps = {
     liRef: {},
     navRef: {},

@@ -36,7 +36,7 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
         setCamps(sorted)
       })
       .catch(handleError)
-  }, [])
+  }, [handleError])
 
   const [clickedFlyer, setClickedFlyer] = React.useState<string | false | undefined>()
 

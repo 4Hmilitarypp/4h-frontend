@@ -1,6 +1,4 @@
 import { RouteComponentProps } from '@reach/router'
-// @ts-ignore
-import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { DynamicSection, Heading, InputGroup, PageWrapper } from '../../../components/Elements'
@@ -29,7 +27,7 @@ const Researches: React.FC<RouteComponentProps> = () => {
       .get()
       .then(r => setResearches(r))
       .catch(handleError)
-  }, [])
+  }, [handleError])
 
   return (
     <PageWrapper>

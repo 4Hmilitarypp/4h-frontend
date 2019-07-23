@@ -1,6 +1,4 @@
 import { RouteComponentProps } from '@reach/router'
-// @ts-ignore
-import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { DynamicSection, Heading, PageWrapper, SubHeading } from '../../../components/Elements'
@@ -32,7 +30,7 @@ const Webinars: React.FC<RouteComponentProps> = () => {
         setFilteredCategories(cats)
       })
       .catch(handleError)
-  }, [])
+  }, [handleError])
 
   const handleCategorySelected = (cats: string[]) => setFilteredCategories(cats)
 

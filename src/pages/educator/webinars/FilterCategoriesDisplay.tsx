@@ -1,5 +1,3 @@
-// @ts-ignore
-import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { Button } from '../../../components/Elements'

@@ -13,6 +13,11 @@ const EmbedDocument: React.FC<IProps> = ({ title, url, open, setOpen }) => {
   const iframeRef = React.useRef<HTMLIFrameElement | undefined>(undefined)
 
   React.useEffect(() => {
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpen(false)
+      }
+    }
     if (open) {
       window.addEventListener('keydown', handleKeydown)
       const reloadInterval = window.setInterval(() => {
@@ -28,13 +33,7 @@ const EmbedDocument: React.FC<IProps> = ({ title, url, open, setOpen }) => {
       clearInterval(iframeInterval)
       window.removeEventListener('keydown', handleKeydown)
     }
-  }, [open])
-
-  const handleKeydown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      setOpen(false)
-    }
-  }
+  }, [iframeInterval, open, setOpen])
 
   return open ? (
     <EmbedWrapper>

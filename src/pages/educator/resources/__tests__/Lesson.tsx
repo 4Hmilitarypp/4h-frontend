@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { fireEvent, render } from 'react-testing-library'
+import { fireEvent, render } from '@testing-library/react'
 import Lesson from '../Lesson'
-jest.mock('../../../../utils/api')
 import { ILesson } from '../../../../sharedTypes'
 import generate from '../../../../utils/generate'
+jest.mock('../../../../utils/api')
 
 interface IProps {
   lesson: ILesson

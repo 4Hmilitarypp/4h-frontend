@@ -1,16 +1,15 @@
 import { RouteComponentProps } from '@reach/router'
 import Downshift from 'downshift'
-import { find, map, sortBy } from 'lodash'
+import { find, sortBy } from 'lodash'
 import matchSorter from 'match-sorter'
 import * as React from 'react'
 import styled from 'styled-components/macro'
-import { theme } from '../../App'
 import { InputGroup, P, PageWrapper, Section, SubHeading } from '../../components/Elements'
 import Icon from '../../components/Icon'
 import useErrorHandler from '../../hooks/useErrorHandler'
 import { ILiaison } from '../../sharedTypes'
 import api from '../../utils/api'
-import { elevation, media } from '../../utils/mixins'
+import { media } from '../../utils/mixins'
 import LiaisonMap from './LiaisonMap'
 
 export const filterLiaisons = (liaisons: ILiaison[], query: string | null): ILiaison[] => {
@@ -35,7 +34,7 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
         setLiaisons(sorted as any)
       })
       .catch(handleError)
-  }, [])
+  }, [handleError])
   React.useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -103,7 +102,7 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
                   </ControllerButton>
                 </div>
               </FindInputGroup>
-              {isOpen ? (
+              {/* {isOpen ? ( // ! THIS IS NOT BEING USED PROPERLY
                 <Menu {...getMenuProps({ style: { height: 250, overflowY: 'scroll' } })}>
                   {map(filterLiaisons(liaisons, inputValue), (liaison, index) => {
                     return (
@@ -120,7 +119,7 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
                     )
                   })}
                 </Menu>
-              ) : null}
+              ) : null} */}
             </div>
           )}
         </Downshift>
@@ -146,13 +145,6 @@ export default FindLiaison
 const ConstrainedSection = styled(Section)`
   max-width: 64rem;
 `
-const Menu = styled.ul`
-  ${elevation(3)};
-  padding: 1.5rem 0;
-  max-width: 64rem;
-  margin: 0 auto;
-  background: ${props => props.theme.primaryGrey};
-`
 const FindInputGroup = styled(InputGroup)`
   max-width: 64rem;
   margin: 0 auto;
@@ -175,14 +167,6 @@ const ControllerButton = styled.button`
   height: 100%;
   justify-content: center;
   align-items: center;
-`
-const Item = styled.li`
-  padding: 0.4rem 1.5rem;
-  border-radius: 5px;
-  color: ${props => props.theme.white};
-  &:hover {
-    cursor: pointer;
-  }
 `
 const Liaison = styled.div`
   max-width: 64rem;

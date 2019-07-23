@@ -25,7 +25,7 @@ const Resources: React.FC<RouteComponentProps> = () => {
       .get()
       .then(r => setResources(r))
       .catch(handleError)
-  }, [])
+  }, [handleError])
 
   const filterResources = () =>
     [...resources, techDiscoveryResource].filter(

@@ -1,5 +1,5 @@
+import { fireEvent, render } from '@testing-library/react'
 import * as React from 'react'
-import { fireEvent, flushEffects, render } from 'react-testing-library'
 import { IReport } from '../../../sharedTypes'
 import Reports from '../Reports'
 
@@ -34,7 +34,6 @@ const setup = (propOverrides?: IProps) => {
   window.scrollTo = mockScrollTo
 
   const utils = render(<Reports {...props} />)
-  flushEffects()
   return {
     ...utils,
     mockScrollTo,

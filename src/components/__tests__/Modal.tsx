@@ -1,6 +1,6 @@
 import * as faker from 'faker'
 import * as React from 'react'
-import { fireEvent, getByTestId as globalGetByTestId, render, waitForElement } from 'react-testing-library'
+import { fireEvent, getByTestId as globalGetByTestId, render, waitForElement } from '@testing-library/react'
 import Modal from '../Modal'
 
 beforeAll(async () => {

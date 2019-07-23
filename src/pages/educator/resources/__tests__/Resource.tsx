@@ -1,9 +1,9 @@
+import { render, waitForElement } from '@testing-library/react'
 import * as React from 'react'
-import { flushEffects, render, waitForElement } from 'react-testing-library'
 import Resource from '../Resource'
-jest.mock('../../../../utils/api')
 import fakeApi from '../../../../utils/api'
 import generate from '../../../../utils/generate'
+jest.mock('../../../../utils/api')
 
 beforeEach(() => (fakeApi as any).reset())
 
@@ -22,10 +22,9 @@ const setup = async (propOverrides?: IProps) => {
   )
 
   const resourcesMock = fakeApi.resources.getBySlug as any
-  resourcesMock.mockImplementationOnce(() => Promise.resolve(fakeResource))
+  resourcesMock.mockImplementationOnce(async () => fakeResource)
 
   const utils = render(<Resource {...props} />)
-  flushEffects()
 
   await waitForElement(() => utils.getByTestId('resource'))
 

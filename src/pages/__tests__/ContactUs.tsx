@@ -1,10 +1,10 @@
+import { fireEvent, render, wait } from '@testing-library/react'
 import * as React from 'react'
-import { fireEvent, flushEffects, render, wait } from 'react-testing-library'
-jest.mock('../../utils/api')
 import FlashContext, { useFlash } from '../../contexts/FlashContext'
 import api from '../../utils/api'
 import generate from '../../utils/generate'
 import ContactUs from '../ContactUs'
+jest.mock('../../utils/api')
 
 beforeEach(() => (api as any).reset())
 
@@ -39,7 +39,6 @@ const setup = (propOverrides?: IProps) => {
       <ContactUs {...props} />
     </Component>
   )
-  flushEffects()
   const nameInput = utils.getByLabelText(/Your Name/i) as HTMLInputElement
   const emailInput = utils.getByLabelText(/Your Email/i) as HTMLInputElement
   const messageTextArea = utils.getByLabelText(/Your Message/i) as HTMLInputElement
@@ -82,7 +81,7 @@ describe('interaction', () => {
 
   it('should display a captcha error if the backend says the user is a robot', async () => {
     const setFlash = jest.fn(() => null)
-    ;(api.emails.checkIfSpam as any).mockImplementationOnce(() => Promise.resolve(true))
+    ;(api.emails.checkIfSpam as any).mockImplementationOnce(async () => true)
     const { emailInput, messageTextArea, nameInput, submitButton } = setup({ setFlash })
 
     const fakeEmail = generate.contactUsEmail()

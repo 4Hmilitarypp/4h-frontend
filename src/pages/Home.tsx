@@ -1,6 +1,8 @@
 import { Link, RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
+// @ts-ignore
+import Parser from 'html-react-parser'
 import { Button, P, SubHeading } from '../components/Elements'
 import Icon from '../components/Icon'
 import useErrorHandler from '../hooks/useErrorHandler'
@@ -59,7 +61,7 @@ const Home: React.FC<RouteComponentProps> = () => {
       {homeInfo && (
         <FeaturedSection>
           <FeaturedTitle>{homeInfo.title}</FeaturedTitle>
-          <FeaturedText>{homeInfo.text}</FeaturedText>
+          <FeaturedText>{Parser(homeInfo.text)}</FeaturedText>
           <FeaturedImage src={homeInfo.featuredImage.url} alt={homeInfo.featuredImage.alt} />
         </FeaturedSection>
       )}

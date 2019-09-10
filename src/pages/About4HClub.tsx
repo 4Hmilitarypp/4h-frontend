@@ -57,28 +57,6 @@ const About4HClub: React.FC<RouteComponentProps> = () => {
               State's Corporate Report.
             </A>
           </P>
-          <Links>
-            <li>
-              <A href="http://nifa.usda.gov/sites/default/files/resource/What%20is%20a%20Club%20v.7-11.pdf">
-                What is a 4-H Club?
-              </A>
-              <LinkSource>From the National Institute for Food and Agriculture website</LinkSource>
-            </li>
-            <li>
-              <A href="http://nifa.usda.gov/resource/4-h-program-development-factsheets">
-                4-H Program Development Factsheets
-              </A>
-              <LinkSource>From the National Institute for Food and Agriculture website</LinkSource>
-            </li>
-            <li>
-              <A href="http://www.4-h.org/about/">About 4-H</A>
-              <LinkSource>From the 4-H official website</LinkSource>
-            </li>
-            <li>
-              <A href="http://4-h.org/about/what-is-4-h/">What is 4-H?</A>
-              <LinkSource>From the 4-H official website</LinkSource>
-            </li>
-          </Links>
         </CustomSection>
         <CustomSection>
           <CustomSubHeading>4-H Curriculum</CustomSubHeading>
@@ -217,20 +195,6 @@ const TitleImage = styled.img`
     height: 40rem;
     margin: 0;
     border-radius: 0;
-  `}
-`
-const Links = styled.ul`
-  padding: 2rem 0 0;
-  list-style: unset;
-  ${media.tabletLand`
-    padding-left: 2.4rem;
-  `}
-`
-const LinkSource = styled.span`
-  padding-left: 1.5rem;
-  font-size: 1.8rem;
-  ${media.tabletLand`
-  font-size: 1.6rem;
   `}
 `
 const PreviewBackground = styled.div`

@@ -18,22 +18,19 @@ export const useFlash = () => {
   const initialState = { message: '', isError: false }
   const [flashState, setFlashState] = React.useState<{ message: string; isError: boolean }>(initialState)
   const mySetFlashState = ({ message, isError = false }: ISetFlashStateArgs) => setFlashState({ message, isError })
-  const resetFlashState = () => setFlashState(initialState)
+  const resetFlashState = React.useCallback(() => setFlashState(initialState), [initialState])
 
-  React.useEffect(
-    () => {
-      if (flashState.message && !flashState.isError) {
-        const timeout = setTimeout(() => {
-          resetFlashState()
-        }, 2500)
-        return () => {
-          clearTimeout(timeout)
-        }
+  React.useEffect(() => {
+    if (flashState.message && !flashState.isError) {
+      const timeout = setTimeout(() => {
+        resetFlashState()
+      }, 2500)
+      return () => {
+        clearTimeout(timeout)
       }
-      return undefined
-    },
-    [flashState.message]
-  )
+    }
+    return undefined
+  }, [flashState.isError, flashState.message])
 
   return { flashState, setFlashState: mySetFlashState, resetFlashState }
 }

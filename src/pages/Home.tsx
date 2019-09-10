@@ -3,7 +3,7 @@ import * as React from 'react'
 import styled from 'styled-components/macro'
 // @ts-ignore
 import Parser from 'html-react-parser'
-import { Button, P, SubHeading } from '../components/Elements'
+import { Button, SubHeading, DynamicSection } from '../components/Elements'
 import Icon from '../components/Icon'
 import useErrorHandler from '../hooks/useErrorHandler'
 import api from '../utils/api'
@@ -230,15 +230,22 @@ const FeaturedSection = styled.div`
     padding-bottom: 0rem;
   `}
 `
-const FeaturedText = styled(P)`
+const FeaturedText = styled(DynamicSection)`
   max-width: 80rem;
   font-size: 1.8rem;
   margin: 0 auto;
   padding: 0 2.4rem 3.6rem;
+  a {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
   ${media.tabletLand`
     font-size: 1.6rem;
     padding-bottom: 2.4rem;
     text-align: center;
+  a {
+  font-size: 1.8rem;
+  }
   `}
 `
 const FeaturedTitle = styled(SubHeading)``

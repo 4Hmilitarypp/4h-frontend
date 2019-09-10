@@ -28,7 +28,7 @@ const EmbedDocument: React.FC<IProps> = ({ title, url, open, setOpen }) => {
       clearInterval(iframeInterval)
       window.removeEventListener('keydown', handleKeydown)
     }
-  }, [open])
+  }, [iframeInterval, open])
 
   const handleKeydown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {

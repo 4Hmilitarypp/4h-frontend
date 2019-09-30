@@ -7,7 +7,7 @@ import { elevation, media, transition } from '../utils/mixins'
 import DropdownBackground from './DropdownBackground'
 import LinkGroup from './LinkGroup'
 
-const DropdownLink: React.FC = props => <UnstyledLink tabIndex={0} {...props} />
+const DropdownLink: React.FC = (props: any) => <UnstyledLink tabIndex={0} {...props} />
 
 const Header: React.FC<RouteComponentProps> = () => {
   const [backgroundCoords, setBackgroundCoords] = React.useState({

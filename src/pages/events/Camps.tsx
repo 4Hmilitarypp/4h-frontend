@@ -39,7 +39,6 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
   }, [])
 
   const [clickedFlyer, setClickedFlyer] = React.useState<string | false | undefined>()
-
   const [filterState, setFilterState] = React.useState<string>('All')
   const getFilteredCamps = () => [
     { state: 'All' },
@@ -50,6 +49,17 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
         return arr
       }, []),
   ]
+
+  const findBranchColor = (branch: string) => {
+    if (branch === 'Army') {
+      return 'green'
+    } else if (branch === 'Air Force') {
+      return 'blue'
+    } else if (branch === 'Navy') {
+      return 'goldenrod'
+    }
+    return 'red'
+  }
 
   return (
     <div>
@@ -163,6 +173,7 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
                       )}
                       {camp.flyerUrl && <Button onClick={() => setClickedFlyer(camp.flyerUrl)}>Camp Flyer</Button>}
                     </Buttons>
+                    <BranchBadge color={findBranchColor(camp.serviceBranch)}>Test</BranchBadge>
                   </CampDetailsWrapper>
                 </CampDetailsSection>
               </CampInfo>
@@ -219,7 +230,14 @@ const Item = styled.li`
     cursor: pointer;
   }
 `
-
+const BranchBadge = styled.div`
+  background-color: ${props => props.color};
+  height: 100px;
+  width: 100px;
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+`
 const CampsWrapper = styled.div`
   padding-top: 3.2rem;
 `

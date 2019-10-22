@@ -13,7 +13,7 @@ const About: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <Section>
-        <CustomSubHeading>What We Do</CustomSubHeading>
+        <CustomSubHeading>This is What We Do</CustomSubHeading>
         <SubSection>
           <Icons>
             <Circle name="circle" height={64} width={64} />

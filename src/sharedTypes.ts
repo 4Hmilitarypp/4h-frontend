@@ -12,6 +12,23 @@ export interface ILiaison {
   region: string
 }
 
+export interface ILatestNews {
+  title: string // modifiable
+  body: string // modifiable
+  shortDescription: string
+  featuredImage: {
+    url: string
+    alt?: string
+  }
+  postedDate: string // display in human-readable format
+  author: string // User // modifiable
+  slug: string // slugified version of the title
+  createdAt: string
+  updatedBy: string
+  updatedAt: string // display in human-readable format
+  createdBy: string
+}
+
 export interface IPartnerSection {
   _id?: string
   featuredImage1: IImage

@@ -15,6 +15,8 @@ import GetInvolved4HClub from './pages/GetInvolved4HClub'
 import Home from './pages/Home'
 import Icons from './pages/Icons'
 import JobApplication from './pages/JobApplication'
+import LatestNews from './pages/latest-news/LatestNews'
+import LatestNewsArticle from './pages/latest-news/LatestNewsArticle'
 import NotFound from './pages/NotFound'
 import Partner from './pages/partner/Partner'
 import Partners from './pages/partners/Partners'
@@ -82,6 +84,8 @@ const App: React.FC = () => {
               <About4HClub path="/4-h-club" />
               <GetInvolved4HClub path="/4-h-club/get-involved" />
               <Educator path="/resources/*" />
+              <LatestNews path="/latest-news" />
+              <LatestNewsArticle path="/latest-news/:slug" />
               <FindLiaison path="/find-a-liaison" />
               <ContactUs path="contact-us" />
               <Icons path="/icons" />

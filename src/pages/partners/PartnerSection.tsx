@@ -54,7 +54,6 @@ const FeaturedImage = styled.img`
 const Description = styled.p`
   max-width: 70rem;
   padding-bottom: 2rem;
-  color: ${props => props.theme.secondaryGrey};
 `
 const LearnMore = styled(Link)`
   padding: 0.4rem 1.5rem;

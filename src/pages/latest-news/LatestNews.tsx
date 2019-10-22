@@ -39,7 +39,7 @@ const LatestNews: React.FC<RouteComponentProps> = () => {
       <HeaderSection>
         <MainHeading>4-H Military News</MainHeading>
         <SubHeading>
-          Keep up with the latest news regarding 4-H Military Partnership, its events, and its members.
+          Keep up with the latest news regarding the 4-H Military Partnerships, its events, and its members.
         </SubHeading>
         <label>Search for an article</label>
         <SearchBar value={filterText} onChange={e => setFilterText(e.currentTarget.value.toLowerCase())} />

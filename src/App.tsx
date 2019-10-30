@@ -21,7 +21,6 @@ import NotFound from './pages/NotFound'
 import Partner from './pages/partner/Partner'
 import Partners from './pages/partners/Partners'
 import Photos from './pages/Photos'
-import PracticeArea from './pages/PracticeArea'
 import PurpleUp from './pages/PurpleUp'
 
 export const theme = {
@@ -92,7 +91,6 @@ const App: React.FC = () => {
               <Icons path="/icons" />
               <JobApplication path="/job-application" />
               <PurpleUp path="purple-up" />
-              <PracticeArea path="practice-area" />
 
               <Redirect
                 from="/images/navy%20cyp%20logo.jpg"

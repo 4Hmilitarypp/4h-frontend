@@ -15,7 +15,7 @@ const requests = {
 }
 
 const camps = {
-  get: (): Promise<ICamp[]> => requests.get('/camps'),
+  get: (): Promise<ICamp[]> => requests.get('/camps/current'),
 }
 
 const emails = {

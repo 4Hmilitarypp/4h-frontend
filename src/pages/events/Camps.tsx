@@ -39,6 +39,7 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
   }, [])
   const [clickedFlyer, setClickedFlyer] = React.useState<string | false | undefined>()
   const [filterState, setFilterState] = React.useState<string>('All')
+  const [filterBranch, setFilterBranch] = React.useState<string>('All')
 
   const getFilteredCamps = () => [
     { state: 'All' },
@@ -48,6 +49,17 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
         if (!arr.some(camp => camp.state === item.state)) arr.push(item)
         return arr
       }, []),
+  ]
+  const getCampsFilteredByBranch = () => [
+    { serviceBranch: 'All' },
+    ...camps
+      .sort((a, b) => (a.serviceBranch > b.serviceBranch ? 1 : -1))
+      .reduce<ICamp[]>((arr, item) => {
+        if (!arr.some(camp => camp.serviceBranch === item.serviceBranch) && item.serviceBranch) arr.push(item)
+        return arr
+      }, []),
+    { serviceBranch: 'Army' },
+    { serviceBranch: 'Navy' },
   ]
 
   const findBranchColor = (branch: string) => {
@@ -121,13 +133,71 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
           </DownshiftContainer>
         )}
       </Downshift>
+      <Downshift
+        itemToString={item => (item ? item.serviceBranch : '')}
+        initialInputValue="All"
+        onChange={selection => setFilterBranch(selection ? selection.serviceBranch : '')}
+      >
+        {({
+          closeMenu,
+          getRootProps,
+          getInputProps,
+          getLabelProps,
+          isOpen,
+          getMenuProps,
+          highlightedIndex,
+          openMenu,
+          getItemProps,
+        }) => (
+          <DownshiftContainer {...getRootProps()}>
+            <FindInputGroup>
+              <label {...getLabelProps()}>Filter Camps By Branch</label>
+              <div style={{ position: 'relative' }}>
+                <RequestInput
+                  {...getInputProps()}
+                  readOnly={true}
+                  onClick={() => (isOpen ? closeMenu() : openMenu())}
+                />
+                <ControllerButton
+                  onClick={() => (isOpen ? closeMenu() : openMenu())}
+                  data-testid="controller-button"
+                  type="button"
+                >
+                  <Icon name="arrow" isOpen={isOpen} />
+                </ControllerButton>
+              </div>
+            </FindInputGroup>
+            {isOpen ? (
+              <Menu {...getMenuProps()}>
+                {getCampsFilteredByBranch().map((item, index) => (
+                  <Item
+                    key="filler"
+                    {...getItemProps({
+                      item,
+                      key: item.serviceBranch,
+                      style: {
+                        background: index === highlightedIndex ? theme.primary : '',
+                        color: index === highlightedIndex ? theme.white : theme.primaryGrey,
+                      },
+                    })}
+                  >
+                    {item && item.serviceBranch}
+                  </Item>
+                ))}
+              </Menu>
+            ) : null}
+          </DownshiftContainer>
+        )}
+      </Downshift>
       <CampsWrapper>
         {camps.length > 0 ? (
           camps
             .filter(camp => (filterState === 'All' ? true : camp.state === filterState))
+            .filter(camp => (filterBranch === 'All' ? true : camp.serviceBranch === filterBranch))
             .sort(sortCampsByDate)
             .map(camp => (
               <div key={camp._id}>
+                {console.log(camp)}
                 {camp.featuredImage ? (
                   <CampImage src={camp.featuredImage.url} alt={camp.featuredImage.alt} />
                 ) : (

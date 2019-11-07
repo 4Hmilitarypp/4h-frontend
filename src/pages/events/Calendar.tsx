@@ -2,11 +2,12 @@ import { RouteComponentProps } from '@reach/router'
 import Downshift from 'downshift'
 import * as React from 'react'
 import styled from 'styled-components/macro'
+import Calendar from '../../components/calendarComponent/Calendar'
 import { InputGroup, P, PageWrapper, Section, SubHeading } from '../../components/Elements'
 import Icon from '../../components/Icon'
 import { elevation } from '../../utils/mixins'
 
-const CalendarComponent: React.FC<RouteComponentProps> = () => {
+const CalendarPage: React.FC<RouteComponentProps> = () => {
   const getStates = () => [{ state: 'All' }]
 
   return (
@@ -51,14 +52,11 @@ const CalendarComponent: React.FC<RouteComponentProps> = () => {
           </DownshiftContainer>
         )}
       </Downshift>
-      <Calendar>
-        <MainHeading>Calendar Goes Here</MainHeading>
-      </Calendar>
+      <Calendar />
     </PageWrapper>
   )
 }
-
-export default CalendarComponent
+export default CalendarPage
 
 const ConstrainedSection = styled(Section)`
   max-width: 64rem;
@@ -104,16 +102,4 @@ const Item = styled.li`
   &:hover {
     cursor: pointer;
   }
-`
-const Calendar = styled.div`
-  background-color: #339866;
-  margin: 6rem 0;
-  height: 50rem;
-  width: 100%;
-  filter: drop-shadow(5px 5px 4px grey);
-`
-const MainHeading = styled.h1`
-  margin: 0;
-  color: ${props => props.theme.white};
-  text-align: center;
 `

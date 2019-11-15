@@ -5,6 +5,8 @@ import styled from 'styled-components/macro'
 import useErrorHandler from '../../hooks/useErrorHandler'
 import { ILatestNews } from '../../sharedTypes'
 import api from '../../utils/api'
+import { elevation } from '../../utils/mixins'
+import { InputGroup } from '../../components/Elements'
 
 interface IProps extends RouteComponentProps {
   article: ILatestNews
@@ -41,8 +43,10 @@ const LatestNews: React.FC<RouteComponentProps> = () => {
         <SubHeading>
           Keep up with the latest news regarding the 4-H Military Partnerships, its events, and its members.
         </SubHeading>
-        <label>Search for an article</label>
-        <SearchBar value={filterText} onChange={e => setFilterText(e.currentTarget.value.toLowerCase())} />
+        <SearchLabel>Search for an article</SearchLabel>
+        <SearchBar>
+          <input value={filterText} onChange={e => setFilterText(e.currentTarget.value.toLowerCase())} />
+        </SearchBar>
       </HeaderSection>
       <ContentSection>
         {news ? (
@@ -71,11 +75,13 @@ const LatestNewsItem: React.FC<IProps> = ({ article, index }) => {
       <BlogSubHeading>Written by: {article.author}</BlogSubHeading>
       <BlogSubHeading>Written on: {new Date(article.createdAt).toDateString()}</BlogSubHeading>
       <BlogSubHeading>Last Updated: {new Date(article.updatedAt).toDateString()}</BlogSubHeading>
-      <FeaturedImage
-        src={article.featuredImage ? article.featuredImage.url : ''}
-        alt={article.featuredImage ? article.featuredImage.alt : 'Article Featured Image'}
-      />
-      <BlogBody>{Parser(trimDescription(article.shortDescription))}</BlogBody>
+      <BlogContent>
+        <FeaturedImage
+          src={article.featuredImage ? article.featuredImage.url : ''}
+          alt={article.featuredImage ? article.featuredImage.alt : 'Article Featured Image'}
+        />
+        <BlogBody>{Parser(trimDescription(article.shortDescription))}</BlogBody>
+      </BlogContent>
     </BlogArticle>
   )
 }
@@ -96,6 +102,7 @@ const HeaderSection = styled.div`
   text-align: center;
   color: ${props => props.theme.white};
   filter: drop-shadow(5px 5px 4px grey);
+  border-radius: 5px;
 `
 const LearnMore = styled(Link)`
   float: right;
@@ -127,30 +134,34 @@ const BlogArticle = styled.div`
 const ContentSection = styled.div`
   display: grid;
 `
-const SearchBar = styled.input`
-  display: block;
-  margin: 10px auto;
-  padding: 5px 20px;
-  border: 1px solid ${props => props.theme.primaryBlack};
-  background: ${props => props.theme.primaryBackground};
-  filter: drop-shadow(5px 5px 5px #135c38);
+const SearchLabel = styled.label`
+  font-size: 1.8rem;
 `
-const SubHeading = styled.h5`
+const SearchBar = styled(InputGroup)`
+  max-width: 50rem;
+  margin: 1.2rem auto;
+  input {
+    font-weight: 500;
+  }
+`
+const SubHeading = styled.h3`
   margin: 0 0 25px 0;
 `
-const BlogSubHeading = styled(SubHeading)`
+const BlogSubHeading = styled.h4`
   margin: 0;
 `
+const BlogContent = styled.div`
+  margin: 2rem 0 1.2rem;
+  display: flex;
+`
 const BlogBody = styled.p`
-  margin-top: 5px;
   color: ${props => props.theme.secondaryGrey};
+  padding: 0 2.4rem;
 `
 const FeaturedImage = styled.img`
-  background-color: red;
   height: 20rem;
-  border: 2px solid ${props => props.theme.primaryGrey};
   display: block;
-  margin: 1.2rem;
-  float: left;
-  object-fit: contain;
+  object-fit: fill;
+  border-radius: 5px;
+  ${elevation(4)}
 `

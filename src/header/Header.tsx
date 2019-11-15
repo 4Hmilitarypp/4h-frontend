@@ -7,7 +7,7 @@ import { elevation, media, transition } from '../utils/mixins'
 import DropdownBackground from './DropdownBackground'
 import LinkGroup from './LinkGroup'
 
-const DropdownLink: React.FC = (props: any) => <UnstyledLink tabIndex={0} {...props} />
+const DropdownLink: React.FC = props => <UnstyledLink to="./" tabIndex={0} {...props} />
 
 const Header: React.FC<RouteComponentProps> = () => {
   const [backgroundCoords, setBackgroundCoords] = React.useState({
@@ -19,7 +19,12 @@ const Header: React.FC<RouteComponentProps> = () => {
   const [backgroundOpen, setBackgroundOpen] = React.useState(false)
   const [hamburgerActive, setHamburgerActive] = React.useState(false)
   const navRef = React.useRef<HTMLDivElement>(null)
-  const backgroundManagement = { setCoords: setBackgroundCoords, setOpen: setBackgroundOpen, navRef, hamburgerActive }
+  const backgroundManagement = {
+    setCoords: setBackgroundCoords,
+    setOpen: setBackgroundOpen,
+    navRef,
+    hamburgerActive,
+  }
 
   return (
     <>
@@ -104,6 +109,12 @@ const Header: React.FC<RouteComponentProps> = () => {
             <StyledDropdownLink to="/contact-us" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Contact Us</LinkTitle>
               <LinkDescription>Send us a message to answer any questions</LinkDescription>
+            </StyledDropdownLink>
+          </LinkGroup>
+          <LinkGroup title="Latest News" to="/latest-news" manageBackground={backgroundManagement}>
+            <StyledDropdownLink to="/latest-news" onClick={() => setHamburgerActive(false)}>
+              <LinkTitle>Latest News</LinkTitle>
+              <LinkDescription>Latest News from 4-H Military Partnership</LinkDescription>
             </StyledDropdownLink>
           </LinkGroup>
         </Links>

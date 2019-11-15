@@ -37,10 +37,10 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
       })
       .catch(handleError)
   }, [])
-
   const [clickedFlyer, setClickedFlyer] = React.useState<string | false | undefined>()
-
   const [filterState, setFilterState] = React.useState<string>('All')
+  const [filterBranch, setFilterBranch] = React.useState<string>('All')
+
   const getFilteredCamps = () => [
     { state: 'All' },
     ...camps
@@ -50,6 +50,28 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
         return arr
       }, []),
   ]
+  const getCampsFilteredByBranch = () => [
+    { serviceBranch: 'All' },
+    ...camps
+      .sort((a, b) => (a.serviceBranch > b.serviceBranch ? 1 : -1))
+      .reduce<ICamp[]>((arr, item) => {
+        if (!arr.some(camp => camp.serviceBranch === item.serviceBranch) && item.serviceBranch) arr.push(item)
+        return arr
+      }, []),
+    { serviceBranch: 'Army' },
+    { serviceBranch: 'Navy' },
+  ]
+
+  const findBranchColor = (branch: string) => {
+    if (branch === 'Army') {
+      return '#2F3D2C'
+    } else if (branch === 'Air Force') {
+      return '#00369E'
+    } else if (branch === 'Navy') {
+      return 'goldenrod'
+    }
+    return 'red'
+  }
 
   return (
     <div>
@@ -111,63 +133,125 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
           </DownshiftContainer>
         )}
       </Downshift>
+      <Downshift
+        itemToString={item => (item ? item.serviceBranch : '')}
+        initialInputValue="All"
+        onChange={selection => setFilterBranch(selection ? selection.serviceBranch : '')}
+      >
+        {({
+          closeMenu,
+          getRootProps,
+          getInputProps,
+          getLabelProps,
+          isOpen,
+          getMenuProps,
+          highlightedIndex,
+          openMenu,
+          getItemProps,
+        }) => (
+          <DownshiftContainer {...getRootProps()}>
+            <FindInputGroup>
+              <label {...getLabelProps()}>Filter Camps By Branch</label>
+              <div style={{ position: 'relative' }}>
+                <RequestInput
+                  {...getInputProps()}
+                  readOnly={true}
+                  onClick={() => (isOpen ? closeMenu() : openMenu())}
+                />
+                <ControllerButton
+                  onClick={() => (isOpen ? closeMenu() : openMenu())}
+                  data-testid="controller-button"
+                  type="button"
+                >
+                  <Icon name="arrow" isOpen={isOpen} />
+                </ControllerButton>
+              </div>
+            </FindInputGroup>
+            {isOpen ? (
+              <Menu {...getMenuProps()}>
+                {getCampsFilteredByBranch().map((item, index) => (
+                  <Item
+                    key="filler"
+                    {...getItemProps({
+                      item,
+                      key: item.serviceBranch,
+                      style: {
+                        background: index === highlightedIndex ? theme.primary : '',
+                        color: index === highlightedIndex ? theme.white : theme.primaryGrey,
+                      },
+                    })}
+                  >
+                    {item && item.serviceBranch}
+                  </Item>
+                ))}
+              </Menu>
+            ) : null}
+          </DownshiftContainer>
+        )}
+      </Downshift>
       <CampsWrapper>
-        {camps
-          .filter(camp => (filterState === 'All' ? true : camp.state === filterState))
-          .sort(sortCampsByDate)
-          .map(camp => (
-            <div key={camp._id}>
-              {camp.featuredImage ? (
-                <CampImage src={camp.featuredImage.url} alt={camp.featuredImage.alt} />
-              ) : (
-                <BlankImage />
-              )}
-              <CampInfo>
-                <CampTitleSection>
-                  <TitleCard>
-                    <CampHeading>{camp.title}</CampHeading>
-                    <CampLocation>{`${camp.city}, ${camp.state}`}</CampLocation>
-                  </TitleCard>
-                  <CampDescriptionSection>
-                    <CampDescriptionTitle>{camp.descriptionTitle}</CampDescriptionTitle>
-                    <CampDescription>{Parser(camp.description)}</CampDescription>
-                  </CampDescriptionSection>
-                </CampTitleSection>
-                <CampDetailsSection>
-                  {(camp.type || camp.serviceBranch) && (
-                    <CampType>
-                      {camp.serviceBranch} {camp.type} Camp
-                    </CampType>
-                  )}
-                  <CampDetailsWrapper>
-                    <CampDetailsHeading>Age Range</CampDetailsHeading>
-                    <CustomP>{camp.ageRange}</CustomP>
-                    <CampDetailsHeading>Camp dates for 2019</CampDetailsHeading>
-                    {camp.dates.map(date => (
-                      <CustomP key={camp.title + date.beginDate}>{`${format(date.beginDate, 'ddd, MMM D')} - ${format(
-                        date.endDate,
-                        'ddd, MMM D'
-                      )}`}</CustomP>
-                    ))}
-                    <CampDetailsHeading>Get More Information</CampDetailsHeading>
-                    {camp.contact.name && <CustomP>{camp.contact.name}</CustomP>}
-                    {camp.contact.email && (
-                      <CustomA href={`mailto:${camp.contact.email}`}>{camp.contact.email}</CustomA>
+        {camps.length > 0 ? (
+          camps
+            .filter(camp => (filterState === 'All' ? true : camp.state === filterState))
+            .filter(camp => (filterBranch === 'All' ? true : camp.serviceBranch === filterBranch))
+            .sort(sortCampsByDate)
+            .map(camp => (
+              <div key={camp._id}>
+                {console.log(camp)}
+                {camp.featuredImage ? (
+                  <CampImage src={camp.featuredImage.url} alt={camp.featuredImage.alt} />
+                ) : (
+                  <BlankImage />
+                )}
+                <CampInfo>
+                  <CampTitleSection>
+                    <TitleCard>
+                      <CampHeading>{camp.title}</CampHeading>
+                      <CampLocation>{`${camp.city}, ${camp.state}`}</CampLocation>
+                    </TitleCard>
+                    <CampDescriptionSection>
+                      <CampDescriptionTitle>{camp.descriptionTitle}</CampDescriptionTitle>
+                      <CampDescription>{Parser(camp.description)}</CampDescription>
+                    </CampDescriptionSection>
+                  </CampTitleSection>
+                  <CampDetailsSection>
+                    {(camp.type || camp.serviceBranch) && (
+                      <CampType color={findBranchColor(camp.serviceBranch)}>
+                        {camp.serviceBranch} {camp.type} Camp
+                      </CampType>
                     )}
-                    {camp.contact.phoneNumber && <CustomP>{camp.contact.phoneNumber}</CustomP>}
-                    <Buttons>
-                      {camp.contact.url && (
-                        <CustomOutlineButton as="a" href={camp.contact.url}>
-                          {camp.contact.urlText || camp.contact.url}
-                        </CustomOutlineButton>
+                    <CampDetailsWrapper>
+                      <CampDetailsHeading>Age Range</CampDetailsHeading>
+                      <CustomP>{camp.ageRange}</CustomP>
+                      <CampDetailsHeading>Camp dates for 2019</CampDetailsHeading>
+                      {camp.dates.map(date => (
+                        <CustomP key={camp.title + date.beginDate}>{`${format(date.beginDate, 'ddd, MMM D')} - ${format(
+                          date.endDate,
+                          'ddd, MMM D'
+                        )}`}</CustomP>
+                      ))}
+                      <CampDetailsHeading>Get More Information</CampDetailsHeading>
+                      {camp.contact.name && <CustomP>{camp.contact.name}</CustomP>}
+                      {camp.contact.email && (
+                        <CustomA href={`mailto:${camp.contact.email}`}>{camp.contact.email}</CustomA>
                       )}
-                      {camp.flyerUrl && <Button onClick={() => setClickedFlyer(camp.flyerUrl)}>Camp Flyer</Button>}
-                    </Buttons>
-                  </CampDetailsWrapper>
-                </CampDetailsSection>
-              </CampInfo>
-            </div>
-          ))}
+                      {camp.contact.phoneNumber && <CustomP>{camp.contact.phoneNumber}</CustomP>}
+                      <Buttons>
+                        {camp.contact.url && (
+                          <CustomOutlineButton as="a" href={camp.contact.url}>
+                            {camp.contact.urlText || camp.contact.url}
+                          </CustomOutlineButton>
+                        )}
+                        {camp.flyerUrl && <Button onClick={() => setClickedFlyer(camp.flyerUrl)}>Camp Flyer</Button>}
+                      </Buttons>
+                    </CampDetailsWrapper>
+                  </CampDetailsSection>
+                </CampInfo>
+              </div>
+            ))
+        ) : (
+          <CampHeading>No Scheduled Camps, But Check Back Soon!</CampHeading>
+        )}
       </CampsWrapper>
     </div>
   )
@@ -219,7 +303,6 @@ const Item = styled.li`
     cursor: pointer;
   }
 `
-
 const CampsWrapper = styled.div`
   padding-top: 3.2rem;
 `
@@ -293,11 +376,11 @@ const CampDescriptionSection = styled(DynamicSection)`
   `}
 `
 const CampType = styled.span`
-  background: ${props => props.theme.primary};
+  background: ${props => props.color};
   color: ${props => props.theme.white};
   border-radius: 50px;
   padding: 0.8rem 1.6rem;
-  font-size: 1.4rem;
+  font-size: 2rem;
   position: absolute;
   text-align: center;
   line-height: 0.7;

@@ -33,7 +33,7 @@ const LatestNews: React.FC<RouteComponentProps> = () => {
         setNews(p)
       })
       .catch(handleError)
-  })
+  }, [])
   return (
     <MainContent>
       <HeaderSection>

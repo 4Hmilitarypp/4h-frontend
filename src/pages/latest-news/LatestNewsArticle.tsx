@@ -38,7 +38,10 @@ const LatestNewsArticle: React.FC<IProps> = ({ slug }) => {
           <Hero>
             <Description>{Parser(article.body)}</Description>
             <HeroImages>
-              <FeaturedImage src="https://picsum.photos/id/826/399/399" alt="Rimac ConceptTwo" />
+              <FeaturedImage
+                src={article.featuredImage ? article.featuredImage.url : ''}
+                alt={article.featuredImage ? article.featuredImage.alt : 'Article Featured Image'}
+              />
             </HeroImages>
           </Hero>
           <BlogSubHeading>Written By: {article.author}</BlogSubHeading>

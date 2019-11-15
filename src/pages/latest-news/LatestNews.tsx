@@ -71,7 +71,10 @@ const LatestNewsItem: React.FC<IProps> = ({ article, index }) => {
       <BlogSubHeading>Written by: {article.author}</BlogSubHeading>
       <BlogSubHeading>Written on: {new Date(article.createdAt).toDateString()}</BlogSubHeading>
       <BlogSubHeading>Last Updated: {new Date(article.updatedAt).toDateString()}</BlogSubHeading>
-      <FeaturedImage src="https://picsum.photos/id/826/399/399" alt="Rimac ConceptTwo" />
+      <FeaturedImage
+        src={article.featuredImage ? article.featuredImage.url : ''}
+        alt={article.featuredImage ? article.featuredImage.alt : 'Article Featured Image'}
+      />
       <BlogBody>{Parser(trimDescription(article.shortDescription))}</BlogBody>
     </BlogArticle>
   )

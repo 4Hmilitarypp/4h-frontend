@@ -135,4 +135,41 @@ export interface ICamp {
   type: 'Residential' | 'Day'
 }
 
+export interface ICalendarState {
+  date: Date
+}
+
+export interface IHeaderProps {
+  date: Date
+  changeMonth: () => void
+}
+
+export interface IBodyProps {
+  days: IDayItem[]
+}
+
+export interface IDayItem {
+  dateInfo: Date
+  events: IEventItem[]
+}
+
+export interface IEventItem {
+  title: string
+  location: string
+  branch?: string
+}
+
+export interface IDayState {
+  events: IEventItem[]
+}
+
+export interface IDayProps {
+  date: Date
+  onClick: () => void
+}
+
+export interface IWeekProps {
+  week: Date[]
+}
+
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>

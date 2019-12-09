@@ -1,0 +1,102 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.CalendarWrapper {  
+  background: transparent;
+  width: 624px;
+  height: 400px;
+  margin: 15px auto;
+  filter: drop-shadow(5px 5px 4px grey);
+}
+
+.Header {
+  position: absolute;
+  background: #0E8147;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  height: 70px;
+  text-align: center;
+}
+
+li, ul {
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+p {
+  margin: 5px;
+  font-size: 13px;
+}
+
+.Day {
+  background: #F1F9F5;
+  font-family: Raleway, sans-serif;
+  font-weight: 900;
+  color: #293D33;
+  width: 86px;
+  padding: 3px;
+  height: 90px;
+  border: 1px solid #293D33;
+  display: inline-block;
+  box-sizing: border-box;
+}
+.Day:hover {
+  background: #2D9B68;
+  color: #fff;
+  transition: 0.5s;
+}
+
+.EventModal {
+  background: blue;
+  
+}
+
+.Body {
+  position: absolute;
+  background: transparent;
+  top: 80px;
+  left: 10px;
+  right: 10px;
+  height: 309px;
+  border: 1px solid #fff;
+}
+
+#PrevMonth {
+  float: left;
+}
+
+#MainHeader {
+  color: #fff;
+  font-family: Ralewawy, sans-serif;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+#NextMonth {
+  float: right;
+}
+
+.Control {
+  background: transparent;
+  border: 1.5px solid #fff;
+  padding: 9px 24px;
+  color: #fff;
+  border-radius: 13px;
+  font-family: Raleway, sans-serif;
+  font-weight: 900;
+  font-size: 15px;
+  margin: 15px;
+}
+
+.Control:hover {
+  background: rgb(27, 192, 110);
+}
+
+.Control:active {
+  padding: 9px 24px;
+}

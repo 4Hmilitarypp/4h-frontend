@@ -10,8 +10,6 @@ interface IManageBackgroundProps {
 }
 
 const setup = (propOverrides?: {}) => {
-  const props = Object.assign({}, propOverrides)
-
   const manageBackground: IManageBackgroundProps = {
     liRef: {},
     navRef: {},

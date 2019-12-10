@@ -6,11 +6,7 @@ import { Button, Heading, Link, PageWrapper, Section } from '../components/Eleme
 import { media } from '../utils/mixins'
 
 const NotFound: React.FC<RouteComponentProps> = ({ uri }) => {
-  const [eventId, setEventId] = React.useState<string | undefined>()
-  React.useEffect(() => {
-    const returnedEventId = Sentry.captureEvent({ message: `client-client-404:${uri}` })
-    setEventId(returnedEventId)
-  }, [])
+  const [eventId] = React.useState<string | undefined>(Sentry.captureEvent({ message: `client-client-404:${uri}` }))
   return (
     <PageWrapper>
       <Section>

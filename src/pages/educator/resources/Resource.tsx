@@ -25,7 +25,7 @@ const Resource: React.FC<IProps> = ({ slug, backButtonRoute }) => {
       .getBySlug(slug || '')
       .then(r => setResource(r))
       .catch(handleError)
-  }, [])
+  }, [slug])
 
   if (!resource) {
     return null

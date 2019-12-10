@@ -19,7 +19,12 @@ const Header: React.FC<RouteComponentProps> = () => {
   const [backgroundOpen, setBackgroundOpen] = React.useState(false)
   const [hamburgerActive, setHamburgerActive] = React.useState(false)
   const navRef = React.useRef<HTMLDivElement>(null)
-  const backgroundManagement = { setCoords: setBackgroundCoords, setOpen: setBackgroundOpen, navRef, hamburgerActive }
+  const backgroundManagement = {
+    setCoords: setBackgroundCoords,
+    setOpen: setBackgroundOpen,
+    navRef,
+    hamburgerActive,
+  }
 
   return (
     <>

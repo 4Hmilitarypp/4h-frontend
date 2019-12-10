@@ -8,13 +8,11 @@ interface IProps {
 const LiaisonMap: React.FC<IProps> = ({ setSelectedState }) => {
   React.useEffect(() => {
     loadGoogleMaps()
-  }, [])
+  }, []) //eslint-disable-line
 
   const createGoogleScript = () => {
     const googleScript = document.createElement('script')
-    googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${
-      process.env.REACT_APP_GOOGLE_KEY
-    }&callback=initMap`
+    googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}&callback=initMap`
     googleScript.async = true
     googleScript.defer = true
     googleScript.type = 'text/javascript'
@@ -27,10 +25,10 @@ const LiaisonMap: React.FC<IProps> = ({ setSelectedState }) => {
       styles: mapStyles,
       zoom: 4.3,
     })
-    const geocoder = new google.maps.Geocoder()
+    const geocoder = new (window as any).google.maps.Geocoder()
     map.addListener('click', e => {
-      geocoder.geocode({ location: e.latLng }, (results, status) => {
-        if (status === google.maps.GeocoderStatus.OK) {
+      geocoder.geocode({ location: e.latLng }, (results: any, status: any) => {
+        if (status === (window as any).google.maps.GeocoderStatus.OK) {
           if (results[0] && results[results.length - 2]) {
             const stateObject = results[results.length - 2]
             const stateAbbr = stateObject.address_components[0].short_name

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { fireEvent, flushEffects, render, wait } from 'react-testing-library'
-jest.mock('../../utils/api')
 import FlashContext, { useFlash } from '../../contexts/FlashContext'
 import api from '../../utils/api'
 import generate from '../../utils/generate'
 import ContactUs from '../ContactUs'
+jest.mock('../../utils/api')
 
 beforeEach(() => (api as any).reset())
 

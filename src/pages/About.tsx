@@ -9,7 +9,7 @@ import { media } from '../utils/mixins'
 const About: React.FC<RouteComponentProps> = () => {
   React.useEffect(() => window.scrollTo(0, 0), [])
   const historyRef = React.useRef<HTMLHeadingElement>(null)
-  useHash({ refToFocus: historyRef, hash: '#history', location })
+  useHash({ refToFocus: historyRef, hash: '#history', location: window.location })
   return (
     <>
       <Section>

@@ -141,7 +141,7 @@ export interface ICalendarState {
 
 export interface IHeaderProps {
   date: Date
-  changeMonth: () => void
+  changeMonth: (currentDate: Date, shift: number) => void
 }
 
 export interface IBodyProps {

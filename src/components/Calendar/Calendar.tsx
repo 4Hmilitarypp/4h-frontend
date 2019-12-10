@@ -33,7 +33,7 @@ class Calendar extends React.Component<{}, ICalendarState> {
     const days = this.getDateInfo(this.state.date.getMonth() + 1, this.state.date.getFullYear())
     return (
       <div className="CalendarWrapper">
-        <Header date={this.state.date} changeMonth={() => this.changeMonth} />
+        <Header date={this.state.date} changeMonth={this.changeMonth} />
         <Body days={days} />
       </div>
     )

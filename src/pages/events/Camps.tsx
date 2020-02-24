@@ -225,10 +225,10 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
                       <CustomP>{camp.ageRange}</CustomP>
                       <CampDetailsHeading>Camp dates for 2019</CampDetailsHeading>
                       {camp.dates.map(date => (
-                        <CustomP key={camp.title + date.beginDate}>{`${format(date.beginDate, 'ddd, MMM D')} - ${format(
-                          date.endDate,
+                        <CustomP key={camp.title + date.beginDate}>{`${format(
+                          new Date(date.beginDate),
                           'ddd, MMM D'
-                        )}`}</CustomP>
+                        )} - ${format(new Date(date.endDate), 'ddd, MMM D')}`}</CustomP>
                       ))}
                       <CampDetailsHeading>Get More Information</CampDetailsHeading>
                       {camp.contact.name && <CustomP>{camp.contact.name}</CustomP>}

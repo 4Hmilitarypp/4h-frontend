@@ -76,6 +76,14 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
   return (
     <div>
       <Heading>Upcoming Camps</Heading>
+      <DisclaimerText>
+        "The camps below have been funded through the 4-H / Air Force Partnership funds held at Kansas State University
+        and awarded to respective land-grant universities. States, communities, and higher education institutions are
+        responding to COVID-19 based on a variety of local factors, and institutions may adjust their scheduled dates,
+        registration deadlines or other components for these camps. This website will be updated as we receive
+        information. We also encourage you to follow the information from the specific land-grant university hosting the
+        camp.”
+      </DisclaimerText>
       <EmbedDocument url={clickedFlyer || ''} title="Camp Flyer" open={!!clickedFlyer} setOpen={setClickedFlyer} />
       <Downshift
         onChange={selection => setFilterState(selection ? selection.state : '')}
@@ -250,7 +258,7 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
               </div>
             ))
         ) : (
-          <CampHeading>No Scheduled Camps, But Check Back Soon!</CampHeading>
+          <span></span>
         )}
       </CampsWrapper>
     </div>
@@ -394,6 +402,14 @@ const CampDescriptionTitle = styled.h3`
   ${media.tabletLand`
     font-size: 2rem;
   `}
+`
+const DisclaimerText = styled.p`
+  color: red;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 5x;
+  margin-bottom: 15px;
+  text-align: center;
 `
 const CampDescription = styled.p`
   padding-top: 2.4rem;

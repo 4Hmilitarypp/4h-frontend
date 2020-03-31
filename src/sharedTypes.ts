@@ -27,6 +27,7 @@ export interface ILatestNews {
   updatedBy: string
   updatedAt: string // display in human-readable format
   createdBy: string
+  resourceUrl: string
 }
 
 export interface IPartnerSection {

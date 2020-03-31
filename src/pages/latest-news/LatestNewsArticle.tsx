@@ -1,33 +1,40 @@
-import { RouteComponentProps } from '@reach/router'
 // @ts-ignore
 import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import BackButton from '../../components/BackButton'
-import { DynamicSection, Heading, PageWrapper } from '../../components/Elements'
+import { Button, DynamicSection, Heading, PageWrapper } from '../../components/Elements'
 import useErrorHandler from '../../hooks/useErrorHandler'
 import { ILatestNews } from '../../sharedTypes'
 import api from '../../utils/api'
 import { elevation, media } from '../../utils/mixins'
+import { RouteComponentProps } from '@reach/router'
+import EmbedDocument from '../../components/EmbedDocument'
 
-interface IProps extends RouteComponentProps {
+interface IArticleProps extends RouteComponentProps {
   slug?: string
 }
 
-const LatestNewsArticle: React.FC<IProps> = ({ slug }) => {
-  const [article, setArticle] = React.useState<ILatestNews | undefined>(undefined)
+function LatestNewsArticle({ slug }: IArticleProps) {
+  const [article, setArticle] = React.useState<ILatestNews>()
+  const [clickedResource, setClickedResource] = React.useState<string | false | undefined>()
   const handleError = useErrorHandler()
 
   React.useEffect(() => {
     api.latestNews
       .getBySlug(slug || '')
-      .then(p => {
-        setArticle(p)
-      })
+      .then(p => setArticle(p))
       .catch(handleError)
   }, [])
+
   return (
     <CustomPageWrapper>
+      <EmbedDocument
+        url={clickedResource || ''}
+        title="Additional Resource"
+        open={!!clickedResource}
+        setOpen={setClickedResource}
+      />
       {article ? (
         <PartnerWrapper>
           <HeaderWrapper>
@@ -36,13 +43,15 @@ const LatestNewsArticle: React.FC<IProps> = ({ slug }) => {
             <div style={{ width: 209 }} />
           </HeaderWrapper>
           <Hero>
-            <Description>{Parser(article.body)}</Description>
             <HeroImages>
-              <FeaturedImage
-                src={article.featuredImage ? article.featuredImage.url : ''}
-                alt={article.featuredImage ? article.featuredImage.alt : 'Article Featured Image'}
-              />
+              <FeaturedImage src={article.featuredImage.url} alt={article.featuredImage.alt} />
             </HeroImages>
+            <Description>{Parser(article.body)}</Description>
+            {article.resourceUrl && (
+              <ResourceButton onClick={() => setClickedResource(article.resourceUrl)}>
+                Additional Resources
+              </ResourceButton>
+            )}
           </Hero>
           <BlogSubHeading>Written By: {article.author}</BlogSubHeading>
           <BlogSubHeading>Created At: {new Date(article.createdAt).toDateString()}</BlogSubHeading>
@@ -52,8 +61,12 @@ const LatestNewsArticle: React.FC<IProps> = ({ slug }) => {
     </CustomPageWrapper>
   )
 }
+
 export default LatestNewsArticle
 
+const ResourceButton = styled(Button)`
+  margin-top: 5px;
+`
 const CustomPageWrapper = styled(PageWrapper)`
   ${media.tabletLand`
     padding: 0;
@@ -89,7 +102,7 @@ const CustomHeading = styled(Heading)`
   `}
 `
 const Hero = styled.section`
-  display: flex;
+  display: block;
   justify-content: center;
   padding: 0 4rem;
   align-items: center;
@@ -101,7 +114,6 @@ const Hero = styled.section`
 const HeroImages = styled.div`
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   ${media.tabletLand` 
     padding-top: 3.2rem;
   `}
@@ -110,7 +122,7 @@ const FeaturedImage = styled.img`
   height: 20rem;
   width: 100%;
   display: block;
-  margin: 1.2rem;
+  margin: 0 auto;
   object-fit: contain;
 `
 const Description = styled(DynamicSection)`

@@ -415,7 +415,7 @@ const CampDescription = styled.p`
 const CampDetailsSection = styled.section`
   width: 50%;
   vertical-align: top;
-  padding: 1.6rem 0 9.6rem;
+  padding: 1.6rem 3.2rem 9.6rem;
   display: inline-flex;
   justify-content: center;
   position: relative;

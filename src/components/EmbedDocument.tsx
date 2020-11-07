@@ -9,26 +9,18 @@ interface IProps {
 }
 
 const EmbedDocument: React.FC<IProps> = ({ title, url, open, setOpen }) => {
-  const [iframeInterval, setIframeInterval] = React.useState<number | undefined>(undefined)
   const iframeRef = React.useRef<HTMLIFrameElement | undefined>(undefined)
 
   React.useEffect(() => {
     if (open) {
-      window.addEventListener('keydown', handleKeydown)
-      const reloadInterval = window.setInterval(() => {
-        if (iframeRef.current) {
-          iframeRef.current.src += ''
-        }
-      }, 2000)
-      setIframeInterval(reloadInterval)
+      window.addEventListener('keydown', handleKeydown, false)
     } else {
-      window.removeEventListener('keydown', handleKeydown)
+      window.removeEventListener('keydown', handleKeydown, false)
     }
     return () => {
-      clearInterval(iframeInterval)
-      window.removeEventListener('keydown', handleKeydown)
+      window.removeEventListener('keydown', handleKeydown, false)
     }
-  }, [iframeInterval, open])
+  }, [open])
 
   const handleKeydown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
@@ -44,11 +36,7 @@ const EmbedDocument: React.FC<IProps> = ({ title, url, open, setOpen }) => {
         </DocumentCloseButton>
         <DocumentCloseButton onClick={() => setOpen(false)}>Close</DocumentCloseButton>
       </DocumentCommands>
-      <Doc
-        src={`https://docs.google.com/gview?url=${url}&embedded=true`}
-        onLoad={() => clearInterval(iframeInterval)}
-        ref={iframeRef}
-      />
+      <Doc src={`https://docs.google.com/gview?url=${url}&embedded=true`} ref={iframeRef} />
     </EmbedWrapper>
   ) : null
 }

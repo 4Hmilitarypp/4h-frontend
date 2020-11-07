@@ -4,7 +4,7 @@ import Parser from 'html-react-parser'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import BackButton from '../../../components/BackButton'
-import { DynamicSection, Heading, P, PageWrapper, SubHeading } from '../../../components/Elements'
+import { DynamicSection, Heading, PageWrapper, SubHeading } from '../../../components/Elements'
 import useErrorHandler from '../../../hooks/useErrorHandler'
 import { IResourceWithLessons } from '../../../sharedTypes'
 import api from '../../../utils/api'
@@ -39,7 +39,7 @@ const Resource: React.FC<IProps> = ({ slug, backButtonRoute }) => {
         <div style={{ width: 209 }} />
       </HeaderWrapper>
       <TitleSection>
-        <P>{Parser(longDescription)}</P>
+        <div>{Parser(longDescription)}</div>
         {featuredImage && <FeaturedImage src={featuredImage.url} alt={featuredImage.alt} />}
       </TitleSection>
       {lessons && (
@@ -93,3 +93,4 @@ const CustomSubHeading = styled(SubHeading)`
     font-size: 2rem;
   `}
 `
+// const TitleText = styled

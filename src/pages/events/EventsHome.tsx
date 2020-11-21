@@ -9,6 +9,9 @@ const EducatorHome: React.FC<RouteComponentProps> = () => (
       <P>
         <Link to="camps">Check out our upcoming camps</Link>.
       </P>
+      <P>
+        <Link to="calendar">See a calendar of our upcoming events</Link>.
+      </P>
     </Section>
   </PageWrapper>
 )

@@ -35,7 +35,6 @@ const LatestNews: React.FC<RouteComponentProps> = () => {
     api.latestNews
       .get()
       .then(p => {
-        console.log(p)
         setNews(p)
       })
       .catch(handleError)

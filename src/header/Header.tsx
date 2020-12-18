@@ -56,6 +56,10 @@ const Header: React.FC<RouteComponentProps> = () => {
               <LinkTitle>Upcoming Camps</LinkTitle>
               <LinkDescription>There are dozens of camps youth can attend</LinkDescription>
             </StyledDropdownLink>
+            <StyledDropdownLink to="/events/calendar" onClick={() => setHamburgerActive(false)}>
+              <LinkTitle>Calendar</LinkTitle>
+              <LinkDescription>See a calendar of our upcoming events</LinkDescription>
+            </StyledDropdownLink>
             {/* <StyledDropdownLink to="/photos" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Photos</LinkTitle>
               <LinkDescription>View some of the photos taken at our fun events</LinkDescription>

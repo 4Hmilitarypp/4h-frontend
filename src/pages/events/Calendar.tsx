@@ -16,7 +16,18 @@ const EventsCalendar: React.FC<RouteComponentProps> = () => {
     api.camps
       .get()
       .then(p => {
-        setEventsList(p)
+        const newEventsList: Event[] = []
+        p.forEach(camp => {
+          camp.dates.forEach(campDate => {
+            newEventsList.push({
+              title: camp.title,
+              start: campDate.beginDate,
+              end: campDate.endDate,
+              allDay: true,
+            })
+          })
+        })
+        setEventsList(newEventsList)
       })
       .catch(handleError)
   }, [])

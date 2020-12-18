@@ -24,7 +24,7 @@ const aws4hRequests = {
 }
 
 const camps = {
-  get: (): Promise<ICamp[]> => requests.get('/camps/current'),
+  get: (): Promise<ICamp[]> => aws4hRequests.get('/camps/current'),
 }
 
 const emails = {

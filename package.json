@@ -2,7 +2,7 @@
   "name": "4h-military-partnership",
   "version": "0.8.1",
   "private": false,
-  "proxy": "https://api.cms.wendte.tech",
+  "proxy": "https://api.cms.4h.wendte.tech",
   "dependencies": {
     "@reach/router": "^1.2.1",
     "@sentry/browser": "^5.5.0",

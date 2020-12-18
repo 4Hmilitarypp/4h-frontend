@@ -31,5 +31,5 @@ export default EventsCalendar
 
 const CalendarContainer = styled.div`
   display: block;
-  height: 65rem;
+  height: 550px;
 `

@@ -20,8 +20,8 @@ const About: React.FC<RouteComponentProps> = () => {
             <Icon name="link" height={32} width={32} />
           </Icons>
           <InlineP>
-            4-H Military Partnerships creates opportunities and provides support to military connected youth whether
-            they live on or near an installation, in our communities, or on overseas installations. 4-H clubs provide
+            4-H Military Partnership creates opportunities and provides support to military connected youth whether they
+            live on or near an installation, in our communities, or on overseas installations. 4-H clubs provide
             consistency in belonging and an opportunity to develop life skills through a positive youth development
             framework.
           </InlineP>
@@ -61,7 +61,7 @@ const About: React.FC<RouteComponentProps> = () => {
             <Icon name="medal" height={38} width={38} />
           </Icons>
           <InlineP>
-            The 4-H Military Partnerships represent a collaboration of the U.S. Department of Agriculture (USDA),
+            The 4-H Military Partnership represent a collaboration of the U.S. Department of Agriculture (USDA),
             National Institute of Food and Agriculture and the U.S. Department of Defense, Military Community and Family
             Policy, Army Child, Youth and School Services, Air Force Child and Youth Programs, Navy Child and Youth
             Programs, Coast Guard, and National Guard Bureau.
@@ -83,7 +83,7 @@ const About: React.FC<RouteComponentProps> = () => {
             <Icon name="chat-group-alt" height={32} width={32} />
           </Icons>
           <InlineP>
-            The 4-H Military Partnerships rely on Land Grant University Extension faculty, the “Extension 4-H Military
+            The 4-H Military Partnership rely on Land Grant University Extension faculty, the “Extension 4-H Military
             Liaison” to serve as a link between the State Cooperative Extension System, Military Service Branches, and
             4-H National Headquarters at USDA. The Liaison serves as a coordinator with these partners in support of
             research based programming for military connected children, youth, and families.

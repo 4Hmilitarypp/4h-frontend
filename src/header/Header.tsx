@@ -33,7 +33,7 @@ const Header: React.FC<RouteComponentProps> = () => {
         <Heading to="/" data-testid="main-logo">
           <Title>
             <TitleWords>4-H Military</TitleWords>
-            <TitleWords>Partnerships</TitleWords>
+            <TitleWords>Partnership</TitleWords>
           </Title>
           <Logo src="https://res.cloudinary.com/four-hmpp/image/upload/v1542786198/logos/4h-logo.png" alt="4-H Logo" />
         </Heading>

@@ -27,7 +27,7 @@ const Home: React.FC<RouteComponentProps> = () => {
           alt="a team in a huddle"
         />
       </HeroOverlay>
-      <HeroText name="4-hMilitaryPartnerships" />
+      <HeroText name="4HMilitaryPartnership" />
       <Vision>
         <VisionHeading>
           Military readiness through 4-H positive youth development for youth, families, and communities.
@@ -46,7 +46,7 @@ const Home: React.FC<RouteComponentProps> = () => {
           </MissionP>
           <MissionSubHeading>What We Do</MissionSubHeading>
           <MissionP>
-            4-H Military Partnerships focuses on positive youth development through providing opportunities for youth to
+            4-H Military Partnership focuses on positive youth development through providing opportunities for youth to
             engage in intentional learning experiences. We partner with 4-H educators to provide them the training and
             resources they need to succeed in equipping the next generation of leaders.
           </MissionP>
@@ -75,9 +75,9 @@ const Home: React.FC<RouteComponentProps> = () => {
                 alt="a few kids holding a 4-H club sign"
               />
             </CardImageOverlay>
-            <CardText>What is 4-H Military Partnerships?</CardText>
+            <CardText>What is 4-H Military Partnership?</CardText>
           </Card>
-          <CardArrow>></CardArrow>
+          <CardArrow>{'>'}</CardArrow>
         </CardLink>
         <CardLink to="events">
           <Card>
@@ -89,7 +89,7 @@ const Home: React.FC<RouteComponentProps> = () => {
             </CardImageOverlay>
             <CardText>View Our Upcoming Events</CardText>
           </Card>
-          <CardArrow>></CardArrow>
+          <CardArrow>{'>'}</CardArrow>
         </CardLink>
         <CardLink to="4-h-club">
           <Card>
@@ -101,7 +101,7 @@ const Home: React.FC<RouteComponentProps> = () => {
             </CardImageOverlay>
             <CardText>Learn About 4-H Club</CardText>
           </Card>
-          <CardArrow>></CardArrow>
+          <CardArrow>{'>'}</CardArrow>
         </CardLink>
         <CardLink to="find-a-liaison">
           <Card>
@@ -113,7 +113,7 @@ const Home: React.FC<RouteComponentProps> = () => {
             </CardImageOverlay>
             <CardText>Contact Your State's Liaison</CardText>
           </Card>
-          <CardArrow>></CardArrow>
+          <CardArrow>{'>'}</CardArrow>
         </CardLink>
         <CardLink to="resources">
           <Card>
@@ -123,9 +123,9 @@ const Home: React.FC<RouteComponentProps> = () => {
                 alt="a man in an air-force uniform teaching some kids"
               />
             </CardImageOverlay>
-            <CardText>View 4-H Military Partnerships Resources</CardText>
+            <CardText>View 4-H Military Partnership Resources</CardText>
           </Card>
-          <CardArrow>></CardArrow>
+          <CardArrow>{'>'}</CardArrow>
         </CardLink>
       </CardLinks>
       <Footer>

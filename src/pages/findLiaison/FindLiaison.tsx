@@ -1,7 +1,7 @@
 import { RouteComponentProps } from '@reach/router'
 import Downshift from 'downshift'
 import { find, map, sortBy } from 'lodash'
-import matchSorter from 'match-sorter'
+import { matchSorter } from 'match-sorter'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { theme } from '../../App'
@@ -66,10 +66,10 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
       <SubHeading ref={findRef as any}>Find A Liaison</SubHeading>
       {liaisons && (
         <Downshift
-          itemToString={(item: ILiaison) => (item ? item.region : '')}
-          onChange={(selection: ILiaison) => setSelectedLiaison(selection)}
+          itemToString={(item: ILiaison | null) => (item?.region || '')}
+          onChange={(selection, stateAndHelpers) => setSelectedLiaison(selection || undefined)}
           // Have to do this because downshift was complaining about not controlling the state the whole time
-          selectedItem={selectedLiaison || { region: '' }}
+          selectedItem={selectedLiaison}
         >
           {({
             getLabelProps,

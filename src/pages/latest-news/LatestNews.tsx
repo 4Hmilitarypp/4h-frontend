@@ -44,7 +44,7 @@ const LatestNews: React.FC<RouteComponentProps> = () => {
       <HeaderSection>
         <MainHeading>4-H Military News</MainHeading>
         <SubHeading>
-          Keep up with the latest news regarding the 4-H Military Partnerships, its events, and its members.
+          Keep up with the latest news regarding the 4-H Military Partnership, its events, and its members.
         </SubHeading>
         <SearchLabel>Search for an article</SearchLabel>
         <SearchBar>

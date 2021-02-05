@@ -10,7 +10,7 @@ const TechDiscoveryHome: React.FC<RouteComponentProps> = () => (
   <PageWrapper>
     <HeaderWrapper>
       <UnstyledBackButton route={'/resources/educator-resources'} title="Resources" />
-      <Heading>DoD-USDA Partnerships: Tech Discovery Curriculum</Heading>
+      <Heading>DoD-USDA Partnership: Tech Discovery Curriculum</Heading>
       <div style={{ width: 209 }} />
     </HeaderWrapper>
     <Section>
@@ -41,7 +41,7 @@ const TechDiscoveryHome: React.FC<RouteComponentProps> = () => (
     <TechDiscoveryResources />
     <Section>
       <P>
-        The DoD-USDA Partnerships: Tech Discovery Curriculum was developed at the University of Minnesota Extension
+        The DoD-USDA Partnership: Tech Discovery Curriculum was developed at the University of Minnesota Extension
         Center for Youth Development through a partnership of the Department of Defense, Office of the Secretary of
         Defense, Military Community & Family Policy, Office of Family Policy/Children and Youth and the United States
         Department of Agriculture, National Institute of Food and Agriculture, Institute of Youth, Family and Community,

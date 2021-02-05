@@ -16,7 +16,7 @@ const JobApplication: React.FC<RouteComponentProps> = () => {
         url="https://res.cloudinary.com/four-hmpp/raw/upload/v1550011741/4-H_Student_PD.docx"
         open={open}
         setOpen={setOpen}
-        title="4-H Military Partnerships Job Application"
+        title="4-H Military Partnership Job Application"
       />
     </PageWrapper>
   )

@@ -43,41 +43,23 @@ const Header: React.FC<RouteComponentProps> = () => {
           </HomeLink>
           <LinkGroup title="About Us" to="/about" manageBackground={backgroundManagement}>
             <StyledDropdownLink to="/about" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>About Us</LinkTitle>
+              <LinkTitle>About 4-H Military Partnership</LinkTitle>
               <LinkDescription>Learn about the 4-H Military Partnership</LinkDescription>
+            </StyledDropdownLink>
+            <StyledDropdownLink to="/4-h-club" onClick={() => setHamburgerActive(false)}>
+              <LinkTitle>About 4-H Club</LinkTitle>
+              <LinkDescription>Learn about 4-H club in general</LinkDescription>
             </StyledDropdownLink>
           </LinkGroup>
           <LinkGroup title="Events" to="/events" manageBackground={backgroundManagement}>
-            {/* <StyledDropdownLink to="/events/#past-events" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>Past Events</LinkTitle>
-              <LinkDescription>Check out some of the past events we have sponsored</LinkDescription>
-            </StyledDropdownLink> */}
             <StyledDropdownLink to="/events/camps" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Upcoming Camps</LinkTitle>
               <LinkDescription>There are dozens of camps youth can attend</LinkDescription>
             </StyledDropdownLink>
-            <StyledDropdownLink to="/events/calendar" onClick={() => setHamburgerActive(false)}>
+            {/* <StyledDropdownLink to="/events/calendar" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Calendar</LinkTitle>
               <LinkDescription>See a calendar of our upcoming events</LinkDescription>
-            </StyledDropdownLink>
-            {/* <StyledDropdownLink to="/photos" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>Photos</LinkTitle>
-              <LinkDescription>View some of the photos taken at our fun events</LinkDescription>
             </StyledDropdownLink> */}
-          </LinkGroup>
-          <LinkGroup title="4-H Club" to="/4-h-club" manageBackground={backgroundManagement}>
-            <StyledDropdownLink to="/4-h-club" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>About</LinkTitle>
-              <LinkDescription>Learn about 4-H club in general</LinkDescription>
-            </StyledDropdownLink>
-            <StyledDropdownLink to="4-h-club/get-involved" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>Get Involved</LinkTitle>
-              <LinkDescription>Learn how to join 4-H or make an impact through becoming a volunteer</LinkDescription>
-            </StyledDropdownLink>
-            <StyledDropdownLink as="a" href="https://4-h.org" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>4-H Website</LinkTitle>
-              <LinkDescription>Check out the 4-H official website</LinkDescription>
-            </StyledDropdownLink>
           </LinkGroup>
           <LinkGroup title="Resources" to="/resources" manageBackground={backgroundManagement}>
             <StyledDropdownLink to="/resources" onClick={() => setHamburgerActive(false)}>

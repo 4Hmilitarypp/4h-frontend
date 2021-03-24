@@ -14,10 +14,7 @@ const Home: React.FC<RouteComponentProps> = () => {
   const [homeInfo, setHomeInfo] = React.useState<any>()
   React.useEffect(() => {
     window.scrollTo(0, 0)
-    api.pageInfo
-      .get('home')
-      .then(setHomeInfo)
-      .catch(handleError)
+    api.pageInfo.get('home').then(setHomeInfo).catch(handleError)
   }, [])
   return (
     <div>
@@ -61,8 +58,10 @@ const Home: React.FC<RouteComponentProps> = () => {
       {homeInfo && (
         <FeaturedSection>
           <FeaturedTitle>{homeInfo.title}</FeaturedTitle>
-          <FeaturedText>{Parser(homeInfo.text)}</FeaturedText>
-          <FeaturedImage src={homeInfo.featuredImage.url} alt={homeInfo.featuredImage.alt} />
+          <FeaturedContent>
+            <FeaturedText>{Parser(homeInfo.text)}</FeaturedText>
+            <FeaturedImage src={homeInfo.featuredImage.url} alt={homeInfo.featuredImage.alt} />
+          </FeaturedContent>
         </FeaturedSection>
       )}
       <CardLinksHeading>Take a Look Around!</CardLinksHeading>
@@ -180,7 +179,8 @@ const VisionHeading = styled(SubHeading)`
   line-height: 1.5;
   margin: 2.4rem auto;
   ${media.tabletLand`
-    margin: 2rem 1.2rem;
+    margin: 2rem auto;
+    padding: 0 1.2rem;
     font-size: 2rem;
   `}
 `
@@ -226,15 +226,25 @@ const MissionP = styled.p`
 const FeaturedSection = styled.div`
   padding-bottom: 3.6rem;
   background: ${props => props.theme.primaryLight};
-  ${media.tabletPort`
-    padding-bottom: 0rem;
+`
+const FeaturedTitle = styled(SubHeading)``
+
+const FeaturedContent = styled.div`
+  padding: 0 2.4rem;
+  background: ${props => props.theme.primaryLight};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${media.tabletLand`
+    flex-direction: column-reverse;
   `}
 `
+
 const FeaturedText = styled(DynamicSection)`
   max-width: 80rem;
   font-size: 1.8rem;
   margin: 0 auto;
-  padding: 0 2.4rem 3.6rem;
+  padding: 2.4rem 2.4rem 2.4rem 0;
   a {
     font-size: 1.8rem;
     font-weight: 600;
@@ -248,17 +258,16 @@ const FeaturedText = styled(DynamicSection)`
   }
   `}
 `
-const FeaturedTitle = styled(SubHeading)``
 const FeaturedImage = styled.img`
-  max-width: 80%;
+  max-width: 40%;
   max-height: 100vh;
   margin: 0 auto;
   display: block;
   object-fit: cover;
   border-radius: 5px;
-  ${media.tabletPort`
-    border-radius: 0px;
+  ${media.tabletLand`
     width: 100%;
+    max-width: 80%;
   `}
 `
 const CardLinksHeading = styled(SubHeading)`

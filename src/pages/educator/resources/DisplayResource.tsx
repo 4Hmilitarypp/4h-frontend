@@ -1,5 +1,4 @@
 import { Link } from '@reach/router'
-import * as React from 'react'
 import styled from 'styled-components/macro'
 import { Button, SubHeading } from '../../../components/Elements'
 import { IResource } from '../../../sharedTypes'

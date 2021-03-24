@@ -66,7 +66,7 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
       <SubHeading ref={findRef as any}>Find A Liaison</SubHeading>
       {liaisons && (
         <Downshift
-          itemToString={(item: ILiaison | null) => (item?.region || '')}
+          itemToString={(item: ILiaison | null) => item?.region || ''}
           onChange={(selection, stateAndHelpers) => setSelectedLiaison(selection || undefined)}
           // Have to do this because downshift was complaining about not controlling the state the whole time
           selectedItem={selectedLiaison}

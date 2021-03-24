@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { fireEvent, render } from 'react-testing-library'
 import Lesson from '../Lesson'
 import { ILesson } from '../../../../sharedTypes'

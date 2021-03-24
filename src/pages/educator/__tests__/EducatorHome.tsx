@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { render } from 'react-testing-library'
 import EducatorHome from '../EducatorHome'
 

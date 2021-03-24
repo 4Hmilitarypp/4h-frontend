@@ -3,7 +3,6 @@ import 'regenerator-runtime/runtime'
 import 'react-app-polyfill/ie11'
 
 import * as Sentry from '@sentry/browser'
-import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import App from './App'
 import './assets/styles/reset.css'

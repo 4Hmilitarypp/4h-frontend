@@ -1,5 +1,4 @@
 import { Link as UnstyledLink } from '@reach/router'
-import * as React from 'react'
 import styled from 'styled-components/macro'
 import { elevation, media, transition } from '../utils/mixins'
 

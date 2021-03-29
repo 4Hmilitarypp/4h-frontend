@@ -70,7 +70,7 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
     } else if (branch === 'Navy') {
       return 'goldenrod'
     }
-    return 'red'
+    return theme.secondary
   }
 
   return (

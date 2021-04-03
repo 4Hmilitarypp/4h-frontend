@@ -58,8 +58,6 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
         if (!arr.some(camp => camp.serviceBranch === item.serviceBranch) && item.serviceBranch) arr.push(item)
         return arr
       }, []),
-    { serviceBranch: 'Army' },
-    { serviceBranch: 'Navy' },
   ]
 
   const findBranchColor = (branch: string) => {

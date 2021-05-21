@@ -75,12 +75,10 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
     <div>
       <Heading>Upcoming Camps</Heading>
       <DisclaimerText>
-        The camps below have been funded through the 4-H / Air Force Partnership funds held at Kansas State University
-        and awarded to respective land-grant universities. States, communities, and higher education institutions are
-        responding to COVID-19 based on a variety of local factors, and institutions may adjust their scheduled dates,
-        registration deadlines or other components for these camps. This website will be updated as we receive
-        information. We also encourage you to follow the information from the specific land-grant university hosting the
-        camp.
+        States, communities, and higher education institutions are responding to COVID-19 based on a variety of local
+        factors, and institutions may adjust their scheduled dates, registration deadlines, or other components for
+        these camps. This website will be updated as we receive information. We also encourage you to follow the
+        information from the specific land-grant university hosting the camp.
       </DisclaimerText>
       <EmbedDocument url={clickedFlyer || ''} title="Camp Flyer" open={!!clickedFlyer} setOpen={setClickedFlyer} />
       <Downshift

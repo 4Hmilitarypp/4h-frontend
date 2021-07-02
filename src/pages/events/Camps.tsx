@@ -75,10 +75,11 @@ const Camps: React.FC<RouteComponentProps> = ({ location }) => {
     <div>
       <Heading>Upcoming Camps</Heading>
       <DisclaimerText>
-        States, communities, and higher education institutions are responding to COVID-19 based on a variety of local
-        factors, and institutions may adjust their scheduled dates, registration deadlines, or other components for
-        these camps. This website will be updated as we receive information. We also encourage you to follow the
-        information from the specific land-grant university hosting the camp.
+        The camps below are designed especially for military-connected youth. States, communities, and higher education
+        institutions are responding to COVID-19 based on a variety of local factors; therefore, institutions may adjust
+        their scheduled dates, registration deadlines or other components for these camps. This website will be updated
+        as we receive information. We encourage you to follow the information from the specific land-grant university
+        hosting the camp to remain up-to-date on all camping details/requirements.
       </DisclaimerText>
       <EmbedDocument url={clickedFlyer || ''} title="Camp Flyer" open={!!clickedFlyer} setOpen={setClickedFlyer} />
       <Downshift

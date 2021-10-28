@@ -1,4 +1,4 @@
-import { Link as UnstyledLink, RouteComponentProps } from '@reach/router'
+import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
 import styled from 'styled-components/macro'
 import { A, P, Section, SubHeading } from '../components/Elements'
@@ -11,7 +11,7 @@ const About: React.FC<RouteComponentProps> = () => {
   const historyRef = React.useRef<HTMLHeadingElement>(null)
   useHash({ refToFocus: historyRef, hash: '#history', location: window.location })
   return (
-    <>
+    <AboutBody>
       <Section>
         <CustomSubHeading>This is What We Do</CustomSubHeading>
         <SubSection>
@@ -90,53 +90,18 @@ const About: React.FC<RouteComponentProps> = () => {
           </InlineP>
         </SubSection>
       </SectionLight>
-      <SectionDark>
-        <HelpfulHeading>Helpful Links</HelpfulHeading>
-        <LinkSection>
-          <LinksHeading>Military Family Members</LinksHeading>
-          <Links>
-            <LinkItem to="/find-a-liaison">
-              Connect with your state 4-H office <Chevron name="chevron-right-circle" width={20} height={20} />
-            </LinkItem>
-            <LinkItem to="/events/">
-              Current camp listings <Chevron name="chevron-right-circle" width={20} height={20} />
-            </LinkItem>
-            <LinkItem to="/partners">
-              Information about our partners <Chevron name="chevron-right-circle" width={20} height={20} />
-            </LinkItem>
-          </Links>
-        </LinkSection>
-        <LinkSection>
-          <LinksHeading>Educators or Volunteers with Military Families</LinksHeading>
-          <Links>
-            <LinkItem to="/resources/educator-resources">
-              View curriculum resources <Chevron name="chevron-right-circle" width={20} height={20} />
-            </LinkItem>
-            <LinkItem to="/find-a-liaison/">
-              Locate your 4-H office <Chevron name="chevron-right-circle" width={20} height={20} />
-            </LinkItem>
-            <LinkItem to="/partners">
-              Information about our partners <Chevron name="chevron-right-circle" width={20} height={20} />
-            </LinkItem>
-          </Links>
-        </LinkSection>
-        <LinkSection>
-          <LinksHeading>Extension 4-H Military Liaisons</LinksHeading>
-          <Links>
-            <LinkItem as="a" href="https://cms.4h.wendte.tech">
-              Sign into the liaison section <Chevron name="chevron-right-circle" width={20} height={20} />
-            </LinkItem>
-            <LinkItem to="/resources/educator-resources">
-              View curriculum resources <Chevron name="chevron-right-circle" width={20} height={20} />
-            </LinkItem>
-          </Links>
-        </LinkSection>
-      </SectionDark>
-    </>
+      <FinalSectionLight />
+    </AboutBody>
   )
 }
 
 export default About
+
+const AboutBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 68.8px);
+`
 
 const CustomA = styled(A)`
   color: ${props => props.theme.secondary};
@@ -172,11 +137,11 @@ const CustomSubHeading = styled(SubHeading)`
   color: ${props => props.theme.secondaryBlack};
 `
 const SubSection = styled.div`
-  max-width: 66.2rem;
   margin: 0 auto;
   padding-bottom: 1.6rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   ${media.tabletPort`
     flex-direction: column;
     padding: 0 1.6rem 1.6rem;
@@ -187,6 +152,12 @@ const SectionLight = styled.div`
   background: ${props => props.theme.secondaryBackground};
   padding-bottom: 1.6rem;
 `
+
+const FinalSectionLight = styled.div`
+  background: ${props => props.theme.secondaryBackground};
+  flex-grow: 1;
+`
+
 const Icons = styled.div`
   display: inline-block;
   position: relative;
@@ -198,66 +169,6 @@ const Icons = styled.div`
 `
 const InlineP = styled(P)`
   display: inline-block;
-  max-width: 58rem;
+  max-width: 61rem;
   color: ${props => props.theme.secondaryGrey};
-`
-const SectionDark = styled.div`
-  background: ${props => props.theme.secondary};
-  padding-bottom: 0.8rem;
-  ${media.tabletPort`
-    padding: 0 1.6rem;
-  `}
-`
-const HelpfulHeading = styled(SubHeading)`
-  color: ${props => props.theme.white};
-`
-const LinkSection = styled.div`
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  justify-content: left;
-  max-width: 66.2rem;
-  margin: 0 auto;
-  border-top: 2px solid #7a5ba2;
-  padding: 1.6rem 0 2.4rem;
-  ${media.tabletPort`
-    grid-template-columns: 1fr;
-  `}
-`
-const LinksHeading = styled.h4`
-  color: ${props => props.theme.white};
-  font-weight: 700;
-  max-width: 32rem;
-  font-size: 2rem;
-  line-height: normal;
-  ${media.tabletPort`
-    padding: .8rem 0;
-  `}
-`
-const Links = styled.div``
-const LinkItem: any = styled(UnstyledLink)`
-  font-size: 1.8rem;
-  display: block;
-  color: ${props => props.theme.white};
-  line-height: normal;
-  &:not(:last-child) {
-    padding-bottom: 0.8rem;
-  }
-  &:hover {
-    opacity: 0.8;
-    cursor: pointer;
-  }
-  ${media.tabletPort`
-    font-size: 1.4rem;
-  `}
-`
-const Chevron = styled(UnstyledIcon)`
-  position: relative;
-  top: 5px;
-  right: 5px;
-  .secondary {
-    fill: #dfd0f4;
-  }
-  .primary {
-    fill: none;
-  }
 `

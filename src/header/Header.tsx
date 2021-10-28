@@ -50,44 +50,6 @@ const Header: React.FC<RouteComponentProps> = () => {
               <LinkTitle>About 4-H Club</LinkTitle>
               <LinkDescription>Learn about 4-H club in general</LinkDescription>
             </StyledDropdownLink>
-          </LinkGroup>
-          <LinkGroup title="Events" to="/events" manageBackground={backgroundManagement}>
-            <StyledDropdownLink to="/events/camps" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>Upcoming Camps</LinkTitle>
-              <LinkDescription>There are dozens of camps youth can attend</LinkDescription>
-            </StyledDropdownLink>
-            {/* <StyledDropdownLink to="/events/calendar" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>Calendar</LinkTitle>
-              <LinkDescription>See a calendar of our upcoming events</LinkDescription>
-            </StyledDropdownLink> */}
-          </LinkGroup>
-          <LinkGroup title="Resources" to="/resources" manageBackground={backgroundManagement}>
-            <StyledDropdownLink to="/resources" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>General Info</LinkTitle>
-              <LinkDescription>Learn about your role as an educator</LinkDescription>
-            </StyledDropdownLink>
-            <StyledDropdownLink to="/resources/webinars" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>Webinars</LinkTitle>
-              <LinkDescription>Watch recorded webinars</LinkDescription>
-            </StyledDropdownLink>
-            <StyledDropdownLink to="/resources/research" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>Research</LinkTitle>
-              <LinkDescription>Read up on some relevant research articles</LinkDescription>
-            </StyledDropdownLink>
-            <StyledDropdownLink to="/resources/educator-resources" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>Educator Resources</LinkTitle>
-              <LinkDescription>Find the educating resources you need</LinkDescription>
-            </StyledDropdownLink>
-          </LinkGroup>
-          <LinkGroup title="Connect" to="/find-a-liaison" manageBackground={backgroundManagement}>
-            <StyledDropdownLink to="/find-a-liaison" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>What is a Liaison?</LinkTitle>
-              <LinkDescription>Learn about how our liaisons can assist you</LinkDescription>
-            </StyledDropdownLink>
-            <StyledDropdownLink to="/find-a-liaison" onClick={() => setHamburgerActive(false)}>
-              <LinkTitle>Find A Liaison</LinkTitle>
-              <LinkDescription>Get connected with the liaison closest to you</LinkDescription>
-            </StyledDropdownLink>
             <StyledDropdownLink to="/partners" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Partners List</LinkTitle>
               <LinkDescription>View all of the partners affiliated with 4-H</LinkDescription>
@@ -97,7 +59,45 @@ const Header: React.FC<RouteComponentProps> = () => {
               <LinkDescription>Send us a message to answer any questions</LinkDescription>
             </StyledDropdownLink>
           </LinkGroup>
-          <LinkGroup title="Latest News" to="/latest-news" manageBackground={backgroundManagement}>
+          <LinkGroup title="For Military Families" to="/about" manageBackground={backgroundManagement}>
+            <StyledDropdownLink to="/events/camps" onClick={() => setHamburgerActive(false)}>
+              <LinkTitle>Upcoming Camps</LinkTitle>
+              <LinkDescription>There are dozens of camps youth can attend</LinkDescription>
+            </StyledDropdownLink>
+            <StyledPublicDropdownLink
+              href="https://www.4-hmilitarypartnership.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setHamburgerActive(false)}
+            >
+              <LinkTitle>Connect with a state liaison</LinkTitle>
+              <LinkDescription>Go to an external site to get connected with the liaison closest to you</LinkDescription>
+            </StyledPublicDropdownLink>
+            <StyledDropdownLink to="/find-a-liaison" onClick={() => setHamburgerActive(false)}>
+              <LinkTitle>Services available for OCONUS families</LinkTitle>
+              <LinkDescription>Connect with a liaison who support OCONUS families</LinkDescription>
+            </StyledDropdownLink>
+            <StyledPublicDropdownLink
+              href="https://4-h.org/find/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setHamburgerActive(false)}
+            >
+              <LinkTitle>Find 4-H in my area</LinkTitle>
+              <LinkDescription>Go to an external site to find 4-H clubs in your area</LinkDescription>
+            </StyledPublicDropdownLink>
+          </LinkGroup>
+          <LinkGroup title="For Staff & Volunteers" to="/about" manageBackground={backgroundManagement}>
+            <StyledDropdownLink to="/resources/educator-resources" onClick={() => setHamburgerActive(false)}>
+              <LinkTitle>Resources / Curriculum</LinkTitle>
+              <LinkDescription>Find the educating resources and curriculums you need</LinkDescription>
+            </StyledDropdownLink>
+          </LinkGroup>
+          <LinkGroup title="For 4-H Military Liaisons" to="/about" manageBackground={backgroundManagement}>
+            <StyledDropdownLink to="/contact-us" onClick={() => setHamburgerActive(false)}>
+              <LinkTitle>Join our ListServ</LinkTitle>
+              <LinkDescription>Receive 4-H Military Partnership updates</LinkDescription>
+            </StyledDropdownLink>
             <StyledDropdownLink to="/latest-news" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Latest News</LinkTitle>
               <LinkDescription>Latest News from 4-H Military Partnership</LinkDescription>
@@ -111,7 +111,6 @@ const Header: React.FC<RouteComponentProps> = () => {
           <Hamburger name="menu" height={24} onClick={() => setHamburgerActive(!hamburgerActive)} />
           {hamburgerActive && <HamburgerClickOverlay onClick={() => setHamburgerActive(false)} />}
         </MobileMenu>
-        <Spacer />
       </HeaderContainer>
     </>
   )
@@ -120,13 +119,14 @@ export default Header
 
 const HeaderContainer = styled.header`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   max-width: 122rem;
   padding: 0 2rem;
   margin: 0 auto;
   ${media.tabletPort`
     padding: 1rem 2rem;
+    justify-content: space-between;
   `}
 `
 const Heading = styled(UnstyledLink)`
@@ -155,6 +155,10 @@ const Logo = styled.img`
 const Links: any = styled.nav`
   display: inline-flex;
   align-items: center;
+  margin-left: 4.8rem;
+  ${media.desktop`
+    margin-left: 2rem;
+  `}
   ${media.tabletPort`
     display: none;
   `}
@@ -226,6 +230,28 @@ const StyledDropdownLink: any = styled(DropdownLink)`
     padding: 0.8rem 1.6rem .8rem 4rem;
   `}
 `
+const StyledPublicDropdownLink = styled.a`
+  display: block;
+  padding: 0.4rem;
+  &:not(:first-child) {
+    padding-top: 1.2rem;
+  }
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    ${LinkTitle} {
+      color: ${props => props.theme.primaryGrey} !important;
+    }
+  }
+  &:nth-child(2n + 1) {
+    ${LinkTitle} {
+      color: ${props => props.theme.secondary};
+    }
+  }
+  ${media.tabletPort`
+    padding: 0.8rem 1.6rem .8rem 4rem;
+  `}
+`
 const LinkDescription = styled.p`
   color: hsl(150, 4%, 53%);
   font-weight: 400;
@@ -233,15 +259,7 @@ const LinkDescription = styled.p`
   padding-top: 0;
   ${transition({ name: 'easeOutCubic', prop: 'all', time: 0.2 })};
 `
-const Spacer = styled.div`
-  width: 10rem;
-  ${media.tabletLand`
-    width: 0;
-  `}
-  ${media.tabletPort`
-    display: none;
-  `}
-`
+
 const MobileMenu = styled.div`
   display: none;
   ${media.tabletPort`

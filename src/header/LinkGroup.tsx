@@ -98,9 +98,10 @@ const UnstyledLinkGroup: React.FC<IProps> = ({ children, manageBackground, title
 const DropdownTitle = styled(Link)`
   color: ${(props: any) => props.theme.secondary};
   font-size: 1.8rem;
-  margin: 2rem 0.4rem;
+  margin: 2rem 0.8rem;
   padding: 0 0.4rem;
   font-weight: 500;
+  text-align: center;
   &:hover {
     cursor: default;
   }
@@ -109,6 +110,9 @@ const DropdownTitle = styled(Link)`
   `}
   ${media.tabletPort`
     margin: 1.2rem 0.4rem;
+  `}
+  ${media.desktop`
+    margin: 2rem 0.4rem;
   `}
 `
 const Dropdown = styled.div`

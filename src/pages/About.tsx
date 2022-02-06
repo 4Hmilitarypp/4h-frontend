@@ -20,10 +20,15 @@ const About: React.FC<RouteComponentProps> = () => {
             <Icon name="link" height={32} width={32} />
           </Icons>
           <InlineP>
-            4-H Military Partnership creates opportunities and provides support to military connected youth whether they
-            live on or near an installation, in our communities, or on overseas installations. 4-H clubs provide
-            consistency in belonging and an opportunity to develop life skills through a positive youth development
-            framework.
+            The 4-H Military Partnership represents a national partnership of the U.S. Department of Agriculture (USDA)
+            and the Land Grant University Cooperative Extension System with the U.S Army Child and Youth Services, the
+            U.S. Department of the Air Force Child and Youth Programs, and the U.S. Navy Child and Youth Program. The
+            overall goal of this engaged partnership is to develop and deliver educational programs that equip military
+            children and youth with the skills needed to lead positive, productive, contributing lives.{' '}
+            <b>
+              Our mission is Military readiness through 4-H positive youth development for youth, families, and
+              communities.
+            </b>
           </InlineP>
         </SubSection>
         <SubSection>

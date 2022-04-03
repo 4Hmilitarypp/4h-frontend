@@ -1,4 +1,4 @@
-import faker from 'faker'
+import faker from '@faker-js/faker'
 import { IContactUsEmail, ISignInForm } from '../clientTypes'
 import {
   IImage,

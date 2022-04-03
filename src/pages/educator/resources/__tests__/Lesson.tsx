@@ -1,4 +1,4 @@
-import { fireEvent, render } from 'react-testing-library'
+import { fireEvent, render } from '@testing-library/react'
 import Lesson from '../Lesson'
 import { ILesson } from '../../../../sharedTypes'
 import generate from '../../../../utils/generate'

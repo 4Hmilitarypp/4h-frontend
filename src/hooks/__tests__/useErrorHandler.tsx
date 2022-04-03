@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { fireEvent, render } from 'react-testing-library'
+import { fireEvent, render } from '@testing-library/react'
 import FlashContext, { useFlash } from '../../contexts/FlashContext'
 import Flash from '../../Flash'
 import { IApiError } from '../../sharedTypes'

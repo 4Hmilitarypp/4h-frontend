@@ -3,7 +3,7 @@ import 'regenerator-runtime/runtime'
 import 'react-app-polyfill/ie11'
 
 import * as Sentry from '@sentry/browser'
-import * as ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client';
 import App from './App'
 import './assets/styles/reset.css'
 import * as serviceWorker from './serviceWorker'
@@ -13,8 +13,9 @@ api.init()
 Sentry.init({
   dsn: 'https://b748e0617aa04cb094dee4b3ecd90a19@sentry.io/1446984',
 })
-
-ReactDOM.render(<App />, document.getElementById('root'))
+const container = document.getElementById('root');
+const root = createRoot(container as any);
+root.render(<App />);
 if (process.env.NODE_ENV === 'production') {
   serviceWorker.register()
 } else {

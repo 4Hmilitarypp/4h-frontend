@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { flushEffects, render, waitForElement } from 'react-testing-library'
+import {  render, waitFor } from '@testing-library/react'
 import Resource from '../Resource'
 import fakeApi from '../../../../utils/api'
 import generate from '../../../../utils/generate'
@@ -24,10 +24,10 @@ const setup = async (propOverrides?: IProps) => {
   const resourcesMock = fakeApi.resources.getBySlug as any
   resourcesMock.mockImplementationOnce(() => Promise.resolve(fakeResource))
 
-  const utils = render(<Resource {...props} />)
-  flushEffects()
+  const utils = render(<Resource {...props } backButtonRoute="/resources/educator-resources" />)
+  // flushEffects()
 
-  await waitForElement(() => utils.getByTestId('resource'))
+  await waitFor(() => utils.getByTestId('resource'))
 
   return {
     ...utils,

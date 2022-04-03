@@ -1,6 +1,6 @@
-import * as faker from 'faker'
+import faker from '@faker-js/faker'
 import * as React from 'react'
-import { fireEvent, getByTestId as globalGetByTestId, render, waitForElement } from 'react-testing-library'
+import { fireEvent, getByTestId as globalGetByTestId, render, waitFor } from '@testing-library/react'
 import Modal from '../Modal'
 
 beforeAll(async () => {
@@ -10,7 +10,7 @@ beforeAll(async () => {
   portal.setAttribute('data-testid', 'portal')
   body.appendChild(portal)
 
-  await waitForElement(() => globalGetByTestId(body, 'portal'))
+  await waitFor(() => globalGetByTestId(body, 'portal'))
 })
 
 const setup = ({ open }: { open: boolean }) => {

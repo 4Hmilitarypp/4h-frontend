@@ -3,22 +3,24 @@ import * as React from 'react'
 import FlashContext from '../contexts/FlashContext'
 import { IApiError } from '../sharedTypes'
 
-export const formatError = (err: IApiError) => {
-  if (err.response) {
-    if (err.response.status === 404) {
-      Sentry.captureEvent({ message: `client-server-404:${(err as any).config.url}` })
+export const formatError = (err: IApiError | unknown) => {
+  const apiError = err as IApiError 
+  if (apiError.response) {
+    if (apiError.response.status === 404) {
+      Sentry.captureEvent({ message: `client-server-404:${(apiError as any).config.url}` })
     }
-    if (err.response.data) {
-      return { message: err.response.data.message, status: err.response.status }
+    if (apiError.response.data) {
+      return { message: apiError.response.data.message, status: apiError.response.status }
     }
   }
-  return { message: typeof err === 'object' ? JSON.stringify(err) : err, status: 500 }
+
+  return { message: typeof err === 'object' ? JSON.stringify(err) : (err as any)?.message || (err as any).toString(), status: 500 }
 }
 
 const useErrorHandler = () => {
   const flashContext = React.useContext(FlashContext)
 
-  const handleError = (dirtyError: IApiError) => {
+  const handleError = (dirtyError: IApiError | unknown) => {
     console.error(dirtyError)
     const error = formatError(dirtyError)
 

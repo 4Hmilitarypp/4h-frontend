@@ -1,7 +1,7 @@
 import { Redirect, Router } from '@reach/router'
 import * as React from 'react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components/macro'
-import ErrorBoundary from './components/ErrorBoundry'
+import ErrorBoundary from './components/ErrorBoundary'
 import FlashContext, { useFlash } from './contexts/FlashContext'
 import Flash from './Flash'
 import Header from './header/Header'

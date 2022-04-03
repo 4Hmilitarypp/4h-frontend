@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { fireEvent, flushEffects, render, wait } from 'react-testing-library'
+import { fireEvent,  render, wait } from '@testing-library/react'
 import FlashContext, { useFlash } from '../../contexts/FlashContext'
 import api from '../../utils/api'
 import generate from '../../utils/generate'

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { fireEvent, flushEffects, render } from 'react-testing-library'
+import { fireEvent,  render } from '@testing-library/react'
 import { IWebinar } from '../../../../sharedTypes'
 import generate from '../../../../utils/generate'
 import Webinar from '../Webinar'
@@ -25,7 +25,7 @@ const setup = (propOverrides?: IProps) => {
 it('should change expand to collapse when expand is clicked and then change back.', () => {
   const webinar = generate.webinar(1500)
   const { getByText, queryByText } = setup({ webinar })
-  flushEffects() // flush effects to allow the heigh comparison to be done
+  // flushEffects() // flush effects to allow the heigh comparison to be done
   const expand = getByText(/expand/i)
   fireEvent.click(expand)
   const collapse = getByText(/collapse/i)

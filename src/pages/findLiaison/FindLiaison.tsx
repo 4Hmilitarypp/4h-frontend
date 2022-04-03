@@ -1,6 +1,6 @@
 import { RouteComponentProps } from '@reach/router'
 import Downshift from 'downshift'
-import { find, map, sortBy } from 'lodash'
+import { map, sortBy } from 'lodash'
 import { matchSorter } from 'match-sorter'
 import * as React from 'react'
 import styled from 'styled-components/macro'
@@ -11,7 +11,6 @@ import useErrorHandler from '../../hooks/useErrorHandler'
 import { ILiaison } from '../../sharedTypes'
 import api from '../../utils/api'
 import { elevation, media } from '../../utils/mixins'
-import LiaisonMap from './LiaisonMap'
 
 export const filterLiaisons = (liaisons: ILiaison[], query: string | null): ILiaison[] => {
   if (!query) return liaisons
@@ -40,16 +39,6 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
     window.scrollTo(0, 0)
   }, [])
 
-  const setSelectedState = (stateAbbr: string) => {
-    if (liaisons) {
-      const liaison = find(liaisons, l => l.abbreviation === stateAbbr)
-      setSelectedLiaison(liaison)
-      if (findRef && findRef.current) {
-        window.scrollTo({ top: findRef.current.offsetTop, behavior: 'smooth' })
-      }
-    }
-  }
-
   return (
     <PageWrapper>
       <ConstrainedSection>
@@ -67,9 +56,9 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
       {liaisons && (
         <Downshift
           itemToString={(item: ILiaison | null) => item?.region || ''}
-          onChange={(selection, stateAndHelpers) => setSelectedLiaison(selection || undefined)}
+          onChange={(selection) => setSelectedLiaison(selection || undefined)}
           // Have to do this because downshift was complaining about not controlling the state the whole time
-          selectedItem={selectedLiaison}
+          selectedItem={selectedLiaison || {} as any}
         >
           {({
             getLabelProps,
@@ -137,7 +126,6 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
           </ResultContent>
         </Liaison>
       )}
-      {liaisons && <LiaisonMap setSelectedState={setSelectedState} />}
     </PageWrapper>
   )
 }

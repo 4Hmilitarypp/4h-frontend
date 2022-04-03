@@ -25,8 +25,7 @@ class ErrorBoundary extends React.Component<{}, { eventId?: string }> {
           <CustomButton onClick={() => Sentry.showReportDialog({ eventId: this.state.eventId })}>
             Report feedback
           </CustomButton>
-        </PageWrapper>
-      )
+        </PageWrapper>)
     }
     return this.props.children
   }

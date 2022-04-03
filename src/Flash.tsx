@@ -1,14 +1,15 @@
 import { RouteComponentProps } from '@reach/router'
 import * as React from 'react'
-import { Transition } from 'react-spring/renderprops'
+import { Transition} from '@react-spring/web'
 import styled from 'styled-components/macro'
 import FlashContext from './contexts/FlashContext'
 
 const Flash: React.FC<RouteComponentProps> = () => {
   const context = React.useContext(FlashContext)
+
   return (
     <>
-      <Transition
+       <Transition
         from={{ opacity: 0, height: 0 }}
         enter={{ opacity: 1, height: 'auto' }}
         leave={{ opacity: 0, height: 0 }}

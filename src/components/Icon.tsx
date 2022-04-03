@@ -319,9 +319,11 @@ const Icon = ({ name, color, circleColor, arrowColor, height, isOpen, className,
               width="694.654"
               height="69.628"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
+              // color-interpolation-filters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
+              {/* <feFlood flood-opacity="0" result="BackgroundImageFix" /> */}
               <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
               <feOffset dx="2" dy="3" />
               <feGaussianBlur stdDeviation="2" />

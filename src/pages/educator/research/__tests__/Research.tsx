@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { fireEvent, flushEffects, render } from 'react-testing-library'
+import { fireEvent,  render } from '@testing-library/react'
 import { IResearch } from '../../../../sharedTypes'
 import generate from '../../../../utils/generate'
 import Research from '../Research'
@@ -50,7 +50,7 @@ describe('trimDescription', () => {
   it('should change expand to collapse when expand is clicked and then change back.', () => {
     const research = generate.research(1500)
     const { getByText, queryByText } = setup({ research })
-    flushEffects() // flush effects to allow the heigh comparison to be done
+    // flushEffects() // flush effects to allow the heigh comparison to be done
     const expand = getByText(/expand/i)
     fireEvent.click(expand)
     const collapse = getByText(/collapse/i)

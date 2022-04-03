@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { fireEvent, flushEffects, render } from 'react-testing-library'
+import { fireEvent,  render } from '@testing-library/react'
 // import api from '../../utils/api'
-import staticLiaisons from '../../../assets/data/staticLiaisons.json'
 import { ILiaison } from '../../../sharedTypes'
 import generate from '../../../utils/generate'
 import FindLiaison, { filterLiaisons } from '../FindLiaison'
@@ -15,7 +14,7 @@ const setup = (propOverrides?: IProps) => {
   const props = Object.assign({}, propOverrides)
 
   const utils = render(<FindLiaison {...props} />)
-  flushEffects() // Flush Effect to run "didMount"
+  // flushEffects() // Flush Effect to run "didMount"
   const input = utils.getByLabelText(/Enter a state or US Province/i)
   return {
     input,
@@ -27,7 +26,7 @@ const setup = (propOverrides?: IProps) => {
 describe('integration', () => {
   it('happy path', () => {
     const { input, getByText } = setup()
-    const kansasLiaison = staticLiaisons.find(l => l.region === 'Kansas') as ILiaison
+    const kansasLiaison = [generate.liaison({region: 'Kansas'})].find(l => l.region === 'Kansas') as ILiaison
     fireEvent.change(input, { target: { value: 'ks' } })
     const kansasItem = getByText(kansasLiaison.region)
     fireEvent.click(kansasItem)

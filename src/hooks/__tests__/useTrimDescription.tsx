@@ -1,6 +1,6 @@
-import faker from 'faker'
+import faker from '@faker-js/faker'
 import * as React from 'react'
-import { fireEvent, flushEffects, render } from 'react-testing-library'
+import { fireEvent,  render } from '@testing-library/react'
 import useTrimDescription from '../useTrimDescription'
 
 interface IProps {
@@ -36,19 +36,19 @@ const setup = (propOverrides?: IProps) => {
 
 it('should not have an expand button if there are not very much text', () => {
   const { queryByText } = setup()
-  flushEffects() // flush effects to allow the heigh comparison to be done
+  // flushEffects() // flush effects to allow the heigh comparison to be done
   expect(queryByText(/expand/i)).toBeNull()
 })
 it('should have an expand button if there is a lot of text.', () => {
   const description = faker.lorem.words(1500)
   const { getByText } = setup({ description })
-  flushEffects() // flush effects to allow the heigh comparison to be done
+  // flushEffects() // flush effects to allow the heigh comparison to be done
   expect(getByText(/expand/i)).toBeTruthy()
 })
 it('should change expand to collapse when expand is clicked and then change back.', () => {
   const description = faker.lorem.words(1500)
   const { getByText, queryByText } = setup({ description })
-  flushEffects() // flush effects to allow the heigh comparison to be done
+  // flushEffects() // flush effects to allow the heigh comparison to be done
   const expand = getByText(/expand/i)
   fireEvent.click(expand)
   const collapse = getByText(/collapse/i)

@@ -4,9 +4,11 @@ import { ICamp, ILatestNews, ILiaison, IPartner, IPartnerSection, IResearch, IRe
 
 let restApi: axios.AxiosInstance
 let aws4hRestApi: axios.AxiosInstance
+let awsAlex4hRestApi: axios.AxiosInstance
 
 const envBaseURL = process.env.REACT_APP_API_URL
 const aws4hBaseURL = process.env.REACT_APP_AWS_4H_BASEURL
+const awsAlex4hBaseURL = process.env.REACT_APP_AWS_ALEX_4H_BASEURL
 
 const getData = (res: { data: object }) => res.data
 
@@ -20,6 +22,12 @@ const requests = {
 const aws4hRequests = {
   get: (url: string): Promise<any> => {
     return aws4hRestApi.get(url).then(getData)
+  },
+}
+
+const awsAlex4hRequests = {
+  get: (url: string): Promise<any> => {
+    return awsAlex4hRestApi.get(url).then(getData)
   },
 }
 
@@ -38,8 +46,11 @@ const latestNews = {
   getBySlug: (slug: string): Promise<ILatestNews> => aws4hRequests.get(`/latest-news/slug/${slug}`),
 }
 
+// const liaisons = {
+//   get: (): Promise<{ liaisons: ILiaison[] }> => requests.get('/liaisons'),
+// }
 const liaisons = {
-  get: (): Promise<{ liaisons: ILiaison[] }> => requests.get('/liaisons'),
+  get: (): Promise<{ liaisons: ILiaison[] }> => awsAlex4hRequests.get('/liaisons'),
 }
 const pageInfo = {
   get: (page: string): Promise<any> => requests.get(`/page-info/${page}`),
@@ -72,6 +83,13 @@ function init({ baseURL = envBaseURL || '/api', axiosOptions = { headers: {} } }
   })
   aws4hRestApi = (axios as any).create({
     baseURL: aws4hBaseURL,
+    ...axiosOptions,
+    headers: {
+      ...axiosOptions.headers,
+    },
+  })
+  awsAlex4hRestApi = (axios as any).create({
+    baseURL: awsAlex4hBaseURL,
     ...axiosOptions,
     headers: {
       ...axiosOptions.headers,

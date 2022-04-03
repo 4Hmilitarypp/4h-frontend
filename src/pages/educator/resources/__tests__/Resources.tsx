@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { flushEffects, render, waitForElement } from 'react-testing-library'
+import {  render, waitFor } from '@testing-library/react'
 import Resources from '../Resources'
 import fakeApi from '../../../../utils/api'
 import generate from '../../../../utils/generate'
@@ -19,9 +19,9 @@ const setup = async (propOverrides?: IProps) => {
   resourcesMock.mockImplementationOnce(() => Promise.resolve(resources))
 
   const utils = render(<Resources {...props} />)
-  flushEffects()
+  // flushEffects()
 
-  await waitForElement(() => utils.getByTestId('resources'))
+  await waitFor(() => utils.getByTestId('resources'))
 
   return {
     ...utils,

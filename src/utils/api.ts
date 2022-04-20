@@ -3,12 +3,8 @@ import { IContactUsEmail } from '../clientTypes'
 import { ICamp, ILatestNews, ILiaison, IPartner, IPartnerSection, IResearch, IResource, IWebinar } from '../sharedTypes'
 
 let restApi: axios.AxiosInstance
-let aws4hRestApi: axios.AxiosInstance
-let awsAlex4hRestApi: axios.AxiosInstance
 
 const envBaseURL = process.env.REACT_APP_API_URL
-const aws4hBaseURL = process.env.REACT_APP_AWS_4H_BASEURL
-const awsAlex4hBaseURL = process.env.REACT_APP_AWS_ALEX_4H_BASEURL
 
 const getData = (res: { data: object }) => res.data
 
@@ -17,18 +13,6 @@ const requests = {
   get: (url: string): Promise<any> => restApi.get(url).then(getData),
   post: (url: string, body: object): Promise<any> => restApi.post(url, body).then(getData),
   put: (url: string, body: object): Promise<any> => restApi.put(url, body).then(getData),
-}
-
-const aws4hRequests = {
-  get: (url: string): Promise<any> => {
-    return aws4hRestApi.get(url).then(getData)
-  },
-}
-
-const awsAlex4hRequests = {
-  get: (url: string): Promise<any> => {
-    return awsAlex4hRestApi.get(url).then(getData)
-  },
 }
 
 const camps = {
@@ -42,15 +26,12 @@ const emails = {
 }
 
 const latestNews = {
-  get: (): Promise<ILatestNews[]> => aws4hRequests.get('/latest-news'),
-  getBySlug: (slug: string): Promise<ILatestNews> => aws4hRequests.get(`/latest-news/slug/${slug}`),
+  get: (): Promise<ILatestNews[]> => requests.get('/latest-news'),
+  getBySlug: (slug: string): Promise<ILatestNews> => requests.get(`/latest-news/slug/${slug}`),
 }
 
-// const liaisons = {
-//   get: (): Promise<{ liaisons: ILiaison[] }> => requests.get('/liaisons'),
-// }
 const liaisons = {
-  get: (): Promise<{ liaisons: ILiaison[] }> => awsAlex4hRequests.get('/liaisons'),
+  get: (): Promise<{ liaisons: ILiaison[] }> => requests.get('/liaisons'),
 }
 const pageInfo = {
   get: (page: string): Promise<any> => requests.get(`/page-info/${page}`),
@@ -76,20 +57,6 @@ const webinars = {
 function init({ baseURL = envBaseURL || '/api', axiosOptions = { headers: {} } } = {}) {
   restApi = (axios as any).create({
     baseURL,
-    ...axiosOptions,
-    headers: {
-      ...axiosOptions.headers,
-    },
-  })
-  aws4hRestApi = (axios as any).create({
-    baseURL: aws4hBaseURL,
-    ...axiosOptions,
-    headers: {
-      ...axiosOptions.headers,
-    },
-  })
-  awsAlex4hRestApi = (axios as any).create({
-    baseURL: awsAlex4hBaseURL,
     ...axiosOptions,
     headers: {
       ...axiosOptions.headers,

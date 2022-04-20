@@ -8,7 +8,6 @@ import {
   IResearch,
   IResource,
   IResourceWithLessons,
-  IWebinar,
   LessonLinkType,
 } from '../sharedTypes'
 
@@ -34,6 +33,7 @@ const generate = {
   }),
   lessons: (length: number): ILesson[] => Array.from({ length }, () => generate.lesson()),
   liaison: (overrides?: Partial<ILiaison>): ILiaison => ({
+    _id: generate.objectId(),
     email: faker.internet.email(),
     image: faker.random.image(),
     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
@@ -76,13 +76,6 @@ const generate = {
   }),
   resources: (length: number): IResourceWithLessons[] => Array.from({ length }, () => generate.resource()),
   signInForm: (): ISignInForm => ({ email: faker.internet.email(), password: faker.internet.password() }),
-  webinar: (descriptionLength: number): IWebinar => ({
-    category: faker.commerce.productAdjective(),
-    description: faker.lorem.words(descriptionLength),
-    title: faker.company.catchPhrase(),
-    url: faker.internet.url(),
-  }),
-  webinars: (length: number): IWebinar[] => Array.from({ length }, () => generate.webinar(100)),
 }
 
 export default generate

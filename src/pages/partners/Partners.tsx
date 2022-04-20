@@ -32,7 +32,7 @@ const Partners: React.FC<RouteComponentProps> = () => {
       <PartnerList>
         <SubHeading>List of Military Partners</SubHeading>
         {partners ? (
-          partners.map((partner, index) => <PartnerSection partner={partner} key={partner.slug} index={index} />)
+          partners.map((partner, index) => <PartnerSection partner={partner} key={partner._id} index={index} />)
         ) : (
           <h2>Loading...</h2>
         )}

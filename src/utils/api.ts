@@ -38,7 +38,7 @@ const pageInfo = {
 }
 const partners = {
   get: (): Promise<IPartnerSection[]> => requests.get('/partners'),
-  getBySlug: (slug: string): Promise<IPartner> => requests.get(`/partners/slug/${slug}`),
+  getById: (id: string): Promise<IPartner> => requests.get(`/partners/${id}`),
 }
 
 const research = {

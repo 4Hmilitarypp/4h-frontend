@@ -3,7 +3,7 @@ export interface IApiError {
 }
 
 export interface ILiaison {
-  _id?: string
+  _id: string
   abbreviation?: string | null
   email?: string | null
   image: string
@@ -32,7 +32,7 @@ export interface ILatestNews {
 }
 
 export interface IPartnerSection {
-  _id?: string
+  _id: string
   featuredImage1: IImage
   featuredImage2?: IImage
   shortDescription: string
@@ -63,7 +63,7 @@ export interface IPartner extends IPartnerSection {
 }
 
 export interface IWebinar {
-  _id?: string
+  _id: string
   category: string
   description: string
   title: string
@@ -73,7 +73,7 @@ export interface IWebinar {
 export type ResearchType = 'doc' | 'pdf' | 'external'
 
 export interface IResearch {
-  _id?: string
+  _id: string
   description: string
   title: string
   type: ResearchType
@@ -81,7 +81,7 @@ export interface IResearch {
 }
 
 export interface IResource {
-  _id?: string
+  _id: string
   featuredImage?: IImage
   longDescription: string
   shortDescription: string
@@ -101,14 +101,14 @@ export interface ILessonLink {
 }
 
 export interface ILesson {
-  _id?: string
+  _id: string
   category?: string
   links: ILessonLink[]
   title: string
 }
 
 export interface ICampDate {
-  _id?: string
+  _id: string
   beginDate: Date
   endDate: Date
 }
@@ -122,7 +122,7 @@ export interface ICampContact {
 }
 
 export interface ICamp {
-  _id?: string
+  _id: string
   ageRange: string
   city: string
   contact: ICampContact

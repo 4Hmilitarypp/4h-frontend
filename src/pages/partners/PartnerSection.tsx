@@ -16,7 +16,7 @@ const PartnerSection: React.FC<IProps> = ({ partner, index }) => {
         <Text>
           <Title>{partner.title}</Title>
           <Description>{partner.shortDescription}</Description>
-          <LearnMore to={partner.slug}>Learn More</LearnMore>
+          <LearnMore to={partner._id}>Learn More</LearnMore>
         </Text>
         <FeaturedImage src={partner.featuredImage1.url} alt={partner.featuredImage1.alt || `${partner.title} Logo`} />
         {partner.featuredImage2 && (

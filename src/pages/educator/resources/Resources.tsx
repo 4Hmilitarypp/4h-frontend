@@ -8,6 +8,7 @@ import api from '../../../utils/api'
 import DisplayResource from './DisplayResource'
 
 const techDiscoveryResource = {
+  _id: 'tech-discovery-curriculum',
   longDescription: '',
   shortDescription:
     'The Tech Discovery Curriculum is designed for 5th-12th grade military connected youth from all branches of service. It is focused on developing life skills and increased resiliency supporting military connected families during times of deployment and reintegration back into normal life.',

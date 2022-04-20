@@ -77,7 +77,7 @@ const App: React.FC = () => {
               <Home path="/" />
               <About path="/about" />
               <Partners path="/partners" />
-              <Partner path="/partners/:slug" />
+              <Partner path="/partners/:id" />
               <Events path="/events/*" />
               <Photos path="/photos" />
               <About4HClub path="/4-h-club" />

@@ -12,10 +12,10 @@ import { elevation, media, transition } from '../../utils/mixins'
 import Reports from './Reports'
 
 interface IProps extends RouteComponentProps {
-  slug?: string
+  id?: string
 }
 
-const Partner: React.FC<IProps> = ({ slug }) => {
+const Partner: React.FC<IProps> = ({ id }) => {
   const [partner, setPartner] = React.useState<IPartner | undefined>(undefined)
   const [annualReports, setAnnualReports] = React.useState<IReport[]>([])
   const [videoReports, setVideoReports] = React.useState<IReport[]>([])
@@ -23,7 +23,7 @@ const Partner: React.FC<IProps> = ({ slug }) => {
 
   React.useEffect(() => {
     api.partners
-      .getBySlug(slug || '')
+      .getById(id as string)
       .then(p => {
         setPartner(p)
         setVideoReports(p.reports.filter(r => r.url.includes('youtu')))
@@ -31,7 +31,7 @@ const Partner: React.FC<IProps> = ({ slug }) => {
       })
       .catch(handleError)
     window.scrollTo(0, 0)
-  }, [slug])
+  }, [id])
   return (
     <CustomPageWrapper>
       {partner ? (

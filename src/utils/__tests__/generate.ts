@@ -54,18 +54,18 @@ describe('generate.liaison', () => {
       image: expect.any(String),
       name: expect.any(String),
       phoneNumber: expect.any(String),
-      region: expect.any(String),
+      stateOrRegion: expect.any(String),
     })
   })
-  it('should return a liaison with the given region', () => {
+  it('should return a liaison with the given stateOrRegion', () => {
     const testRegion = 'Kansas'
-    const res = generate.liaison({ region: testRegion })
+    const res = generate.liaison({ stateOrRegion: testRegion })
     expect(res).toEqual({
       email: expect.any(String),
       image: expect.any(String),
       name: expect.any(String),
       phoneNumber: expect.any(String),
-      region: testRegion,
+      stateOrRegion: testRegion,
     })
   })
 })
@@ -81,14 +81,14 @@ describe('generate.liaisons', () => {
           image: expect.any(String),
           name: expect.any(String),
           phoneNumber: expect.any(String),
-          region: expect.any(String),
+          stateOrRegion: expect.any(String),
         },
         {
           email: expect.any(String),
           image: expect.any(String),
           name: expect.any(String),
           phoneNumber: expect.any(String),
-          region: expect.any(String),
+          stateOrRegion: expect.any(String),
         },
       ])
     )

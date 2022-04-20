@@ -9,7 +9,8 @@ export interface ILiaison {
   image: string
   name?: string | null
   phoneNumber?: string | null
-  region: string
+  stateOrRegion: string
+  countryCode: string
 }
 
 export interface ILatestNews {

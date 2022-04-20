@@ -15,7 +15,7 @@ import { elevation, media } from '../../utils/mixins'
 export const filterLiaisons = (liaisons: ILiaison[], query: string | null): ILiaison[] => {
   if (!query) return liaisons
   const result = matchSorter(liaisons, query, {
-    keys: ['region', { minRanking: matchSorter.rankings.EQUAL, key: 'abbreviation' }],
+    keys: ['stateOrRegion', { minRanking: matchSorter.rankings.EQUAL, key: 'abbreviation' }],
   })
   return result
 }
@@ -29,8 +29,9 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
   React.useEffect(() => {
     api.liaisons
       .get()
-      .then(l => {
-        const sorted = sortBy(l, ['region'])
+      .then(data => {
+        const filtered = data.filter(liaison => liaison.countryCode !== 'US')
+        const sorted = sortBy(filtered, ['stateOrRegion'])
         setLiaisons(sorted as any)
       })
       .catch(handleError)
@@ -55,10 +56,10 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
       <SubHeading ref={findRef as any}>Find A Liaison</SubHeading>
       {liaisons && (
         <Downshift
-          itemToString={(item: ILiaison | null) => item?.region || ''}
-          onChange={(selection) => setSelectedLiaison(selection || undefined)}
+          itemToString={(item: ILiaison | null) => item?.stateOrRegion || ''}
+          onChange={selection => setSelectedLiaison(selection || undefined)}
           // Have to do this because downshift was complaining about not controlling the state the whole time
-          selectedItem={selectedLiaison || {} as any}
+          selectedItem={selectedLiaison || ({} as any)}
         >
           {({
             getLabelProps,
@@ -74,9 +75,9 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
           }) => (
             <div>
               <FindInputGroup>
-                <label {...getLabelProps({ name: 'region' })}>Enter a state or US Province</label>
+                <label {...getLabelProps({ name: 'stateOrRegion' })}>Enter a region</label>
                 <div style={{ position: 'relative' }}>
-                  <FindInput className="input" {...getInputProps()} placeholder="Kansas" />
+                  <FindInput className="input" {...getInputProps()} placeholder="Puerto Rico" />
                   <ControllerButton
                     onClick={() => {
                       if (!isOpen) openMenu()
@@ -97,14 +98,14 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
                   {map(filterLiaisons(liaisons, inputValue), (liaison, index) => {
                     return (
                       <Item
-                        key={liaison.region.toLowerCase()}
+                        key={liaison.stateOrRegion.toLowerCase()}
                         {...getItemProps({
                           index,
                           item: liaison,
                           style: { background: index === highlightedIndex ? theme.primary : '' },
                         })}
                       >
-                        {liaison.region}
+                        {liaison.stateOrRegion}
                       </Item>
                     )
                   })}
@@ -122,7 +123,10 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
               <StyledLink href={`mailto:${selectedLiaison.email}`}>{selectedLiaison.email}</StyledLink>
               <StyledLink href={`tel:${selectedLiaison.phoneNumber}`}>{selectedLiaison.phoneNumber}</StyledLink>
             </Text>
-            <SchoolLogo src={selectedLiaison.image} alt={`${selectedLiaison.region} land grant university logo`} />
+            <SchoolLogo
+              src={selectedLiaison.image}
+              alt={`${selectedLiaison.stateOrRegion} land grant university logo`}
+            />
           </ResultContent>
         </Liaison>
       )}

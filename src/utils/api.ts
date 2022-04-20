@@ -31,7 +31,7 @@ const latestNews = {
 }
 
 const liaisons = {
-  get: (): Promise<{ liaisons: ILiaison[] }> => requests.get('/liaisons'),
+  get: (): Promise<ILiaison[]> => requests.get('/liaisons'),
 }
 const pageInfo = {
   get: (page: string): Promise<any> => requests.get(`/page-info/${page}`),

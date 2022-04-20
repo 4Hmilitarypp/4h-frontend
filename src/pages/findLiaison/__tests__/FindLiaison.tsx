@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { fireEvent,  render } from '@testing-library/react'
+import { fireEvent, render } from '@testing-library/react'
 // import api from '../../utils/api'
 import { ILiaison } from '../../../sharedTypes'
 import generate from '../../../utils/generate'
@@ -26,9 +26,11 @@ const setup = (propOverrides?: IProps) => {
 describe('integration', () => {
   it('happy path', () => {
     const { input, getByText } = setup()
-    const kansasLiaison = [generate.liaison({region: 'Kansas'})].find(l => l.region === 'Kansas') as ILiaison
-    fireEvent.change(input, { target: { value: 'ks' } })
-    const kansasItem = getByText(kansasLiaison.region)
+    const kansasLiaison = [generate.liaison({ stateOrRegion: 'Puerto Rico', countryCode: 'PR' })].find(
+      l => l.stateOrRegion === 'Puerto Rico'
+    ) as ILiaison
+    fireEvent.change(input, { target: { value: 'PR' } })
+    const kansasItem = getByText(kansasLiaison.stateOrRegion)
     fireEvent.click(kansasItem)
     expect(getByText(kansasLiaison.name as string)).toBeDefined()
   })
@@ -64,8 +66,8 @@ describe('controller button', () => {
 describe('filterLiaisons', () => {
   it('should return matching state names', () => {
     const fakeLiaisons = []
-    const kansasLiaison = generate.liaison({ region: 'Kansas' })
-    const newMexicoLiaison = generate.liaison({ region: 'New Mexico' })
+    const kansasLiaison = generate.liaison({ stateOrRegion: 'Kansas' })
+    const newMexicoLiaison = generate.liaison({ stateOrRegion: 'New Mexico' })
     fakeLiaisons.push(kansasLiaison, newMexicoLiaison)
 
     let result = filterLiaisons(fakeLiaisons, 'Kansas')
@@ -76,9 +78,9 @@ describe('filterLiaisons', () => {
 
   it('should return more than one if query is matching', () => {
     const fakeLiaisons = []
-    const missouriLiaison = generate.liaison({ region: 'Missouri' })
-    const mississippiLiaison = generate.liaison({ region: 'Mississippi' })
-    const kentuckyLiaison = generate.liaison({ region: 'Kentucky' })
+    const missouriLiaison = generate.liaison({ stateOrRegion: 'Missouri' })
+    const mississippiLiaison = generate.liaison({ stateOrRegion: 'Mississippi' })
+    const kentuckyLiaison = generate.liaison({ stateOrRegion: 'Kentucky' })
     fakeLiaisons.push(missouriLiaison, mississippiLiaison, kentuckyLiaison)
 
     let result = filterLiaisons(fakeLiaisons, 'M')
@@ -90,9 +92,9 @@ describe('filterLiaisons', () => {
 
   it('should match abbreviation', () => {
     const fakeLiaisons = []
-    const kansasLiaison = generate.liaison({ region: 'Kansas', abbreviation: 'KS' })
-    const missouriLiaison = generate.liaison({ region: 'Missouri', abbreviation: 'MO' })
-    const iowaLiaison = generate.liaison({ region: 'Iowa', abbreviation: 'IA' })
+    const kansasLiaison = generate.liaison({ stateOrRegion: 'Kansas', abbreviation: 'KS' })
+    const missouriLiaison = generate.liaison({ stateOrRegion: 'Missouri', abbreviation: 'MO' })
+    const iowaLiaison = generate.liaison({ stateOrRegion: 'Iowa', abbreviation: 'IA' })
     fakeLiaisons.push(kansasLiaison, missouriLiaison, iowaLiaison)
     let result = filterLiaisons(fakeLiaisons, 'KS')
     expect(result).toEqual([kansasLiaison])
@@ -104,8 +106,8 @@ describe('filterLiaisons', () => {
 
   it('should not care about case', () => {
     const fakeLiaisons = []
-    const kansasLiaison = generate.liaison({ region: 'Kansas' })
-    const missouriLiaison = generate.liaison({ region: 'Missouri' })
+    const kansasLiaison = generate.liaison({ stateOrRegion: 'Kansas' })
+    const missouriLiaison = generate.liaison({ stateOrRegion: 'Missouri' })
     fakeLiaisons.push(kansasLiaison, missouriLiaison)
     const result = filterLiaisons(fakeLiaisons, 'kS')
     expect(result).toEqual([kansasLiaison])
@@ -113,9 +115,9 @@ describe('filterLiaisons', () => {
 
   it('should sort first by abbreviation', () => {
     const fakeLiaisons = []
-    const californiaLiaison = generate.liaison({ region: 'California', abbreviation: 'CA' })
-    const georgiaLiaison = generate.liaison({ region: 'Georgia', abbreviation: 'GA' })
-    const iowaLiaison = generate.liaison({ region: 'Iowa', abbreviation: 'IA' })
+    const californiaLiaison = generate.liaison({ stateOrRegion: 'California', abbreviation: 'CA' })
+    const georgiaLiaison = generate.liaison({ stateOrRegion: 'Georgia', abbreviation: 'GA' })
+    const iowaLiaison = generate.liaison({ stateOrRegion: 'Iowa', abbreviation: 'IA' })
     fakeLiaisons.push(californiaLiaison, georgiaLiaison, iowaLiaison)
     const result = filterLiaisons(fakeLiaisons, 'IA')
     expect(result[0]).toEqual(iowaLiaison)

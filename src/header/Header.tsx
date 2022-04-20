@@ -98,10 +98,10 @@ const Header: React.FC<RouteComponentProps> = () => {
               <LinkTitle>Join our ListServ</LinkTitle>
               <LinkDescription>Receive 4-H Military Partnership updates</LinkDescription>
             </StyledDropdownLink>
-            <StyledDropdownLink to="/latest-news" onClick={() => setHamburgerActive(false)}>
+            {/* <StyledDropdownLink to="/latest-news" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Latest News</LinkTitle>
               <LinkDescription>Latest News from 4-H Military Partnership</LinkDescription>
-            </StyledDropdownLink>
+            </StyledDropdownLink> */}
           </LinkGroup>
         </Links>
         <MobileMenu>

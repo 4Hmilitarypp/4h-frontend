@@ -1,13 +1,15 @@
-import { Link as UnstyledLink, RouteComponentProps } from '@reach/router'
-import * as React from 'react'
-import styled from 'styled-components/macro'
-import { Button } from '../components/Elements'
-import Icon from '../components/Icon'
-import { elevation, media, transition } from '../utils/mixins'
-import DropdownBackground from './DropdownBackground'
-import LinkGroup from './LinkGroup'
+import { Link as UnstyledLink, RouteComponentProps } from '@reach/router';
+import * as React from 'react';
+import styled from 'styled-components/macro';
+import { Button } from '../components/Elements';
+import Icon from '../components/Icon';
+import { elevation, media, transition } from '../utils/mixins';
+import DropdownBackground from './DropdownBackground';
+import LinkGroup from './LinkGroup';
 
-const DropdownLink: React.FC = props => <UnstyledLink to="./" tabIndex={0} {...props} />
+const DropdownLink: React.FC = props => (
+  <UnstyledLink to="./" tabIndex={0} {...props} />
+);
 
 const Header: React.FC<RouteComponentProps> = () => {
   const [backgroundCoords, setBackgroundCoords] = React.useState({
@@ -15,16 +17,16 @@ const Header: React.FC<RouteComponentProps> = () => {
     left: 0,
     top: 0,
     width: 100,
-  })
-  const [backgroundOpen, setBackgroundOpen] = React.useState(false)
-  const [hamburgerActive, setHamburgerActive] = React.useState(false)
-  const navRef = React.useRef<HTMLDivElement>(null)
+  });
+  const [backgroundOpen, setBackgroundOpen] = React.useState(false);
+  const [hamburgerActive, setHamburgerActive] = React.useState(false);
+  const navRef = React.useRef<HTMLDivElement>(null);
   const backgroundManagement = {
     setCoords: setBackgroundCoords,
     setOpen: setBackgroundOpen,
     navRef,
     hamburgerActive,
-  }
+  };
 
   return (
     <>
@@ -35,34 +37,68 @@ const Header: React.FC<RouteComponentProps> = () => {
             <TitleWords>4-H Military</TitleWords>
             <TitleWords>Partnership</TitleWords>
           </Title>
-          <Logo src="https://res.cloudinary.com/four-hmpp/image/upload/v1542786198/logos/4h-logo.png" alt="4-H Logo" />
+          <Logo
+            src="https://res.cloudinary.com/four-hmpp/image/upload/v1542786198/logos/4h-logo.png"
+            alt="4-H Logo"
+          />
         </Heading>
         <Links ref={navRef as any} className={hamburgerActive ? 'mobile' : ''}>
           <HomeLink to="/" onClick={() => setHamburgerActive(false)}>
             Home
           </HomeLink>
-          <LinkGroup title="About Us" to="/about" manageBackground={backgroundManagement}>
-            <StyledDropdownLink to="/about" onClick={() => setHamburgerActive(false)}>
+          <LinkGroup
+            title="About Us"
+            to="/about"
+            manageBackground={backgroundManagement}
+          >
+            <StyledDropdownLink
+              to="/about"
+              onClick={() => setHamburgerActive(false)}
+            >
               <LinkTitle>About 4-H Military Partnership</LinkTitle>
-              <LinkDescription>Learn about the 4-H Military Partnership</LinkDescription>
+              <LinkDescription>
+                Learn about the 4-H Military Partnership
+              </LinkDescription>
             </StyledDropdownLink>
-            <StyledDropdownLink to="/4-h-club" onClick={() => setHamburgerActive(false)}>
+            <StyledDropdownLink
+              to="/4-h-club"
+              onClick={() => setHamburgerActive(false)}
+            >
               <LinkTitle>About 4-H Club</LinkTitle>
               <LinkDescription>Learn about 4-H club in general</LinkDescription>
             </StyledDropdownLink>
-            <StyledDropdownLink to="/partners" onClick={() => setHamburgerActive(false)}>
+            <StyledDropdownLink
+              to="/partners"
+              onClick={() => setHamburgerActive(false)}
+            >
               <LinkTitle>Partners List</LinkTitle>
-              <LinkDescription>View all of the partners affiliated with 4-H</LinkDescription>
+              <LinkDescription>
+                View all of the partners affiliated with 4-H
+              </LinkDescription>
             </StyledDropdownLink>
-            <StyledDropdownLink to="/contact-us" onClick={() => setHamburgerActive(false)}>
+            <StyledDropdownLink
+              to="/contact-us"
+              onClick={() => setHamburgerActive(false)}
+            >
               <LinkTitle>Contact Us</LinkTitle>
-              <LinkDescription>Send us a message to answer any questions</LinkDescription>
+              <LinkDescription>
+                Send us a message to answer any questions
+              </LinkDescription>
             </StyledDropdownLink>
           </LinkGroup>
-          <LinkGroup title="For Military Families" to="/about" manageBackground={backgroundManagement}>
-            <StyledDropdownLink to="/events/camps" onClick={() => setHamburgerActive(false)}>
+          <LinkGroup
+            title="For Military Families"
+            to="/about"
+            manageBackground={backgroundManagement}
+          >
+            <StyledDropdownLink
+              to="/events/camps"
+              onClick={() => setHamburgerActive(false)}
+            >
               <LinkTitle>Upcoming Camps</LinkTitle>
-              <LinkDescription>There are dozens of camps youth can attend</LinkDescription>
+              <LinkDescription>
+                There are dozens of camps youth can attend
+              </LinkDescription>
             </StyledDropdownLink>
             <StyledPublicDropdownLink
               href="https://www.4-hmilitarypartnership.org/"
@@ -71,11 +107,19 @@ const Header: React.FC<RouteComponentProps> = () => {
               onClick={() => setHamburgerActive(false)}
             >
               <LinkTitle>Connect with a state liaison</LinkTitle>
-              <LinkDescription>Go to an external site to get connected with the liaison closest to you</LinkDescription>
+              <LinkDescription>
+                Go to an external site to get connected with the liaison closest
+                to you
+              </LinkDescription>
             </StyledPublicDropdownLink>
-            <StyledDropdownLink to="/find-a-liaison" onClick={() => setHamburgerActive(false)}>
+            <StyledDropdownLink
+              to="/find-a-liaison"
+              onClick={() => setHamburgerActive(false)}
+            >
               <LinkTitle>Services available for OCONUS families</LinkTitle>
-              <LinkDescription>Connect with a liaison who support OCONUS families</LinkDescription>
+              <LinkDescription>
+                Connect with a liaison who support OCONUS families
+              </LinkDescription>
             </StyledDropdownLink>
             <StyledPublicDropdownLink
               href="https://4-h.org/find/"
@@ -84,19 +128,39 @@ const Header: React.FC<RouteComponentProps> = () => {
               onClick={() => setHamburgerActive(false)}
             >
               <LinkTitle>Find 4-H in my area</LinkTitle>
-              <LinkDescription>Go to an external site to find 4-H clubs in your area</LinkDescription>
+              <LinkDescription>
+                Go to an external site to find 4-H clubs in your area
+              </LinkDescription>
             </StyledPublicDropdownLink>
           </LinkGroup>
-          <LinkGroup title="For Staff & Volunteers" to="/about" manageBackground={backgroundManagement}>
-            <StyledDropdownLink to="/resources/educator-resources" onClick={() => setHamburgerActive(false)}>
+          <LinkGroup
+            title="For Staff & Volunteers"
+            to="/about"
+            manageBackground={backgroundManagement}
+          >
+            <StyledDropdownLink
+              to="/resources/educator-resources"
+              onClick={() => setHamburgerActive(false)}
+            >
               <LinkTitle>Resources / Curriculum</LinkTitle>
-              <LinkDescription>Find the educating resources and curriculums you need</LinkDescription>
+              <LinkDescription>
+                Find the educating resources and curriculums you need
+              </LinkDescription>
             </StyledDropdownLink>
           </LinkGroup>
-          <LinkGroup title="For 4-H Military Liaisons" to="/about" manageBackground={backgroundManagement}>
-            <StyledDropdownLink to="/contact-us" onClick={() => setHamburgerActive(false)}>
+          <LinkGroup
+            title="For 4-H Military Liaisons"
+            to="/about"
+            manageBackground={backgroundManagement}
+          >
+            <StyledDropdownLink
+              to="/contact-us"
+              onClick={() => setHamburgerActive(false)}
+            >
               <LinkTitle>Join our ListServ</LinkTitle>
-              <LinkDescription>Receive 4-H Military Partnership updates</LinkDescription>
+              <LinkDescription>
+                Receive 4-H Military Partnership updates
+              </LinkDescription>
             </StyledDropdownLink>
             {/* <StyledDropdownLink to="/latest-news" onClick={() => setHamburgerActive(false)}>
               <LinkTitle>Latest News</LinkTitle>
@@ -108,14 +172,20 @@ const Header: React.FC<RouteComponentProps> = () => {
           <ContactButton as={UnstyledLink} to="contact-us">
             Contact Us
           </ContactButton>
-          <Hamburger name="menu" height={24} onClick={() => setHamburgerActive(!hamburgerActive)} />
-          {hamburgerActive && <HamburgerClickOverlay onClick={() => setHamburgerActive(false)} />}
+          <Hamburger
+            name="menu"
+            height={24}
+            onClick={() => setHamburgerActive(!hamburgerActive)}
+          />
+          {hamburgerActive && (
+            <HamburgerClickOverlay onClick={() => setHamburgerActive(false)} />
+          )}
         </MobileMenu>
       </HeaderContainer>
     </>
-  )
-}
-export default Header
+  );
+};
+export default Header;
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -128,30 +198,30 @@ const HeaderContainer = styled.header`
     padding: 1rem 2rem;
     justify-content: space-between;
   `}
-`
+`;
 const Heading = styled(UnstyledLink)`
   color: ${props => props.theme.primary};
   display: flex;
   justify-content: center;
   padding: 0.4rem;
-`
+`;
 const Title = styled.div`
   font-weight: 700;
-`
+`;
 const TitleWords = styled.span`
   line-height: 1.4;
   display: block;
   ${media.tabletLand`
     line-height: 1.1;
   `}
-`
+`;
 const Logo = styled.img`
   height: 4.2rem;
   padding-left: 2rem;
   ${media.tabletLand`
     height: 3.6rem;
   `}
-`
+`;
 const Links: any = styled.nav`
   display: inline-flex;
   align-items: center;
@@ -176,7 +246,7 @@ const Links: any = styled.nav`
     border-top: 2px solid hsl(150, 39%, 27%);
     ${elevation(4)}
   }
-`
+`;
 const HomeLink = styled(UnstyledLink)`
   color: ${props => props.theme.secondary};
   font-size: 1.8rem;
@@ -198,7 +268,7 @@ const HomeLink = styled(UnstyledLink)`
       color: hsl(150, 6%, 31%);
     }
   `}
-`
+`;
 const LinkTitle = styled.p`
   font-weight: 700;
   color: ${props => props.theme.primary};
@@ -207,7 +277,7 @@ const LinkTitle = styled.p`
     font-weight: 500;
     margin-top: -.8rem;
   `}
-`
+`;
 const StyledDropdownLink: any = styled(DropdownLink)`
   display: block;
   padding: 0.4rem;
@@ -229,7 +299,7 @@ const StyledDropdownLink: any = styled(DropdownLink)`
   ${media.tabletPort`
     padding: 0.8rem 1.6rem .8rem 4rem;
   `}
-`
+`;
 const StyledPublicDropdownLink = styled.a`
   display: block;
   padding: 0.4rem;
@@ -251,14 +321,14 @@ const StyledPublicDropdownLink = styled.a`
   ${media.tabletPort`
     padding: 0.8rem 1.6rem .8rem 4rem;
   `}
-`
+`;
 const LinkDescription = styled.p`
   color: hsl(150, 4%, 53%);
   font-weight: 400;
   padding-left: 1.5rem;
   padding-top: 0;
   ${transition({ name: 'easeOutCubic', prop: 'all', time: 0.2 })};
-`
+`;
 
 const MobileMenu = styled.div`
   display: none;
@@ -266,7 +336,7 @@ const MobileMenu = styled.div`
     display: flex;
     align-items: center;
   `}
-`
+`;
 const ContactButton: any = styled(Button)`
   margin: 0 1.2rem;
   white-space: nowrap;
@@ -275,8 +345,8 @@ const ContactButton: any = styled(Button)`
   ${media.phone`
     display: none;
   `}
-`
-const Hamburger = styled(Icon)``
+`;
+const Hamburger = styled(Icon)``;
 
 const HamburgerClickOverlay = styled.div`
   position: absolute;
@@ -285,4 +355,4 @@ const HamburgerClickOverlay = styled.div`
   bottom: 0;
   right: 0;
   z-index: 4999;
-`
+`;

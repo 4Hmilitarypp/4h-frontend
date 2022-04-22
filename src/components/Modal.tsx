@@ -1,11 +1,11 @@
-import * as React from 'react'
-import styled from 'styled-components/macro'
-import Icon from '../components/Icon'
-import Portal from './Portal'
+import * as React from 'react';
+import styled from 'styled-components/macro';
+import Icon from '../components/Icon';
+import Portal from './Portal';
 
 interface IProps {
-  open: boolean
-  setOpen: (open: boolean) => void
+  open: boolean;
+  setOpen: (open: boolean) => void;
 }
 
 const Modal: React.FC<IProps> = ({ children, open, setOpen }) => {
@@ -14,7 +14,10 @@ const Modal: React.FC<IProps> = ({ children, open, setOpen }) => {
       {open && (
         <ModalWrapper>
           <ModalCard>
-            <CloseButton onClick={() => setOpen(false)} data-testid="close-button">
+            <CloseButton
+              onClick={() => setOpen(false)}
+              data-testid="close-button"
+            >
               <Icon name="close" color="#ffffff" />
             </CloseButton>
             <div>{children}</div>
@@ -23,10 +26,10 @@ const Modal: React.FC<IProps> = ({ children, open, setOpen }) => {
         </ModalWrapper>
       )}
     </Portal>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;
 
 const ModalWrapper = styled.div`
   position: fixed;
@@ -38,7 +41,7 @@ const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const ModalCard = styled.div`
   position: relative;
@@ -49,7 +52,7 @@ const ModalCard = styled.div`
   min-width: 50rem;
   max-width: 90%;
   margin-bottom: 10rem;
-`
+`;
 const Background = styled.div`
   position: absolute;
   width: 100%;
@@ -57,7 +60,7 @@ const Background = styled.div`
   background: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
-`
+`;
 
 const CloseButton = styled.button`
   position: absolute;
@@ -70,4 +73,4 @@ const CloseButton = styled.button`
   width: 20px;
   height: 20px;
   cursor: pointer;
-`
+`;

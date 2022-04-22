@@ -1,31 +1,33 @@
-import * as React from 'react'
-import { render } from '@testing-library/react'
-import FlashContext, { useFlash } from '../contexts/FlashContext'
-import Flash from '../Flash'
+import * as React from 'react';
+import { render } from '@testing-library/react';
+import FlashContext, { useFlash } from '../contexts/FlashContext';
+import Flash from '../Flash';
 
 interface IProps {
-  value: string
+  value: string;
 }
 
 const Comp: React.FC<IProps> = () => {
-  const { flashState, resetFlashState, setFlashState } = useFlash()
+  const { flashState, resetFlashState, setFlashState } = useFlash();
 
   return (
-    <FlashContext.Provider value={{ ...flashState, reset: resetFlashState, set: setFlashState }}>
+    <FlashContext.Provider
+      value={{ ...flashState, reset: resetFlashState, set: setFlashState }}
+    >
       <Flash />
     </FlashContext.Provider>
-  )
-}
+  );
+};
 
 const setup = (propOverrides?: IProps) => {
-  const props = Object.assign({}, propOverrides)
+  const props = Object.assign({}, propOverrides);
 
-  const utils = render(<Comp {...props} />)
+  const utils = render(<Comp {...props} />);
   return {
     ...utils,
-  }
-}
+  };
+};
 
 it('should render', () => {
-  setup()
-})
+  setup();
+});

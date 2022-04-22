@@ -1,37 +1,37 @@
-import * as React from 'react'
-import { fireEvent, render } from '@testing-library/react'
-import Input from '../Input'
+import * as React from 'react';
+import { fireEvent, render } from '@testing-library/react';
+import Input from '../Input';
 
 interface IProps {
-  value: string
+  value: string;
 }
 
 const setup = (propOverrides?: IProps) => {
-  const props = Object.assign({}, propOverrides)
+  const props = Object.assign({}, propOverrides);
 
-  const utils = render(<Input aria-label="test-input" {...props} />)
-  const input = utils.getByLabelText('test-input') as HTMLInputElement
+  const utils = render(<Input aria-label="test-input" {...props} />);
+  const input = utils.getByLabelText('test-input') as HTMLInputElement;
   return {
     input,
     props,
     ...utils,
-  }
-}
+  };
+};
 
 describe('render', () => {
   it('should render with the value given', () => {
-    const value = 'Its a good day!'
-    const { input } = setup({ value })
-    expect(input.value).toBe(value)
-  })
-})
+    const value = 'Its a good day!';
+    const { input } = setup({ value });
+    expect(input.value).toBe(value);
+  });
+});
 
 describe('interaction', () => {
   it('should allow valid input', () => {
-    const { input } = setup()
-    fireEvent.change(input, { target: { value: '1' } })
-    expect(input.value).toEqual('1')
-    fireEvent.change(input, { target: { value: 'This is a big test' } })
-    expect(input.value).toBe('This is a big test')
-  })
-})
+    const { input } = setup();
+    fireEvent.change(input, { target: { value: '1' } });
+    expect(input.value).toEqual('1');
+    fireEvent.change(input, { target: { value: 'This is a big test' } });
+    expect(input.value).toBe('This is a big test');
+  });
+});

@@ -1,0 +1,6 @@
+trailingComma: 'all'
+arrowParens: 'avoid'
+singleQuote: true
+printWidth: 80
+semi: true
+jsxBracketSameLine: false

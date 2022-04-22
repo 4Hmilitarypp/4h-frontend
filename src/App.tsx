@@ -1,26 +1,26 @@
-import { Redirect, Router } from '@reach/router'
-import * as React from 'react'
-import { createGlobalStyle, ThemeProvider } from 'styled-components/macro'
-import ErrorBoundary from './components/ErrorBoundary'
-import FlashContext, { useFlash } from './contexts/FlashContext'
-import Flash from './Flash'
-import Header from './header/Header'
-import About from './pages/About'
-import About4HClub from './pages/About4HClub'
-import ContactUs from './pages/ContactUs'
-import Educator from './pages/educator/Educator'
-import Events from './pages/events/Events'
-import FindLiaison from './pages/findLiaison/FindLiaison'
-import Home from './pages/Home'
-import Icons from './pages/Icons'
-import JobApplication from './pages/JobApplication'
+import { Redirect, Router } from '@reach/router';
+import * as React from 'react';
+import { createGlobalStyle, ThemeProvider } from 'styled-components/macro';
+import ErrorBoundary from './components/ErrorBoundary';
+import FlashContext, { useFlash } from './contexts/FlashContext';
+import Flash from './Flash';
+import Header from './header/Header';
+import About from './pages/About';
+import About4HClub from './pages/About4HClub';
+import ContactUs from './pages/ContactUs';
+import Educator from './pages/educator/Educator';
+import Events from './pages/events/Events';
+import FindLiaison from './pages/findLiaison/FindLiaison';
+import Home from './pages/Home';
+import Icons from './pages/Icons';
+import JobApplication from './pages/JobApplication';
 // import LatestNews from './pages/latest-news/LatestNews'
 // import LatestNewsArticle from './pages/latest-news/LatestNewsArticle'
-import NotFound from './pages/NotFound'
-import Partner from './pages/partner/Partner'
-import Partners from './pages/partners/Partners'
-import Photos from './pages/Photos'
-import PurpleUp from './pages/PurpleUp'
+import NotFound from './pages/NotFound';
+import Partner from './pages/partner/Partner';
+import Partners from './pages/partners/Partners';
+import Photos from './pages/Photos';
+import PurpleUp from './pages/PurpleUp';
 
 export const theme = {
   lightGrey: 'hsl(150, 20%, 40%)',
@@ -41,7 +41,7 @@ export const theme = {
   success: 'hsl(154, 90%, 41%)',
   warning: 'hsl(0, 100%, 37%)',
   white: 'hsl(0, 0%, 100%)',
-}
+};
 
 const GlobalStyle = createGlobalStyle`
   body,
@@ -59,16 +59,22 @@ const GlobalStyle = createGlobalStyle`
     visibility: hidden !important;
     opacity: 0 !important;
   }
-`
+`;
 
 const App: React.FC = () => {
-  const { flashState, resetFlashState, setFlashState } = useFlash()
+  const { flashState, resetFlashState, setFlashState } = useFlash();
   return (
     <ThemeProvider theme={theme}>
       <ErrorBoundary>
         <div data-testid="app">
           <GlobalStyle />
-          <FlashContext.Provider value={{ ...flashState, reset: resetFlashState, set: setFlashState }}>
+          <FlashContext.Provider
+            value={{
+              ...flashState,
+              reset: resetFlashState,
+              set: setFlashState,
+            }}
+          >
             <Flash />
             <Router>
               <Header path="/*" />
@@ -146,21 +152,61 @@ const App: React.FC = () => {
                 noThrow={true}
               />
               <Redirect from="/military-family/" to="/" noThrow={true} />
-              <Redirect from="/military-family/af-cyp/index.html" to="/partners/air-force" noThrow={true} />
-              <Redirect from="/educator-staff/af-cyp/index.html" to="/partners/air-force" noThrow={true} />
-              <Redirect from="/military-family/navy-cyp/index.html" to="/partners/navy" noThrow={true} />
-              <Redirect from="/educator-staff/navy-cyp/index.html" to="/partners/navy" noThrow={true} />
-              <Redirect from="/educator-staff/army-cys-project/index.html" to="/partners/army" noThrow={true} />
-              <Redirect from="/4h_military_partnerships/index.html" to="/" noThrow={true} />
-              <Redirect from="/military-liaisons/cyf-camps/ang4hcamps.html" to="/events" noThrow={true} />
+              <Redirect
+                from="/military-family/af-cyp/index.html"
+                to="/partners/air-force"
+                noThrow={true}
+              />
+              <Redirect
+                from="/educator-staff/af-cyp/index.html"
+                to="/partners/air-force"
+                noThrow={true}
+              />
+              <Redirect
+                from="/military-family/navy-cyp/index.html"
+                to="/partners/navy"
+                noThrow={true}
+              />
+              <Redirect
+                from="/educator-staff/navy-cyp/index.html"
+                to="/partners/navy"
+                noThrow={true}
+              />
+              <Redirect
+                from="/educator-staff/army-cys-project/index.html"
+                to="/partners/army"
+                noThrow={true}
+              />
+              <Redirect
+                from="/4h_military_partnerships/index.html"
+                to="/"
+                noThrow={true}
+              />
+              <Redirect
+                from="/military-liaisons/cyf-camps/ang4hcamps.html"
+                to="/events"
+                noThrow={true}
+              />
               <Redirect
                 from="/military-family/reserves/reserves.html"
                 to="/partners/air-force-reserves"
                 noThrow={true}
               />
-              <Redirect from="/military-family/4h-clubs/index.html" to="/4-h-club" noThrow={true} />
-              <Redirect from="/military-liaisons/4h-clubs/index.html" to="/4-h-club" noThrow={true} />
-              <Redirect from="/educator-staff/dod_usda/index.html" to="/partners/dod-usda" noThrow={true} />
+              <Redirect
+                from="/military-family/4h-clubs/index.html"
+                to="/4-h-club"
+                noThrow={true}
+              />
+              <Redirect
+                from="/military-liaisons/4h-clubs/index.html"
+                to="/4-h-club"
+                noThrow={true}
+              />
+              <Redirect
+                from="/educator-staff/dod_usda/index.html"
+                to="/partners/dod-usda"
+                noThrow={true}
+              />
               <Redirect
                 from="/educator-staff/recorded_webinars/mancini_o_neal_webinar_resources/Bowen%20Martin%20Mancini%202013%20resilience%20of%20military%20families%20theoreical%20perspectives.pdf"
                 to="/resources/webinars/mancini-resources"
@@ -171,8 +217,16 @@ const App: React.FC = () => {
                 to="/resources/webinars/mancini-resources"
                 noThrow={true}
               />
-              <Redirect from="/military-liaisons/resources/purple_up.html" to="/purple-up" noThrow={true} />
-              <Redirect from="/military-liaisons/index.html" to="/find-a-liaison" noThrow={true} />
+              <Redirect
+                from="/military-liaisons/resources/purple_up.html"
+                to="/purple-up"
+                noThrow={true}
+              />
+              <Redirect
+                from="/military-liaisons/index.html"
+                to="/find-a-liaison"
+                noThrow={true}
+              />
               <Redirect
                 from="/military-family/dod_usda/2015-military-camps/2015-camps/index.html"
                 to="/events/camps"
@@ -183,14 +237,26 @@ const App: React.FC = () => {
                 to="/events/camps"
                 noThrow={true}
               />
-              <Redirect from="/resources/resources" to="/resources/educator-resources" noThrow={true} />
+              <Redirect
+                from="/resources/resources"
+                to="/resources/educator-resources"
+                noThrow={true}
+              />
               <Redirect
                 from="/educator-staff/resources/curriculum/*"
                 to="/resources/educator-resources"
                 noThrow={true}
               />
-              <Redirect from="/educator-staff/recorded_webinars/*" to="/resources/webinars" noThrow={true} />
-              <Redirect from="/military-liaisons/recorded_webinars/*" to="/resources/webinars" noThrow={true} />
+              <Redirect
+                from="/educator-staff/recorded_webinars/*"
+                to="/resources/webinars"
+                noThrow={true}
+              />
+              <Redirect
+                from="/military-liaisons/recorded_webinars/*"
+                to="/resources/webinars"
+                noThrow={true}
+              />
 
               <NotFound default={true} />
             </Router>
@@ -198,7 +264,7 @@ const App: React.FC = () => {
         </div>
       </ErrorBoundary>
     </ThemeProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

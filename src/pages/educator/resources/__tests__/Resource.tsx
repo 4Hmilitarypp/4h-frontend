@@ -1,43 +1,45 @@
-import * as React from 'react'
-import {  render, waitFor } from '@testing-library/react'
-import Resource from '../Resource'
-import fakeApi from '../../../../utils/api'
-import generate from '../../../../utils/generate'
-jest.mock('../../../../utils/api')
+import * as React from 'react';
+import { render, waitFor } from '@testing-library/react';
+import Resource from '../Resource';
+import fakeApi from '../../../../utils/api';
+import generate from '../../../../utils/generate';
+jest.mock('../../../../utils/api');
 
-beforeEach(() => (fakeApi as any).reset())
+beforeEach(() => (fakeApi as any).reset());
 
 interface IProps {
-  slug: string
+  slug: string;
 }
 
 const setup = async (propOverrides?: IProps) => {
-  const fakeLessons = generate.lessons(3)
-  const fakeResource = generate.resource(undefined, fakeLessons)
+  const fakeLessons = generate.lessons(3);
+  const fakeResource = generate.resource(undefined, fakeLessons);
   const props = Object.assign(
     {
       slug: fakeResource.slug,
     },
-    propOverrides
-  )
+    propOverrides,
+  );
 
-  const resourcesMock = fakeApi.resources.getBySlug as any
-  resourcesMock.mockImplementationOnce(() => Promise.resolve(fakeResource))
+  const resourcesMock = fakeApi.resources.getBySlug as any;
+  resourcesMock.mockImplementationOnce(() => Promise.resolve(fakeResource));
 
-  const utils = render(<Resource {...props } backButtonRoute="/resources/educator-resources" />)
+  const utils = render(
+    <Resource {...props} backButtonRoute="/resources/educator-resources" />,
+  );
   // flushEffects()
 
-  await waitFor(() => utils.getByTestId('resource'))
+  await waitFor(() => utils.getByTestId('resource'));
 
   return {
     ...utils,
-  }
-}
+  };
+};
 
 it('should render', async () => {
-  await setup()
-})
+  await setup();
+});
 
 it('should not render if there is no slug', async () => {
-  await setup({ slug: '' })
-})
+  await setup({ slug: '' });
+});

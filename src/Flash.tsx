@@ -1,10 +1,10 @@
-import { RouteComponentProps } from '@reach/router'
-import * as React from 'react'
-import styled from 'styled-components/macro'
-import FlashContext from './contexts/FlashContext'
+import { RouteComponentProps } from '@reach/router';
+import * as React from 'react';
+import styled from 'styled-components/macro';
+import FlashContext from './contexts/FlashContext';
 
 const Flash: React.FC<RouteComponentProps> = () => {
-  const context = React.useContext(FlashContext)
+  const context = React.useContext(FlashContext);
 
   return (
     <>
@@ -20,16 +20,16 @@ const Flash: React.FC<RouteComponentProps> = () => {
         </ResponseError>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Flash
+export default Flash;
 
 const Message = styled.h3`
   font-size: 1.8rem;
   position: relative;
   text-align: center;
-`
+`;
 
 const Response = styled.div`
   padding: 2rem;
@@ -42,7 +42,7 @@ const Response = styled.div`
   background: ${props => props.theme.white};
   max-width: 60rem;
   border-radius: 5px;
-`
+`;
 
 const Close = styled.button`
   background: none;
@@ -56,11 +56,11 @@ const Close = styled.button`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 const ResponseSuccess = styled(Response)`
   border: 5px solid ${props => props.theme.success};
-`
+`;
 const ResponseError = styled(Response)`
   border: 5px solid ${props => props.theme.warning};
-`
+`;

@@ -1,20 +1,20 @@
-import * as React from 'react'
-import { render } from '@testing-library/react'
-import JobApplication from '../JobApplication'
+import * as React from 'react';
+import { render } from '@testing-library/react';
+import JobApplication from '../JobApplication';
 
 interface IProps {
-  value: string
+  value: string;
 }
 
 const setup = (propOverrides?: IProps) => {
-  const props = Object.assign({}, propOverrides)
+  const props = Object.assign({}, propOverrides);
 
-  const utils = render(<JobApplication {...props} />)
+  const utils = render(<JobApplication {...props} />);
   return {
     ...utils,
-  }
-}
+  };
+};
 
 it('should render', () => {
-  setup()
-})
+  setup();
+});

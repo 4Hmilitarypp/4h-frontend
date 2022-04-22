@@ -1,21 +1,21 @@
-import { Link, RouteComponentProps } from '@reach/router'
-import * as React from 'react'
-import styled from 'styled-components/macro'
+import { Link, RouteComponentProps } from '@reach/router';
+import * as React from 'react';
+import styled from 'styled-components/macro';
 // @ts-ignore
-import Parser from 'html-react-parser'
-import { Button, SubHeading, DynamicSection } from '../components/Elements'
-import Icon from '../components/Icon'
-import useErrorHandler from '../hooks/useErrorHandler'
-import api from '../utils/api'
-import { elevation, media, transition } from '../utils/mixins'
+import Parser from 'html-react-parser';
+import { Button, SubHeading, DynamicSection } from '../components/Elements';
+import Icon from '../components/Icon';
+import useErrorHandler from '../hooks/useErrorHandler';
+import api from '../utils/api';
+import { elevation, media, transition } from '../utils/mixins';
 
 const Home: React.FC<RouteComponentProps> = () => {
-  const handleError = useErrorHandler()
-  const [homeInfo, setHomeInfo] = React.useState<any>()
+  const handleError = useErrorHandler();
+  const [homeInfo, setHomeInfo] = React.useState<any>();
   React.useEffect(() => {
-    window.scrollTo(0, 0)
-    api.pageInfo.get('home').then(setHomeInfo).catch(handleError)
-  }, [])
+    window.scrollTo(0, 0);
+    api.pageInfo.get('home').then(setHomeInfo).catch(handleError);
+  }, []);
   return (
     <div>
       <HeroOverlay>
@@ -27,7 +27,8 @@ const Home: React.FC<RouteComponentProps> = () => {
       <HeroText name="4HMilitaryPartnership" />
       <Vision>
         <VisionHeading>
-          Military readiness through 4-H positive youth development for youth, families, and communities.
+          Military readiness through 4-H positive youth development for youth,
+          families, and communities.
         </VisionHeading>
       </Vision>
       <Mission>
@@ -38,19 +39,23 @@ const Home: React.FC<RouteComponentProps> = () => {
         <MissionText>
           <MissionSubHeading>Who We Are</MissionSubHeading>
           <MissionP>
-            A collaboration of military and land grant university partners who intentionally integrate research-based
-            programs and resources for military-connected youth, families, and communities to thrive.
+            A collaboration of military and land grant university partners who
+            intentionally integrate research-based programs and resources for
+            military-connected youth, families, and communities to thrive.
           </MissionP>
           <MissionSubHeading>What We Do</MissionSubHeading>
           <MissionP>
-            4-H Military Partnership focuses on positive youth development through providing opportunities for youth to
-            engage in intentional learning experiences. We partner with 4-H educators to provide them the training and
-            resources they need to succeed in equipping the next generation of leaders.
+            4-H Military Partnership focuses on positive youth development
+            through providing opportunities for youth to engage in intentional
+            learning experiences. We partner with 4-H educators to provide them
+            the training and resources they need to succeed in equipping the
+            next generation of leaders.
           </MissionP>
           <MissionSubHeading>Why We Do It</MissionSubHeading>
           <MissionP>
-            As military families move frequently and experience the difficulties surrounding deployment and
-            reintegration, 4-H provides predictable programming and a safe and nurturing environment for military
+            As military families move frequently and experience the difficulties
+            surrounding deployment and reintegration, 4-H provides predictable
+            programming and a safe and nurturing environment for military
             connected children and youth to excel.
           </MissionP>
         </MissionText>
@@ -60,7 +65,10 @@ const Home: React.FC<RouteComponentProps> = () => {
           <FeaturedTitle>{homeInfo.title}</FeaturedTitle>
           <FeaturedContent>
             <FeaturedText>{Parser(homeInfo.text)}</FeaturedText>
-            <FeaturedImage src={homeInfo.featuredImage.url} alt={homeInfo.featuredImage.alt} />
+            <FeaturedImage
+              src={homeInfo.featuredImage.url}
+              alt={homeInfo.featuredImage.alt}
+            />
           </FeaturedContent>
         </FeaturedSection>
       )}
@@ -135,9 +143,9 @@ const Home: React.FC<RouteComponentProps> = () => {
         </ContactButton>
       </Footer>
     </div>
-  )
-}
-export default Home
+  );
+};
+export default Home;
 
 const HeroText = styled(Icon)`
   font-family: Acme;
@@ -154,26 +162,30 @@ const HeroText = styled(Icon)`
   ${media.tabletPort`
     width: 90%;
   `}
-`
+`;
 const HeroOverlay = styled.div`
   &::after {
     display: block;
     position: relative;
-    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 100%);
+    background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
     margin-top: calc(-80vh + 6.8rem);
     height: calc(80vh - 6.8rem);
     width: 100%;
     content: '';
   }
-`
+`;
 const HeroImg = styled.img`
   width: 100%;
   height: calc(80vh - 6.8rem);
   object-fit: cover;
   object-position: center;
   display: block;
-`
-const Vision = styled.div``
+`;
+const Vision = styled.div``;
 const VisionHeading = styled(SubHeading)`
   max-width: 75rem;
   line-height: 1.5;
@@ -183,7 +195,7 @@ const VisionHeading = styled(SubHeading)`
     padding: 0 1.2rem;
     font-size: 2rem;
   `}
-`
+`;
 const Mission = styled.div`
   display: flex;
   padding: 4.8rem 2.4rem;
@@ -191,7 +203,7 @@ const Mission = styled.div`
   ${media.tabletLand`
     padding: 0;
   `}
-`
+`;
 const MissionImg = styled.img`
   max-width: 40%;
   align-self: center;
@@ -200,13 +212,13 @@ const MissionImg = styled.img`
   ${media.tabletLand`
     display: none;
   `}
-`
+`;
 const MissionSubHeading = styled(SubHeading)`
   ${media.tabletLand`
 padding: 2rem 0 2rem;
 
 `}
-`
+`;
 const MissionText = styled.div`
   padding-left: 3.6rem;
   max-width: 70rem;
@@ -214,7 +226,7 @@ const MissionText = styled.div`
     padding: 0 1.6rem;
     text-align: center;
   `}
-`
+`;
 const MissionP = styled.p`
   font-size: 2rem;
   padding-bottom: 2.4rem;
@@ -222,12 +234,12 @@ const MissionP = styled.p`
     font-size: 1.6rem;
     padding-bottom: 1.8rem;
   `}
-`
+`;
 const FeaturedSection = styled.div`
   padding-bottom: 3.6rem;
   background: ${props => props.theme.primaryLight};
-`
-const FeaturedTitle = styled(SubHeading)``
+`;
+const FeaturedTitle = styled(SubHeading)``;
 
 const FeaturedContent = styled.div`
   padding: 0 2.4rem;
@@ -238,7 +250,7 @@ const FeaturedContent = styled.div`
   ${media.tabletLand`
     flex-direction: column-reverse;
   `}
-`
+`;
 
 const FeaturedText = styled(DynamicSection)`
   max-width: 80rem;
@@ -257,7 +269,7 @@ const FeaturedText = styled(DynamicSection)`
   font-size: 1.8rem;
   }
   `}
-`
+`;
 const FeaturedImage = styled.img`
   max-width: 40%;
   max-height: 100vh;
@@ -269,16 +281,16 @@ const FeaturedImage = styled.img`
     width: 100%;
     max-width: 80%;
   `}
-`
+`;
 const CardLinksHeading = styled(SubHeading)`
   font-size: 3.6rem;
-`
+`;
 const CardLinks = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-`
+`;
 const CardImageOverlay = styled.div`
   &::after {
     display: block;
@@ -290,15 +302,16 @@ const CardImageOverlay = styled.div`
     border-radius: 5px 0 0 5px;
     ${transition({ name: 'easeOutCubic' })};
   }
-`
+`;
 const CardLink = styled(Link)`
   display: inline-flex;
   margin: 0 1.6rem 3.2rem;
   ${elevation(4)};
   &:hover ${CardImageOverlay}::after {
-    background: linear-gradient(180deg, #0000 50%, rgba(0, 0, 0, 0.4) 100%), hsla(150, 80%, 28%, 0.3);
+    background: linear-gradient(180deg, #0000 50%, rgba(0, 0, 0, 0.4) 100%),
+      hsla(150, 80%, 28%, 0.3);
   }
-`
+`;
 const Card = styled.div`
   width: 350px;
   position: relative;
@@ -306,7 +319,7 @@ const Card = styled.div`
   ${media.phone`
     width: 300px;
   `}
-`
+`;
 const CardImage = styled.img`
   width: 350px;
   height: 225px;
@@ -317,7 +330,7 @@ const CardImage = styled.img`
   ${media.phone`
     width: 300px;
   `}
-`
+`;
 const CardText = styled.span`
   position: absolute;
   left: 0;
@@ -327,7 +340,7 @@ const CardText = styled.span`
   bottom: 8px;
   text-shadow: 0 1px 0 black;
   font-weight: 500;
-`
+`;
 const CardArrow = styled.div`
   width: 2rem;
   color: ${props => props.theme.white};
@@ -336,7 +349,7 @@ const CardArrow = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 const Footer = styled.div`
   background: ${props => props.theme.primaryLight};
   padding: 2.4rem;
@@ -348,21 +361,21 @@ const Footer = styled.div`
     flex-direction: column;
     align-items: center;
   `}
-`
+`;
 const FooterSubHeading1 = styled(SubHeading)`
   ${media.tabletLand`
     font-size: 2rem;
     padding: 0rem;
   `}
-`
+`;
 const FooterSubHeading2 = styled(SubHeading)`
   padding-left: 0.8rem;
   ${media.tabletLand`
   padding-top: 1.2rem;
     font-size: 2rem;
   `}
-`
+`;
 const ContactButton: any = styled(Button)`
   margin: 0 3.6rem;
   white-space: nowrap;
-`
+`;

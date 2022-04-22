@@ -1,29 +1,31 @@
-import * as React from 'react'
-import ReactDOM from 'react-dom'
+import * as React from 'react';
+import ReactDOM from 'react-dom';
 
 interface IState {
-  el?: HTMLDivElement
-  portalRoot: HTMLElement | null
+  el?: HTMLDivElement;
+  portalRoot: HTMLElement | null;
 }
 export default class Portal extends React.Component<{}, IState> {
   state = {
     el: document.createElement('div'),
     portalRoot: document.getElementById('portal'),
-  }
+  };
   componentDidMount = () => {
     if (this.state.portalRoot && this.state.el) {
-      this.state.portalRoot.appendChild(this.state.el)
+      this.state.portalRoot.appendChild(this.state.el);
     }
-  }
+  };
 
   componentWillUnmount = () => {
     if (this.state.portalRoot && this.state.el) {
-      this.state.portalRoot.removeChild(this.state.el)
+      this.state.portalRoot.removeChild(this.state.el);
     }
-  }
+  };
   render() {
-    const { children } = this.props
-    return this.state.el ? ReactDOM.createPortal(children, this.state.el) : null
+    const { children } = this.props;
+    return this.state.el
+      ? ReactDOM.createPortal(children, this.state.el)
+      : null;
   }
 }
 

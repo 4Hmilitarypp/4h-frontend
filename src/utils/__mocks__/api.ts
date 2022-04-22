@@ -4,7 +4,7 @@ const mock = {
   research: undefined,
   reset: undefined,
   resources: undefined,
-}
+};
 function reset() {
   Object.assign(mock, {
     emails: Object.assign(mock.emails || {}, {
@@ -26,8 +26,8 @@ function reset() {
       get: jest.fn(() => Promise.resolve([])),
       getBySlug: jest.fn(() => Promise.resolve({})),
     }),
-  })
+  });
 }
-reset()
+reset();
 
-export default mock
+export default mock;

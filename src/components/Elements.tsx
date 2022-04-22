@@ -1,6 +1,6 @@
-import { Link as UnstyledLink } from '@reach/router'
-import styled from 'styled-components/macro'
-import { elevation, media, transition } from '../utils/mixins'
+import { Link as UnstyledLink } from '@reach/router';
+import styled from 'styled-components/macro';
+import { elevation, media, transition } from '../utils/mixins';
 
 // TODO Refactor this to use an Input and a label and return actual components.
 
@@ -25,12 +25,12 @@ export const InputGroup = styled.div`
     border: none;
     background: ${props => props.theme.primaryBackground};
   }
-`
+`;
 export const PageWrapper = styled.div`
   padding: 0 2rem 2rem;
   max-width: 140rem;
   margin: 0 auto;
-`
+`;
 export const Heading = styled.h1`
   color: ${props => props.theme.primaryBlack};
   padding: 3.2rem 0 3.2rem;
@@ -40,7 +40,7 @@ export const Heading = styled.h1`
    padding: 2.4rem 0 2.4rem;
    font-size: 2.6rem;
 `}
-`
+`;
 export const SubHeading = styled.h2`
   color: ${props => props.theme.primaryBlack};
   padding: 3.2rem 0 3.2rem;
@@ -50,7 +50,7 @@ export const SubHeading = styled.h2`
      padding: 2.4rem 0 2.4rem;
      font-size: 2.4rem;
   `}
-`
+`;
 export const Button: any = styled.button`
   border-radius: 5px;
   color: ${props => props.theme.white};
@@ -67,20 +67,20 @@ export const Button: any = styled.button`
     box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.1), 0 4px 7px 0 rgba(0, 0, 0, 0.07);
     cursor: pointer;
   }
-`
+`;
 export const OutlineButton = styled(Button)`
   border: 2px solid ${props => props.theme.primaryLink};
   padding: 0.4rem 1.2rem;
   background: none;
   color: ${props => props.theme.primaryLink};
-`
+`;
 export const SecondaryButton = styled(Button)`
   background: ${props => props.theme.secondary};
-`
+`;
 export const Section = styled.section`
   max-width: 80rem;
   margin: 0 auto;
-`
+`;
 export const A = styled.a`
   font-weight: 500;
   color: ${props => props.theme.primaryLink};
@@ -91,7 +91,7 @@ export const A = styled.a`
     opacity: 0.8;
     cursor: pointer;
   }
-`
+`;
 // Have to do the props thing because of a jest error
 export const Link = styled(props => <UnstyledLink {...props} />)`
   font-weight: 500;
@@ -99,14 +99,14 @@ export const Link = styled(props => <UnstyledLink {...props} />)`
   &:hover {
     opacity: 0.8;
   }
-`
+`;
 export const P = styled.p`
   padding-bottom: 1.6rem;
   color: ${props => props.theme.primaryGrey};
   &:last-child {
     padding-bottom: 0;
   }
-`
+`;
 export const DynamicSection = styled(Section)`
   a {
     font-weight: 500;
@@ -126,4 +126,4 @@ export const DynamicSection = styled(Section)`
     list-style: initial;
     padding-left: 4rem;
   }
-`
+`;

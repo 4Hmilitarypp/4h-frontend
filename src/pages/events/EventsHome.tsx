@@ -1,6 +1,12 @@
-import { RouteComponentProps } from '@reach/router'
-import * as React from 'react'
-import { Heading, Link, P, PageWrapper, Section } from '../../components/Elements'
+import { RouteComponentProps } from '@reach/router';
+import * as React from 'react';
+import {
+  Heading,
+  Link,
+  P,
+  PageWrapper,
+  Section,
+} from '../../components/Elements';
 
 const EducatorHome: React.FC<RouteComponentProps> = () => (
   <PageWrapper>
@@ -14,5 +20,5 @@ const EducatorHome: React.FC<RouteComponentProps> = () => (
       </P>
     </Section>
   </PageWrapper>
-)
-export default EducatorHome
+);
+export default EducatorHome;

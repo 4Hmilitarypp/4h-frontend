@@ -1,12 +1,12 @@
-import { Link, RouteComponentProps } from '@reach/router'
-import * as React from 'react'
-import styled from 'styled-components/macro'
-import { IPartnerSection } from '../../sharedTypes'
-import { media } from '../../utils/mixins'
+import { Link, RouteComponentProps } from '@reach/router';
+import * as React from 'react';
+import styled from 'styled-components/macro';
+import { IPartnerSection } from '../../sharedTypes';
+import { media } from '../../utils/mixins';
 
 interface IProps extends RouteComponentProps {
-  partner: IPartnerSection
-  index: number
+  partner: IPartnerSection;
+  index: number;
 }
 
 const PartnerSection: React.FC<IProps> = ({ partner, index }) => {
@@ -18,27 +18,36 @@ const PartnerSection: React.FC<IProps> = ({ partner, index }) => {
           <Description>{partner.shortDescription}</Description>
           <LearnMore to={partner._id}>Learn More</LearnMore>
         </Text>
-        <FeaturedImage src={partner.featuredImage1.url} alt={partner.featuredImage1.alt || `${partner.title} Logo`} />
+        <FeaturedImage
+          src={partner.featuredImage1.url}
+          alt={partner.featuredImage1.alt || `${partner.title} Logo`}
+        />
         {partner.featuredImage2 && (
-          <FeaturedImage src={partner.featuredImage2.url} alt={partner.featuredImage2.alt || `${partner.title} Logo`} />
+          <FeaturedImage
+            src={partner.featuredImage2.url}
+            alt={partner.featuredImage2.alt || `${partner.title} Logo`}
+          />
         )}
       </Content>
     </PartnerWrapper>
-  )
-}
-export default PartnerSection
+  );
+};
+export default PartnerSection;
 
 const PartnerWrapper: any = styled.section`
   padding: 3.2rem;
-  background: ${(props: any) => (props.index % 2 === 1 ? props.theme.white : props.theme.secondaryBackground)};
+  background: ${(props: any) =>
+    props.index % 2 === 1
+      ? props.theme.white
+      : props.theme.secondaryBackground};
   ${media.tabletLand`
     padding: 3.2rem 0;
   `}
-`
+`;
 const Title = styled.h2`
   color: ${props => props.theme.secondary};
   padding-bottom: 1.2rem;
-`
+`;
 const FeaturedImage = styled.img`
   height: 20rem;
   display: block;
@@ -50,11 +59,11 @@ const FeaturedImage = styled.img`
   ${media.tabletLand`
     margin-top: 2.4rem;
   `}
-`
+`;
 const Description = styled.p`
   max-width: 70rem;
   padding-bottom: 2rem;
-`
+`;
 const LearnMore = styled(Link)`
   padding: 0.4rem 1.5rem;
   border: 3px solid ${props => props.theme.secondary};
@@ -68,12 +77,13 @@ const LearnMore = styled(Link)`
     background: ${props => props.theme.secondary};
     padding: 0.7rem 1.8rem;
   }
-`
+`;
 const Content: any = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: ${(props: any) => (props.index % 2 === 1 ? 'row-reverse' : 'row')};
+  flex-direction: ${(props: any) =>
+    props.index % 2 === 1 ? 'row-reverse' : 'row'};
   max-width: 140rem;
   margin: 0 auto;
   ${media.tabletLand`
@@ -81,10 +91,10 @@ const Content: any = styled.div`
     flex-direction: column;
     flex-wrap: wrap;
   `}
-`
+`;
 const Text = styled.div`
   padding: 0 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;

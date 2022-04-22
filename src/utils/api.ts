@@ -1,67 +1,85 @@
-import * as axios from 'axios'
-import { IContactUsEmail } from '../clientTypes'
-import { ICamp, ILatestNews, ILiaison, IPartner, IPartnerSection, IResearch, IResource, IWebinar } from '../sharedTypes'
+import * as axios from 'axios';
+import { IContactUsEmail } from '../clientTypes';
+import {
+  ICamp,
+  ILatestNews,
+  ILiaison,
+  IPartner,
+  IPartnerSection,
+  IResearch,
+  IResource,
+  IWebinar,
+} from '../sharedTypes';
 
-let restApi: axios.AxiosInstance
+let restApi: axios.AxiosInstance;
 
-const envBaseURL = process.env.REACT_APP_API_URL
+const envBaseURL = process.env.REACT_APP_API_URL;
 
-const getData = (res: { data: object }) => res.data
+const getData = (res: { data: object }) => res.data;
 
 const requests = {
   delete: (url: string): Promise<any> => restApi.delete(url).then(getData),
   get: (url: string): Promise<any> => restApi.get(url).then(getData),
-  post: (url: string, body: object): Promise<any> => restApi.post(url, body).then(getData),
-  put: (url: string, body: object): Promise<any> => restApi.put(url, body).then(getData),
-}
+  post: (url: string, body: object): Promise<any> =>
+    restApi.post(url, body).then(getData),
+  put: (url: string, body: object): Promise<any> =>
+    restApi.put(url, body).then(getData),
+};
 
 const camps = {
   get: (): Promise<ICamp[]> => requests.get('/camps/current'),
-}
+};
 
 const emails = {
-  checkIfSpam: (token: string): Promise<boolean> => requests.post('/users/checkIfSpam', { token }),
+  checkIfSpam: (token: string): Promise<boolean> =>
+    requests.post('/users/checkIfSpam', { token }),
   contactUs: (email: IContactUsEmail): Promise<{ email: IContactUsEmail }> =>
     requests.post('/emails/contact-us', email),
-}
+};
 
 const latestNews = {
   get: (): Promise<ILatestNews[]> => requests.get('/latest-news'),
-  getBySlug: (slug: string): Promise<ILatestNews> => requests.get(`/latest-news/slug/${slug}`),
-}
+  getBySlug: (slug: string): Promise<ILatestNews> =>
+    requests.get(`/latest-news/slug/${slug}`),
+};
 
 const liaisons = {
   get: (): Promise<ILiaison[]> => requests.get('/liaisons'),
-}
+};
 const pageInfo = {
   get: (page: string): Promise<any> => requests.get(`/page-info/${page}`),
-}
+};
 const partners = {
   get: (): Promise<IPartnerSection[]> => requests.get('/partners'),
   getById: (id: string): Promise<IPartner> => requests.get(`/partners/${id}`),
-}
+};
 
 const research = {
   get: (): Promise<IResearch[]> => requests.get('/research'),
-}
+};
 const resources = {
   get: (): Promise<IResource[]> => requests.get('/resources'),
   getById: (id: string): Promise<IResource> => requests.get(`/resources/${id}`),
-  getByParent: (parent: string): Promise<IResource[]> => requests.get(`/resources/nested/${parent}`),
-  getBySlug: (slug: string): Promise<IResource> => requests.get(`/resources/slug/${slug}`),
-}
+  getByParent: (parent: string): Promise<IResource[]> =>
+    requests.get(`/resources/nested/${parent}`),
+  getBySlug: (slug: string): Promise<IResource> =>
+    requests.get(`/resources/slug/${slug}`),
+};
 const webinars = {
   get: (): Promise<IWebinar[]> => requests.get('/webinars'),
-}
+};
 
-function init({ baseURL = envBaseURL || '/api', axiosOptions = { headers: {} } } = {}) {
+function init({
+  baseURL = envBaseURL || '/api',
+  axiosOptions = { headers: {} },
+} = {}) {
   restApi = (axios as any).create({
     baseURL,
     ...axiosOptions,
     headers: {
       ...axiosOptions.headers,
     },
-  })
+  });
 }
 
 const api = {
@@ -75,6 +93,6 @@ const api = {
   research,
   resources,
   webinars,
-}
+};
 
-export default api
+export default api;

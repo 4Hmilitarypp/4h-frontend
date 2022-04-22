@@ -1,13 +1,13 @@
-import * as React from 'react'
-import styled from 'styled-components/macro'
-import Icon from '../components/Icon'
+import * as React from 'react';
+import styled from 'styled-components/macro';
+import Icon from '../components/Icon';
 
 interface IProps {
-  title: string
+  title: string;
 }
 
 const MobileDropdown: React.FC<IProps> = ({ title, children }) => {
-  const [expanded, setExpanded] = React.useState(false)
+  const [expanded, setExpanded] = React.useState(false);
   return (
     <DropDown>
       <Wrapper onClick={() => setExpanded(!expanded)}>
@@ -16,14 +16,14 @@ const MobileDropdown: React.FC<IProps> = ({ title, children }) => {
       </Wrapper>
       {expanded && <div>{children}</div>}
     </DropDown>
-  )
-}
+  );
+};
 
-export default MobileDropdown
+export default MobileDropdown;
 
 const DropDown = styled.div`
   width: 100%;
-`
+`;
 
 const Wrapper = styled.span`
   color: ${(props: any) => props.theme.secondary};
@@ -49,4 +49,4 @@ const Wrapper = styled.span`
       fill: hsl(266, 55%, 35%);
     }
   }
-`
+`;

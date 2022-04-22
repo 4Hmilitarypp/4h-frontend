@@ -1,56 +1,75 @@
-import { RouteComponentProps } from '@reach/router'
-import Downshift from 'downshift'
-import { map, sortBy } from 'lodash'
-import { matchSorter } from 'match-sorter'
-import * as React from 'react'
-import styled from 'styled-components/macro'
-import { theme } from '../../App'
-import { InputGroup, P, PageWrapper, Section, SubHeading } from '../../components/Elements'
-import Icon from '../../components/Icon'
-import useErrorHandler from '../../hooks/useErrorHandler'
-import { ILiaison } from '../../sharedTypes'
-import api from '../../utils/api'
-import { elevation, media } from '../../utils/mixins'
+import { RouteComponentProps } from '@reach/router';
+import Downshift from 'downshift';
+import { map, sortBy } from 'lodash';
+import { matchSorter } from 'match-sorter';
+import * as React from 'react';
+import styled from 'styled-components/macro';
+import { theme } from '../../App';
+import {
+  InputGroup,
+  P,
+  PageWrapper,
+  Section,
+  SubHeading,
+} from '../../components/Elements';
+import Icon from '../../components/Icon';
+import useErrorHandler from '../../hooks/useErrorHandler';
+import { ILiaison } from '../../sharedTypes';
+import api from '../../utils/api';
+import { elevation, media } from '../../utils/mixins';
 
-export const filterLiaisons = (liaisons: ILiaison[], query: string | null): ILiaison[] => {
-  if (!query) return liaisons
+export const filterLiaisons = (
+  liaisons: ILiaison[],
+  query: string | null,
+): ILiaison[] => {
+  if (!query) return liaisons;
   const result = matchSorter(liaisons, query, {
-    keys: ['stateOrRegion', { minRanking: matchSorter.rankings.EQUAL, key: 'abbreviation' }],
-  })
-  return result
-}
+    keys: [
+      'stateOrRegion',
+      { minRanking: matchSorter.rankings.EQUAL, key: 'abbreviation' },
+    ],
+  });
+  return result;
+};
 
 const FindLiaison: React.FC<RouteComponentProps> = () => {
-  const handleError = useErrorHandler()
-  const [liaisons, setLiaisons] = React.useState<ILiaison[] | undefined>(undefined)
-  const [selectedLiaison, setSelectedLiaison] = React.useState<ILiaison | undefined>(undefined)
-  const findRef = React.useRef<HTMLHeadingElement>(null)
+  const handleError = useErrorHandler();
+  const [liaisons, setLiaisons] = React.useState<ILiaison[] | undefined>(
+    undefined,
+  );
+  const [selectedLiaison, setSelectedLiaison] = React.useState<
+    ILiaison | undefined
+  >(undefined);
+  const findRef = React.useRef<HTMLHeadingElement>(null);
 
   React.useEffect(() => {
     api.liaisons
       .get()
       .then(data => {
-        const filtered = data.filter(liaison => liaison.countryCode !== 'US')
-        const sorted = sortBy(filtered, ['stateOrRegion'])
-        setLiaisons(sorted as any)
+        const filtered = data.filter(liaison => liaison.countryCode !== 'US');
+        const sorted = sortBy(filtered, ['stateOrRegion']);
+        setLiaisons(sorted as any);
       })
-      .catch(handleError)
-  }, [])
+      .catch(handleError);
+  }, []);
   React.useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <PageWrapper>
       <ConstrainedSection>
         <SubHeading>What Is A Liaison?</SubHeading>
         <P>
-          4-H military liaisons are the official point of contact for all 4-H military programs. A liaison serves as a
-          professional connection between various military branches and the 4-H organization.
+          4-H military liaisons are the official point of contact for all 4-H
+          military programs. A liaison serves as a professional connection
+          between various military branches and the 4-H organization.
         </P>
         <P>
-          Liaisons coordinate support to 4-H clubs on and off military installations that serve military youth. They
-          also educate university staff and citizens about the unique challenges faced by military children.
+          Liaisons coordinate support to 4-H clubs on and off military
+          installations that serve military youth. They also educate university
+          staff and citizens about the unique challenges faced by military
+          children.
         </P>
       </ConstrainedSection>
       <SubHeading ref={findRef as any}>Find A Liaison</SubHeading>
@@ -75,16 +94,22 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
           }) => (
             <div>
               <FindInputGroup>
-                <label {...getLabelProps({ name: 'stateOrRegion' })}>Enter a region</label>
+                <label {...getLabelProps({ name: 'stateOrRegion' })}>
+                  Enter a region
+                </label>
                 <div style={{ position: 'relative' }}>
-                  <FindInput className="input" {...getInputProps()} placeholder="Puerto Rico" />
+                  <FindInput
+                    className="input"
+                    {...getInputProps()}
+                    placeholder="Puerto Rico"
+                  />
                   <ControllerButton
                     onClick={() => {
-                      if (!isOpen) openMenu()
-                      else closeMenu()
+                      if (!isOpen) openMenu();
+                      else closeMenu();
                       if (selectedLiaison) {
-                        clearSelection()
-                        openMenu()
+                        clearSelection();
+                        openMenu();
                       }
                     }}
                     data-testid="controller-button"
@@ -94,21 +119,31 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
                 </div>
               </FindInputGroup>
               {isOpen ? (
-                <Menu {...getMenuProps({ style: { height: 250, overflowY: 'scroll' } })}>
-                  {map(filterLiaisons(liaisons, inputValue), (liaison, index) => {
-                    return (
-                      <Item
-                        key={liaison.stateOrRegion.toLowerCase()}
-                        {...getItemProps({
-                          index,
-                          item: liaison,
-                          style: { background: index === highlightedIndex ? theme.primary : '' },
-                        })}
-                      >
-                        {liaison.stateOrRegion}
-                      </Item>
-                    )
+                <Menu
+                  {...getMenuProps({
+                    style: { height: 250, overflowY: 'scroll' },
                   })}
+                >
+                  {map(
+                    filterLiaisons(liaisons, inputValue),
+                    (liaison, index) => {
+                      return (
+                        <Item
+                          key={liaison.stateOrRegion.toLowerCase()}
+                          {...getItemProps({
+                            index,
+                            item: liaison,
+                            style: {
+                              background:
+                                index === highlightedIndex ? theme.primary : '',
+                            },
+                          })}
+                        >
+                          {liaison.stateOrRegion}
+                        </Item>
+                      );
+                    },
+                  )}
                 </Menu>
               ) : null}
             </div>
@@ -120,8 +155,12 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
           <ResultContent>
             <Text>
               <Name>{selectedLiaison.name}</Name>
-              <StyledLink href={`mailto:${selectedLiaison.email}`}>{selectedLiaison.email}</StyledLink>
-              <StyledLink href={`tel:${selectedLiaison.phoneNumber}`}>{selectedLiaison.phoneNumber}</StyledLink>
+              <StyledLink href={`mailto:${selectedLiaison.email}`}>
+                {selectedLiaison.email}
+              </StyledLink>
+              <StyledLink href={`tel:${selectedLiaison.phoneNumber}`}>
+                {selectedLiaison.phoneNumber}
+              </StyledLink>
             </Text>
             <SchoolLogo
               src={selectedLiaison.image}
@@ -131,29 +170,29 @@ const FindLiaison: React.FC<RouteComponentProps> = () => {
         </Liaison>
       )}
     </PageWrapper>
-  )
-}
-export default FindLiaison
+  );
+};
+export default FindLiaison;
 
 const ConstrainedSection = styled(Section)`
   max-width: 64rem;
-`
+`;
 const Menu = styled.ul`
   ${elevation(3)};
   padding: 1.5rem 0;
   max-width: 64rem;
   margin: 0 auto;
   background: ${props => props.theme.primaryGrey};
-`
+`;
 const FindInputGroup = styled(InputGroup)`
   max-width: 64rem;
   margin: 0 auto;
-`
+`;
 const FindInput = styled.input`
   &.input {
     background: ${props => props.theme.primaryBackground};
   }
-`
+`;
 const ControllerButton = styled.button`
   background-color: transparent;
   border: none;
@@ -167,7 +206,7 @@ const ControllerButton = styled.button`
   height: 100%;
   justify-content: center;
   align-items: center;
-`
+`;
 const Item = styled.li`
   padding: 0.4rem 1.5rem;
   border-radius: 5px;
@@ -175,11 +214,11 @@ const Item = styled.li`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 const Liaison = styled.div`
   max-width: 64rem;
   margin: 0 auto;
-`
+`;
 const ResultContent = styled.div`
   padding-top: 5rem;
   display: flex;
@@ -188,20 +227,20 @@ const ResultContent = styled.div`
   ${media.phone`
      flex-direction: column;
   `}
-`
+`;
 const Text = styled.div`
   display: inline-block;
   line-height: 1.8;
-`
+`;
 const Name = styled.h4`
   font-size: 2.4rem;
   color: ${props => props.theme.primaryGrey};
-`
+`;
 const StyledLink = styled.a`
   display: block;
   color: ${props => props.theme.primaryBlack};
   text-decoration: underline;
-`
+`;
 const SchoolLogo = styled.img`
   height: 20rem;
   max-width: 40rem;
@@ -214,4 +253,4 @@ const SchoolLogo = styled.img`
      padding-left: 0rem;
      max-width: 85%;
   `}
-`
+`;

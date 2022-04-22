@@ -1,15 +1,17 @@
-import * as React from 'react'
-import styled from 'styled-components/macro'
-import EmbedDocument from '../../components/EmbedDocument'
-import { IReport } from '../../sharedTypes'
-import { elevation, transition } from '../../utils/mixins'
+import * as React from 'react';
+import styled from 'styled-components/macro';
+import EmbedDocument from '../../components/EmbedDocument';
+import { IReport } from '../../sharedTypes';
+import { elevation, transition } from '../../utils/mixins';
 
 interface IProps {
-  reports: IReport[]
+  reports: IReport[];
 }
 
 const Reports: React.FC<IProps> = ({ reports }) => {
-  const [openDocument, setOpenDocument] = React.useState<IReport | undefined>(undefined)
+  const [openDocument, setOpenDocument] = React.useState<IReport | undefined>(
+    undefined,
+  );
   return (
     <Wrapper>
       {openDocument && (
@@ -23,32 +25,38 @@ const Reports: React.FC<IProps> = ({ reports }) => {
       {reports.map(report => {
         return (
           <ReportItem key={report.url}>
-            <ReportCard onClick={() => setOpenDocument(report)} data-testid="reportCard">
-              <ReportCover src={report.image.url} alt={`${report.title} cover`} />
+            <ReportCard
+              onClick={() => setOpenDocument(report)}
+              data-testid="reportCard"
+            >
+              <ReportCover
+                src={report.image.url}
+                alt={`${report.title} cover`}
+              />
               <ReportTitle>{report.title}</ReportTitle>
             </ReportCard>
           </ReportItem>
-        )
+        );
       })}
     </Wrapper>
-  )
-}
-export default Reports
+  );
+};
+export default Reports;
 
 const Wrapper = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-`
+`;
 const ReportTitle = styled.span`
   color: ${props => props.theme.primaryLink};
   font-weight: 500;
   font-size: 1.8rem;
   padding-top: 2rem;
-`
+`;
 const ReportItem = styled.li`
   margin: 3.2rem 2rem;
-`
+`;
 const ReportCard = styled.div`
   ${elevation(4)};
   padding: 3.2rem 2rem 2rem;
@@ -66,11 +74,11 @@ const ReportCard = styled.div`
     ${transition({ name: 'easeInCubic' })};
     cursor: pointer;
   }
-`
+`;
 const ReportCover: any = styled.div`
   height: 33.2rem;
   width: 25rem;
   background-image: url(${(props: any) => props.src.replace("'", '')});
   background-size: cover;
   box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.2);
-`
+`;

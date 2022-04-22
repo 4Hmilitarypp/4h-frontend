@@ -1,27 +1,37 @@
-import * as React from 'react'
-import styled from 'styled-components/macro'
-import { Button } from '../../../components/Elements'
+import * as React from 'react';
+import styled from 'styled-components/macro';
+import { Button } from '../../../components/Elements';
 
 interface IProps {
-  categories: string[]
-  categorySelected: (categories: string[]) => void
+  categories: string[];
+  categorySelected: (categories: string[]) => void;
 }
 
-const FilterCategoriesDisplay: React.FC<IProps> = ({ categories, categorySelected }) => {
-  const allCategoriesText = 'All Categories'
-  const [selectedCategory, setSelectedCategory] = React.useState<string>(allCategoriesText)
+const FilterCategoriesDisplay: React.FC<IProps> = ({
+  categories,
+  categorySelected,
+}) => {
+  const allCategoriesText = 'All Categories';
+  const [selectedCategory, setSelectedCategory] =
+    React.useState<string>(allCategoriesText);
 
   const handleCategoryClicked = (e: MouseEvent) => {
     if (e.currentTarget) {
-      const category = (e.currentTarget as HTMLButtonElement).textContent || allCategoriesText
-      setSelectedCategory(category)
-      const filteredCategories = categories.filter(cat => (category === allCategoriesText ? true : category === cat))
-      categorySelected(filteredCategories)
+      const category =
+        (e.currentTarget as HTMLButtonElement).textContent || allCategoriesText;
+      setSelectedCategory(category);
+      const filteredCategories = categories.filter(cat =>
+        category === allCategoriesText ? true : category === cat,
+      );
+      categorySelected(filteredCategories);
     }
-  }
+  };
   return (
     <FilterWrapper>
-      <CategoryButton onClick={handleCategoryClicked} className={selectedCategory === allCategoriesText && 'active'}>
+      <CategoryButton
+        onClick={handleCategoryClicked}
+        className={selectedCategory === allCategoriesText && 'active'}
+      >
         {allCategoriesText}
       </CategoryButton>
       {categories.map(category => (
@@ -34,16 +44,16 @@ const FilterCategoriesDisplay: React.FC<IProps> = ({ categories, categorySelecte
         </CategoryButton>
       ))}
     </FilterWrapper>
-  )
-}
+  );
+};
 
-export default FilterCategoriesDisplay
+export default FilterCategoriesDisplay;
 
 const FilterWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-`
+`;
 const CategoryButton = styled(Button)`
   padding: 0.4rem 1.2rem;
   white-space: nowrap;
@@ -52,4 +62,4 @@ const CategoryButton = styled(Button)`
     background: hsla(150, 35%, 75%, 1);
   }
   margin: 0 0.8rem 1.6rem;
-`
+`;

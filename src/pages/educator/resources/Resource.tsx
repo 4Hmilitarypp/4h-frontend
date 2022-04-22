@@ -1,36 +1,43 @@
-import { RouteComponentProps } from '@reach/router'
+import { RouteComponentProps } from '@reach/router';
 // @ts-ignore
-import Parser from 'html-react-parser'
-import * as React from 'react'
-import styled from 'styled-components/macro'
-import BackButton from '../../../components/BackButton'
-import { DynamicSection, Heading, PageWrapper, SubHeading } from '../../../components/Elements'
-import useErrorHandler from '../../../hooks/useErrorHandler'
-import { IResourceWithLessons } from '../../../sharedTypes'
-import api from '../../../utils/api'
-import { elevation, media } from '../../../utils/mixins'
-import Lesson from './Lesson'
+import Parser from 'html-react-parser';
+import * as React from 'react';
+import styled from 'styled-components/macro';
+import BackButton from '../../../components/BackButton';
+import {
+  DynamicSection,
+  Heading,
+  PageWrapper,
+  SubHeading,
+} from '../../../components/Elements';
+import useErrorHandler from '../../../hooks/useErrorHandler';
+import { IResourceWithLessons } from '../../../sharedTypes';
+import api from '../../../utils/api';
+import { elevation, media } from '../../../utils/mixins';
+import Lesson from './Lesson';
 
 interface IProps extends RouteComponentProps {
-  slug?: string
-  backButtonRoute: string
+  slug?: string;
+  backButtonRoute: string;
 }
 
 const Resource: React.FC<IProps> = ({ slug, backButtonRoute }) => {
-  const [resource, setResource] = React.useState<IResourceWithLessons | undefined>(undefined)
-  const handleError = useErrorHandler()
+  const [resource, setResource] = React.useState<
+    IResourceWithLessons | undefined
+  >(undefined);
+  const handleError = useErrorHandler();
 
   React.useEffect(() => {
     api.resources
       .getBySlug(slug || '')
       .then(r => setResource(r))
-      .catch(handleError)
-  }, [slug])
+      .catch(handleError);
+  }, [slug]);
 
   if (!resource) {
-    return null
+    return null;
   }
-  const { title, longDescription, featuredImage, lessons } = resource
+  const { title, longDescription, featuredImage, lessons } = resource;
   return (
     <PageWrapper data-testid="resource">
       <HeaderWrapper>
@@ -40,7 +47,9 @@ const Resource: React.FC<IProps> = ({ slug, backButtonRoute }) => {
       </HeaderWrapper>
       <TitleSection>
         <div>{Parser(longDescription)}</div>
-        {featuredImage && <FeaturedImage src={featuredImage.url} alt={featuredImage.alt} />}
+        {featuredImage && (
+          <FeaturedImage src={featuredImage.url} alt={featuredImage.alt} />
+        )}
       </TitleSection>
       {lessons && (
         <Lessons>
@@ -51,9 +60,9 @@ const Resource: React.FC<IProps> = ({ slug, backButtonRoute }) => {
         </Lessons>
       )}
     </PageWrapper>
-  )
-}
-export default Resource
+  );
+};
+export default Resource;
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -62,7 +71,7 @@ const HeaderWrapper = styled.div`
     flex-direction: column;
     padding: 0;
   `}
-`
+`;
 const TitleSection = styled(DynamicSection)`
   display: flex;
   justify-content: center;
@@ -71,12 +80,12 @@ const TitleSection = styled(DynamicSection)`
   ${media.tabletLand`
     flex-direction: column;
   `}
-`
+`;
 const FeaturedImage = styled.img`
   margin-left: 4rem;
   height: 30rem;
   object-fit: cover;
-`
+`;
 const Lessons = styled.div`
   max-width: 90rem;
   margin: 4.8rem auto 0;
@@ -86,11 +95,11 @@ const Lessons = styled.div`
     padding: 0 0 3.2rem;
     margin: 4.8rem -2rem 0;
   `}
-`
+`;
 const CustomSubHeading = styled(SubHeading)`
   color: ${props => props.theme.primary};
   ${media.tabletLand`
     font-size: 2rem;
   `}
-`
+`;
 // const TitleText = styled

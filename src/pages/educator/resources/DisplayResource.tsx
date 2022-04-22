@@ -1,10 +1,10 @@
-import { Link } from '@reach/router'
-import styled from 'styled-components/macro'
-import { Button, SubHeading } from '../../../components/Elements'
-import { IResource } from '../../../sharedTypes'
-import { elevation, media } from '../../../utils/mixins'
+import { Link } from '@reach/router';
+import styled from 'styled-components/macro';
+import { Button, SubHeading } from '../../../components/Elements';
+import { IResource } from '../../../sharedTypes';
+import { elevation, media } from '../../../utils/mixins';
 const DisplayResource = ({ resource }: { resource: IResource }) => {
-  const { title, slug, shortDescription } = resource
+  const { title, slug, shortDescription } = resource;
   return (
     <Wrapper key={title}>
       <Title>
@@ -15,10 +15,10 @@ const DisplayResource = ({ resource }: { resource: IResource }) => {
       </Title>
       <Description>{shortDescription}</Description>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default DisplayResource
+export default DisplayResource;
 
 const Wrapper = styled.div`
   background: ${props => props.theme.primaryBackground};
@@ -33,13 +33,13 @@ const Wrapper = styled.div`
   ${media.tabletPort`
     padding: 2rem 2.4rem;
   `}
-`
+`;
 const Title = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   padding-bottom: 2.4rem;
-`
+`;
 const CustomSubHeading = styled(SubHeading)`
   padding: 0;
   text-align: left;
@@ -47,7 +47,7 @@ const CustomSubHeading = styled(SubHeading)`
     font-size: 2rem;
     padding: 0;
   `}
-`
+`;
 const ViewButton = styled(Button)`
   white-space: nowrap;
   margin: 0 -1.2rem 0 2rem;
@@ -58,5 +58,5 @@ const ViewButton = styled(Button)`
     transform: none !important;
     background: #327654 !important;
   }
-`
-const Description = styled.div``
+`;
+const Description = styled.div``;

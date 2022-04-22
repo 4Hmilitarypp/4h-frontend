@@ -7,4 +7,4 @@ module.exports = {
     '@typescript-eslint/no-angle-bracket-type-assertion': 0,
     'react-hooks/exhaustive-deps': 0,
   },
-}
+};

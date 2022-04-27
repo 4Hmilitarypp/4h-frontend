@@ -118,7 +118,7 @@ const Home: React.FC<RouteComponentProps> = () => {
                 alt="several adults helping a student color"
               />
             </CardImageOverlay>
-            <CardText>Contact Your State's Liaison</CardText>
+            <CardText>Contact Your Region's Liaison</CardText>
           </Card>
           <CardArrow>{'>'}</CardArrow>
         </CardLink>
